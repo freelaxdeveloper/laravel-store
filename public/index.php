@@ -48,6 +48,29 @@ $app = require_once __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
+function renderNode($node) {
+
+    $html = '<ul>';
+  
+    if( $node->isLeaf() ) {
+      $html .= '<li>' . $node->name . '</li>';
+    } else {
+      $html .= '<li>' . $node->name;
+  
+      $html .= '<ul>';
+          
+      foreach($node->children as $child)
+        $html .= renderNode($child);
+  
+      $html .= '</ul>';
+  
+      $html .= '</li>';
+    }
+  
+    $html .= '</ul>';
+  
+    return $html;
+}
 
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 
