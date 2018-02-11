@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         # https://github.com/etrepat/baum#creating-root-node
-        
+
         # создаем родительскую категорию
         //$root = Category::create(['name' => 'Игры']);
 
@@ -45,6 +45,6 @@ class HomeController extends Controller
         } */
         //$categories = Category::find(2);
         $categories = Category::all()->toHierarchy();
-        return view('test', compact('categories'));
+        return view('categories', compact('categories'));
     }
 }
