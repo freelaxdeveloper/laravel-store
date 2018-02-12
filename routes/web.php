@@ -12,5 +12,14 @@
 */
 Route::get('/', 'HomeController@index')->name('home');
 
+Route::get('/categories', 'CategoryController@index')->name('cat');
+
+Route::middleware(['auth'])->name('cat.')->prefix('category')->group(function () {
+    Route::get('/new/{category?}', 'CategoryController@new')->name('new');
+    Route::post('/new/{category?}', 'CategoryController@newPost')->name('newPost');
+    Route::get('/delete/{category}', 'CategoryController@delete')->name('delete');
+    Route::get('/view/{category}', 'CategoryController@view')->name('view');
+});
+
 Auth::routes();
 
