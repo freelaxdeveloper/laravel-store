@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\{Category,Product};
 
 class CategoryController extends Controller
 {
     
     public function view(Category $category)
     {
+        $products = Product::categorized($category)->get();
+        $categories = $this->categories();
 
-        return view('categories.view', compact('category'));
+        return view('categories.view', compact('category', 'products', 'categories'));
     }
 
     public function index()

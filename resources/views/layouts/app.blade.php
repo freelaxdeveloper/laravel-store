@@ -61,9 +61,122 @@
         <!--/.Navbar-->
 
     </header>
-    @include('slider')
+    @yield('slider')
 
-    @yield('content')
+    <!-- Main layout -->
+    <main>
+        <div class="container-fluid">
+            <!-- Magazine -->
+            <div class="row mt-2">
+                @yield('content')
+
+                <!-- Sidebar -->
+                <div class="col-xl-3 col-md-12 widget-column mt-0">
+
+                        <!-- Section: Categories -->
+                        <section class="section mb-5">
+    
+                            <h4 class="font-bold mt-2"><strong>Категории</strong></h4>
+                            <hr class="red title-hr">
+    
+                            <ul class="list-group z-depth-1 mt-4">
+                                @foreach ($categories as $category)
+                                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                                        <a href="{{route('cat.view', [$category->slug])}}">{{$category->name}}</a>
+                                        {{--  <span class="badge badge-danger badge-pill">4</span>  --}}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </section>
+                        <!-- Section: Categories -->
+    
+                        <!-- Section: Gallery -->
+                        <section class="section sidebar-imgs mb-5">
+    
+                            <h4 class="font-bold"><strong>Примеры работ</strong></h4>
+                            <hr class="red title-hr">
+    
+                            <!--Grid row-->
+    
+                            <div class="row">
+                                <div class="col-md-12">
+    
+                                    <div id="mdb-lightbox-ui"></div>
+    
+                                    <div class="mdb-lightbox">
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(10).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(10).jpg" class="img-fluid" alt="sample image">
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(98).jpg" class="img-fluid" alt="sample image"/>
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).jpg" class="img-fluid" alt="sample image"/>
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/City/12-col/img%20(4).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(4).jpg" class="img-fluid" alt="sample image"/>
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/City/12-col/img%20(51).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(51).jpg" class="img-fluid" alt="sample image"/>
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(128).jpg" class="img-fluid" alt="sample image"/>
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(49).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/4-col/img%20(49).jpg" class="img-fluid" alt="sample image" />
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(115).jpg" class="img-fluid" alt="sample image" />
+                                            </a>
+                                        </figure>
+    
+                                        <figure class="col-md-4 px-1 py-1">
+                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(15).jpg" data-size="1600x1067">
+                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/4-col/img%20(15).jpg" class="img-fluid" alt="sample image" />
+                                            </a>
+                                        </figure>
+    
+                                    </div>
+    
+                                </div>
+    
+                            </div>
+                            <!--Grid row-->
+    
+                        </section>
+                        <!--/ Section: Gallery -->
+                    </div>
+                    <!--/ Sidebar -->
+                </div>
+                <!--/ Magazine -->
+            </div>
+        </main>
+        <!--/ Main layout -->
+    
+
 
     <!--Footer-->
     <footer class="page-footer stylish-color-dark">

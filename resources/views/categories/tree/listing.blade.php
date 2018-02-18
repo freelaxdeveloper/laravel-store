@@ -1,6 +1,7 @@
 @include('categories.tree.post', [
     'name' => $category->name,
     'id' => $category->id,
+    'slug' => $category->slug,
 ])
 @if (count($category->children))
     <ul>
