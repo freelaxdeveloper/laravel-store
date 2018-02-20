@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class Product extends Migration
+class AccountsInstagram extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class Product extends Migration
      */
     public function up()
     {
-        Schema::create('products', function(Blueprint $t) {
-            $t->increments('id');
-            $t->string('title');
-            $t->string('slug');
-            $t->integer('price')->nullable();
-            $t->json('options')->nullable();
-            $t->timestamps();
+        Schema::create('account_instagrams', function(Blueprint $table) {
+            $table->increments('id');
+            $table->string('login');
+            $table->string('password');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ class Product extends Migration
      */
     public function down()
     {
-        Schema::drop('products');
+        Schema::drop('account_instagrams');
     }
 }
