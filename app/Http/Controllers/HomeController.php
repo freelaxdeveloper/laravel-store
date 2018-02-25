@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Category;
+use App\{Category, Product};
 
 class HomeController extends Controller
 {
@@ -25,7 +25,8 @@ class HomeController extends Controller
     public function index()
     {
         $categories = Category::roots()->get();
+        $products = Product::get();
 
-        return view('home', compact('categories'));
+        return view('home', compact('categories', 'products'));
     }
 }

@@ -3,7 +3,7 @@
 @section('title', 'Кованые ворота')
 
 @section('slider')
-    @include('slider')
+    {{--  @include('slider')  --}}
 @endsection
 
 @section('content')
@@ -24,56 +24,53 @@
                 <!--Grid row-->
                 <div class="row mb-4">
 
+                    @foreach ($products as $product)
+                        <div class="row single-post mb-4 mr-3">
+                            <!--Card-->
+                            <div class="card mt-4 mx-3">
 
-
-
-
-
-
-                    <div class="row single-post mb-4 mr-3">
-                        <!--Card-->
-                        <div class="card mt-4 mx-3">
-
-                            <!--Card image-->
-                            <div class="view overlay hm-white-slight">
-                                <img src="http://oguzov.ru/images/home_gallery_3.jpg" class="img-fluid" alt="sample image">
-                                <a>
-                                    <div class="mask waves-effect waves-light"></div>
-                                </a>
-                            </div>
-                            <!--/Card image-->
-
-                            <!--Social buttons-->
-                            <div class="card-share">
-                                <div class="social-reveal">
-                                    <!--Facebook-->
-                                    <a type="button" class="btn-floating btn-fb waves-effect waves-light"><i class="fa fa-facebook"></i></a>
-                                    <!--Twitter-->
-                                    <a type="button" class="btn-floating btn-tw waves-effect waves-light"><i class="fa fa-twitter"></i></a>
-                                    <!--Google -->
-                                    <a type="button" class="btn-floating btn-gplus waves-effect waves-light"><i class="fa fa-google-plus"></i></a>
+                                <!--Card image-->
+                                <div class="view overlay hm-white-slight">
+                                    <img src="{{$product->screen}}" class="img-fluid" alt="sample image">
+                                    <a>
+                                        <div class="mask waves-effect waves-light"></div>
+                                    </a>
                                 </div>
-                                <a class="btn-floating btn-action share-toggle float-right waves-effect waves-light"><i class="fa fa-share-alt"></i></a>
-                            </div>
-                            <!--/Social buttons-->
+                                <!--/Card image-->
 
-                            <!--Card content-->
-                            
-                            <!--/Card content-->
+                                <!--Social buttons-->
+                                <div class="card-share">
+                                    <div class="social-reveal">
+                                        <!--Facebook-->
+                                        <a type="button" class="btn-floating btn-fb waves-effect waves-light"><i class="fa fa-facebook"></i></a>
+                                        <!--Twitter-->
+                                        <a type="button" class="btn-floating btn-tw waves-effect waves-light"><i class="fa fa-twitter"></i></a>
+                                        <!--Google -->
+                                        <a type="button" class="btn-floating btn-gplus waves-effect waves-light"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+                                    <a class="btn-floating btn-action share-toggle float-right waves-effect waves-light"><i class="fa fa-share-alt"></i></a>
+                                </div>
+                                <!--/Social buttons-->
 
-                            <!-- Card footer -->
-                            <div class="card-data">
-                                <ul class="list-unstyled">
-                                    <li><i class="fa fa-clock-o"></i> 05/10/2015</li>
-                                    <li><a href="#"><i class="fa fa-comments-o ml-4"></i>12</a></li>
-                                    <li><a href="#"><i class="fa fa-facebook"> </i>21</a></li>
-                                    <li><a href="#"><i class="fa fa-twitter"> </i>5</a></li>
-                                </ul>
+                                <!--Card content-->
+                                
+                                <!--/Card content-->
+
+                                <!-- Card footer -->
+                                <div class="card-data">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-clock-o"></i> 05/10/2015</li>
+                                        <li><a href="#"><i class="fa fa-comments-o ml-4"></i>12</a></li>
+                                        <li><a href="#"><i class="fa fa-facebook"> </i>21</a></li>
+                                        <li><a href="#"><i class="fa fa-twitter"> </i>5</a></li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
                             </div>
-                            <!-- Card footer -->
+                            <!--/Card-->
                         </div>
-                        <!--/Card-->
-                    </div>
+
+                    @endforeach
 
 
 

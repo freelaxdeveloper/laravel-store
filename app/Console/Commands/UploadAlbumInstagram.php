@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\AccountInstagram;
+use Gumlet\ImageResize as Resize;
+
 
 class UploadAlbumInstagram extends Command
 {
@@ -63,6 +65,10 @@ class UploadAlbumInstagram extends Command
             $images = glob(base_path() . '/storage/images/resize/*.jpg');
             $media = [];
             for ($i = 0; $i < count($images); $i++) {
+                $image = new Resize($images[$i]);
+                if (1080 < $image->getSourceWidth()) {
+                    continue;
+                }
                 $media[] = [
                     'type' => 'photo',
                     'file' => $images[$i],
