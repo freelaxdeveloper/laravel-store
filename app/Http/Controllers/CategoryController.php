@@ -10,7 +10,7 @@ class CategoryController extends Controller
     
     public function view(Category $category)
     {
-        $products = Product::categorized($category)->get();
+        $products = Product::categorized($category)->paginate(15);
         $categories = $this->categories();
 
         return view('categories.view', compact('category', 'products', 'categories'));

@@ -11,7 +11,7 @@ class Product extends Model
 
     public function getScreenAttribute()
     {
-        return "/photos/{$this->id}.jpg";
+        return "/products/{$this->id}.jpg";
     }
 
     /* public function getRouteKeyName()

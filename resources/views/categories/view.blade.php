@@ -20,27 +20,42 @@
                 <!--Grid row-->
                 <div class="row mb-4">
 
-                @foreach ($products as $product)
-                    <div class="row single-post mb-4 mr-3">
-                        <!--Card-->
-                        <div class="card mt-4 mx-3">
+                    @foreach ($products as $product)
+                        <div class="row single-post mb-4 mr-3">
+                            <!--Card-->
+                            <div class="card mt-4 mx-3">
 
-                            <div class="view overlay hm-white-slight">
-                                <img src="http://oguzov.ru/images/home_gallery_3.jpg" class="img-fluid" alt="sample image">
-                                <a href="{{route('prod.view', [$product->slug])}}">
-                                    <div class="mask waves-effect waves-light"></div>
-                                </a>
+                                <!--Card image-->
+                                <div class="view overlay hm-white-slight">
+                                    <img src="{{$product->screen}}" class="img-fluid" alt="sample image">
+                                    <a href="{{route('prod.view', [$product->id])}}">
+                                        <div class="mask waves-effect waves-light"></div>
+                                    </a>
+                                </div>
+                                <!--/Card image-->
+
+                                <!-- Card footer -->
+                                <div class="card-data">
+                                    <ul class="list-unstyled">
+                                        <li><i class="fa fa-clock-o"></i> {{$product->created_at}}</li>
+                                    </ul>
+                                </div>
+                                <!-- Card footer -->
                             </div>
+                            <!--/Card-->
                         </div>
-                        <!--/Card-->
-                    </div>
-                @endforeach
+
+                    @endforeach
                 </div>
                 <!--/Grid row-->
             </section>
 
         </section>
         <!--/Section: Magazine posts-->
+        <!--Pagination dark-->
+        {{ $products->links() }}
+        <!--/Pagination dark grey-->
+
     </div>
     <!--/ Main news -->
 

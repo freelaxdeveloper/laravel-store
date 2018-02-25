@@ -41,6 +41,9 @@ class ImageResize extends Command
     {
         $images = glob(base_path() . '/storage/images/*.jpg');
         for ($i = 0; $i < count($images); $i++) {
+            if (1 == $i) {
+                break;
+            }
             $basename = basename($images[$i]);
 
             $product = Product::create([
@@ -72,7 +75,7 @@ class ImageResize extends Command
                 $image_height = imagesy($imageDesc);
                 $image_x = 0;
                 $image_y = 0;
-                imagecopymerge($imageDesc, $logo, $image_x, $image_height - $logo_height, 0, 0, $logo_width, $logo_height, $alpha_level);
+                imagecopy($imageDesc, $logo, $image_x, $image_height - $logo_height, 0, 0, $logo_width, $logo_height);
             });
             $image->addFilter(function ($imageDesc) {
                 $logo = imagecreatefrompng(base_path() . '/storage/banner_250x86.png');
@@ -84,7 +87,7 @@ class ImageResize extends Command
                 $image_height = imagesy($imageDesc);
                 $image_x = $image_width - $logo_width;
                 $image_y = $image_height - $logo_height;
-                imagecopymerge($imageDesc, $logo, $image_x, $image_y, 0, 0, $logo_width, $logo_height, $alpha_level);
+                imagecopy($imageDesc, $logo, $image_x, $image_y, 0, 0, $logo_width, $logo_height);
             });
             $image->addFilter(function ($imageDesc) use ($product) {
                 $color = ImageColorAllocate($imageDesc, 255, 255, 255); //получаем идентификатор цвета
@@ -97,7 +100,7 @@ class ImageResize extends Command
 
             $result = $image->save(base_path() . '/public/products/' . $product->id . '.jpg', null, 100);
             copy($images[$i], base_path() . '/resources/archive/' . $basename);
-            //unlink($images[$i]);
+            unlink($images[$i]);
 
             echo "Обработал: {$basename}\n";
         }

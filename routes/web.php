@@ -23,7 +23,7 @@ Route::name('cat.')->prefix('category')->group(function () {
     Route::get('/view{category}', 'CategoryController@view')->name('view');
 });
 Route::name('prod.')->prefix('product')->group(function () {
-    Route::get('/view{product}', 'ProductController@view')->name('view');
+    Route::get('/view/{product}', 'ProductController@view')->name('view');
 });
 
 Auth::routes();

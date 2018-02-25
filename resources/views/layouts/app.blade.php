@@ -37,13 +37,11 @@
                 <ul class="navbar-nav mr-auto">
                      <!-- Dropdown -->
                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Homepages</a>
+                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Навигация</a>
                         <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">V1</a>
-                            <a class="dropdown-item" href="#">V2</a>
-                            <a class="dropdown-item" href="#">V3</a>
-                            <a class="dropdown-item" href="#">V4</a>
-                            <a class="dropdown-item" href="#">V5</a>
+                            <a class="dropdown-item" href="#">О нас</a>
+                            <a class="dropdown-item" href="#">Сделать заказ</a>
+                            <a class="dropdown-item" href="#">Контакты</a>
                         </div>
                     </li>
 
@@ -51,9 +49,9 @@
                 <!-- Links -->
 
                 <!-- Search form -->
-                <form class="form-inline">
+                {{--  <form class="form-inline">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                </form>
+                </form>  --}}
             </div>
             <!-- Collapsible content -->
 
@@ -90,84 +88,6 @@
                         </section>
                         <!-- Section: Categories -->
     
-                        <!-- Section: Gallery -->
-                        <section class="section sidebar-imgs mb-5">
-    
-                            <h4 class="font-bold"><strong>Примеры работ</strong></h4>
-                            <hr class="red title-hr">
-    
-                            <!--Grid row-->
-    
-                            <div class="row">
-                                <div class="col-md-12">
-    
-                                    <div id="mdb-lightbox-ui"></div>
-    
-                                    <div class="mdb-lightbox">
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(10).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(10).jpg" class="img-fluid" alt="sample image">
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(98).jpg" class="img-fluid" alt="sample image"/>
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(131).jpg" class="img-fluid" alt="sample image"/>
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/City/12-col/img%20(4).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(4).jpg" class="img-fluid" alt="sample image"/>
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/City/12-col/img%20(51).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/City/4-col/img%20(51).jpg" class="img-fluid" alt="sample image"/>
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(128).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(128).jpg" class="img-fluid" alt="sample image"/>
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(49).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/4-col/img%20(49).jpg" class="img-fluid" alt="sample image" />
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(115).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20(115).jpg" class="img-fluid" alt="sample image" />
-                                            </a>
-                                        </figure>
-    
-                                        <figure class="col-md-4 px-1 py-1">
-                                            <a href="https://mdbootstrap.com/img/Photos/Horizontal/People/12-col/img%20(15).jpg" data-size="1600x1067">
-                                                <img src="https://mdbootstrap.com/img/Photos/Horizontal/People/4-col/img%20(15).jpg" class="img-fluid" alt="sample image" />
-                                            </a>
-                                        </figure>
-    
-                                    </div>
-    
-                                </div>
-    
-                            </div>
-                            <!--Grid row-->
-    
-                        </section>
-                        <!--/ Section: Gallery -->
                     </div>
                     <!--/ Sidebar -->
                 </div>
