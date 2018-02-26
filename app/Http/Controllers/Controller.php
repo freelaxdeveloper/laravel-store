@@ -14,6 +14,6 @@ class Controller extends BaseController
 
     protected function categories()
     {
-        return Category::roots()->get();
+        return Category::roots()->withCount('products')->get();
     }
 }

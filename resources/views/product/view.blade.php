@@ -20,6 +20,31 @@
         <hr class="red title-hr">
 
         <img src="{{$product->screen}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image">
+
+        <div class="row px-4">
+
+                <!--Grid column-->
+                <div class="col-md-6 mt-4">
+
+                    <h5 class="font-bold dark-grey-text">
+                        <i class="fa fa-lg fa-newspaper-o mr-3 dark-grey-text"></i>
+                        <strong>{{$product->views}}</strong> Views</h5>
+
+                </div>
+                <!--Grid column-->
+
+                <!--Grid column-->
+                <div class="col-md-6 mt-2 d-flex justify-content-end">
+
+                    <!--Edit-->
+                    <a href="{{route('prod.edit', $product->id)}}" type="button" class="btn-floating btn-small btn-fb">
+                        <i class="fa fa-edit"></i>
+                    </a>
+                </div>
+                <!--Grid column-->
+
+            </div>
+
         <hr>
         <section class="text-left mt-4">
 

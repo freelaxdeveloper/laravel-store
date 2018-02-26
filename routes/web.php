@@ -23,7 +23,13 @@ Route::name('cat.')->prefix('category')->group(function () {
     Route::get('/view{category}', 'CategoryController@view')->name('view');
 });
 Route::name('prod.')->prefix('product')->group(function () {
+
     Route::get('/view/{product}', 'ProductController@view')->name('view');
+
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/edit/{product}', 'ProductController@edit')->name('edit');
+        Route::post('/edit/{product}', 'ProductController@save')->name('save');
+    });
 });
 
 Auth::routes();

@@ -58,7 +58,7 @@
         <!--/Section: Magazine posts-->
 
         <!--Pagination dark-->
-        {{ $products->links() }}
+            {{ $products->links() }}
         <!--/Pagination dark grey-->
 
     </div>

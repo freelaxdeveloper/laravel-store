@@ -10,7 +10,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
     <link href="{{elixir('css/core.css')}}" rel="stylesheet">
 
@@ -69,26 +69,29 @@
                 @yield('content')
 
                 <!-- Sidebar -->
-                <div class="col-xl-3 col-md-12 widget-column mt-0">
+                @if (isset($categories))
+                    <div class="col-xl-3 col-md-12 widget-column mt-0">
 
-                        <!-- Section: Categories -->
-                        <section class="section mb-5">
-    
-                            <h4 class="font-bold mt-2"><strong>Категории</strong></h4>
-                            <hr class="red title-hr">
-    
-                            <ul class="list-group z-depth-1 mt-4">
-                                @foreach ($categories as $category)
-                                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                                        <a href="{{route('cat.view', [$category->slug])}}">{{$category->name}}</a>
-                                        {{--  <span class="badge badge-danger badge-pill">4</span>  --}}
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </section>
-                        <!-- Section: Categories -->
-    
-                    </div>
+                            <!-- Section: Categories -->
+                            <section class="section mb-5">
+        
+                                <h4 class="font-bold mt-2"><strong>Категории</strong></h4>
+                                <hr class="red title-hr">
+        
+                                <ul class="list-group z-depth-1 mt-4">
+                                    @forelse ($categories as $category)
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            <a href="{{route('cat.view', [$category->slug])}}">{{$category->name}}</a>
+                                            <span class="badge badge-danger badge-pill">{{$category->products_count}}</span>
+                                        </li>
+                                    @empty
+                                    @endforelse
+                                </ul>
+                            </section>
+                            <!-- Section: Categories -->
+        
+                        </div>
+                    @endif
                     <!--/ Sidebar -->
                 </div>
                 <!--/ Magazine -->
@@ -178,13 +181,24 @@
 
     <!-- Bootstrap core JavaScript -->
     <script type="text/javascript" src="{{elixir('js/mdb.js')}}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    @verbatim
     <script>
         // MDB Lightbox Init
         $(function () {
             $("#mdb-lightbox-ui").load("/mdb-lightbox-ui.html");
         });
+        $(document).ready(function() {
+            console.log('=)');
+            $('.js-example-basic-multiple').select2();
+        });
     </script>
+    <style>
+        .select2{
+            width: 100% !important;
+        }
+    </style>
+    @endverbatim
 
 </body>
 
