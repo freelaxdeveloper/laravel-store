@@ -5,7 +5,8 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\AccountInstagram;
 use Gumlet\ImageResize as Resize;
-
+use App\Product;
+use InstagramAPI\Instagram;
 
 class UploadAlbumInstagram extends Command
 {
@@ -40,45 +41,62 @@ class UploadAlbumInstagram extends Command
      */
     public function handle()
     {
-        $accounts = AccountInstagram::get();
-
-        foreach ($accounts as $account) {
-            echo "Подключаюсь к: {$account->login}\n";
-            $this->sendAlbum($account);
-        }
+        $product = Product::where('instagram', 0)->first();
+        $this->sendPhoto($product);
+        // $products = Product::where('instagram', 0)->get()->take(3);
+        // $this->sendAlbum($products);
     }
 
-    public function sendAlbum(AccountInstagram $account)
+    public function login(AccountInstagram $account)
     {
-        $ig = new \InstagramAPI\Instagram;
+        $ig = new Instagram;
         try {
             $ig->login($account->login, $account->password);
-            echo "Подключился\n";
+            echo "Подключился к {$account->login}\n";
         } catch (\Exception $e) {
             echo "Не смог подключиться\n";
-            return;
+            return false;
         }
+        return $ig;
+    }
 
-        try {
-            $captionText = "Phone: 0xxxxxxxxx\n";
-            $photoFilename = base_path() . '/storage/images/test.jpg';
-            $images = glob(base_path() . '/storage/images/resize/*.jpg');
-            $media = [];
-            for ($i = 0; $i < count($images); $i++) {
-                $image = new Resize($images[$i]);
-                if (1080 < $image->getSourceWidth()) {
-                    continue;
-                }
-                $media[] = [
-                    'type' => 'photo',
-                    'file' => $images[$i],
-                ];
+    public function sendPhoto(Product $product)
+    {
+        $accounts = AccountInstagram::where('login', 'vorota_vikri')->get();
+
+        foreach ($accounts as $account) {
+            if (!$ig = $this->login($account)) {
+                return;
             }
-            echo "Скидываю фотки\n";
-            $ig->timeline->uploadAlbum($media, ['caption' => $captionText]);
-        } catch (\Exception $e) {
-            echo 'Something went wrong: '.$e->getMessage()."\n";
+            $ig->timeline->uploadPhoto($product->screenPath, ['caption' => $this->getCaption()]);
+            echo "Скинул №{$product->id}\n\n";
         }
-        echo "Конец\n\n";
+        $product->instagram = 1;
+        $product->save();
+    }
+
+    public function sendAlbum($products)
+    {
+        $media = [];
+        $accounts = AccountInstagram::where('login', 'vorota_vikri')->get();
+        foreach ($products as $product) {
+            $media[] = [
+                'type' => 'photo',
+                'file' => $product->screenPath,
+            ];        
+        }
+        foreach ($accounts as $account) {
+            if (!$ig = $this->login($account)) {
+                return;
+            }
+            $ig->timeline->uploadAlbum($media, ['caption' => $this->getCaption()]);
+            echo "Скинул\n\n";
+        }
+        Product::whereIn('id', $products->pluck('id'))->update(['instagram' => 1]);
+    }
+
+    public function getCaption()
+    {
+        return "Phone: 8 (989) 866 36 70";
     }
 }

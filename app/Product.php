@@ -14,6 +14,11 @@ class Product extends Model
         return "/products/{$this->id}.jpg";
     }
 
+    public function getScreenPathAttribute()
+    {
+        return base_path() . '/public/' . $this->screen;
+    }
+
     /* public function getRouteKeyName()
     {
         return 'slug';
