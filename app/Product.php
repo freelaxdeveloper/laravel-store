@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Category;
+use App\{Category, AccountInstagram};
 
 class Product extends Model
 {
@@ -16,7 +16,7 @@ class Product extends Model
 
     public function getScreenPathAttribute()
     {
-        return base_path() . '/public/' . $this->screen;
+        return base_path("public/{$this->screen}");
     }
 
     /* public function getRouteKeyName()
@@ -26,6 +26,10 @@ class Product extends Model
 
     public function categories() {
         return $this->belongsToMany(Category::class, 'products_categories');
+    }
+
+    public function instagrams() {
+        return $this->belongsToMany(AccountInstagram::class, 'products_instagrams');
     }
 
     public function scopeCategorized($query, Category $category = null) {

@@ -41,9 +41,9 @@ class UploadAlbumInstagram extends Command
      */
     public function handle()
     {
-        $product = Product::where('instagram', 0)->first();
+        $product = Product::whereDoesntHave('instagrams')->first();
         $this->sendPhoto($product);
-        // $products = Product::where('instagram', 0)->get()->take(3);
+        // $products = Product::whereDoesntHave('instagrams')->get()->take(3);
         // $this->sendAlbum($products);
     }
 
@@ -62,7 +62,7 @@ class UploadAlbumInstagram extends Command
 
     public function sendPhoto(Product $product)
     {
-        $accounts = AccountInstagram::where('login', 'vorota_vikri')->get();
+        $accounts = AccountInstagram::get();
 
         foreach ($accounts as $account) {
             if (!$ig = $this->login($account)) {
@@ -71,19 +71,19 @@ class UploadAlbumInstagram extends Command
             $ig->timeline->uploadPhoto($product->screenPath, ['caption' => $this->getCaption()]);
             echo "Скинул №{$product->id}\n\n";
         }
-        $product->instagram = 1;
-        $product->save();
+        $product->instagrams()->attach($accounts->pluck('id'));
     }
 
     public function sendAlbum($products)
     {
         $media = [];
-        $accounts = AccountInstagram::where('login', 'vorota_vikri')->get();
+        $accounts = AccountInstagram::get();
         foreach ($products as $product) {
             $media[] = [
                 'type' => 'photo',
                 'file' => $product->screenPath,
-            ];        
+            ];
+            $product->instagrams()->attach($accounts->pluck('id'));
         }
         foreach ($accounts as $account) {
             if (!$ig = $this->login($account)) {
@@ -92,7 +92,6 @@ class UploadAlbumInstagram extends Command
             $ig->timeline->uploadAlbum($media, ['caption' => $this->getCaption()]);
             echo "Скинул\n\n";
         }
-        Product::whereIn('id', $products->pluck('id'))->update(['instagram' => 1]);
     }
 
     public function getCaption()
