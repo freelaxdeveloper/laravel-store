@@ -1,0 +1,85 @@
+
+.tree {
+  padding: 20px 0;
+}
+
+.tree::after {
+  content: '';
+  display: block;
+  clear: left;
+}
+
+.tree div {
+  clear: left;
+}
+
+input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+
+label {
+  display: block;
+  float: left;
+  clear: left;
+  position: relative;
+  margin-left: 25px;
+  padding: 5px;
+  border-radius: 5px;
+  color: #5c5d5e;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+label::before {
+  display: block;
+  position: absolute;
+  top: 6px;
+  left: -25px;
+  font-family: 'FontAwesome';
+}
+
+label::before {
+  border: none !important;
+  content: '\f07b' !important; /* closed folder */
+}
+
+input:checked + label::before {
+  border: none !important;
+  content: '\f07c' !important; /* open folder */
+}
+
+input:focus + label {
+  outline: none;
+  background-color: #b9c3c9;
+}
+
+.sub {
+  display: none;
+  float: left;
+  margin-left: 30px;
+}
+
+input:checked ~ .sub {
+  display: block;
+}
+
+input[type="reset"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  color: #e8ebed;
+  background-color: #6b7c87;
+  font-family: inherit;
+  font-size: .9em;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type="reset"]:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #b9c3c9;
+}

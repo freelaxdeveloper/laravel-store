@@ -5,6 +5,7 @@ elixir(function(mix) {
         .styles([
             'bootstrap.css',
             'mdb.css',
+            'tree.css',
         ], 'public/css/core.css')
         .scripts([
             'jquery-3.2.1.min.js',

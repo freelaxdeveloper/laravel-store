@@ -6,7 +6,7 @@
                 <div class="card-header">Новая категория</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('cat.newPost', $category->id) }}">
+                    <form method="POST" action="{{ route('cat.newPost', isset($category->slug) ? $category->slug : '') }}">
                         @csrf
                         @if ($category->id)
                             <div class="form-group row">
