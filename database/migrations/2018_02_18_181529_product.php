@@ -18,7 +18,8 @@ class Product extends Migration
             $t->string('title');
             $t->string('slug', 128)->unique();
             $t->integer('price')->nullable();
-            $t->json('options')->nullable();
+            // $t->json('options')->nullable();
+            $t->text('options')->nullable();
             $t->timestamps();
         });
     }
