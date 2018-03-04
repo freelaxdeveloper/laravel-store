@@ -22,7 +22,13 @@ class Category extends Node
         parent::boot();
 
         static::saving(function ($model) {
-            $model->slug = str_slug($model->name);
+            $slug = str_slug($model->name);
+            if (!Category::where('slug', $slug)->first()) {
+                $model->slug = $slug;
+            } else {
+                $model->slug = $slug . '_' . mt_rand(111, 999);
+            }
+            
         });
     }
 }
