@@ -16,7 +16,7 @@ class Product extends Migration
         Schema::create('products', function(Blueprint $t) {
             $t->increments('id');
             $t->string('title');
-            $t->string('slug');
+            $t->string('slug', 128)->unique();
             $t->integer('price')->nullable();
             $t->json('options')->nullable();
             $t->timestamps();

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CategorySlug extends Migration
+class Role extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CategorySlug extends Migration
      */
     public function up()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug', 128)->after('name')->unique();
-        });
+		Schema::create('roles', function($table) {
+			$table->increments('id');
+            $table->string('name', 40)->unique();
+            $table->string('caption', 40);
+			$table->string('description', 255);
+			$table->timestamps();
+		});
     }
 
     /**
@@ -25,8 +29,6 @@ class CategorySlug extends Migration
      */
     public function down()
     {
-        Schema::table('categories', function (Blueprint $table) {
-            $table->dropColumn('slug');
-        });
+        Schema::drop('roles');
     }
 }

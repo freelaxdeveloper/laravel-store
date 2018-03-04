@@ -24,9 +24,13 @@ Route::name('cat.')->prefix('category')->group(function () {
 });
 Route::name('prod.')->prefix('product')->group(function () {
 
-    Route::get('/view/{product}', 'ProductController@view')->name('view');
+    Route::get('/view/{product}', [
+        'as' => 'view',
+        'uses' => 'ProductController@view',
+        'roles' => ['admin'],
+    ])->middleware('roles');
 
-    Route::middleware(['auth'])->group(function () {
+    Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {
         Route::get('/edit/{product}', 'ProductController@edit')->name('edit');
         Route::post('/edit/{product}', 'ProductController@save')->name('save');
     });

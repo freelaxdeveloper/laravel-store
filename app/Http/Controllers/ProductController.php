@@ -29,11 +29,12 @@ class ProductController extends Controller
     public function save(Request $request, Product $product)
     {
         $messages = [
-            'description.required' => 'Описание обязательно для заполнения',
+            'price.required' => 'Цена обязательна для заполнения',
         ];
         
         Validator::make($request->all(), [
             'description' => 'nullable|string',
+            'price' => 'required|integer',
             'categories.*' => 'integer|exists:categories,id',
         ], $messages)->validate();
 
@@ -41,6 +42,7 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->categories()->attach($request->input('categories'));
 
+        $product->price = $request->input('price');
         $product->description = $request->input('description');
         $product->save();
 
