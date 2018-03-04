@@ -171,7 +171,7 @@
                 <div class="col-md-8 col-lg-9">
 
                     <!--Copyright-->
-                    <p class="text-center text-md-left grey-text">© 2018 Copyright: <a href="#"><strong> DCMSX</strong></a></p>
+                    <p class="text-center text-md-left grey-text">© 2018 Copyright: <a href="/" rel="nofollow"><strong> VIKRI.ru</strong></a></p>
                     <!--/.Copyright-->
 
                 </div>
