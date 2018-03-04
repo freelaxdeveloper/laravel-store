@@ -15,4 +15,14 @@ npm-debug.log
 yarn-error.log
 .env
 /resources/mdbootstrap.com
-.bash_history                                                                                                     .bashrc                                                                                                           .cache/                                                                                                           .config/                                                                                                          .git2/                                                                                                            .local/                                                                                                           .subversion/                                                                                                      .viminfo                                                                                                          DCMSX/                                                                                                            public_html                                                                                                       public_html2/
+.bash_history                                                                                                   
+.bashrc                                                                                                         
+.cache/                                                                                                          
+.config/                                                                                                         
+.git2/                                                                                                           
+.local/                                                                                                          
+.subversion/                                                                                                     
+.viminfo                                                                                                         
+DCMSX/                                                                                                           
+public_html                                                                                                      
+public_html2/
