@@ -11,31 +11,17 @@
         {{--  {{$breadcrumbs->name}}   --}}
     @endforeach
     <div class="col-xl-7 col-md-12">
-
-        <!--Section: Magazine posts-->
         <section class="section extra-margins listing-section mt-2">
-
             <h2 class="font-bold"><strong>{{$category->name}}</strong></h2>
             <hr class="red title-hr">
+            <div class="row mb-4">
 
-            <!--Section: Top news-->
-            <section>
-                <!--Grid row-->
-                <div class="row mb-4">
-
-                    @foreach ($products as $product)
-                        @include('product.inc.list', ['product' => $product])
-                    @endforeach
-                </div>
-                <!--/Grid row-->
-            </section>
+                @foreach ($products as $product)
+                    @include('product.inc.list', ['product' => $product])
+                @endforeach
+            </div>
         </section>
-        <!--/Section: Magazine posts-->
-        <!--Pagination dark-->
+
         {{ $products->links() }}
-        <!--/Pagination dark grey-->
-
     </div>
-    <!--/ Main news -->
-
 @endsection
