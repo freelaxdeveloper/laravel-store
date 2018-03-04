@@ -42,7 +42,7 @@ class ImageResize extends Command
         $images = glob(base_path() . '/storage/images/*.jpg');
         for ($i = 0; $i < count($images); $i++) {
             if (1 == $i) {
-                break;
+                //break;
             }
             $basename = basename($images[$i]);
 

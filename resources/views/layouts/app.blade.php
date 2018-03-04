@@ -35,20 +35,48 @@
 
                 <!-- Links -->
                 <ul class="navbar-nav mr-auto">
-                     <!-- Dropdown -->
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Навигация</a>
-                        <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">О нас</a>
-                            <a class="dropdown-item" href="#">Сделать заказ</a>
-                            <a class="dropdown-item" href="#">Контакты</a>
-                        </div>
-                    </li>
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Навигация</a>
+                       <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                           <a class="dropdown-item" href="#">О нас</a>
+                           <a class="dropdown-item" href="#">Сделать заказ</a>
+                           <a class="dropdown-item" href="#">Контакты</a>
+                       </div>
+                   </li>
 
-                </ul>
+               </ul>
+               <!-- Links -->
+
+
                 <!-- Links -->
+                <ul class="navbar-nav">
+                    <!-- Dropdown -->
+                    <li class="nav-item dropdown">
+                       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
+                       <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                            @guest
+                                <a class="dropdown-item" href="{{ route('login') }}">Авторизация</a>
+                                <a class="dropdown-item" href="{{ route('register') }}">Регистрация</a>
+                            @else
+                                @if (Auth::user()->hasRole('admin'))
+                                    <a class="dropdown-item" href="{{ route('cat') }}">Категории</a>
+                                @endif
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                              document.getElementById('logout-form').submit();">Выйти
+                                </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            @endguest
+                       </div>
+                   </li>
 
-                <!-- Search form -->
+               </ul>
+               <!-- Links -->
+
+              <!-- Search form -->
                 {{--  <form class="form-inline">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                 </form>  --}}

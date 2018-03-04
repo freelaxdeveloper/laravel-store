@@ -3,7 +3,7 @@
 @section('title', 'Кованые ворота')
 
 @section('slider')
-    {{--  @include('slider')  --}}
+    @include('slider')
 @endsection
 
 @section('content')

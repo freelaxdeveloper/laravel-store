@@ -41,12 +41,12 @@ label::before {
 
 label::before {
   border: none !important;
-  content: '\f07b' !important; /* closed folder */
+  content: '\f07c' !important; /* closed folder */
 }
 
 input:checked + label::before {
   border: none !important;
-  content: '\f07c' !important; /* open folder */
+  content: '\f07b' !important; /* open folder */
 }
 
 input:focus + label {
@@ -55,13 +55,13 @@ input:focus + label {
 }
 
 .sub {
-  display: none;
+  display: block;
   float: left;
   margin-left: 30px;
 }
 
 input:checked ~ .sub {
-  display: block;
+  display: none;
 }
 
 input[type="reset"] {
@@ -83,3 +83,17 @@ input[type="reset"]:focus {
   outline: none;
   box-shadow: 0 0 0 4px #b9c3c9;
 }
+[type=checkbox]:checked+label:before{
+  top: 0 !important;
+  webkit-transform: none !important;
+  -ms-transform: none !important;
+  transform: none !important;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform-origin: none !important;
+  -ms-transform-origin: none !important;
+  transform-origin: none !important;  
+}
+[type=checkbox]+label {
+  padding-left: 25px !important;
+}
+/*# sourceMappingURL=tree.css.map */

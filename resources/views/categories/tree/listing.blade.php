@@ -10,8 +10,8 @@
             @each('categories.tree.listing', $category->children, 'category')
         </div>
     @else
-        <div class="sub">
+        {{--  <div class="sub">
             <div style="margin-left:15px; color:#575757;">(пусто)</div>
-        </div>
+        </div>  --}}
     @endif
 </div>
