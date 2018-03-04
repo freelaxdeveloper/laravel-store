@@ -13,7 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
     <link href="{{elixir('css/core.css')}}" rel="stylesheet">
-
+    @yield('css')
 </head>
 <body class="fixed-sn homepage-v5">
 

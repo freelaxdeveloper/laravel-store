@@ -2,6 +2,10 @@
 
 @section('title', 'Категории')
 
+@section('css')
+    <link href="{{elixir('css/tree.css')}}" rel="stylesheet">
+@endsection
+
 @section('content')
     <section class="section extra-margins listing-section mt-2 col-xl-7 col-md-12">
         <h4 class="font-bold"><strong>Категории</strong></h4>
