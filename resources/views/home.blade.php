@@ -18,7 +18,7 @@
         <!--Section: Magazine posts-->
         <section class="section extra-margins listing-section mt-2">
             @php ( $str_title = isset($_GET['page']) ? $_GET['page'] : '1' )
-            <h4 class="font-bold"><strong>Лучшее качество на рынке</strong> (стр.{{$str_title}})</h4>
+            <h2 class="font-bold"><strong>Лучшее качество на рынке</strong> (стр.{{$str_title}})</h2>
             <hr class="red title-hr">
 
 

@@ -18,7 +18,7 @@
                     <div class="full-bg-img flex-center white-text">
                         <ul class="animated fadeIn col-10">
                             <li>
-                                <h1 class="h1-responsive font-bold">Кованые ворота</h1>
+                                <h3 class="h1-responsive font-bold">Кованые ворота</h3>
                             </li>
                             <li>
                                 <p>Кованые ворота создадут ощущение защищенности и спокойствия, при этом оставаясь красивым и элегантным элементом.</p>
@@ -43,7 +43,7 @@
                     <div class="full-bg-img flex-center white-text">
                         <ul class="animated fadeIn col-10">
                             <li>
-                                <h1 class="h1-responsive font-bold">Входные двери</h1>
+                                <h3 class="h1-responsive font-bold">Входные двери</h3>
                             </li>
                             <li>
                                 <p>С развитием высоких технологий старинное ремесло получило новое дыхание. Неизменной изысканностью и надежностью отличаются и входные двери, отделанные коваными элементами.</p>
@@ -67,7 +67,7 @@
                     <div class="full-bg-img flex-center white-text">
                         <ul class="animated fadeIn col-md-12">
                             <li>
-                                <h1 class="h1-responsive font-bold">Лестницы и перила</h1>
+                                <h3 class="h1-responsive font-bold">Лестницы и перила</h3>
                             </li>
                             <li>
                                 <p>Кованые перила или красивые кованые лестницы способны мгновенно изменить стиль помещения или вид дома, придав ему элегантность и благородство, вкус и уют.</p>

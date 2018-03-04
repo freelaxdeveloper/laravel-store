@@ -15,7 +15,7 @@
         <!--Section: Magazine posts-->
         <section class="section extra-margins listing-section mt-2">
 
-            <h4 class="font-bold"><strong>{{$category->name}}</strong></h4>
+            <h2 class="font-bold"><strong>{{$category->name}}</strong></h2>
             <hr class="red title-hr">
 
             <!--Section: Top news-->
