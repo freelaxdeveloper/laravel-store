@@ -138,11 +138,11 @@
         <div class="container-fluid">
 
             <!-- Footer links -->
-            <div class="row text-center text-md-left mt-3 pb-3">
+            <div class="row text-center text-md-left mt-3 pb-3" itemscope itemtype="http://schema.org/Organization">
 
                 <!--Grid column-->
                 <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4">
-                    <h6 class="title mb-4 font-bold">Новые-Викри - село мастеров</h6>
+                    <h6 class="title mb-4 font-bold" itemprop="name">Новые-Викри - село мастеров</h6>
                     <p>Художественная ковка в Дагестане. Изготавливаем кованные ворота, калитки, входные двери, лестничные перила, ограды и все что связано с кованными изделиями на заказ в Дагестане, в селении Новые-Викри (Викри, Ново-Викри)</p>
                 </div>
                 <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4">
@@ -153,12 +153,17 @@
 
                 <hr class="w-100 clearfix d-md-none">
                 <!--Grid column-->
-                <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4">
+                <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4" itemscope itemtype="http://schema.org/Organization">
                     <h6 class="title mb-4 font-bold">Контакты</h6>
-                    <p><i class="fa fa-home mr-3"></i> с.Новые-Викри, Каякентский р-н, Республика Дагестан</p>
-                    <p><i class="fa fa-envelope mr-3"></i> vikri.kovka@gmail.com</p>
-                    <p><i class="fa fa-phone mr-3"></i> +7 (989) 86 63 670</p>
-                    <p><i class="fa fa-phone mr-3"></i> 8 (989) 86 63 670</p>
+
+                    <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                        <i class="fa fa-home mr-3"></i>
+                        <span itemprop="addressLocality">с.Новые-Викри, Каякентский р-н, Республика Дагестан</span>
+                    </p>
+
+                    <p><i class="fa fa-envelope mr-3"></i> <span itemprop="email">vikri.kovka@gmail.com</span></p>
+                    <p><i class="fa fa-phone mr-3"></i> <span itemprop="telephone">+7 (989) 86 63 670</span></p>
+                    <p><i class="fa fa-phone mr-3"></i> <span itemprop="telephone">8 (989) 86 63 670</span></p>
                 </div>
                 <!--/.Grid column-->
 
@@ -173,7 +178,10 @@
                 <div class="col-md-8 col-lg-9">
 
                     <!--Copyright-->
-                    <p class="text-center text-md-left grey-text">© 2018 Copyright: <a href="/" rel="nofollow"><strong> VIKRI.ru</strong></a></p>
+                    <p class="text-center text-md-left grey-text" itemscope itemtype="http://schema.org/WebSite">
+                        <link itemprop="url" href="{{url('/')}}/"/>
+                        © 2018 Copyright: <a href="/" rel="nofollow"><strong> VIKRI.ru</strong></a>
+                    </p>
                     <!--/.Copyright-->
 
                 </div>
