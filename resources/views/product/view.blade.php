@@ -32,17 +32,17 @@
 
                 </div>
                 <!--Grid column-->
+                @if (Auth::user()->hasRole('admin'))
+                    <!--Grid column-->
+                    <div class="col-md-6 mt-2 d-flex justify-content-end">
 
-                <!--Grid column-->
-                <div class="col-md-6 mt-2 d-flex justify-content-end">
-
-                    <!--Edit-->
-                    <a href="{{route('prod.edit', $product->id)}}" type="button" class="btn-floating btn-small btn-fb">
-                        <i class="fa fa-edit"></i>
-                    </a>
-                </div>
-                <!--Grid column-->
-
+                        <!--Edit-->
+                        <a href="{{route('prod.edit', $product->id)}}" type="button" class="btn-floating btn-small btn-fb">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                    </div>
+                    <!--Grid column-->
+                @endif
             </div>
 
         <hr>
