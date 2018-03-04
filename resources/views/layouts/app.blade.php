@@ -204,13 +204,13 @@
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script type="text/javascript" src="{{elixir('js/jquery.js')}}"></script>
+    <script src="{{elixir('js/jquery.js')}}"></script>
 
     <!-- Tooltips -->
-    <script type="text/javascript" src="{{elixir('js/core.js')}}"></script>
+    <script src="{{elixir('js/core.js')}}"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="{{elixir('js/mdb.js')}}"></script>
+    <script src="{{elixir('js/mdb.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     @verbatim
     <script>
