@@ -2,6 +2,10 @@
 
 @section('title', 'Вы выбрали №' . $product->id)
 
+@section('meta')
+<link rel="canonical" href="{{route('prod.view', [$product->id])}}"/>
+@endsection
+
 @section('content')
 <div class="col-xl-8 col-md-12">
 

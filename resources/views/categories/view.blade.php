@@ -2,6 +2,10 @@
 
 @section('title', $category->name)
 
+@section('meta')
+<link rel="canonical" href="{{route('cat.view', [$category->slug])}}"/>
+@endsection
+
 @section('content')
     @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
         {{--  {{$breadcrumbs->name}}   --}}

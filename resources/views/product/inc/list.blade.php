@@ -16,7 +16,7 @@
             <ul class="list-unstyled">
                 <li><i class="fa fa-clock-o"></i> {{$product->created_at}}</li>
                 @if ($product->price)
-                    <li><i class="fa fa-rub"></i> {{$product->price}} за кв.м.</li>
+                    <li><i class="fa fa-rub"></i> {{number_format($product->price)}} за кв.м.</li>
                 @endif
             </ul>
         </div>

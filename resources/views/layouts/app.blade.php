@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    @yield('meta')
+
     <title>@yield('title') - vikri.ru</title>
 
     <!-- Font Awesome -->
@@ -24,7 +26,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark">
 
             <!-- Navbar brand -->
-            <a class="navbar-brand" href="/"><i class="fa fa-home"></i></a>
+            <a class="navbar-brand" href="/" rel="nofollow"><i class="fa fa-home"></i></a>
 
             <!-- Collapse button -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -53,11 +55,11 @@
                 <ul class="navbar-nav">
                     <!-- Dropdown -->
                     <li class="nav-item dropdown">
-                       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
-                       <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkAuth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
+                       <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLinkAuth">
                             @guest
-                                <a class="dropdown-item" href="{{ route('login') }}">Авторизация</a>
-                                <a class="dropdown-item" href="{{ route('register') }}">Регистрация</a>
+                                <a class="dropdown-item" href="{{ route('login') }}" rel="nofollow">Авторизация</a>
+                                <a class="dropdown-item" href="{{ route('register') }}" rel="nofollow">Регистрация</a>
                             @else
                                 @if (Auth::user()->hasRole('admin'))
                                     <a class="dropdown-item" href="{{ route('cat') }}">Категории</a>

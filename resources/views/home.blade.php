@@ -6,6 +6,10 @@
     @include('slider')
 @endsection
 
+@section('meta')
+<link rel="canonical" href="{{url('/')}}/"/>
+@endsection
+
 @section('content')
 
 <!-- Main news -->
