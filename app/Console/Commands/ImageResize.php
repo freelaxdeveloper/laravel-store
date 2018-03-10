@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Gumlet\ImageResize as Resize;
-use App\Product;
+use App\{Product,Category};
 
 class ImageResize extends Command
 {
@@ -39,16 +39,17 @@ class ImageResize extends Command
      */
     public function handle()
     {
+        if ($categories = Category::where('slug', 'LIKE', '%vorota%')->first(['id'])) {
+            $categories = $categories->toArray();
+        }
         $images = glob(base_path() . '/storage/images/*.jpg');
-        for ($i = 0; $i < count($images); $i++) {
-            if (1 == $i) {
-                //break;
-            }
+        for ($i = 0; $i < count($images) && $i < 15; $i++) {
             $basename = basename($images[$i]);
 
             $product = Product::create([
                 'title' => $basename,
             ]);
+            $product->categories()->attach($categories);
 
             $image = new Resize($images[$i]);
             $image->crop(800, 600, Resize::CROPCENTER);
@@ -77,7 +78,7 @@ class ImageResize extends Command
                 $image_y = 0;
                 imagecopy($imageDesc, $logo, $image_x, $image_height - $logo_height, 0, 0, $logo_width, $logo_height);
             });
-            $image->addFilter(function ($imageDesc) {
+            /* $image->addFilter(function ($imageDesc) {
                 $logo = imagecreatefrompng(base_path() . '/storage/banner_250x86.png');
                 imagealphablending($logo, true);
                 $alpha_level = 50;
@@ -88,7 +89,7 @@ class ImageResize extends Command
                 $image_x = $image_width - $logo_width;
                 $image_y = $image_height - $logo_height;
                 imagecopy($imageDesc, $logo, $image_x, $image_y, 0, 0, $logo_width, $logo_height);
-            });
+            }); */
             $image->addFilter(function ($imageDesc) use ($product) {
                 $color = ImageColorAllocate($imageDesc, 255, 255, 255); //получаем идентификатор цвета
                 $image_width = imagesx($imageDesc);
@@ -99,7 +100,7 @@ class ImageResize extends Command
             });
 
             $result = $image->save(base_path() . '/public/products/' . $product->id . '.jpg', null, 100);
-            copy($images[$i], base_path() . '/resources/archive/' . $basename);
+            copy($images[$i], base_path() . '/resources/archive/' . $product->id);
             unlink($images[$i]);
 
             echo "Обработал: {$basename}\n";

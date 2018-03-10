@@ -3,7 +3,9 @@
 @section('title', 'Кованые ворота')
 
 @section('slider')
-    @include('slider')
+    @if (!isset($_GET['page']) || $_GET['page'] < 2)
+        @include('slider')
+    @endif
 @endsection
 
 @section('meta')

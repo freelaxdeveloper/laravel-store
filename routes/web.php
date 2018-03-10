@@ -22,7 +22,7 @@ Route::name('cat.')->prefix('category')->group(function () {
         Route::get('/delete/{category}', 'CategoryController@delete')->name('delete');
     });
 
-    Route::get('/view{category}', 'CategoryController@view')->name('view');
+    Route::get('/view/{category}', 'CategoryController@view')->name('view');
 });
 Route::name('prod.')->prefix('product')->group(function () {
 
