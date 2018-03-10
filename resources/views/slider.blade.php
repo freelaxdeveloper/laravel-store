@@ -23,9 +23,9 @@
                             <li>
                                 <p>Кованые ворота создадут ощущение защищенности и спокойствия, при этом оставаясь красивым и элегантным элементом.</p>
                             </li>
-                            <li>
+                            {{--  <li>
                                 <a target="_blank" href="https://mdbootstrap.com/getting-started/" class="btn btn-info waves-effect waves-light" rel="nofollow">Подробнее</a>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </div>
                     <!-- /.Caption -->
@@ -72,9 +72,9 @@
                             <li>
                                 <p>Кованые перила или красивые кованые лестницы способны мгновенно изменить стиль помещения или вид дома, придав ему элегантность и благородство, вкус и уют.</p>
                             </li>
-                            <li>
+                            {{--  <li>
                                 <a target="_blank" href="https://mdbootstrap.com/forums/forum/support/" class="btn btn-default waves-effect waves-light" rel="nofollow">Подробнее</a>
-                            </li>
+                            </li>  --}}
                         </ul>
                     </div>
                     <!-- /.Caption -->
