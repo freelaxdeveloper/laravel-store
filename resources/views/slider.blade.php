@@ -2,7 +2,7 @@
     <!--Indicators-->
     <ol class="carousel-indicators">
         <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-1z" data-slide-to="1" class=""></li>
+        {{--  <li data-target="#carousel-example-1z" data-slide-to="1" class=""></li>  --}}
         <li data-target="#carousel-example-1z" data-slide-to="2" class=""></li>
     </ol>
     <!--/.Indicators-->
@@ -35,7 +35,7 @@
         <!--/First slide-->
 
         <!--Second slide-->
-        <div class="carousel-item h-100">
+        {{--  <div class="carousel-item h-100">
             <div class="view hm-stylish-strong h-100">
                 <img class="d-block h-100 w-lg-100" src="https://mdbootstrap.com/img/Photos/Others/slider1.jpg" alt="Second slide">
                 <div class="mask waves-effect waves-light">
@@ -56,7 +56,7 @@
                     <!-- /.Caption -->
                 </div>
             </div>
-        </div>
+        </div>  --}}
         <!--/Second slide-->
         <!--Third slide-->
         <div class="carousel-item">
