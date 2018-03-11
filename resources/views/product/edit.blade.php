@@ -56,6 +56,11 @@
                                     <label for="replyForm-mess">Описание</label>
                                 </div>
                                 <div class="md-form">
+                                    <i class="fa fa-pencil prefix grey-text"></i>
+                                    <textarea name='meta_description' type="text" id="meta_description" class="md-textarea">{{$product->meta_description}}</textarea>
+                                    <label for="meta_description">Описание (META)</label>
+                                </div>
+                                <div class="md-form">
                                     <select class="js-example-basic-multiple" name="categories[]" multiple="multiple">
                                         @foreach ($categoriesAll as $category)
                                             <option value="{{$category->id}}" @if (in_array($category->id, $productCategories)) selected @endif>

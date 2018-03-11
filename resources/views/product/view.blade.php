@@ -4,6 +4,9 @@
 
 @section('meta')
 <link rel="canonical" href="{{route('prod.view', [$product->id])}}"/>
+@if ($product->meta_description)
+    <meta name="description" content="{{$product->meta_description}}" />
+@endif
 @endsection
 
 @section('content')
@@ -60,9 +63,16 @@
             </div>
 
         <hr>
+        @if ($product->description)
+            <div class="row mx-md-5 px-md-4 px-5 mt-3">
+                <p class="dark-grey-text article">
+                    {{$product->description}}
+                </p>
+            </div>
+        @endif
         <section class="text-left mt-4">
 
-            <h4 class="font-bold mt-5 mb-3">
+            <h4 class="px-1 font-bold mt-5 mb-3">
                 <strong>Другие наши работы</strong>
             </h4>
 
