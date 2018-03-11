@@ -68,7 +68,7 @@ class UploadAlbumInstagram extends Command
             if (!$ig = $this->login($account)) {
                 return;
             }
-            $ig->timeline->uploadPhoto($product->screenPath, ['caption' => $this->getCaption()]);
+            $ig->timeline->uploadPhoto($product->screenPath, ['caption' => $this->getCaption($product->id)]);
             echo "Скинул №{$product->id}\n\n";
         }
         $product->instagrams()->attach($accounts->pluck('id'));
@@ -94,8 +94,13 @@ class UploadAlbumInstagram extends Command
         }
     }
 
-    public function getCaption()
+    public function getCaption(?int $product_id): string
     {
-        return "Phone: 8 (989) 866 36 70";
+        $message = "Звоните: 8 (989) 866 36 70\n";
+        if ($product_id)
+            $message .= "Посмотреть: http://vikri.ru/product/view/{$product_id}\n";
+        $message .= "Кованные ворота, перила и лестницы, входные двери, индивидуальные заказы...отличное качество по доступным ценам.\n";
+        $message .= "http://vikri.ru\n";
+        return $message;
     }
 }

@@ -42,7 +42,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('ImageResize')->twiceDaily(10, 18);
-        //$schedule->command('UploadAlbumInstagram')->everyTenMinutes();
+        $schedule->command('UploadAlbumInstagram')->cron('0 */2 * * *');
     }
 
     /**
