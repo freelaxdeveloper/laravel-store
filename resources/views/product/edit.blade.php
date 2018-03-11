@@ -4,6 +4,14 @@
 
 @section('content')
     <section class="section extra-margins listing-section mt-2 col-xl-7 col-md-12">
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('prod.view', [$product->id])}}">№{{$product->id}}</a></li>
+            </ol>
+        </nav>
+
         <h4 class="font-bold"><strong>Редактирование</strong> №{{$product->id}}</h4>
         <hr class="red title-hr">
         @if ($errors->any())

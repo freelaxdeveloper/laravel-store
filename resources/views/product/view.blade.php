@@ -14,7 +14,11 @@
 
         <div class="post-data mb-4 ml-4 mt-4">
             <p class="font-small grey-text mb-0">
-                <i class="fa fa-clock-o"></i> {{$product->created_at}}</p>
+                <i class="fa fa-clock-o"></i> {{$product->created_at}}
+            </p>
+            @foreach ($product->categories()->get() as $category)
+                <a href="{{route('cat.view', [$category->slug])}}"><span class="badge indigo">{{$category->name}}</span></a>
+            @endforeach
         </div>
 
         <!--Title-->
@@ -31,8 +35,12 @@
                 <div class="col-md-6 mt-4">
 
                     <h5 class="font-bold dark-grey-text">
-                        <i class="fa fa-lg fa-newspaper-o mr-3 dark-grey-text"></i>
-                        <strong>{{$product->views}}</strong> Views</h5>
+                        <i class="fa fa-eye dark-grey-text"></i>
+                        <strong>{{$product->views}}</strong> 
+                        @if ($product->price)
+                            <span itemprop="offers" itemscope itemtype="http://schema.org/Offer"><i class="fa fa-rub"></i> <span itemprop="price" content="{{$product->price}}">{{number_format($product->price)}}</span> <span itemprop="priceCurrency" content="RUB">руб.</span> {{$product->type}}</span>
+                        @endif
+                    </h5>
 
                 </div>
                 <!--Grid column-->
