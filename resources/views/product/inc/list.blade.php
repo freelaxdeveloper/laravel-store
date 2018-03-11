@@ -16,7 +16,7 @@
             <ul class="list-unstyled">
                 <li><i class="fa fa-clock-o"></i> <meta itemprop="datePublished" content="{{$product->created_at}}">{{$product->created_at}}</li>
                 @if ($product->price)
-                <li itemprop="offers" itemscope itemtype="http://schema.org/Offer"><i class="fa fa-rub"></i> <span itemprop="price" content="{{$product->price}}">{{number_format($product->price)}}</span> <span itemprop="priceCurrency" content="RUB">руб.</span> за кв.м.</li>
+                <li itemprop="offers" itemscope itemtype="http://schema.org/Offer"><i class="fa fa-rub"></i> <span itemprop="price" content="{{$product->price}}">{{number_format($product->price)}}</span> <span itemprop="priceCurrency" content="RUB">руб.</span> {{$product->type}}</li>
                 @endif
             </ul>
         </div>

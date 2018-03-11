@@ -12,7 +12,11 @@
 */
 Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/categories', 'CategoryController@index')->name('cat');
+Route::get('/categories', [
+    'as' => 'cat',
+    'uses' => 'CategoryController@index',
+    'roles' => ['admin'],
+])->middleware('roles');
 
 Route::name('cat.')->prefix('category')->group(function () {
 

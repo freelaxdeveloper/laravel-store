@@ -32,10 +32,15 @@
                         <div class="reply-form">
                             <form action="{{route('prod.save', [$product->id])}}" method="POST">
                                 @csrf
-                                <div class="md-form">
-                                    <i class="fa fa-rub prefix grey-text"></i>
-                                    <input name="price" id="price" type="text" value="{{$product->price}}">
-                                    <label for="price">Цена</label>
+                                <div class="row">
+                                    <div class="md-form">
+                                        <i class="fa fa-rub prefix grey-text"></i>
+                                        <input name="price" id="price" type="text" value="{{$product->price}}">
+                                        <label for="price">Цена</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <input name="type" type="text" value="{{$product->type}}">
+                                    </div>
                                 </div>
                                 <div class="md-form">
                                     <i class="fa fa-pencil prefix grey-text"></i>

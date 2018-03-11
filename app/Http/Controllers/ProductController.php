@@ -30,9 +30,11 @@ class ProductController extends Controller
     {
         $messages = [
             'price.required' => 'Цена обязательна для заполнения',
+            'price.integer' => 'Цена должна быть числовым значением',
         ];
         
         Validator::make($request->all(), [
+            'type' => 'required|string',
             'description' => 'nullable|string',
             'price' => 'required|integer',
             'categories.*' => 'integer|exists:categories,id',
@@ -43,6 +45,7 @@ class ProductController extends Controller
         $product->categories()->attach($request->input('categories'));
 
         $product->price = $request->input('price');
+        $product->type = $request->input('type');
         $product->description = $request->input('description');
         $product->save();
 
