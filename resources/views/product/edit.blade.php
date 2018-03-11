@@ -49,8 +49,12 @@
                                 </div>
                                 <div class="md-form">
                                     <select class="js-example-basic-multiple" name="categories[]" multiple="multiple">
-                                        @foreach ($categories as $category)
-                                            <option value="{{$category->id}}" @if (in_array($category->id, $productCategories)) selected @endif>{{$category->name}}</option>
+                                        @foreach ($categoriesAll as $category)
+                                            <option value="{{$category->id}}" @if (in_array($category->id, $productCategories)) selected @endif>
+                                                @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
+                                                    {{$breadcrumbs->name}}/
+                                                @endforeach
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div> 

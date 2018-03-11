@@ -20,10 +20,11 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
+        $categoriesAll = Category::get();
         $categories = $this->categories();
         $productCategories = $product->categories()->pluck('id')->toArray();
 
-        return view('product.edit', compact('categories', 'product', 'productCategories'));
+        return view('product.edit', compact('categoriesAll', 'categories', 'product', 'productCategories'));
     }
 
     public function save(Request $request, Product $product)
