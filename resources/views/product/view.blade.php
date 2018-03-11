@@ -17,7 +17,7 @@
                 <i class="fa fa-clock-o"></i> {{$product->created_at}}
             </p>
             @foreach ($product->categories()->get() as $category)
-                <a href="{{route('cat.view', [$category->slug])}}"><span class="badge indigo">{{$category->name}}</span></a>
+                <a href="{{route('cat.view', [$category->slug])}}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
             @endforeach
         </div>
 
