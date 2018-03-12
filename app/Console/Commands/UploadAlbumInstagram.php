@@ -54,7 +54,7 @@ class UploadAlbumInstagram extends Command
             $ig->login($account->login, $account->password);
             echo "Подключился к {$account->login}\n";
         } catch (\Exception $e) {
-            echo "Не смог подключиться\n";
+            echo "Не смог подключиться к {$account->login}\n";
             return false;
         }
         return $ig;
@@ -87,7 +87,7 @@ class UploadAlbumInstagram extends Command
         }
         foreach ($accounts as $account) {
             if (!$ig = $this->login($account)) {
-                return;
+                continue;
             }
             $ig->timeline->uploadAlbum($media, ['caption' => $this->getCaption()]);
             echo "Скинул\n\n";
