@@ -66,7 +66,7 @@ class UploadAlbumInstagram extends Command
 
         foreach ($accounts as $account) {
             if (!$ig = $this->login($account)) {
-                return;
+                continue;
             }
             $ig->timeline->uploadPhoto($product->screenPath, ['caption' => $this->getCaption($product->id)]);
             echo "Скинул №{$product->id}\n\n";
