@@ -19,36 +19,6 @@
     @yield('css')
 </head>
 <body class="fixed-sn homepage-v5">
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-        (function (d, w, c) {
-            (w[c] = w[c] || []).push(function() {
-                try {
-                    w.yaCounter47987405 = new Ya.Metrika({
-                        id:47987405,
-                        clickmap:true,
-                        trackLinks:true,
-                        accurateTrackBounce:true,
-                        webvisor:true
-                    });
-                } catch(e) { }
-            });
-
-            var n = d.getElementsByTagName("script")[0],
-                s = d.createElement("script"),
-                f = function () { n.parentNode.insertBefore(s, n); };
-            s.type = "text/javascript";
-            s.async = true;
-            s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
-
-            if (w.opera == "[object Opera]") {
-                d.addEventListener("DOMContentLoaded", f, false);
-            } else { f(); }
-        })(document, window, "yandex_metrika_callbacks");
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/47987405" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
-
     <!-- Navigation -->
     <header>
 
@@ -225,10 +195,6 @@
                         <ul>
                             <li><a href="https://www.instagram.com/vikri.kovka/" target="_blank" class="btn-floating btn-sm rgba-white-slight mr-xl-4"><i class="fa fa-instagram"></i></a></li>
                             <li><a href="https://www.facebook.com/vikri.kovka/" target="_blank" class="btn-floating btn-sm rgba-white-slight mr-xl-4"><i class="fa fa-facebook"></i></a></li>
-                            <!-- Yandex.Metrika informer -->
-                            <li><a href="https://metrika.yandex.ru/stat/?id=47987405&amp;from=informer"
-                                target="_blank" rel="nofollow"><img src="https://metrika-informer.com/informer/47987405/3_1_FFFFFFFF_EFEFEFFF_0_pageviews" style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" /></a></li>
-                            <!-- /Yandex.Metrika informer -->
                         </ul>
                     </div>
                     <!--/.Social buttons-->
@@ -272,6 +238,36 @@
     </style>
     @endverbatim
 
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter47987405 = new Ya.Metrika({
+                    id:47987405,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/47987405" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
 </body>
 
 </html>
