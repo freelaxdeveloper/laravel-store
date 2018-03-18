@@ -24,10 +24,14 @@
                     </a>
                 </div>
                 @endforeach
-                @foreach ($products as $product)
-                    @include('product.inc.list', ['product' => $product])
-                @endforeach
             </div>
+                @forelse ($products as $product)
+                    @include('product.inc.list', ['product' => $product])
+                @empty
+                    <div class="single-post mb-4 mr-3">
+                        <p>Товары в эту категорию еще не были добавлены</p>
+                    </div>
+                @endforelse
         </section>
 
         {{ $products->links() }}

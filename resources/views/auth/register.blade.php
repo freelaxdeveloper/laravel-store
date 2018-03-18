@@ -4,6 +4,8 @@
 <meta name=”robots” content=”noindex, follow”>
 @endsection
 
+@section('title', 'Регистрация')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
