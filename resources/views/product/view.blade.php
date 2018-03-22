@@ -26,7 +26,7 @@
 
         <!--Title-->
         <h1 class="font-bold mt-3 text-center">
-            <strong>Вы выбрали №{{$product->id}}</strong>
+            <strong>{{$product->categories()->first()->name}} №{{$product->id}}</strong>
         </h1>
         <hr class="red title-hr">
 
