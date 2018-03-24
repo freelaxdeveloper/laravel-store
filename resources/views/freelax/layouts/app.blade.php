@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
-    <link href="{{elixir('css/core.css')}}" rel="stylesheet">
+    <link href="{{elixir('freelax/css/core.css')}}" rel="stylesheet">
     @yield('css')
 </head>
 <body class="fixed-sn homepage-v5">
@@ -212,13 +212,13 @@
     <!-- SCRIPTS -->
 
     <!-- JQuery -->
-    <script src="{{elixir('js/jquery.js')}}"></script>
+    <script src="{{elixir('freelax/js/jquery.js')}}"></script>
 
     <!-- Tooltips -->
-    <script src="{{elixir('js/core.js')}}"></script>
+    <script src="{{elixir('freelax/js/core.js')}}"></script>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="{{elixir('js/mdb.js')}}"></script>
+    <script src="{{elixir('freelax/js/mdb.js')}}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     @verbatim
     <script>
