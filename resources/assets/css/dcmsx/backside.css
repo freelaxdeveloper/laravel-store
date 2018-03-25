@@ -4,15 +4,15 @@
     background: #eee !important;
 }
 
-.btn-primary:hover,
-.btn-primary:focus {
+.backside > .btn-primary:hover,
+.backside > .btn-primary:focus {
     background-color: #108d6f;
     border-color: #108d6f;
     box-shadow: none;
     outline: none;
 }
 
-.btn-primary {
+.backside > .btn-primary {
     color: #fff;
     background-color: #007b5e;
     border-color: #007b5e;

@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
         $categories = Cache::remember('categories', 15, function () {
             return Category::roots()->withCount('products')->get();
         });
-        $chats = Chat::with(['user'])->orderBy('id', 'desc')->get();
+        $chats = Chat::with(['user'])->orderBy('id', 'desc')->get()->take(20);
         View::share('categories', $categories);
         View::share('chats', $chats);
     }

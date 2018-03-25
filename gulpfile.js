@@ -6,6 +6,7 @@ elixir(function(mix) {
             'dcmsx/bootstrap.min.css',
             'dcmsx/custom.css',
             'dcmsx/backside.css',
+            'dcmsx/breadcrumb.css',
         ], 'public/dcmsx/css/core.css')
         .scripts([
             'dcmsx/jquery-1.11.3.min.js',

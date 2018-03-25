@@ -60,7 +60,7 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						  Кабинет 
-						  <img src="http://placehold.it/150x150/FA6F57/fff&text=ME" class="img-circle" alt="Profile Image" />
+						  <img src="http://lorempixel.com/100/100/people/9/" class="img-circle" alt="Profile Image" />
 						  </a>
 						  <ul class="dropdown-menu">
 							<li><a href="#">Профиль</a></li>
@@ -170,7 +170,7 @@
 											@foreach ($chats as $chat)
 												@php
 													$class = Auth::user() && $chat->user->id == Auth::user()->id ? 'right' : 'left';
-													$avatar = Auth::user() && $chat->user->id == Auth::user()->id ? 'http://placehold.it/50/FA6F57/fff&text=ME' : 'http://placehold.it/50/55C1E7/fff&text=U';
+													$avatar = Auth::user() && $chat->user->id == Auth::user()->id ? 'http://lorempixel.com/50/50/people/9/' : 'http://lorempixel.com/50/50/people/7/';
 												@endphp
 												<li class="{{$class}} clearfix">
 													<span class="chat-img pull-{{$class}}">
