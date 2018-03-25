@@ -13,7 +13,6 @@ return [
     |
     */
 
-    'failed' => 'Вы ошиблись при вводе логина и пароля',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'Написать' => 'Write',
 
 ];

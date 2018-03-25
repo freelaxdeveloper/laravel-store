@@ -205,7 +205,7 @@
 												<input id="btn-input" type="text" class="form-control input-sm" placeholder="Напишите что то умное..." />
 												<span class="input-group-btn">
 													<button class="btn btn-warning btn-sm" id="btn-chat">
-														Написать</button>
+														{{lang('chat.Написать')}}</button>
 												</span>
 											</div>
 										</div>
