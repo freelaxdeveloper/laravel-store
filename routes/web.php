@@ -22,6 +22,10 @@ Route::name('user.')->prefix('user')->group(function () {
     Route::get('/view/{user}', 'HomeController@index')->name('view');
 });
 
+Route::name('chat.')->prefix('chat')->group(function () {
+    Route::post('/add', 'ChatController@add')->name('add')->middleware('auth');
+});
+
 Route::name('cat.')->prefix('category')->group(function () {
 
     Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {

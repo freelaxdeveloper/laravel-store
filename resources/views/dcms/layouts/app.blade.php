@@ -38,7 +38,7 @@
 				<a class="navbar-brand" href="{{route('home')}}"><span class="glyphicon glyphicon-globe"></span> DCMSX</a>
             </div>
             <!-- Navbar links -->
-            <div class="collapse navbar-collapse" id="navbar">
+            <div class="collapse navbar-collapse bs-dark" id="navbar">
                 <ul class="nav navbar-nav">
                     <li>
                         <a href="#">Форум</a>
@@ -55,26 +55,34 @@
 						</ul>
 					</li>    
 				</ul>
-				@guest
-					<!-- Log In Form -->
-					<form class="navbar-form navbar-right form-inline" method="POST" action="{{route('login')}}">
-						@csrf
-						<div class="form-group">
-							<label class="sr-only" for="emailAddress">Email</label>
-							<input name="email" type="email" class="form-control" id="emailAddress" placeholder="Email" required>
+				@auth
+				<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  Кабинет 
+						  <img src="http://placehold.it/150x150/FA6F57/fff&text=ME" class="img-circle" alt="Profile Image" />
+						  </a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Профиль</a></li>
+							<li><a href="#">Почта</a></li>
+							<li role="separator" class="divider"></li>
+							<li><a href="#">Настройки</a></li>
+							<li><a href="{{ route('logout') }}"
+								onclick="event.preventDefault();
+											  document.getElementById('logout-form').submit();">Выйти</a></li>
+						  </ul>
+						</li>
+					  </ul>
+					  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+							@csrf
+						</form>
+				@endauth
+				<form class="navbar-form navbar-right form-inline" role="search">
+						<div class="input-group">
+						   <input type="text" class="search-box" placeholder="Search">
+						   <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
 						</div>
-						<div class="form-group">
-							<label class="sr-only" for="pwd">Пароль</label>
-							<input name="password" type="password" class="form-control" id="pwd" placeholder="Пароль" required>
-						</div>
-						<button type="submit" class="btn btn-default">Войти</button>
-					</form>
-				@else
-					<form class="navbar-form navbar-right form-inline" method="POST" action="{{route('logout')}}">
-						@csrf
-						<button type="submit" class="btn btn-default">Выйти</button>
-					</form>
-				@endguest
+				</form>
             </div>
             <!-- /.navbar-collapse -->
         </div>
@@ -136,18 +144,6 @@
 
 			<!-- Right Column -->
 			<div class="col-sm-3">
-				<!-- Search -->
-				<form class="search" role="search">
-					<div class="row">
-						<div class="col-sm-6">
-							<input type="text" class="form-control">
-						</div>
-						<div class="col-sm-6">
-							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Найти</button>
-						</div>
-					</div>
-				</form>
-
 				<div class="row-chat">
 						<div class="row">
 							<div class="col-md-12">
@@ -159,12 +155,12 @@
 												<span class="glyphicon glyphicon-chevron-down"></span>
 											</button>
 											<ul class="dropdown-menu slidedown">
-												<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+												<li><a href="#"><span class="glyphicon glyphicon-refresh">
 												</span>Обновить</a></li>
-												<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+												<li><a href="#"><span class="glyphicon glyphicon-remove">
 												</span>Очистить</a></li>
 												<li class="divider"></li>
-												<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+												<li><a href="#"><span class="glyphicon glyphicon-off"></span>
 													Выйти</a></li>
 											</ul>
 										</div>
@@ -199,17 +195,34 @@
 											@endforeach
 										</ul>
 									</div>
-									@auth
-										<div class="panel-footer">
-											<div class="input-group">
-												<input id="btn-input" type="text" class="form-control input-sm" placeholder="Напишите что то умное..." />
+									<div class="panel-footer">
+										<div class="input-group">
+											@auth
+											<form action="{{route('chat.add')}}" method="POST">
+												@csrf
+												<input name="message" id="btn-input" type="text" class="form-control input-sm" placeholder="Напишите что то умное..." />
 												<span class="input-group-btn">
 													<button class="btn btn-warning btn-sm" id="btn-chat">
 														{{lang('chat.Написать')}}</button>
 												</span>
-											</div>
+											</form>
+											@else
+												<form method="POST" action="{{route('login')}}">
+													@csrf
+													<div class="form-group">
+														<label class="sr-only" for="emailAddress">Email</label>
+														<input name="email" type="email" class="form-control" id="emailAddress" placeholder="Email" required>
+													</div>
+													<div class="form-group">
+														<label class="sr-only" for="pwd">Пароль</label>
+														<input name="password" type="password" class="form-control" id="pwd" placeholder="Пароль" required>
+													</div>
+													<button type="submit" class="btn btn-default">Войти</button>
+												</form>
+						
+											@endauth
 										</div>
-									@endauth
+									</div>
 								</div>
 							</div>
 						</div>
