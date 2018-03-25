@@ -14,8 +14,8 @@ return [
     */
 
     'paths' => [
-        //resource_path('views/dcms'),
-        resource_path('views/freelax'),
+        resource_path('views/dcms'),
+        //resource_path('views/freelax'),
     ],
 
     /*

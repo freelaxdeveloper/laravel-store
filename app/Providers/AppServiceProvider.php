@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Category;
+use Illuminate\Support\Facades\Cache;
+use App\{Category,Chat};
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,19 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        View::share('categories', Category::roots()->withCount('products')->get());
+        /**
+         * Cache::remember() - извлечение данных из кеша, если их нету добавляет
+         * @param string ключ для получения данных
+         * @param int время хранения
+         * @param closure получение новых данных 
+         * https://laravel.com/docs/5.6/cache
+         */
+        $categories = Cache::remember('categories', 15, function () {
+            return Category::roots()->withCount('products')->get();
+        });
+        $chats = Chat::with(['user'])->orderBy('id', 'desc')->get();
+        View::share('categories', $categories);
+        View::share('chats', $chats);
     }
 
     /**

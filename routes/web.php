@@ -18,6 +18,10 @@ Route::get('/categories', [
     'roles' => ['admin'],
 ])->middleware('roles');
 
+Route::name('user.')->prefix('user')->group(function () {
+    Route::get('/view/{user}', 'HomeController@index')->name('view');
+});
+
 Route::name('cat.')->prefix('category')->group(function () {
 
     Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {

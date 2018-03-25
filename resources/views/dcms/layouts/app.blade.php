@@ -1,273 +1,302 @@
 <!DOCTYPE html>
+<!-- Template by Quackit.com -->
 <html lang="en">
-
 <head>
-    <!-- Required meta tags always come first -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="yandex-verification" content="ff4fae730ef94146" />
-    @yield('meta')
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	@yield('meta')
+    <title>@yield('title')</title>
 
-    <title>@yield('title') - vikri.ru222</title>
+    <!-- Bootstrap Core CSS -->
+	<link href="{{elixir('dcmsx/css/core.css')}}" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <!-- Bootstrap core CSS -->
-    <link href="{{elixir('css/core.css')}}" rel="stylesheet">
-    @yield('css')
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
-<body class="fixed-sn homepage-v5">
+
+<body>
+
     <!-- Navigation -->
-    <header>
-
-        <!--Navbar-->
-        <nav class="navbar navbar-expand-lg navbar-dark stylish-color-dark">
-
-            <!-- Navbar brand -->
-            <a class="navbar-brand" href="/" rel="nofollow"><i class="fa fa-home"></i></a>
-
-            <!-- Collapse button -->
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-                <!-- Links -->
-               {{--   <ul class="navbar-nav mr-auto">
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Навигация</a>
-                       <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                           <a class="dropdown-item" href="#">О нас</a>
-                           <a class="dropdown-item" href="#">Сделать заказ</a>
-                           <a class="dropdown-item" href="#">Контакты</a>
-                       </div>
-                   </li>
-
-               </ul>  --}}
-               <!-- Links -->
-
-
-                <!-- Links -->
-                <ul class="navbar-nav">
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown">
-                       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLinkAuth" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Личный кабинет</a>
-                       <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLinkAuth">
-                            @guest
-                                <a class="dropdown-item" href="{{ route('login') }}" rel="nofollow">Авторизация</a>
-                                <a class="dropdown-item" href="{{ route('register') }}" rel="nofollow">Регистрация</a>
-                            @else
-                                @if (Auth::user()->hasRole('admin'))
-                                    <a class="dropdown-item" href="{{ route('cat') }}">Категории</a>
-                                @endif
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                onclick="event.preventDefault();
-                                              document.getElementById('logout-form').submit();">Выйти
-                                </a>
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            @endguest
-                       </div>
-                   </li>
-
-               </ul>
-               <!-- Links -->
-
-              <!-- Search form -->
-                {{--  <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                </form>  --}}
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Logo and responsive toggle -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+				<a class="navbar-brand" href="{{route('home')}}"><span class="glyphicon glyphicon-globe"></span> DCMSX</a>
             </div>
-            <!-- Collapsible content -->
-
-        </nav>
-        <!--/.Navbar-->
-
-    </header>
-    @yield('slider')
-
-    <!-- Main layout -->
-    <main>
-        <div class="container-fluid">
-            <!-- Magazine -->
-            <div class="row mt-2">
-                @yield('content')
-
-                <!-- Sidebar -->
-                @if (isset($categories))
-                    <div class="col-xl-3 col-md-12 widget-column mt-0">
-
-                            <!-- Section: Categories -->
-                            <section class="section mb-5">
-        
-                                <h4 class="font-bold mt-2"><strong>Категории</strong></h4>
-                                <hr class="red title-hr">
-        
-                                <ul class="list-group z-depth-1 mt-4">
-                                    @forelse ($categories as $category)
-                                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                                            <a href="{{route('cat.view', [$category->slug])}}">{{$category->name}}</a>
-                                            <span class="badge badge-danger badge-pill">{{$category->products_count}}</span>
-                                        </li>
-                                    @empty
-                                    @endforelse
-                                </ul>
-                            </section>
-                            <!-- Section: Categories -->
-        
-                        </div>
-                    @endif
-                    <!--/ Sidebar -->
-                </div>
-                <!--/ Magazine -->
+            <!-- Navbar links -->
+            <div class="collapse navbar-collapse" id="navbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Форум</a>
+                    </li>
+                    <li>
+                        <a href="#">Загруз-центр</a>
+                    </li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+						<ul class="dropdown-menu" aria-labelledby="about-us">
+							<li><a href="#">Engage</a></li>
+							<li><a href="#">Pontificate</a></li>
+							<li><a href="#">Synergize</a></li>
+						</ul>
+					</li>    
+				</ul>
+				@guest
+					<!-- Log In Form -->
+					<form class="navbar-form navbar-right form-inline" method="POST" action="{{route('login')}}">
+						@csrf
+						<div class="form-group">
+							<label class="sr-only" for="emailAddress">Email</label>
+							<input name="email" type="email" class="form-control" id="emailAddress" placeholder="Email" required>
+						</div>
+						<div class="form-group">
+							<label class="sr-only" for="pwd">Пароль</label>
+							<input name="password" type="password" class="form-control" id="pwd" placeholder="Пароль" required>
+						</div>
+						<button type="submit" class="btn btn-default">Войти</button>
+					</form>
+				@else
+					<form class="navbar-form navbar-right form-inline" method="POST" action="{{route('logout')}}">
+						@csrf
+						<button type="submit" class="btn btn-default">Выйти</button>
+					</form>
+				@endguest
             </div>
-        </main>
-        <!--/ Main layout -->
-    
-
-
-    <!--Footer-->
-    <footer class="page-footer stylish-color-dark">
-
-        <!--Footer Links-->
-        <div class="container-fluid">
-
-            <!-- Footer links -->
-            <div class="row text-center text-md-left mt-3 pb-3" itemscope itemtype="http://schema.org/Organization">
-
-                <!--Grid column-->
-                <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4">
-                    <h6 class="title mb-4 font-bold" itemprop="name">Новые-Викри - село мастеров</h6>
-                    <p>Художественная ковка в Дагестане. Изготавливаем кованные ворота, калитки, входные двери, лестничные перила, ограды и все что связано с кованными изделиями на заказ в Дагестане, в селении Новые-Викри (Викри, Ново-Викри)</p>
-                </div>
-                <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4">
-                    <h6 class="title mb-4 font-bold">Доставка</h6>
-                    <p>Мы выполняем доставку по всей территории Росии и вблизи находящихся государств по низкой цене.</p>
-                </div>
-                <!--/.Grid column-->
-
-                <hr class="w-100 clearfix d-md-none">
-                <!--Grid column-->
-                <div class="col-md-4 col-lg-4 col-xl-4 mr-auto mt-4" itemscope itemtype="http://schema.org/Organization">
-                    <h6 class="title mb-4 font-bold">Контакты</h6>
-
-                    <p itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
-                        <i class="fa fa-home mr-3"></i>
-                        <span itemprop="addressLocality">с.Новые-Викри, Каякентский р-н, Республика Дагестан</span>
-                    </p>
-
-                    <p><i class="fa fa-envelope mr-3"></i> <span itemprop="email">vikri.kovka@gmail.com</span></p>
-                    <p><i class="fa fa-phone mr-3"></i> <span itemprop="telephone">+7 (989) 86 63 670</span></p>
-                    <p><i class="fa fa-phone mr-3"></i> <span itemprop="telephone">8 (989) 86 63 670</span></p>
-                </div>
-                <!--/.Grid column-->
-
-            </div>
-            <!-- Footer links -->
-
-            <hr>
-
-            <div class="row py-3 d-flex align-items-center">
-
-                <!--Grid column-->
-                <div class="col-md-8 col-lg-9">
-
-                    <!--Copyright-->
-                    <p class="text-center text-md-left grey-text" itemscope itemtype="http://schema.org/WebSite">
-                        <link itemprop="url" href="{{url('/')}}/"/>
-                        © 2018 Copyright: <a href="/" rel="nofollow"><strong> VIKRI.ru</strong></a>
-                    </p>
-                    <!--/.Copyright-->
-
-                </div>
-                <!--Grid column-->
-
-                <!--Grid column-->
-                <div class="col-md-4 col-lg-3 ml-lg-0">
-
-                    <!--Social buttons-->
-                    <div class="social-section text-center mr-auto text-md-left">
-                        <ul>
-                            <li><a href="https://www.instagram.com/vikri.kovka/" target="_blank" class="btn-floating btn-sm rgba-white-slight mr-xl-4"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="https://www.facebook.com/vikri.kovka/" target="_blank" class="btn-floating btn-sm rgba-white-slight mr-xl-4"><i class="fa fa-facebook"></i></a></li>
-                        </ul>
-                    </div>
-                    <!--/.Social buttons-->
-
-                </div>
-                <!--Grid column-->
-
-            </div>
-
+            <!-- /.navbar-collapse -->
         </div>
+        <!-- /.container -->
+	</nav>
+		<div class="container-fluid">
+			<div class="row">
+			<!-- Left Column -->
+			<div class="col-sm-2">
 
-    </footer>
-    <!--/.Footer-->
+				<!-- List-Group Panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="panel-title"><span class="glyphicon glyphicon-random"></span> Категории</h1>
+					</div>
+					<div class="list-group">
+						@foreach ($categories as $category)
+							<a href="{{route('cat.view', [$category->slug])}}" class="list-group-item">{{$category->name}} <span class="badge">{{$category->products_count}}</span></a>
+						@endforeach
+					</div>
+				</div>
 
-    <!-- SCRIPTS -->
+				<!-- Text Panel -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h1 class="panel-title"><span class="glyphicon glyphicon-cog"></span> О сайте</h1>
+					</div>
 
-    <!-- JQuery -->
-    <script src="{{elixir('js/jquery.js')}}"></script>
-
-    <!-- Tooltips -->
-    <script src="{{elixir('js/core.js')}}"></script>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{elixir('js/mdb.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    @verbatim
-    <script>
-        // MDB Lightbox Init
-        $(function () {
-            $("#mdb-lightbox-ui").load("/mdb-lightbox-ui.html");
-        });
-        $(document).ready(function() {
-            console.log('=)');
-            $('.js-example-basic-multiple').select2();
-        });
-    </script>
-    <style>
-        .select2{
-            width: 100% !important;
-        }
-    </style>
-    @endverbatim
+					<div class="panel-body">
+						<p>Сайт находится в разработке, о всех найденных ошибках сообщите на email Sanek_OS9@yahoo.com</p>
+					</div>
+				</div>
+			
+			</div><!--/Left Column-->
 
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript" >
-    (function (d, w, c) {
-        (w[c] = w[c] || []).push(function() {
-            try {
-                w.yaCounter47987405 = new Ya.Metrika({
-                    id:47987405,
-                    clickmap:true,
-                    trackLinks:true,
-                    accurateTrackBounce:true,
-                    webvisor:true
-                });
-            } catch(e) { }
-        });
+			<!-- Center Column -->
+			<div class="col-sm-7">
+			
+				@if ($errors->any())
+					@foreach ($errors->all() as $error)
+						<!-- Alert -->
+						<div class="alert alert-danger alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							{{ $error }}
+						</div>		
+					@endforeach
+				@endif
+				@if (session('status'))
+					<div class="alert alert-success alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						{{ session('status') }}
+					</div>		
+				@endif
 
-        var n = d.getElementsByTagName("script")[0],
-            s = d.createElement("script"),
-            f = function () { n.parentNode.insertBefore(s, n); };
-        s.type = "text/javascript";
-        s.async = true;
-        s.src = "https://cdn.jsdelivr.net/npm/yandex-metrica-watch/watch.js";
+				@yield('content')
+			</div><!--/Center Column-->
 
-        if (w.opera == "[object Opera]") {
-            d.addEventListener("DOMContentLoaded", f, false);
-        } else { f(); }
-    })(document, window, "yandex_metrika_callbacks");
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/47987405" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+
+			<!-- Right Column -->
+			<div class="col-sm-3">
+				<!-- Search -->
+				<form class="search" role="search">
+					<div class="row">
+						<div class="col-sm-6">
+							<input type="text" class="form-control">
+						</div>
+						<div class="col-sm-6">
+							<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Найти</button>
+						</div>
+					</div>
+				</form>
+
+				<div class="row-chat">
+						<div class="row">
+							<div class="col-md-12">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<span class="glyphicon glyphicon-comment"></span> Мини-Чат
+										<div class="btn-group pull-right">
+											<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+												<span class="glyphicon glyphicon-chevron-down"></span>
+											</button>
+											<ul class="dropdown-menu slidedown">
+												<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+												</span>Обновить</a></li>
+												<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+												</span>Очистить</a></li>
+												<li class="divider"></li>
+												<li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+													Выйти</a></li>
+											</ul>
+										</div>
+									</div>
+									<div class="panel-body">
+										<ul class="chat">
+											@foreach ($chats as $chat)
+												@php
+													$class = Auth::user() && $chat->user->id == Auth::user()->id ? 'right' : 'left';
+													$avatar = Auth::user() && $chat->user->id == Auth::user()->id ? 'http://placehold.it/50/FA6F57/fff&text=ME' : 'http://placehold.it/50/55C1E7/fff&text=U';
+												@endphp
+												<li class="{{$class}} clearfix">
+													<span class="chat-img pull-{{$class}}">
+														<img src="{{$avatar}}" alt="User Avatar" class="img-circle" />
+													</span>
+													<div class="chat-body clearfix">
+														<div class="header">
+															@if ($class == 'right')
+																<small class=" text-muted"><span class="glyphicon glyphicon-time"></span>{{$chat->created_at}}</small>
+																<strong class="pull-right primary-font">{{$chat->user->name}}</strong>
+															@else
+																<strong class="primary-font">{{$chat->user->name}}</strong> <small class="pull-right text-muted">
+																	<span class="glyphicon glyphicon-time"></span>{{$chat->created_at}}</small>
+															@endif
+															
+														</div>
+														<p>
+															{{$chat->message}}
+														</p>
+													</div>
+												</li>	
+											@endforeach
+										</ul>
+									</div>
+									@auth
+										<div class="panel-footer">
+											<div class="input-group">
+												<input id="btn-input" type="text" class="form-control input-sm" placeholder="Напишите что то умное..." />
+												<span class="input-group-btn">
+													<button class="btn btn-warning btn-sm" id="btn-chat">
+														Написать</button>
+												</span>
+											</div>
+										</div>
+									@endauth
+								</div>
+							</div>
+						</div>
+				</div>
+					
+
+
+
+
+				@auth
+						<div class="row">
+							<div class="col-sm-12">
+					
+								<div class="card hovercard">
+									<div class="cardheader">
+					
+									</div>
+									<div class="avatar">
+										<img alt="" src="http://lorempixel.com/100/100/people/9/">
+									</div>
+									<div class="info">
+										<div class="title">
+											<a href="{{route('user.view', [Auth::user()->id])}}">{{ Auth::user()->name }}</a>
+										</div>
+										@forelse (Auth::user()->roles as $role)
+											<div class="desc">{{$role->name}}</div>
+										@empty
+											<div class="desc">Пользователь</div>
+										@endforelse
+									</div>
+									<div class="bottom">
+										<a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+											<i class="fa fa-twitter"></i>
+										</a>
+										<a class="btn btn-danger btn-sm" rel="publisher"
+										href="https://plus.google.com/+ahmshahnuralam">
+											<i class="fa fa-google-plus"></i>
+										</a>
+										<a class="btn btn-primary btn-sm" rel="publisher"
+										href="https://plus.google.com/shahnuralam">
+											<i class="fa fa-facebook"></i>
+										</a>
+										<a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+											<i class="fa fa-behance"></i>
+										</a>
+									</div>
+								</div>
+					
+							</div>
+					
+						</div>
+				@endauth
+			</div><!--/Right Column -->
+
+		</div><!--/container-fluid-->
+	</div>	
+	<footer>
+		<div class="footer-blurb">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4 footer-blurb-item">
+						<h3><span class="glyphicon glyphicon-text-size"></span> DCMSX</h3>
+						<p>DCMSX - это продолжение популярной CMS системы DCMS, разработанной DESURE</p>
+					</div>
+					<div class="col-sm-4 footer-blurb-item">
+						<h3><span class="glyphicon glyphicon-wrench"></span> Преимущества</h3>
+						<p>DCMSX - использует современный фрейморк Laravel новой версии 5.6, совместно с PHP7.2 движок показывает отменную производительность. (с версиями PHP 7.0, 7.1 производильноть заметно хуже)</p>
+					</div>
+					<div class="col-sm-4 footer-blurb-item">
+						<h3><span class="glyphicon glyphicon-paperclip"></span> Complete</h3>
+						<p>Professionally cultivate one-to-one customer service with robust ideas. Completely synergize resource taxing relationships via premier niche markets. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
+					</div>
+				</div>
+				<!-- /.row -->	
+			</div>
+        </div>
+        
+        <div class="small-print">
+        	<div class="container">
+        		<p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
+        		<p>&copy; DCMSX by Sanek_OS9 2018 </p>
+        	</div>
+        </div>
+	</footer>
+
+	
+    <script src="{{elixir('dcmsx/js/core.js')}}"></script>
 </body>
 
 </html>
