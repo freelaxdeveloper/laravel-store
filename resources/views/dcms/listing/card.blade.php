@@ -7,11 +7,10 @@
                         <p><img class=" img-fluid" src="{{$image}}" alt="card image"></p>
                         <h4 class="card-title">{{$title}}</h4>
                         <p class="card-text">{{$description_small}}</p>
-                        <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
                     </div>
                 </div>
             </div>
-            <div class="backside col-md-12">
+            <div class="backside col-xs-12">
                 <div class="card">
                     <div class="card-body text-center mt-4">
                         <h4 class="card-title">{{$title}}</h4>
@@ -41,7 +40,11 @@
                         </ul>
                         <div class="actions">
                             @foreach ($button as $action)
-                                <a href="{{$action['url']}}">{{$action['title']}}</a>
+                                @if (!empty($action['url']))
+                                    <a href="{{$action['url']}}">{{$action['title']}}</a>
+                                @else
+                                    {{$action['title']}}
+                                @endif
                             @endforeach
                         </div>
                         

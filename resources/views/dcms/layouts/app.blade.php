@@ -19,7 +19,7 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	@yield('head')
 </head>
 
 <body>
@@ -47,9 +47,9 @@
                         <a href="#">Загруз-центр</a>
                     </li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Services <span class="caret"></span></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Разделы <span class="caret"></span></a>
 						<ul class="dropdown-menu" aria-labelledby="about-us">
-							<li><a href="#">Engage</a></li>
+							<li><a href="{{route('users.list')}}">Пользователи</a></li>
 							<li><a href="#">Pontificate</a></li>
 							<li><a href="#">Synergize</a></li>
 						</ul>
@@ -60,12 +60,13 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						  Кабинет 
-						  <img src="http://lorempixel.com/100/100/people/9/" class="img-circle" alt="Profile Image" />
+						  <img src="{{Auth::user()->avatar}}" class="img-circle" alt="Profile Image" />
 						  </a>
 						  <ul class="dropdown-menu">
 							<li><a href="#">Профиль</a></li>
 							<li><a href="#">Почта</a></li>
 							<li role="separator" class="divider"></li>
+							<li><a href="{{route('photo.upload', [Auth::user()->id])}}">Мои фото</a></li>
 							<li><a href="#">Настройки</a></li>
 							<li><a href="{{ route('logout') }}"
 								onclick="event.preventDefault();
@@ -170,11 +171,10 @@
 											@foreach ($chats as $chat)
 												@php
 													$class = Auth::user() && $chat->user->id == Auth::user()->id ? 'right' : 'left';
-													$avatar = Auth::user() && $chat->user->id == Auth::user()->id ? 'http://lorempixel.com/50/50/people/9/' : 'http://lorempixel.com/50/50/people/7/';
 												@endphp
 												<li class="{{$class}} clearfix">
 													<span class="chat-img pull-{{$class}}">
-														<img src="{{$avatar}}" alt="User Avatar" class="img-circle" />
+														<img width="48" src="{{$chat->user->avatar}}" alt="{{$chat->user->name}} Avatar" class="img-circle" />
 													</span>
 													<div class="chat-body clearfix">
 														<div class="header">
@@ -241,7 +241,7 @@
 					
 									</div>
 									<div class="avatar">
-										<img alt="" src="http://lorempixel.com/100/100/people/9/">
+										<img alt="" src="{{Auth::user()->avatar}}">
 									</div>
 									<div class="info">
 										<div class="title">
@@ -279,8 +279,11 @@
 
 		</div><!--/container-fluid-->
 	</div>	
+
+	@yield('info')
+
 	<footer>
-		<div class="footer-blurb">
+		{{--  <div class="footer-blurb">
 			<div class="container">
 				<div class="row">
 					<div class="col-sm-4 footer-blurb-item">
@@ -298,7 +301,7 @@
 				</div>
 				<!-- /.row -->	
 			</div>
-        </div>
+        </div>  --}}
         
         <div class="small-print">
         	<div class="container">

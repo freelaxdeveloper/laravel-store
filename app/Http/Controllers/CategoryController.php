@@ -11,6 +11,7 @@ class CategoryController extends Controller
     public function view(Category $category)
     {
         $products = Product::categorized($category)->paginate(15);
+        //dd($products->toArray());
 
         return view('categories.view', compact('category', 'products'));
     }

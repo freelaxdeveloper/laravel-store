@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Chat;
 
 class User extends Authenticatable
 {
@@ -27,6 +28,16 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     
+    public function getAvatarAttribute()
+    {
+        return '/images/avatar.png';
+    }
+
+    public function chatMessages()
+    {
+        return $this->hasMany(Chat::class);
+    }
+
     public function roles()
     {
         return $this->belongsToMany('App\Role', 'user_roles', 'user_id', 'role_id');

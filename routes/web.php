@@ -22,8 +22,18 @@ Route::name('user.')->prefix('user')->group(function () {
     Route::get('/view/{user}', 'HomeController@index')->name('view');
 });
 
+Route::name('photo.')->prefix('photo')->group(function () {
+    Route::post('/{user}/uploaded/', 'PhotoController@uploaded')->name('uploaded');
+    Route::get('/{user}/upload', 'PhotoController@upload')->name('upload');
+});
+
 Route::name('chat.')->prefix('chat')->group(function () {
     Route::post('/add', 'ChatController@add')->name('add')->middleware('auth');
+});
+
+Route::name('users.')->prefix('users')->group(function () {
+    Route::get('/list', 'UserController@list')->name('list');
+    Route::get('/view/{user}', 'UserController@view')->name('view');
 });
 
 Route::name('cat.')->prefix('category')->group(function () {
