@@ -24,4 +24,10 @@ class ChatController extends Controller
         ]);
         return back()->with('status', 'Сообщение отправлено');
     }
+
+    public function clear()
+    {
+        Chat::truncate();
+        return back()->with('status', 'Чат очищен');    
+    }
 }

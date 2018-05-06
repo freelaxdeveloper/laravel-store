@@ -10,6 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+/* Route::get('/routes', [
+    'as' => 'routes',
+    'uses' => 'HomeController@routes',
+    'roles' => ['admin'],
+])->middleware('roles');
+ */
+Auth::routes();
+
 Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/categories', [
@@ -29,11 +37,19 @@ Route::name('photo.')->prefix('photo')->group(function () {
 
 Route::name('chat.')->prefix('chat')->group(function () {
     Route::post('/add', 'ChatController@add')->name('add')->middleware('auth');
+    Route::get('/clear', ['as' => 'clear', 'uses' => 'ChatController@clear', 'roles' => ['admin']])->middleware('roles');
 });
 
 Route::name('users.')->prefix('users')->group(function () {
     Route::get('/list', 'UserController@list')->name('list');
     Route::get('/view/{user}', 'UserController@view')->name('view');
+});
+
+Route::group(['middleware' => 'roles', 'namespace' => 'Admin', 'prefix' => 'admin', 'roles' => ['admin']], function() {
+    Route::name('admin.')->group(function () {
+        Route::get('/', 'AdminController@index')->name('index');
+        Route::get('/routes', 'AdminController@routes')->name('routes');
+    });    
 });
 
 Route::name('cat.')->prefix('category')->group(function () {
@@ -59,5 +75,16 @@ Route::name('prod.')->prefix('product')->group(function () {
     });
 });
 
-Auth::routes();
+Route::name('forum.')->prefix('forum')->group(function () {
+
+    Route::get('/', [
+        'as' => 'index',
+        'uses' => 'ForumController@index',
+    ]);
+
+    /* Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {
+        Route::get('/category/{product}', 'ProductController@edit')->name('edit');
+        Route::post('/edit/{product}', 'ProductController@save')->name('save');
+    }); */
+});
 

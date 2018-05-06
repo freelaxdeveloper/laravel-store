@@ -41,7 +41,7 @@
             <div class="collapse navbar-collapse bs-dark" id="navbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Форум</a>
+						<a href="{{route('forum.index')}}">Форум</a>
                     </li>
                     <li>
                         <a href="#">Загруз-центр</a>
@@ -71,6 +71,9 @@
 							<li><a href="{{ route('logout') }}"
 								onclick="event.preventDefault();
 											  document.getElementById('logout-form').submit();">Выйти</a></li>
+							@if (Auth::user() && Auth::user()->hasRole('admin'))
+								<li><a href="{{route('admin.index')}}">Админка</a></li>
+							@endif
 						  </ul>
 						</li>
 					  </ul>
@@ -139,12 +142,26 @@
 					</div>		
 				@endif
 
-				@yield('content')
+				<div class="row">
+					@yield('content')
+				</div>
 			</div><!--/Center Column-->
-
-
 			<!-- Right Column -->
 			<div class="col-sm-3">
+
+				@if (!empty($actions))
+					<div class="panel panel-primary">
+						<div class="panel-heading">Действия</div>
+						<div class="panel-body">
+							@foreach ($actions as $action)
+								<a href="{{$action['link']}}" class="list-group-item">{{$action['title']}}</a>
+							@endforeach
+						</div>
+					</div>
+				@endif
+
+
+				@if ('prod.view' != Route::currentRouteName())
 				<div class="row-chat">
 						<div class="row">
 							<div class="col-md-12">
@@ -156,19 +173,23 @@
 												<span class="glyphicon glyphicon-chevron-down"></span>
 											</button>
 											<ul class="dropdown-menu slidedown">
-												<li><a href="#"><span class="glyphicon glyphicon-refresh">
+												<li><a href="{{ URL::full() }}"><span class="glyphicon glyphicon-refresh">
 												</span>Обновить</a></li>
-												<li><a href="#"><span class="glyphicon glyphicon-remove">
-												</span>Очистить</a></li>
+
+												@if (Auth::user() && Auth::user()->hasRole('admin'))
+													<li><a href="{{route('chat.clear')}}"><span class="glyphicon glyphicon-remove"></span>Очистить</a></li>
+												@endif
 												<li class="divider"></li>
-												<li><a href="#"><span class="glyphicon glyphicon-off"></span>
+												@auth
+													<li><a href="#"><span class="glyphicon glyphicon-off"></span>
 													Выйти</a></li>
+												@endauth
 											</ul>
 										</div>
 									</div>
 									<div class="panel-body">
 										<ul class="chat">
-											@foreach ($chats as $chat)
+											@forelse ($chats as $chat)
 												@php
 													$class = Auth::user() && $chat->user->id == Auth::user()->id ? 'right' : 'left';
 												@endphp
@@ -192,7 +213,9 @@
 														</p>
 													</div>
 												</li>	
-											@endforeach
+											@empty
+												Сообщния еще не были добавлены
+											@endforelse
 										</ul>
 									</div>
 									<div class="panel-footer">
@@ -227,7 +250,7 @@
 							</div>
 						</div>
 				</div>
-					
+				@endif
 
 
 

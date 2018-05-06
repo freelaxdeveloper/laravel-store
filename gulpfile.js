@@ -8,6 +8,9 @@ elixir(function(mix) {
             'dcmsx/backside.css',
             'dcmsx/breadcrumb.css',
         ], 'public/dcmsx/css/core.css')
+        .styles([
+            'dcmsx/tree.css',
+        ], 'public/dcmsx/css/tree.css')
         .scripts([
             'dcmsx/jquery-1.11.3.min.js',
             'dcmsx/bootstrap.min.js',

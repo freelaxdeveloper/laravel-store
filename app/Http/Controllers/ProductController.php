@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{Product, Category};
 use Validator;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -13,9 +14,16 @@ class ProductController extends Controller
         $product->with(['categories']);
         $product->increment('views');
 
+        if (Auth::user() && Auth::user()->hasRole('Admin')) {
+            $actions = [
+                ['link' => route('prod.edit', [$product]), 'title' => 'Изменть'],
+                ['link' => '', 'title' => 'Удалить'],
+            ];
+        }
+
         $products = Product::with(['categories'])->where('id', '!=', $product->id)->orderBy('id', 'desc')->get()->take(12);
 
-        return view('product.view', compact('products', 'product'));
+        return view('product.view', compact('products', 'product', 'actions'));
     }
 
     public function edit(Product $product)

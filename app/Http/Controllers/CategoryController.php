@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Category,Product};
+use Auth;
 
 class CategoryController extends Controller
 {
@@ -12,8 +13,16 @@ class CategoryController extends Controller
     {
         $products = Product::categorized($category)->paginate(15);
         //dd($products->toArray());
-
-        return view('categories.view', compact('category', 'products'));
+        if (Auth::user() && Auth::user()->hasRole('Admin')) {
+            $actions = [
+                ['link' => '', 'title' => 'Добавить товар'],
+                ['link' => route('cat.new', [$category]), 'title' => 'Добавить подкатегорию'],
+                ['link' => '', 'title' => 'Изменть категорию'],
+                ['link' => route('cat.delete', [$category]), 'title' => 'Удалить категорию'],
+            ];
+        }
+ 
+        return view('categories.view', compact('category', 'products', 'actions'));
     }
 
     public function index()
@@ -47,9 +56,13 @@ class CategoryController extends Controller
     
     public function delete(Category $category)
     {
+        $category_id = $category->id;
+        $backCategory = $category->getAncestorsAndSelf()->first();
         $category->delete();
-
-        return redirect()->back();
+        if ($backCategory && $category_id != $backCategory->id) {
+            return redirect()->route('cat.view', [$backCategory]);
+        }
+        return redirect()->route('home');
     }
 
 }
