@@ -7,6 +7,7 @@ elixir(function(mix) {
             'dcmsx/custom.css',
             'dcmsx/backside.css',
             'dcmsx/breadcrumb.css',
+            'dcmsx/product.css',
         ], 'public/dcmsx/css/core.css')
         .styles([
             'dcmsx/tree.css',

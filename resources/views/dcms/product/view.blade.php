@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Вы выбрали №' . $product->id)
+@section('title', $product->title)
 
 @section('meta')
 <link rel="canonical" href="{{route('prod.view', [$product->id])}}"/>
@@ -21,54 +21,24 @@
 
     <!--Card-->
     <div class="card card-body mb-5 px-0 py-0">
-
-        <div class="post-data mb-4 ml-4 mt-4">
+<div class="row">
+        <div class="col-md-4">
             <p class="font-small grey-text mb-0">
                 <i class="fa fa-clock-o"></i> {{$product->created_at}}
+                <i class="fa fa-eye dark-grey-text"></i> <strong>{{$product->views}}</strong> 
             </p>
             @foreach ($product->categories()->get() as $category)
-                <a href="{{route('cat.view', [$category->slug])}}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
+                <a href="{{ route('cat.view', [$category]) }}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
             @endforeach
         </div>
 
         <!--Title-->
-        <h1 class="font-bold mt-3 text-center">
-            <strong>{{$product->categories()->first()->name}} №{{$product->id}}</strong>
+        <h1 style="margin-top: 0;">
+            <strong>{{$product->title}}</strong>
         </h1>
+    </div>
         <hr class="red title-hr">
-
         <img src="{{$product->screen}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image" width="500">
-
-        <div class="row px-4">
-
-                <!--Grid column-->
-                <div class="col-md-6 mt-4">
-
-                    <h5 class="font-bold dark-grey-text">
-                        <i class="fa fa-eye dark-grey-text"></i>
-                        <strong>{{$product->views}}</strong> 
-                        @if ($product->price)
-                            <span itemprop="offers" itemscope itemtype="http://schema.org/Offer"><i class="fa fa-rub"></i> <span itemprop="price" content="{{$product->price}}">{{number_format($product->price)}}</span> <span itemprop="priceCurrency" content="RUB">руб.</span> {{$product->type}}</span>
-                        @endif
-                    </h5>
-
-                </div>
-                <!--Grid column-->
-                @auth
-                    @if (Auth::user()->id && Auth::user()->hasRole('admin'))
-                        <!--Grid column-->
-                        <div class="col-md-6 mt-2 d-flex justify-content-end">
-
-                            <!--Edit-->
-                            <a href="{{route('prod.edit', $product->id)}}" type="button" class="btn-floating btn-small btn-fb">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                        </div>
-                        <!--Grid column-->
-                    @endif
-                @endauth
-            </div>
-
         <hr>
         @if ($product->description)
             <div class="row mx-md-5 px-md-4 px-5 mt-3">
@@ -79,5 +49,22 @@
         @endif
     </div>
     <!--/.Card-->
+</div>
+@endsection
+
+@section('right-column')
+
+<div class="panel panel-default">
+    <div class="panel-heading"><b>Код товара:</b> {{ $product->id }}</div>
+    <div class="list-group">
+        <div class="list-group-item">Размеры <span class="badge">900/2400(2200)/600(450)</span></div>
+        <div class="list-group-item">Время доставки <span class="badge">5-15 рабочих дней</span></div>
+        @if ( $product->price )
+            <div class="list-group-item text-center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                <h3 itemprop="price" content="{{ $product->price }}">{{ number_format($product->price) }} <span itemprop="priceCurrency" content="UAH">грн.</span> {{ $product->type }}</h3>
+                <a class="btn btn-primary btn-lg" href="#">Купить</a>
+            </div>
+        @endif
+    </div>
 </div>
 @endsection

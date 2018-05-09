@@ -4,30 +4,14 @@
 
 @section('content')
     <section class="section extra-margins listing-section mt-2 col-xl-7 col-md-12">
+        <div class="row">
+            <div class="btn-group btn-breadcrumb">
+                <a href="{{ route('home') }}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
+                <a href="{{ route('prod.view', [$product]) }}" class="btn btn-primary">{{$product->title}}</a>
+            </div>
+        </div>
 
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('prod.view', [$product->id])}}">№{{$product->id}}</a></li>
-            </ol>
-        </nav>
-
-        <h4 class="font-bold"><strong>Редактирование</strong> №{{$product->id}}</h4>
         <hr class="red title-hr">
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
-            </div>
-        @endif
         <section class="mb-4 mt-4">
 
                 <!--Grid row-->
@@ -38,43 +22,40 @@
 
                         <!--Leave a reply form-->
                         <div class="reply-form">
-                            <form action="{{route('prod.save', [$product->id])}}" method="POST">
+                            <form action="{{route('prod.save', [$product->id])}}" method="POST" role="form">
                                 @csrf
-                                <div class="row">
-                                    <div class="md-form">
-                                        <i class="fa fa-rub prefix grey-text"></i>
-                                        <input name="price" id="price" type="text" value="{{$product->price}}">
-                                        <label for="price">Цена</label>
-                                    </div>
-                                    <div class="md-form">
-                                        <input name="type" type="text" value="{{$product->type}}">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="price">Цена</label>
+                                            <input name="price" type="text" class="form-control" value="{{$product->price}}">
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label for="type">Подпись</label>
+                                            <input name="type" class="form-control" type="text" value="{{$product->type}}">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="md-form">
-                                    <i class="fa fa-pencil prefix grey-text"></i>
-                                    <textarea name='description' type="text" id="replyForm-mess" class="md-textarea">{{$product->description}}</textarea>
+                                <div class="form-group">
                                     <label for="replyForm-mess">Описание</label>
-                                </div>
-                                <div class="md-form">
-                                    <i class="fa fa-pencil prefix grey-text"></i>
-                                    <textarea name='meta_description' type="text" id="meta_description" class="md-textarea">{{$product->meta_description}}</textarea>
+                                    <textarea class="form-control" rows="3" name='description'>{{$product->description}}</textarea>
                                     <label for="meta_description">Описание (META)</label>
+                                    <textarea name="meta_description" type="text" class="form-control" rows="3">{{$product->meta_description}}</textarea>
                                 </div>
-                                <div class="md-form">
-                                    <select class="js-example-basic-multiple" name="categories[]" multiple="multiple">
-                                        @foreach ($categoriesAll as $category)
-                                            <option value="{{$category->id}}" @if (in_array($category->id, $productCategories)) selected @endif>
-                                                @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
-                                                    {{$breadcrumbs->name}}/
-                                                @endforeach
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div> 
+                                    <div class="form-group">
+                                        <label>Категории</label>
+                                        <select class="form-control" name="categories[]" multiple="multiple">
+                                            @foreach ($categoriesAll as $category)
+                                                <option value="{{$category->id}}" @if (in_array($category->id, $productCategories)) selected @endif>
+                                                    @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
+                                                        {{$breadcrumbs->name}}/
+                                                    @endforeach
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                                <div class="text-center">
-                                    <button class="btn btn-indigo btn-rounded">Сохранить</button>
-                                </div>
+                                    <button type="submit" class="btn btn-primary">Сохранить</button>
                             </form>
                         </div>
                         <!--/.Leave a reply form-->

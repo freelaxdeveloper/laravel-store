@@ -19,10 +19,10 @@ class Product extends Model
         return base_path("public/{$this->screen}");
     }
 
-    /* public function getRouteKeyName()
+    public function getRouteKeyName()
     {
         return 'slug';
-    } */
+    }
 
     public function categories() {
         return $this->belongsToMany(Category::class, 'products_categories');

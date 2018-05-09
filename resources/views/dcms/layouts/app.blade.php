@@ -104,7 +104,7 @@
 					</div>
 					<div class="list-group">
 						@foreach ($categories as $category)
-							<a href="{{route('cat.view', [$category->slug])}}" class="list-group-item">{{$category->name}} <span class="badge">{{$category->products_count}}</span></a>
+							<a href="{{route('cat.view', [$category])}}" class="list-group-item">{{$category->name}} <span class="badge">{{$category->products_count}}</span></a>
 						@endforeach
 					</div>
 				</div>
@@ -152,7 +152,7 @@
 				@if (!empty($actions))
 					<div class="panel panel-primary">
 						<div class="panel-heading">Действия</div>
-						<div class="panel-body">
+						<div class="list-group">
 							@foreach ($actions as $action)
 								<a href="{{$action['link']}}" class="list-group-item">{{$action['title']}}</a>
 							@endforeach
@@ -160,7 +160,36 @@
 					</div>
 				@endif
 
-
+				@yield('right-column')
+				<div class="panel panel-default">
+					<div class="panel-heading"><b>Доставка</b></div>
+					<div class="list-group">
+						<div class="list-group-item">
+							Киев <span class="badge">180 грн</span>
+						</div>
+						<div class="list-group-item">
+							Белая Церковь <span class="badge">90 грн</span>
+						</div>
+						<div class="list-group-item">
+							Бровары, Боярка, Ирпень <span class="badge">205 грн</span>
+						</div>
+						<div class="list-group-item">
+							Борисполь, Обухов, Васильков <span class="badge">215 грн</span>
+						</div>
+						<div class="list-group-item">
+							Одесса, Николаев, Умань, Жашков <span class="badge">250 грн</span>
+						</div>
+					
+						<div class="list-group-item">
+							Чернигов <span class="badge">250 грн</span>
+						</div>
+						<div class="list-group-item">
+							<h5>В другие регионы доставка осуществляется перевозчиком Новая Почта по их тарифам.<br />
+							Стоимость заноса на этаж (при отсутствии лифта) и сборки уточняйте у менеджера.</h5>
+						</div>
+					</div>
+				</div>
+				
 				@if ('prod.view' != Route::currentRouteName())
 				<div class="row-chat">
 						<div class="row">

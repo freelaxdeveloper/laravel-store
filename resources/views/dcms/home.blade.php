@@ -11,9 +11,11 @@
     <section id="team">
         <div class="row">
             @foreach ($products as $product)
-                @include('listing.card', [
+                @include('listing.product', [
+                    'id' => $product->id,
+                    'price' => $product->price,
                     'title' => $product->title,
-                    'url' => route('prod.view', [$product->id]),
+                    'url' => route('prod.view', [$product]),
                     'description' => $product->description,
                     'description_small' => $product->description,
                     'image' => $product->screen,

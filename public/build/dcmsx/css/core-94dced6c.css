@@ -404,7 +404,7 @@ form.search > .row > .col-sm-6 {
 	
   @media (min-width: 768px) {
 	.search-box {
-	  width:260px;
+	  width:180px;
 	  height:32px;
 	}
 
@@ -793,5 +793,206 @@ border-left: 10px solid #337ab7;
 }
 .btn-breadcrumb .btn.btn-info:hover:not(:last-child):before {
   border-left: 10px solid #269abc;
+}
+@media screen and (max-width: 1590px) {
+    .product-cart-wrapper {
+        /* width: 32%; */
+    }
+}
+.product-cart-wrapper {
+    float: left;
+    box-sizing: border-box;
+    height: 394px;
+    padding: 8px 0 0 8px;
+}
+.product-cart {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    margin: 0!important;
+    background: #fff;
+    color: #333;
+}
+.block {
+    display: block;
+    position: relative;
+    margin-top: 8px;
+    background-color: #fff;
+    box-shadow: 0 0 0 1px #e1e1e1;
+    border-radius: 2px;
+}
+.product-cart-over {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 8px;
+    border-radius: 2px;
+    background-color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+}
+.clear {
+    display: block;
+}
+.product-cart .label.discount {
+    background-position: 0 -72px;
+}
+.product-cart .label {
+    display: inline;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 72px;
+    height: 72px;
+    background: url(https://www.taburetka.ua/sprites/labels.ru.png) no-repeat 0 0;
+    z-index: 16;
+}
+.product-code {
+    background: rgba(119,102,85,.75);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 4px;
+    border-radius: 2px;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    z-index: 16;
+}
+.product-code b {
+    font-weight: 900;
+    font-size: 14px;
+}
+.clear:after {
+    content: '.';
+    display: block;
+    height: 0;
+    font-size: 0;
+    line-height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.product-cart a {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+.product-cover-link {
+    position: relative;
+    height: 190px;
+}
+.product-cart-title {
+    margin-top: 4px;
+    height: 48px;
+    overflow: hidden;
+}
+.product-cart-info {
+    height: 36px;
+    font-size: 13px;
+}
+.product-cart-reviews {
+    text-align: center;
+    height: 15px;
+    padding: 0;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.product-cart-price-wrapper {
+    margin-top: 8px;
+}
+.product-cart .button.buy:hover {
+    display: block;
+    background-color: #876;
+    color: #fff;
+}
+.product-cart .button.buy {
+    display: block;
+    float: right;
+    padding: 0;
+    width: 100px;
+    height: 62px;
+    font-size: 16px;
+    border-radius: 0 2px 2px 0;
+    font-weight: 600;
+}
+.button.buy {
+    padding: 0;
+    width: 96px;
+    height: 64px;
+    font-size: 22px;
+    text-transform: uppercase;
+}
+.button:hover {
+    background-color: #876;
+    color: #fff;
+}
+.button {
+    display: inline-block;
+    margin: 0;
+    cursor: pointer;
+    white-space: nowrap;
+    outline: 0;
+    vertical-align: top;
+    line-height: 13px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #765;
+    color: #fff;
+    border: 0;
+    border-radius: 2px;
+    box-sizing: border-box;
+    padding: 8px 16px;
+    font-size: 13px;
+}
+.product-cart-wrapper:hover .product-cart-over {
+    /* z-index: 128; */
+    box-shadow: 0 0 32px 4px #aaa;
+}
+.product .info .price .old, .product-cart .price .old {
+    margin-top: 8px;
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    text-decoration: line-through;
+}
+.product-cart .price {
+    border: 1px solid #765;
+    padding: 0 8px;
+    border-radius: 2px 0 0 2px;
+    height: 62px;
+    font-weight: 400;
+    position: relative;
+    overflow: hidden;
+}
+.product .info .price .new, .product-cart .price .new {
+    margin-top: 0;
+    text-align: center;
+    color: #fb515d;
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: 600;
+}
+.product-cart-wrapper:hover .product-cart {
+    overflow: visible;
+}
+.product-cart-info span {
+    font-weight: 600;
+}
+.product-cart-reviews-count, .product-cart-stars-wrapper {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.product-cart-reviews-count, .product-cart-stars-wrapper {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.product-cart-stars {
+    margin: auto;
+    position: relative;
+    width: 60px;
+    height: 12px;
+    background: url(https://www.taburetka.ua/sprites/stars.png) repeat-x 0 0;
 }
 /*# sourceMappingURL=core.css.map */

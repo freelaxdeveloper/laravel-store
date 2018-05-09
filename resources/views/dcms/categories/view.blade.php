@@ -3,15 +3,20 @@
 @section('title', $category->name)
 
 @section('meta')
-<link rel="canonical" href="{{route('cat.view', [$category->slug])}}"/>
+<link rel="canonical" href="{{route('cat.view', [$category])}}"/>
 @endsection
 
 @section('content')
+
+
+
+
+
     <div class="row">
         <div class="btn-group btn-breadcrumb">
             <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
             @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
-            <a href="{{route('cat.view', [$breadcrumbs->slug])}}" class="btn btn-primary">{{$breadcrumbs->name}}</a>
+            <a href="{{route('cat.view', [$breadcrumbs])}}" class="btn btn-primary">{{$breadcrumbs->name}}</a>
             @endforeach
         </div>
     </div>
@@ -24,19 +29,21 @@
 
                 @foreach ($category->children()->withCount('products')->get() as $child)
                 <div class="single-post mr-2">
-                    <a href="{{route('cat.view', [$child->slug])}}" class="list-group-item list-group-item-action">
+                    <a href="{{route('cat.view', [$child])}}" class="list-group-item list-group-item-action">
                         <h5>{{$child->name}} <span class="badge badge-danger badge-pill">{{$child->products_count}}</span></h5>
                     </a>
                 </div>
                 @endforeach
             </div>
                 @forelse ($products as $product)
-                    @include('listing.card', [
+                    @include('listing.product', [
+                        'id' => $product->id,
                         'title' => $product->title,
-                        'url' => route('prod.view', [$product->id]),
+                        'url' => route('prod.view', [$product]),
                         'description' => $product->description,
                         'description_small' => $product->description,
                         'image' => $product->screen,
+                        'price' => $product->price,
                         'button' => [
                             ['url' => '#', 'title' => '2 Comments'],
                             ['url' => '#', 'title' => '8 Shares'],
