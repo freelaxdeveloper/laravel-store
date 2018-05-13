@@ -22,13 +22,17 @@
 
                         <!--Leave a reply form-->
                         <div class="reply-form">
-                            <form action="{{route('prod.save', [$product->id])}}" method="POST" role="form">
+                            <form action="{{route('prod.save', [$product])}}" method="POST" role="form">
                                 @csrf
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-2">
                                             <label for="price">Цена</label>
                                             <input name="price" type="text" class="form-control" value="{{$product->price}}">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="price_old">Старая цена</label>
+                                            <input name="price_old" type="text" class="form-control" value="{{$product->price_old}}">
                                         </div>
                                         <div class="col-xs-3">
                                             <label for="type">Подпись</label>

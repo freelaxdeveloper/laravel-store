@@ -18,21 +18,20 @@
                         @csrf
 
                         <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <i class="fa fa-envelope prefix grey-text"></i> <label for="email">Номер телефона</label>
+                            <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-                            <label for="email">E-mail</label>
                         </div>
 
                             
 
                         <div class="md-form">
-                            <i class="fa fa-lock prefix grey-text"></i>
+                            <i class="fa fa-lock prefix grey-text"></i> <label for="password">Пароль</label>
                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                             @if ($errors->has('password'))
@@ -40,7 +39,7 @@
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
-                            <label for="password">Пароль</label>
+                            
                         </div>
 
                         <div class="col-md-6 offset-md-4">

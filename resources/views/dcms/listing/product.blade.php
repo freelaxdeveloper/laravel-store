@@ -28,14 +28,18 @@
                     <button data-product-id="3703" href="/korzina" onclick="return false;" class="button buy">Купить</button>
                     <div class="price">
                         <div class="old">
-                            2 555 грн<span style="top: -0.67em; left: 4px; font-size: 67%; text-decoration: none; color: #fb515d; display: inline-block; position: relative;">-10%</span>
+                            @if ($discount)
+                                {{ number_format($price_old) }}<span style="top: -0.67em; left: 4px; font-size: 67%; text-decoration: none; color: #fb515d; display: inline-block; position: relative;">{{$discount}}%</span>
+                            @endif
                         </div>
-                        <div class="new">{{ number_format($price) }} грн</div>
+                        <div class="new">{{ number_format($price) }} {{ env('CURRENCY') }}</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="label discount"></div>
+        @if ($discount)
+            <div class="label discount"></div>
+        @endif
         <div class="product-code">Код: <b>{{ $id }}</b></div>
     </div>
 </div>

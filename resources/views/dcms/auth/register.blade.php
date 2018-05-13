@@ -18,31 +18,44 @@
                         @csrf
                         <!-- Material input text -->
                         <div class="md-form">
-                            <i class="fa fa-user prefix grey-text"></i>
+                            <i class="fa fa-user prefix grey-text"></i> <label for="name">Ваше имя</label>
                             <input name="name" type="text" id="name" class="form-control" value="{{ old('name') }}" required autofocus>
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" style="display: block;">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
-                            <label for="name">Ваше имя</label>
+                            
                         </div>
                     
                         <!-- Material input email -->
                         <div class="md-form">
-                            <i class="fa fa-envelope prefix grey-text"></i>
+                            <i class="fa fa-envelope prefix grey-text"></i> <label for="email">Ваш E-mail</label>
                             <input name="email" type="email" id="email" class="form-control" value="{{ old('email') }}" required>
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" style="display: block;">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-                            <label for="email">Ваш E-mail</label>
+                            
+                        </div>
+                    
+                    
+                        <!-- Material input mobile -->
+                        <div class="md-form">
+                            <i class="fa fa-envelope prefix grey-text"></i> <label for="mobile">Ваш номер телефона</label>
+                            <input name="mobile" type="text" id="mobile" class="form-control" value="{{ old('mobile') }}" required>
+                            @if ($errors->has('mobile'))
+                                <span class="invalid-feedback" style="display: block;">
+                                    <strong>{{ $errors->first('mobile') }}</strong>
+                                </span>
+                            @endif
+                            
                         </div>
                     
                         <!-- Material input email -->
                         <div class="md-form">
-                            <i class="fa fa-lock prefix grey-text"></i>
+                            <i class="fa fa-lock prefix grey-text"></i> <label for="password">Пароль</label>
                             <input name="password" type="password" id="password" class="form-control">
 
                             @if ($errors->has('password'))
@@ -50,17 +63,17 @@
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
-                            <label for="password">Пароль</label>
+                            
                             
                         </div>
                         <!-- Material input password -->
                         <div class="md-form">
-                            <i class="fa fa-exclamation-triangle prefix grey-text"></i>
+                            <i class="fa fa-exclamation-triangle prefix grey-text"></i> <label for="password-confirm">Повторите пароль</label>
                             <input name="password_confirmation" type="password" id="password-confirm" class="form-control">
-                            <label for="password-confirm">Повторите пароль</label>
+                            
                         </div>
                     
-                        <div class="text-center mt-4">
+                        <div>
                             <button class="btn btn-primary" type="submit">Регистрация</button>
                         </div>
                     </form>

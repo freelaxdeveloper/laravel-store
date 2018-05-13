@@ -70,6 +70,9 @@ Route::name('prod.')->prefix('product')->group(function () {
     ]);
 
     Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {
+        Route::get('/add/{category}', 'ProductController@add')->name('add');
+        Route::post('/add/{category}', 'ProductController@new')->name('new');
+
         Route::get('/edit/{product}', 'ProductController@edit')->name('edit');
         Route::post('/edit/{product}', 'ProductController@save')->name('save');
     });

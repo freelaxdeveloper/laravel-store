@@ -14,6 +14,8 @@
                 @include('listing.product', [
                     'id' => $product->id,
                     'price' => $product->price,
+					'price_old' => $product->price_old,
+                    'discount' => $product->discount,
                     'title' => $product->title,
                     'url' => route('prod.view', [$product]),
                     'description' => $product->description,

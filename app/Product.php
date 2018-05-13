@@ -11,12 +11,20 @@ class Product extends Model
 
     public function getScreenAttribute()
     {
-        return "/products/{$this->id}.jpg";
+        if (file_exists($this->ScreenPath())) {
+            return "/products/{$this->id}.jpg";
+        }
+        return "/images/default.png";
     }
 
-    public function getScreenPathAttribute()
+    public function getDiscountAttribute()
     {
-        return base_path("public/{$this->screen}");
+        return $this->price_old ? floor(($this->price / $this->price_old * 100) - 100) : 0;
+    }
+
+    public function ScreenPath()
+    {
+        return base_path("public/products/{$this->id}") . '.jpg';
     }
 
     public function getRouteKeyName()
@@ -36,7 +44,10 @@ class Product extends Model
         if (is_null($category))
             return $query->with('categories');
 
-        $categoryIds = $category->getDescendantsAndSelf()->pluck('id');
+        // продукты в текущей категории, и вложенные в её дочерние категории
+        # $categoryIds = $category->getDescendantsAndSelf()->pluck('id');
+        // продукты только в текущей категории
+        $categoryIds = [$category->id];
 
         return $query->with('categories')
             ->join('products_categories', 'products_categories.product_id', '=', 'products.id')

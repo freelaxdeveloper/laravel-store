@@ -47,11 +47,19 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'email.unique' => 'Такой E-mail уже зарегистрирован у нас на сайте',
+            'mobile.unique' => 'Такой номер телефона уже зарегистрирован у нас на сайте',
+            'password.required' => 'Пароль обязателен для заполнения',
+            'password.confirmed' => 'Вы не подтверили пароль',
+        ];
+
         return Validator::make($data, [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'mobile' => 'required|string|max:15|unique:users',
             'password' => 'required|string|min:6|confirmed',
-        ]);
+        ], $messages);
     }
 
     /**
@@ -65,6 +73,7 @@ class RegisterController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'mobile' => $data['mobile'],
             'password' => bcrypt($data['password']),
         ]);
     }

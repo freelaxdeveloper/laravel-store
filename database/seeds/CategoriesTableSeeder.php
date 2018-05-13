@@ -12,8 +12,8 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        Category::create(['name' => 'Кованные двери']);
-        Category::create(['name' => 'Перила и лестницы']);
-        Category::create(['name' => 'Входные ворота']);
+        Category::create(['name' => 'Кухонные уголки']);
+        Category::create(['name' => 'Столы обеденные']);
+        Category::create(['name' => 'Столы обеденные']);
     }
 }

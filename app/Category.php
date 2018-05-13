@@ -4,6 +4,7 @@ namespace App;
 
 use Baum\Node;
 use App\Product;
+use Illuminate\Support\Facades\Cache;
 
 class Category extends Node
 {
@@ -28,7 +29,23 @@ class Category extends Node
             } else {
                 $model->slug = $slug . '_' . mt_rand(111, 999);
             }
-            
+            // очищаем кеш категорий при изменении категории
+            Category::cacheClear();
         });
+        
+        static::creating(function ($model) {
+            // очищаем кеш категорий при создании новой категории
+            Category::cacheClear();
+        });
+
+        static::deleting(function ($model) {
+            // очищаем кеш категорий при удалении категории
+            Category::cacheClear();
+        });
+    }
+
+    static function cacheClear()
+    {
+        return Cache::forget('categories');
     }
 }

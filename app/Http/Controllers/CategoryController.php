@@ -15,7 +15,7 @@ class CategoryController extends Controller
         //dd($products->toArray());
         if (Auth::user() && Auth::user()->hasRole('Admin')) {
             $actions = [
-                ['link' => '', 'title' => 'Добавить товар'],
+                ['link' => route('prod.add', [$category]), 'title' => 'Добавить товар'],
                 ['link' => route('cat.new', [$category]), 'title' => 'Добавить подкатегорию'],
                 ['link' => '', 'title' => 'Изменть категорию'],
                 ['link' => route('cat.delete', [$category]), 'title' => 'Удалить категорию'],
@@ -62,7 +62,7 @@ class CategoryController extends Controller
         if ($backCategory && $category_id != $backCategory->id) {
             return redirect()->route('cat.view', [$backCategory]);
         }
-        return redirect()->route('home');
+        return redirect()->route('cat');
     }
 
 }

@@ -44,6 +44,8 @@
                         'description_small' => $product->description,
                         'image' => $product->screen,
                         'price' => $product->price,
+                        'price_old' => $product->price_old,
+                        'discount' => $product->discount,
                         'button' => [
                             ['url' => '#', 'title' => '2 Comments'],
                             ['url' => '#', 'title' => '8 Shares'],

@@ -262,8 +262,8 @@
 												<form method="POST" action="{{route('login')}}">
 													@csrf
 													<div class="form-group">
-														<label class="sr-only" for="emailAddress">Email</label>
-														<input name="email" type="email" class="form-control" id="emailAddress" placeholder="Email" required>
+														<label class="sr-only" for="emailAddress">Номер телефона</label>
+														<input name="email" type="text" class="form-control" id="emailAddress" placeholder="Номер телефона" required>
 													</div>
 													<div class="form-group">
 														<label class="sr-only" for="pwd">Пароль</label>
