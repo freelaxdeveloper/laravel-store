@@ -80,6 +80,20 @@
 					  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 							@csrf
 						</form>
+
+				@else
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+						  Кабинет 
+						  <img src="https://cdn4.iconfinder.com/data/icons/avatar-and-user/86/Avatar_person_user_character_man_woman_human-04-512.png" class="img-circle" alt="Profile Image" />
+						  </a>
+						  <ul class="dropdown-menu">
+							<li><a href="{{ route('register') }}">Регистрация</a></li>
+							<li><a href="{{ route('login') }}">Авторизация</a></li>
+						  </ul>
+						</li>
+					  </ul>
 				@endauth
 				<form class="navbar-form navbar-right form-inline" role="search">
 						<div class="input-group">
