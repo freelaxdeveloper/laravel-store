@@ -60,6 +60,20 @@ class Product extends Model
 
         static::saving(function ($model) {
             $model->slug = str_slug($model->title);
+            while(Product::where('slug', $model->slug)->first()) {
+                $model->slug = $slug . '_' . mt_rand(111, 999);
+            }
+            Category::cacheClear();
+        });
+
+        static::creating(function ($model) {
+            // очищаем кеш категорий при создании новой категории
+            Category::cacheClear();
+        });
+
+        static::deleting(function ($model) {
+            // очищаем кеш категорий при удалении категории
+            Category::cacheClear();
         });
     }
 }

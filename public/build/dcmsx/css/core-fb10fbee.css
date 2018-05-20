@@ -529,6 +529,13 @@ section#what-we-do .section-title{
 	-moz-transition: .5s all ease;
 	transition: .5s all ease;
 }
+
+.container-fluid {
+	min-height: calc(100vh - 120px);
+}
+.small-print {
+	padding: 0;
+}
 /* FontAwesome for working BootSnippet :> */
 
 #team {

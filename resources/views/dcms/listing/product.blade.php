@@ -13,7 +13,6 @@
                     </h3>
                 </div>
                 <div class="product-cart-info">
-                    <span class="hide-mobile">Производитель: </span>Loft<br>
                     <span class="hide-mobile">Размеры: </span>1100/750/550
                 </div>
                 <div class="product-cart-reviews clear">
@@ -29,10 +28,13 @@
                     <div class="price">
                         <div class="old">
                             @if ($discount)
-                                {{ number_format($price_old) }}<span style="top: -0.67em; left: 4px; font-size: 67%; text-decoration: none; color: #fb515d; display: inline-block; position: relative;">{{$discount}}%</span>
+                                {{ number_format($price_old) }}<span style="top: -0.67em; left: 4px; font-size: 67%; text-decoration: none; color: #fb515d; display: inline-block; position: relative; margin-right:7px;">{{$discount}}%</span>
+                            @endif
+                            @if ( price($price) !== $price )
+                                {{ number_format($price) }}<span style="top: -0.67em; left: 4px; font-size: 67%; text-decoration: none; color: #fb515d; display: inline-block; position: relative;">{{ percent(price($price), $price) }}%</span>
                             @endif
                         </div>
-                        <div class="new">{{ number_format($price) }} {{ env('CURRENCY') }}</div>
+                        <div class="new">{{ number_format(price($price)) }} {{ env('CURRENCY') }}</div>
                     </div>
                 </div>
             </div>

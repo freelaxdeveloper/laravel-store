@@ -9,7 +9,7 @@
         <a href="{{ URL::previous() }}" class="btn btn-primary">Вернуться</a>
     </div>
 </div>
-
+<h2 class="font-bold"><strong>Добавление товара в "{{$category->name}}"</strong></h2>
 <hr class="red title-hr">
 <section class="mb-4 mt-4">
 
@@ -33,6 +33,10 @@
                                     <label for="price">Цена</label>
                                     <input name="price" type="text" class="form-control">
                                 </div>
+                                <div class="col-xs-2">
+                                    <label for="price_old">Старая цена</label>
+                                    <input name="price_old" type="text" class="form-control">
+                                </div>
                                 <div class="col-xs-3">
                                     <label for="type">Подпись</label>
                                     <input name="type" class="form-control" type="text">
@@ -48,9 +52,9 @@
                             <div class="form-group">
                                 <label>Категории</label>
                                 <select class="form-control" name="categories[]" multiple="multiple">
-                                    @foreach ($categoriesAll as $category)
-                                        <option value="{{$category->id}}">
-                                            @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
+                                    @foreach ($categoriesAll as $cat)
+                                        <option value="{{$cat->id}}" @if($cat->id == $category->id)selected @endif>
+                                            @foreach ($cat->getAncestorsAndSelf() as $breadcrumbs)
                                                 {{$breadcrumbs->name}}/
                                             @endforeach
                                         </option>

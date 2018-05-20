@@ -21,6 +21,7 @@ class ProductController extends Controller
         $messages = [
             'price.required' => 'Цена обязательна для заполнения',
             'price.integer' => 'Цена должна быть числовым значением',
+            'price_old.integer' => 'Старая цена должна быть числовым значением',
         ];
         
         Validator::make($request->all(), [
@@ -29,6 +30,7 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'price' => 'required|integer',
+            'price_old' => 'nullable|integer',
             'categories.*' => 'integer|exists:categories,id',
         ], $messages)->validate();
 
@@ -39,11 +41,12 @@ class ProductController extends Controller
         $product->type = $request->input('type');
         $product->description = $request->input('description');
         $product->meta_description = $request->input('meta_description');
+        $product->price_old = $request->input('price_old');
         $product->save();
 
         $product->categories()->attach($request->input('categories'));
 
-        return back()->with('status', 'Данные сохранены');
+        return redirect(route('prod.view', $product));
     }
 
     public function view(Product $product)

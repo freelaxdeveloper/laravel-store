@@ -58,10 +58,10 @@
     <div class="panel-heading"><b>Код товара:</b> {{ $product->id }}</div>
     <div class="list-group">
         <div class="list-group-item">Размеры <span class="badge">900/2400(2200)/600(450)</span></div>
-        <div class="list-group-item">Время доставки <span class="badge">5-15 рабочих дней</span></div>
+        <div class="list-group-item">Время доставки <span class="badge">{{ env('DELIVERY_TIME') }}</span></div>
         @if ( $product->price )
             <div class="list-group-item text-center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                <h3 itemprop="price" content="{{ $product->price }}">{{ number_format($product->price) }} <span itemprop="priceCurrency" content="UAH">грн.</span> {{ $product->type }}</h3>
+                <h3 itemprop="price" content="{{ $product->price }}">{{ number_format(price($product->price)) }} <span itemprop="priceCurrency" content="UAH">{{ env('CURRENCY') }}</span> {{ $product->type }}</h3>
                 <a class="btn btn-primary btn-lg" href="#">Купить</a>
             </div>
         @endif
