@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "f94f370239e208547447138e62c75153",
-    "content-hash": "9d27b336f154dce33d0120b226d94c96",
+    "hash": "0c9ce41a4bcd9c3b9955bfeba0dc0d18",
+    "content-hash": "c568e5854686e09ee997c7bd09c45932",
     "packages": [
         {
             "name": "baum/baum",
@@ -1361,16 +1361,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.6.21",
+            "version": "v5.6.23",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28"
+                "reference": "f547f0a71a12763d1adb8493237d541c9e3a5d10"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/458a89b1c5ff73072c27308566f444c790f76f28",
-                "reference": "458a89b1c5ff73072c27308566f444c790f76f28",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/f547f0a71a12763d1adb8493237d541c9e3a5d10",
+                "reference": "f547f0a71a12763d1adb8493237d541c9e3a5d10",
                 "shasum": ""
             },
             "require": {
@@ -1496,7 +1496,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-05-08 13:30:15"
+            "time": "2018-05-22 14:55:57"
         },
         {
             "name": "laravel/tinker",

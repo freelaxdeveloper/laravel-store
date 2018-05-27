@@ -3,7 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\{Category, AccountInstagram};
+use App\{Category, AccountInstagram, ProductScreen};
+use Illuminate\Support\Collection;
+use Illuminate\Filesystem\Filesystem;
+use File;
 
 class Product extends Model
 {
@@ -13,33 +16,36 @@ class Product extends Model
         'options' => 'array',
     ];
 
-
-    public function getScreensAttribute()
+    /**
+     * список скринов
+     */
+    public function getScreensAttribute(): Collection
     {
-        $screens = [];
-        $files = glob(public_path("/images/products/{$this->id}/*"));
-        for($i = 0; $i < count($files); $i++) {
-            $screens[] = str_replace(public_path(), '', $files[$i]);
-        }
-        return $screens;
+        return (new ProductScreen($this))->all();
     }
 
-    public function getScreenAttribute()
+    /**
+     * удаление скриншота по его ID
+     */
+    public function screenDeleteById(int $screen_id): bool
     {
-        return $this->screens[0] ?? '/images/default.png';
+        return (new ProductScreen($this))->deleteById($screen_id);
     }
 
-    public function getDiscountAttribute()
+    /**
+     * вычисление скидки, если указана старая цена товара
+     */
+    public function getDiscountAttribute(): int
     {
         return $this->price_old ? floor(($this->price / $this->price_old * 100) - 100) : 0;
     }
 
-    public function getSizeAttribute()
+    public function getSizeAttribute(): ?string
     {
         return !empty($this->options['size']['height']) ? implode('/', $this->options['size']) : null;
     }
 
-    public function getRouteKeyName()
+    public function getRouteKeyName(): string
     {
         return 'slug';
     }
@@ -84,8 +90,10 @@ class Product extends Model
         });
 
         static::deleting(function ($model) {
-            // очищаем кеш категорий при удалении категории
+            // очищаем кеш категорий при удалении
             Category::cacheClear();
+            // удаляем директорию со скриншотами
+            File::deleteDirectory((new ProductScreen($model))->getPath());
         });
     }
 }

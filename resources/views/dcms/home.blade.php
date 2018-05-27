@@ -20,7 +20,7 @@
                     'url' => route('prod.view', [$product]),
                     'description' => $product->description,
                     'description_small' => $product->description,
-                    'image' => $product->screen,
+                    'image' => $product->screens->first()['src'],
                     'size' => $product->size,
                     'button' => [
                         ['url' => '#', 'title' => '2 Comments'],

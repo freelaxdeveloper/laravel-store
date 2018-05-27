@@ -55,15 +55,26 @@ class ProductController extends Controller
     public function screenSave(Request $request, Product $product)
     {
         $this->validate($request, [
-            'input_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'input_img' => 'required|array|min:1',
+            'input_img.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
-        $image = $request->file('input_img');
+        $images = $request->file('input_img');
 
         $destinationPath = public_path('/images/products/' . $product->id);
-        $name = time().'.'.$image->getClientOriginalExtension();
-        $image->move($destinationPath, $name);
 
-        return redirect(route('prod.view', $product))->with('status', 'Скриншот загружен');;
+        foreach ( $images as $image ) {
+            $name = time() . '.' . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $name);
+        }
+        
+        return redirect(route('prod.screen', $product))->with('status', 'Скриншот загружен');
+    }
+
+    public function screenDelete(Product $product, int $screen_id)
+    {
+        $product->screenDeleteById($screen_id);
+
+        return redirect(route('prod.screen', $product))->with('status', 'Скриншот удален');
     }
 
     public function view(Product $product)

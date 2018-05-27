@@ -38,7 +38,7 @@
         </h1>
     </div>
         <hr class="red title-hr">
-        <img src="{{$product->screen}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image" width="500">
+        <img src="{{$product->screens->first()['src']}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image" width="500">
         <hr>
         @if ($product->description)
             <div class="row mx-md-5 px-md-4 px-5 mt-3">

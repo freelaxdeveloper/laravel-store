@@ -81,7 +81,8 @@ Route::name('prod.')->prefix('product')->group(function () {
         Route::post('/edit/{product}', 'ProductController@save')->name('save');
 
         Route::get('/screen/{product}', 'ProductController@screen')->name('screen');
-        Route::post('/screen/{product}', 'ProductController@screenSave')->name('screen-save');
+        Route::post('/screen/{product}', 'ProductController@screenSave');
+        Route::get('/screen/{product}/{id}/delete', 'ProductController@screenDelete')->name('screenDelete');
 
         Route::get('/delete/{product}', 'ProductController@delete')->name('delete');
     });

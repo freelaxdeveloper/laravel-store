@@ -42,7 +42,7 @@
                         'url' => route('prod.view', [$product]),
                         'description' => $product->description,
                         'description_small' => $product->description,
-                        'image' => $product->screen,
+                        'image' => $product->screens->first()['src'],
                         'price' => $product->price,
                         'price_old' => $product->price_old,
                         'discount' => $product->discount,
