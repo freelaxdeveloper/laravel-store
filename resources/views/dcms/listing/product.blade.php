@@ -13,7 +13,9 @@
                     </h3>
                 </div>
                 <div class="product-cart-info">
-                    <span class="hide-mobile">Размеры: </span>1100/750/550
+                    @if ( isset($size) )
+                        <span class="hide-mobile">Размеры:</span> {{$size}}
+                    @endif
                 </div>
                 <div class="product-cart-reviews clear">
                     <div class="product-cart-reviews-count">

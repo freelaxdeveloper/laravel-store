@@ -25,6 +25,10 @@
                             <form action="{{route('prod.save', [$product])}}" method="POST" role="form">
                                 @csrf
                                 <div class="form-group">
+                                    <label for="title">Название</label>
+                                    <input name="title" type="text" class="form-control" value="{{$product->title}}">
+                                </div>
+                                <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-2">
                                             <label for="price">Цена</label>
@@ -34,9 +38,21 @@
                                             <label for="price_old">Старая цена</label>
                                             <input name="price_old" type="text" class="form-control" value="{{$product->price_old}}">
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-xs-2">
+                                            <label for="price">Длина</label>
+                                            <input name="options[size][length]" type="text" class="form-control" value="{{$product->options['size']['length']}}">
+                                        </div>
+                                        <div class="col-xs-2">
+                                            <label for="price_old">Высота</label>
+                                            <input name="options[size][height]" type="text" class="form-control" value="{{$product->options['size']['height']}}">
+                                        </div>
                                         <div class="col-xs-3">
-                                            <label for="type">Подпись</label>
-                                            <input name="type" class="form-control" type="text" value="{{$product->type}}">
+                                            <label for="type">Ширина</label>
+                                            <input name="options[size][width]" class="form-control" type="text" value="{{$product->options['size']['width']}}">
                                         </div>
                                     </div>
                                 </div>

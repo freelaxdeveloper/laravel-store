@@ -9,12 +9,24 @@ class Product extends Model
 {
     public $fillable = ['title', 'options', 'price'];
 
+    protected $casts = [
+        'options' => 'array',
+    ];
+
+
+    public function getScreensAttribute()
+    {
+        $screens = [];
+        $files = glob(public_path("/images/products/{$this->id}/*"));
+        for($i = 0; $i < count($files); $i++) {
+            $screens[] = str_replace(public_path(), '', $files[$i]);
+        }
+        return $screens;
+    }
+
     public function getScreenAttribute()
     {
-        if (file_exists($this->ScreenPath())) {
-            return "/products/{$this->id}.jpg";
-        }
-        return "/images/default.png";
+        return $this->screens[0] ?? '/images/default.png';
     }
 
     public function getDiscountAttribute()
@@ -22,9 +34,9 @@ class Product extends Model
         return $this->price_old ? floor(($this->price / $this->price_old * 100) - 100) : 0;
     }
 
-    public function ScreenPath()
+    public function getSizeAttribute()
     {
-        return base_path("public/products/{$this->id}") . '.jpg';
+        return !empty($this->options['size']['height']) ? implode('/', $this->options['size']) : null;
     }
 
     public function getRouteKeyName()
@@ -60,8 +72,8 @@ class Product extends Model
 
         static::saving(function ($model) {
             $model->slug = str_slug($model->title);
-            while(Product::where('slug', $model->slug)->first()) {
-                $model->slug = $slug . '_' . mt_rand(111, 999);
+            while(Product::where([['slug', $model->slug], ['id', '!=', $model->id]])->first()) {
+                $model->slug = $model->slug . '_' . mt_rand(111, 999);
             }
             Category::cacheClear();
         });

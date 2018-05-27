@@ -37,10 +37,6 @@
                                     <label for="price_old">Старая цена</label>
                                     <input name="price_old" type="text" class="form-control">
                                 </div>
-                                <div class="col-xs-3">
-                                    <label for="type">Подпись</label>
-                                    <input name="type" class="form-control" type="text">
-                                </div>
                             </div>
                         </div>
                         <div class="form-group">

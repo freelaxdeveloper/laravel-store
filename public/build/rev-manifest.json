@@ -1,18 +1,6 @@
 {
-  "freelax/css/core.css": "freelax/css/core-42634fb4.css",
-  "freelax/css/core.css.map": "freelax/css/core.css-ddbb25e8.map",
-  "freelax/css/tree.css": "freelax/css/tree-7a9e2bae.css",
-  "freelax/css/tree.css.map": "freelax/css/tree.css-ddc6b59a.map",
-  "freelax/js/core.js": "freelax/js/core-9b54cecc.js",
-  "freelax/js/core.js.map": "freelax/js/core.js-88f04ad2.map",
-  "freelax/js/jquery.js": "freelax/js/jquery-dda4bfeb.js",
-  "freelax/js/jquery.js.map": "freelax/js/jquery.js-f228dd42.map",
-  "freelax/js/mdb.js": "freelax/js/mdb-909e87ef.js",
-  "freelax/js/mdb.js.map": "freelax/js/mdb.js-9a4f4d79.map",
-  "dcmsx/css/core.css": "dcmsx/css/core-fb10fbee.css",
-  "dcmsx/css/core.css.map": "dcmsx/css/core.css-f0e51d65.map",
-  "dcmsx/css/tree.css": "dcmsx/css/tree-7a9e2bae.css",
-  "dcmsx/css/tree.css.map": "dcmsx/css/tree.css-ddc6b59a.map",
-  "dcmsx/js/core.js": "dcmsx/js/core-015829d1.js",
-  "dcmsx/js/core.js.map": "dcmsx/js/core.js-b1f844c0.map"
+  "css/dcmsx.css": "css/dcmsx-078b37ea.css",
+  "css/dcmsx.css.map": "css/dcmsx.css-5a26f0ee.map",
+  "js/dcmsx.js": "js/dcmsx-f742a77b.js",
+  "js/dcmsx.js.map": "js/dcmsx.js-a4e474e2.map"
 }

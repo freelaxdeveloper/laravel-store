@@ -26,7 +26,6 @@ class ProductController extends Controller
         
         Validator::make($request->all(), [
             'title' => 'required|string',
-            'type' => 'nullable|string',
             'description' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'price' => 'required|integer',
@@ -38,7 +37,6 @@ class ProductController extends Controller
         
         $product->title = $request->input('title');
         $product->price = $request->input('price');
-        $product->type = $request->input('type');
         $product->description = $request->input('description');
         $product->meta_description = $request->input('meta_description');
         $product->price_old = $request->input('price_old');
@@ -49,6 +47,25 @@ class ProductController extends Controller
         return redirect(route('prod.view', $product));
     }
 
+    public function screen(Product $product)
+    {
+        return view('product.screen', compact('product'));
+    }
+
+    public function screenSave(Request $request, Product $product)
+    {
+        $this->validate($request, [
+            'input_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+        $image = $request->file('input_img');
+
+        $destinationPath = public_path('/images/products/' . $product->id);
+        $name = time().'.'.$image->getClientOriginalExtension();
+        $image->move($destinationPath, $name);
+
+        return redirect(route('prod.view', $product))->with('status', 'Скриншот загружен');;
+    }
+
     public function view(Product $product)
     {
         $product->with(['categories']);
@@ -57,7 +74,8 @@ class ProductController extends Controller
         if (Auth::user() && Auth::user()->hasRole('Admin')) {
             $actions = [
                 ['link' => route('prod.edit', [$product]), 'title' => 'Изменть'],
-                ['link' => '', 'title' => 'Удалить'],
+                ['link' => route('prod.screen', [$product]), 'title' => 'Фотографии'],
+                ['link' => route('prod.delete', [$product]), 'title' => 'Удалить'],
             ];
         }
 
@@ -74,6 +92,13 @@ class ProductController extends Controller
         return view('product.edit', compact('categoriesAll', 'product', 'productCategories'));
     }
 
+    public function delete(Product $product)
+    {
+        $product->delete();
+
+        return redirect(route('home'));
+    }
+
     public function save(Request $request, Product $product)
     {
         $product->with(['categories']);
@@ -84,7 +109,7 @@ class ProductController extends Controller
         ];
         
         Validator::make($request->all(), [
-            'type' => 'nullable|string',
+            'title' => 'required|string',
             'description' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'price' => 'nullable|integer',
@@ -96,13 +121,14 @@ class ProductController extends Controller
         $product->categories()->detach();
         $product->categories()->attach($request->input('categories'));
 
+        $product->title = $request->input('title');
         $product->price = $request->input('price');
         $product->price_old = $request->input('price_old');
-        $product->type = $request->input('type');
         $product->description = $request->input('description');
         $product->meta_description = $request->input('meta_description');
+        $product->options = $request->input('options');
         $product->save();
 
-        return back()->with('status', 'Данные сохранены');
+        return redirect(route('prod.view', $product))->with('status', 'Данные сохранены');
     } 
 }

@@ -10,7 +10,7 @@
     <title>@yield('title')</title>
 
     <!-- Bootstrap Core CSS -->
-	<link href="{{elixir('dcmsx/css/core.css')}}" rel="stylesheet">
+	<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -67,7 +67,7 @@
 							{{-- <li><a href="#">Почта</a></li> --}}
 							<li role="separator" class="divider"></li>
 							{{-- <li><a href="{{route('photo.upload', [Auth::user()->id])}}">Мои фото</a></li> --}}
-							<li><a href="#">Настройки</a></li>
+							{{-- <li><a href="#">Настройки</a></li> --}}
 							<li><a href="{{ route('logout') }}"
 								onclick="event.preventDefault();
 											  document.getElementById('logout-form').submit();">Выйти</a></li>
@@ -97,7 +97,7 @@
 				@endauth
 				<form class="navbar-form navbar-right form-inline" role="search">
 						<div class="input-group">
-						   <input type="text" class="search-box" placeholder="Search">
+						   <input type="text" class="search-box" placeholder="Поиск">
 						   <button type="submit" class="btn"><span class="glyphicon glyphicon-search"></span></button>
 						</div>
 				</form>
@@ -291,7 +291,7 @@
 	</footer>
 
 	
-    <script src="{{elixir('dcmsx/js/core.js')}}"></script>
+    <script src="{{elixir('/js/dcmsx.js')}}"></script>
 </body>
 
 </html>

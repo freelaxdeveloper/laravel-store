@@ -9,7 +9,7 @@
 @section('content')
     <!-- Team -->
     <section id="team">
-        <div class="row">
+        <div class="">
             @foreach ($products as $product)
                 @include('listing.product', [
                     'id' => $product->id,
@@ -21,6 +21,7 @@
                     'description' => $product->description,
                     'description_small' => $product->description,
                     'image' => $product->screen,
+                    'size' => $product->size,
                     'button' => [
                         ['url' => '#', 'title' => '2 Comments'],
                         ['url' => '#', 'title' => '8 Shares'],
