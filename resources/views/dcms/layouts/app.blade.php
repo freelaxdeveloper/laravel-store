@@ -9,6 +9,8 @@
 	@yield('meta')
     <title>@yield('title')</title>
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	
     <!-- Bootstrap Core CSS -->
 	<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -23,6 +25,15 @@
 </head>
 
 <body>
+
+<!-- Modal -->
+<div class="modal fade" id="basket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+	</div>
+  </div>
+</div>
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -40,9 +51,9 @@
             <!-- Navbar links -->
             <div class="collapse navbar-collapse bs-dark" id="navbar">
                 <ul class="nav navbar-nav">
-                    {{-- <li>
-						<a href="{{route('forum.index')}}">Форум</a>
-                    </li> --}}
+                    <li>
+						<a id="myBasket" data-toggle="modal" href="{{ route('basket', ['view']) }}" data-target="#basket"><i class="glyphicon glyphicon-shopping-cart"></i> Моя корзина</a>
+                    </li>
                    {{--  <li>
                         <a href="#">Загруз-центр</a>
                     </li> --}}

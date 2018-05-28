@@ -8,6 +8,7 @@ elixir(function(mix) {
             'dcmsx/bootstrap.min.js',
             'dcmsx/ie10-viewport-bug-workaround.js',
             'dcmsx/holder.min.js',
+            'dcmsx/buy.js',
         ], 'public/js/dcmsx.js')
 });
 /* elixir(function(mix) {

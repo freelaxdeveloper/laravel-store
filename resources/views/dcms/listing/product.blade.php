@@ -26,7 +26,7 @@
                     </div>
                 </div>
                 <div class="product-cart-price-wrapper clear">
-                    <button data-product-id="3703" href="/korzina" onclick="return false;" class="button buy">Купить</button>
+                    <button data-product-id="{{ $id }}" href="/korzina" onclick="return false;" class="button buy">Купить</button>
                     <div class="price">
                         <div class="old">
                             @if ($discount)

@@ -63,8 +63,7 @@ class ProductController extends Controller
         $destinationPath = public_path('/images/products/' . $product->id);
 
         foreach ( $images as $image ) {
-            $name = time() . '.' . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $name);
+            $image->move($destinationPath, time() . md5(microtime()) . '.' . $image->getClientOriginalExtension());
         }
         
         return redirect(route('prod.screen', $product))->with('status', 'Скриншот загружен');

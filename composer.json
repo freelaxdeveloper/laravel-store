@@ -12,6 +12,7 @@
         "gumlet/php-image-resize": "^1.8",
         "illuminate/filesystem": "^5.6",
         "laravel/framework": "5.6.*",
+        "laravel/passport": "^6.0",
         "laravel/tinker": "~1.0",
         "mgp25/instagram-php": "^3.1"
     },
