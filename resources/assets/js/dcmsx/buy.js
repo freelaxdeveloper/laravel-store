@@ -21,4 +21,59 @@ $(document).ready(function () {
         $(this).removeData('bs.modal');
     });
     
+    $('select[name=region]').change(function (e) {
+        const refRegion = $( this ).val();
+
+        $.ajax({
+            type: "POST",
+            url: "/api/np/cities",
+            data: {refRegion: refRegion},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function() {
+                dcmsx.loaderShow('label[for=cities]');
+            },
+            complete: function(){
+                dcmsx.loaderHide();
+            },
+            success: function(response){
+                let options = '<option></option>';
+                response.cities.forEach(function(item, i, arr) {
+                    options += '<option value="' + item.Ref + '">' + item.DescriptionRu + '</option>';
+                });
+                $('select[name=cities]').removeProp('disabled').html(options);
+                $('.cities').select2();
+            }
+        });
+    });
+
+
+    $('select[name=cities]').change(function (e) {
+        const refCity = $( this ).val();
+
+        $.ajax({
+            type: "POST",
+            url: "/api/np/offices",
+            data: {refCity: refCity},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function() {
+                dcmsx.loaderShow('label[for=offices]');
+            },
+            complete: function(){
+                dcmsx.loaderHide();
+            },
+            success: function(response){
+                let options = '';
+                response.offices.forEach(function(item, i, arr) {
+                    options += '<option value="' + item.Ref + '">' + item.DescriptionRu + '</option>';
+                });
+                $('select[name=offices]').removeProp('disabled').html(options).fadeIn();
+                $('.offices').select2();
+            }
+        });
+    });
+   
 });

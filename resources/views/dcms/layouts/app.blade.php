@@ -13,6 +13,7 @@
 	
     <!-- Bootstrap Core CSS -->
 	<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -22,6 +23,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	@yield('head')
+	{!! NoCaptcha::renderJs() !!}
 </head>
 
 <body>
@@ -302,7 +304,14 @@
 	</footer>
 
 	
-    <script src="{{elixir('/js/dcmsx.js')}}"></script>
+	<script src="{{elixir('/js/dcmsx.js')}}"></script>
+	<script>
+		$(document).ready(function() {
+			$('.region').select2({
+				placeholder: 'Область',
+			});
+		});
+	</script>
 </body>
 
 </html>

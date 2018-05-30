@@ -62,7 +62,7 @@
         @if ( $product->price )
             <div class="list-group-item text-center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <h3 itemprop="price" content="{{ $product->price }}">{{ number_format(price($product->price)) }} <span itemprop="priceCurrency" content="UAH">{{ env('CURRENCY') }}</span> {{ $product->type }}</h3>
-                <a class="btn btn-primary btn-lg" href="#">Купить</a>
+                <a class="btn btn-primary btn-lg buy" href="#" data-product-id="{{ $product->id }}" onclick="return false;">Купить</a>
             </div>
         @endif
     </div>

@@ -5,9 +5,12 @@ elixir(function(mix) {
         .sass('dcmsx/dcmsx.scss')
         .scripts([
             'dcmsx/jquery-1.11.3.min.js',
+            'dcmsx/dcmsx.js',
             'dcmsx/bootstrap.min.js',
+            'dcmsx/bootstrap-formhelpers.min.js',
             'dcmsx/ie10-viewport-bug-workaround.js',
             'dcmsx/holder.min.js',
+            'dcmsx/select2.min.js',
             'dcmsx/buy.js',
         ], 'public/js/dcmsx.js')
 });

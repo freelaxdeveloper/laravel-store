@@ -41,7 +41,7 @@
             <input class="btn btn-danger basketClear" type="submit" value="Очистить">
         </form>
         <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
-        <button type="button" class="btn btn-primary">Оформить заказ</button>
+        <a class="btn btn-primary" href="{{ route('basket.oformit-zakaz') }}">Оформить заказ</a>
     @else
         <button type="button" class="btn btn-default" data-dismiss="modal">Начать покупки</button>
     @endif

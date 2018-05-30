@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Plugins\NovaPoshta;
 use App\Product;
 use Validator;
 
@@ -38,5 +39,33 @@ class ApiController extends Controller
         session()->forget('orders');
         
         return redirect()->back();
+    }
+
+    public function cities(Request $request)
+    {
+        $messages = [];
+
+        Validator::make($request->all(), [
+            'refRegion' => 'required|string',
+        ], $messages)->validate();
+        
+        $nova_poshta = new \App\Plugins\NovaPoshta;
+        $cities = $nova_poshta->getCities($request->refRegion);
+
+        return response()->json(['success' => true, 'cities' => $cities], 200);
+    }
+
+    public function offices(Request $request)
+    {
+        $messages = [];
+
+        Validator::make($request->all(), [
+            'refCity' => 'required|string',
+        ], $messages)->validate();
+        
+        $nova_poshta = new \App\Plugins\NovaPoshta;
+        $offices = $nova_poshta->getOffices($request->refCity);
+
+        return response()->json(['success' => true, 'offices' => $offices], 200);
     }
 }

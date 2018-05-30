@@ -88,6 +88,11 @@ Route::name('prod.')->prefix('product')->group(function () {
     });
 });
 
+Route::name('basket.')->prefix('basket')->group(function () {
+    Route::get('/oformit-zakaz', 'BasketController@oformitZakaz')->name('oformit-zakaz');
+    Route::post('/oformit-zakaz', 'BasketController@oformitZakazPost');
+});
+
 Route::name('forum.')->prefix('forum')->group(function () {
 
     Route::get('/', [
