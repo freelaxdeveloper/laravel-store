@@ -130,9 +130,7 @@
 						<h1 class="panel-title"><span class="glyphicon glyphicon-random"></span> Категории</h1>
 					</div>
 					<div class="list-group">
-						@foreach ($categories as $category)
-							<a href="{{route('cat.view', [$category])}}" class="list-group-item">{{$category->name}} <span class="badge">{{$category->products_count}}</span></a>
-						@endforeach
+						@each('categories.tree.listing', $categories, 'category')
 					</div>
 				</div>
 

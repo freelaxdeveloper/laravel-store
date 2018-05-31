@@ -2,6 +2,7 @@
 # https://github.com/etrepat/baum#creating-root-node
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\{Category,Product};
 use Auth;
@@ -12,7 +13,7 @@ class CategoryController extends Controller
     public function view(Category $category)
     {
         $products = Product::categorized($category)->paginate(15);
-        //dd($products->toArray());
+
         if (Auth::user() && Auth::user()->hasRole('Admin')) {
             $actions = [
                 ['link' => route('prod.add', [$category]), 'title' => 'Добавить товар'],
@@ -21,8 +22,9 @@ class CategoryController extends Controller
                 ['link' => route('cat.delete', [$category]), 'title' => 'Удалить категорию'],
             ];
         }
- 
-        return view('categories.view', compact('category', 'products', 'actions'));
+
+        View::share('currentCategoriesId', $category->getAncestorsAndSelf()->pluck(['id'])->toArray());
+        return view('categories.view', compact('category', 'products', 'actions', 'currentCategoriesId'));
     }
 
     public function index()
@@ -47,11 +49,11 @@ class CategoryController extends Controller
             'name' => 'required|max:255',
         ]);
         if (null === $category) {
-            Category::create(['name' => $request->name]);
+            $newCategory = Category::create(['name' => $request->name]);
         } else {
-            $category->children()->create(['name' => $request->name]);
+            $newCategory = $category->children()->create(['name' => $request->name]);
         }
-        return redirect()->route('cat');
+        return redirect()->route('cat.view', compact('newCategory'));
     }
     
     public function delete(Category $category)

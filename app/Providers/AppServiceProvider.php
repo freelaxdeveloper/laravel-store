@@ -29,6 +29,7 @@ class AppServiceProvider extends ServiceProvider
         $chats = Chat::with(['user'])->orderBy('id', 'desc')->get()->take(20);
         View::share('categories', $categories);
         View::share('chats', $chats);
+        View::share('currentCategoriesId', []);
     }
 
     /**

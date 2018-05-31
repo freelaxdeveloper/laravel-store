@@ -16,7 +16,7 @@
         <div class="btn-group btn-breadcrumb">
             <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
             @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
-            <a href="{{route('cat.view', [$breadcrumbs])}}" class="btn btn-primary">{{$breadcrumbs->name}}</a>
+                <a href="{{route('cat.view', [$breadcrumbs])}}" class="btn btn-primary">{{$breadcrumbs->name}}</a>
             @endforeach
         </div>
     </div>
@@ -25,7 +25,7 @@
             <h2 class="font-bold"><strong>{{$category->name}}</strong></h2>
             <hr class="red title-hr">
             
-            <div class="row mb-4">
+            {{-- <div class="row mb-4">
 
                 @foreach ($category->children()->withCount('products')->get() as $child)
                 <div class="single-post mr-2">
@@ -34,7 +34,7 @@
                     </a>
                 </div>
                 @endforeach
-            </div>
+            </div> --}}
                 @forelse ($products as $product)
                     @include('listing.product', [
                         'id' => $product->id,
