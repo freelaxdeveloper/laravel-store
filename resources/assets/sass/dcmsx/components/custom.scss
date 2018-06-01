@@ -537,3 +537,16 @@ section#what-we-do .section-title{
 a.activeChild {
 	/* color: #fff; */
 }
+.confirm-phone-text {
+	color: #427fed;
+	cursor: pointer;
+	:hover {
+		/* color: #41454d; */
+	}
+	.error {
+		color: #ff0000;
+	}
+	.success {
+		color: #007b5e;
+	}
+}

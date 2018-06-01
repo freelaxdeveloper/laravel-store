@@ -162,6 +162,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
+        App\Providers\SmsServceProvider::class,        
 
     ],
 

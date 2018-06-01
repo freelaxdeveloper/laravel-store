@@ -48,7 +48,37 @@ $(document).ready(function () {
         });
     });
 
+    $('.confirm-phone-text').click(function () {
+        const phone = $('input[name=phone]').val();
+        var current = $( this );
 
+        console.log('phone', phone);
+
+        $.ajax({
+            type: "POST",
+            url: "/api/sms/code",
+            data: {phone: phone},
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            beforeSend: function() {
+                dcmsx.loaderShow('.confirm-phone-text');
+            },
+            complete: function(){
+                dcmsx.loaderHide();
+            },
+            success: function(response){
+                if ( !response.error ) {
+                    $( current ).html('<span class="success">' + response.success + '</span>');
+                } else {
+                    $( current ).append('<span class="error">' + response.error + '</span>');
+                }
+            }
+        });
+
+
+    });
+    
     $('select[name=cities]').change(function (e) {
         const refCity = $( this ).val();
 
