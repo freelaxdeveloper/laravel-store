@@ -121,6 +121,9 @@ $(document).ready(function () {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(msg){
+                console.log('msg', msg.countOrders);
+                $('#basket-counter').html(msg.countOrders).removeClass().addClass('basket-counter');
+
                 $('#myBasket').trigger('click');
             }
         });

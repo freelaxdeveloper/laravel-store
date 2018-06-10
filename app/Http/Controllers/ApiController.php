@@ -31,7 +31,7 @@ class ApiController extends Controller
         session()->push('orders', $request->product_id);
         session()->save();
 
-        return response()->json(['success' => true], 200);
+        return response()->json(['success' => true, 'countOrders' => count(collect(session()->get('orders'))->unique())], 200);
     }
 
     public function basketClear(Request $request)

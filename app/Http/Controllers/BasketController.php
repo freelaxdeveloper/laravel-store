@@ -14,8 +14,9 @@ class BasketController extends Controller
     {
         $nova_poshta = new \App\Plugins\NovaPoshta;
         $regions = $nova_poshta->getRegions();
+        $products = Product::whereIn('id', session()->get('orders', []))->get();
 
-        return view('basket.oformit', compact('regions'));
+        return view('basket.oformit', compact('regions', 'products'));
     }
 
     public function oformitZakazPost(Request $request)

@@ -54,7 +54,11 @@
             <div class="collapse navbar-collapse bs-dark" id="navbar">
                 <ul class="nav navbar-nav">
                     <li>
-						<a id="myBasket" data-toggle="modal" href="{{ route('basket', ['view']) }}" data-target="#basket"><i class="glyphicon glyphicon-shopping-cart"></i> Моя корзина</a>
+						@php( $basketCounter = count(collect(session()->get('orders', []))->unique()) )
+						<a id="myBasket" data-toggle="modal" href="{{ route('basket', ['view']) }}" data-target="#basket">
+							<i class="glyphicon glyphicon-shopping-cart"></i> Моя корзина 
+							<span id="basket-counter" class="@if( $basketCounter ) basket-counter @else hide @endif">{{ $basketCounter }}</span>
+						</a>
                     </li>
                    {{--  <li>
                         <a href="#">Загруз-центр</a>

@@ -70,7 +70,14 @@
 <div class="panel panel-default">
     <div class="panel-heading"><b>Ваш заказ</b></div>
     <div class="panel-body">
-        Тут заказы (когда то будут показаны =) )
+        <div class="products">
+            @foreach ($products as $product)
+                <div class="product">
+                    {{ $product->title }} (<b>{{ number_format(price($product->price)) }}</b> {{ env('CURRENCY') }})
+                </div>
+            @endforeach
+        </div>
+        Всего: <b>{{ number_format(price($products->sum('price'))) }}</b> {{ env('CURRENCY') }}
     </div>
 </div>
 
