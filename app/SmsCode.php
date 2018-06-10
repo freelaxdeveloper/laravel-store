@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class SmsCode extends Model
 {
-    protected $fillable = ['code'];
+    protected $fillable = ['code', 'mobile'];
 }

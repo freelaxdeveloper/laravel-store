@@ -6,6 +6,9 @@ return [
             'required' => 'Google-captcha обязательна к прохождению',
             'captcha' => 'Вы ошиблись при вводе Google-captcha! Повторите попытку',
         ],
+        'captcha' => [
+            'captcha' => 'Вы ошиблись при вводе Google-captcha! Повторите попытку',
+        ],
         'sms_code' => [
             'required' => 'Введите код пришедший на ваш номер телефона',
             'sms' => 'Вы ошиблись при вводе SMS кода',
@@ -13,7 +16,7 @@ return [
         'first_last' => [
             'required' => 'Имя и фамилия обязательны'
         ],
-        'phone' => [
+        'mobile' => [
             'required' => 'Номер телефона обязателен'
         ],
         'region' => [

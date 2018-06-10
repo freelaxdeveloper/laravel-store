@@ -15,6 +15,8 @@ class UserController extends Controller
 
     public function my()
     {
+        //dd(\Auth::user()->orders);
+
         return view('users.my');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSmsCodesTable extends Migration
+class UserEmailNullable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSmsCodesTable extends Migration
      */
     public function up()
     {
-        Schema::create('sms_codes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('code')->unsigned();
-            $table->string('mobile', 15);
-            $table->timestamps();
+        Schema::table('users', function(Blueprint $table)
+        {
+            $table->string('email', 128)->nullable()->change();
         });
     }
 
@@ -28,6 +26,9 @@ class CreateSmsCodesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sms_codes');
+        Schema::table('users', function(Blueprint $table)
+        {
+            $table->string('email', 128)->change();
+        });
     }
 }

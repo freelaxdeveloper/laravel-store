@@ -14,7 +14,7 @@ class OrderDevice extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->integer('device_id')->unsigned()->after('user_base_id');
+            $table->integer('device_id')->unsigned()->after('user_id');
 
             $table->foreign('device_id')->references('id')->on('user_devices');
         });

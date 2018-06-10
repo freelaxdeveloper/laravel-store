@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Chat;
+use App\{Chat, Product, Order};
 
 class User extends Authenticatable
 {
@@ -31,6 +31,11 @@ class User extends Authenticatable
     public function getAvatarAttribute()
     {
         return '/images/avatar.png';
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
     }
 
     public function chatMessages()

@@ -20,11 +20,11 @@
     @csrf
     <div class="form-group">
         <label for="first_last">Имя и фамилия:</label>
-        <input name="first_last" type="text" class="form-control" value="{{ old('first_last') }}">
+        <input name="first_last" type="text" class="form-control" value="@auth {{ Auth::user()->name }} @else {{ old('first_last') }} @endauth" @auth disabled @endauth>
     </div>
     <div class="form-group">
-        <label for="phone">Номер телефона:</label>
-        <input name="phone" value="{{ old('phone') }}" type="text" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd">
+        <label for="mobile">Номер телефона:</label>
+        <input name="mobile" value="@auth {{ Auth::user()->mobile }} @else {{ old('mobile') }} @endauth" type="text" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd" @auth disabled @endauth>
     </div>
     <hr class="red title-hr">
     <p><h4>Адрес доставки</h4></p>
@@ -50,11 +50,15 @@
             <option>Выберите город</option>
         </select>
     </div>
-    <div class="form-group">
-        <label for="first_last">Код пришедший в СМС: <span class="confirm-phone-text">[<span>отправить</span>]</span></label>
-        <input name="sms_code" type="text" class="form-control">
-    </div>
-
+    @guest
+        <div class="form-group">
+            <label for="first_last">Код пришедший в СМС: <span class="confirm-phone-text">[<span>отправить</span>]</span></label>
+            <input name="sms_code" type="text" class="form-control">
+            {{-- <p class="form-text text-muted">
+                При отправки кода, у вас должна быть пройдена капча Google
+            </p> --}}
+        </div>
+    @endguest
     {!! NoCaptcha::display() !!}
 
     <input type="submit" value="Заказать" class="btn btn-primary">
@@ -66,7 +70,7 @@
 <div class="panel panel-default">
     <div class="panel-heading"><b>Ваш заказ</b></div>
     <div class="panel-body">
-        Тут заказы
+        Тут заказы (когда то будут показаны =) )
     </div>
 </div>
 

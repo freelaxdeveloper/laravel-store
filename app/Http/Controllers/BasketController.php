@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\{UsersBase, Order, Product};
+use App\{User, Order, Product};
+use App\Plugins\Filter;
 use Validator;
+use Auth;
 
 class BasketController extends Controller
 {
@@ -20,7 +22,7 @@ class BasketController extends Controller
     {
         Validator::make($request->all(), [
             'first_last' => 'required',
-            'phone' => 'required',
+            'mobile' => 'required',
             'region' => 'required',
             'cities' => 'required',
             'offices' => 'required',
@@ -34,17 +36,24 @@ class BasketController extends Controller
         }
         $products = Product::whereIn('id', $orders)->get();
 
-        $userBase = UsersBase::updateOrCreate(
-            ['phone' => $request->phone],
-            ['full_name' => $request->first_last]
+        $user = User::firstOrCreate(
+            ['mobile' => Filter::mobile($request->mobile)],
+            [
+                'name' => $request->first_last,
+                'password' => bcrypt(str_random(8)),
+                ]
         );
 
         $order = Order::create([
-            'user_base_id' => $userBase->id,
+            'user_id' => $user->id,
             'products' => $products->toArray(),
             'comment' => $request->comment,
         ]);
 
-        return redirect()->back()->with('status', 'Ваш заказ принят в оработку');
+        if ( !Auth::check() ) {
+            Auth::loginUsingId($user->id, true);
+        }
+
+        return redirect(route('user.my'))->with('status', 'Ваш заказ принят в оработку');
     }
 }

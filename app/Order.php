@@ -8,12 +8,17 @@ use App\UserDevice;
 
 class Order extends Model
 {
-    protected $fillable = ['user_base_id', 'products', 'price', 'comment'];
+    protected $fillable = ['user_id', 'products', 'price', 'comment'];
 
     protected $casts = [
         'products' => 'array',
     ];
 
+
+    public function products()
+    {
+        return collect($this->products);
+    }
 
     public static function boot()
     {
@@ -24,7 +29,7 @@ class Order extends Model
             $agent = new Agent;
 
             $device = UserDevice::create([
-                'user_base_id' => $model->user_base_id,
+                'user_id' => $model->user_id,
                 'browser' => $agent->browser(),
                 'platform' => $agent->platform(),
                 'device' => $agent->device(),

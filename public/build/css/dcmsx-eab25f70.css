@@ -6869,10 +6869,22 @@ a.activeChild {
   cursor: pointer; }
   .confirm-phone-text :hover {
     /* color: #41454d; */ }
-  .confirm-phone-text .error {
-    color: #ff0000; }
-  .confirm-phone-text .success {
-    color: #007b5e; }
+
+span.error {
+  color: #ff0000; }
+
+span.success {
+  color: #007b5e; }
+
+.seconds {
+  display: inline-block;
+  min-width: 30px;
+  padding: 5px;
+  text-align: center;
+  background-color: #b5b1b140;
+  border-radius: 50%;
+  margin-left: 5px;
+  color: #4a4949; }
 
 @media screen and (max-width: 1590px) {
   .product-cart-wrapper {

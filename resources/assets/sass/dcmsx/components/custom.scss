@@ -543,10 +543,21 @@ a.activeChild {
 	:hover {
 		/* color: #41454d; */
 	}
-	.error {
+	
+}
+span.error {
 		color: #ff0000;
-	}
-	.success {
-		color: #007b5e;
-	}
+}
+span.success {
+	color: #007b5e;
+}
+.seconds {
+	display: inline-block;
+	min-width: 30px;
+	padding: 5px;
+	text-align: center;
+    background-color: #b5b1b140;
+    border-radius: 50%;
+    margin-left: 5px;
+    color: #4a4949;
 }

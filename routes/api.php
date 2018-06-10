@@ -21,7 +21,7 @@ Route::name('np.')->prefix('np')->group(function () {
     Route::post('/offices', 'ApiController@offices')->name('offices')->middleware('csrf');
 });
 
-Route::post('/sms/code', 'ApiController@smsCode')->name('smsCode')->middleware('csrf');
+Route::post('/sms/code', 'ApiController@smsCode')->name('smsCode')->middleware('csrf', 'throttle:10,1');
 
 /* Route::get('/basket', function () {
     return response()->json([45], 403);

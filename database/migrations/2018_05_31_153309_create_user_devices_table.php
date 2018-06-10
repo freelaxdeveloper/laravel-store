@@ -15,7 +15,7 @@ class CreateUserDevicesTable extends Migration
     {
         Schema::create('user_devices', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_base_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('browser', 64);
             $table->string('platform', 64);
             $table->string('device', 64);
@@ -23,7 +23,7 @@ class CreateUserDevicesTable extends Migration
             $table->string('ip', 64);
             $table->timestamps();
 
-            $table->foreign('user_base_id')->references('id')->on('users_bases');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

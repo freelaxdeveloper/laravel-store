@@ -15,12 +15,12 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_base_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->json('products');
             $table->string('comment', 1024)->nullable();
             $table->timestamps();
 
-            $table->foreign('user_base_id')->references('id')->on('users_bases');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

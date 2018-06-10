@@ -49,30 +49,53 @@ $(document).ready(function () {
     });
 
     $('.confirm-phone-text').click(function () {
-        const phone = $('input[name=phone]').val();
+        const mobile = $('input[name=mobile]').val();
         var current = $( this );
-
-        console.log('phone', phone);
 
         $.ajax({
             type: "POST",
             url: "/api/sms/code",
-            data: {phone: phone},
+            data: {mobile: mobile/* , captcha: grecaptcha.getResponse() */},
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             beforeSend: function() {
-                dcmsx.loaderShow('.confirm-phone-text');
+                dcmsx.loaderShow('.confirm-phone-text', 'timerLoader');
             },
             complete: function(){
-                dcmsx.loaderHide();
+                //dcmsx.loaderHide('timerLoader');
             },
             success: function(response){
                 if ( !response.error ) {
-                    $( current ).html('<span class="success">' + response.success + '</span>');
+                    current.fadeOut();
+                    dcmsx.msg(current, response.success);
+                    dcmsx.timer('.success', 60, function () {
+                        dcmsx.loaderHide('timerLoader');
+                        dcmsx.clearMsg();
+                        current.fadeIn().html('[<span>отправить повторно</span>]');
+                    });
                 } else {
-                    $( current ).append('<span class="error">' + response.error + '</span>');
+                    dcmsx.loaderHide('timerLoader');
+                    dcmsx.err(current, response.error);
                 }
+            },
+            error: function (error) {
+                let errorText = error.statusText;
+                let timer = true;
+                if ( typeof(error.responseJSON.errors) != 'undefined') {
+                    errorText = error.responseJSON.errors['captcha'];
+                    timer = false;
+                }
+                dcmsx.loaderHide('timerLoader');
+                $('.seconds').remove();
+                dcmsx.err(current, errorText);
+                if ( timer ) {
+                    dcmsx.timer('.error', 60, function () {
+                        dcmsx.loaderHide('timerLoader');
+                        dcmsx.clearMsg();
+                    });
+                }
+                
             }
         });
 

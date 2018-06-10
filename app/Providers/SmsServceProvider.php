@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Http\Request;
+use App\Plugins\Filter;
 use App\SmsCode;
 
 class SmsServceProvider extends ServiceProvider
@@ -14,12 +16,12 @@ class SmsServceProvider extends ServiceProvider
      */
     protected $defer = false;
 
-    public function boot()
+    public function boot(Request $request)
     {
         $app = $this->app;
 
-        $app['validator']->extend('sms', function ($attribute, $value) use ($app) {
-            return $app['sms']->where('code', $value)->delete();
+        $app['validator']->extend('sms', function ($attribute, $value) use ($app, $request) {
+            return $app['sms']->where([['code', $value], ['mobile', Filter::mobile($request->mobile)]])->delete();
         });
 
         if ($app->bound('form')) {

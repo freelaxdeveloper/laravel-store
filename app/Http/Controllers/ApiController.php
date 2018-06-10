@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Plugins\{NovaPoshta, Sms};
+use App\Plugins\{NovaPoshta, Sms, Filter};
 use App\{Product, SmsCode};
 use Validator;
 
@@ -72,18 +72,20 @@ class ApiController extends Controller
     public function smsCode(Request $request)
     {
         Validator::make($request->all(), [
-            'phone' => 'required',
+            'mobile' => 'required',
         ])->validate();
 
-        $phone = str_replace(['(', ')', '+', ''], '', $request->phone);
+        $mobile = Filter::mobile($request->mobile);
 
         $code = SmsCode::create([
             'code' => mt_rand(11111, 99999),
+            'mobile' => $mobile,
         ]);
 
-        $request = Sms::send([$phone], "Ваш код: {$code->code}");
+        $request = Sms::send([$mobile], "Ваш код: {$code->code}");
+        //$request = 'уии';
 
-        if ( str_is('*Phone in black list*', $request) ) {
+        if ( str_is('*Mobile in black list*', $request) ) {
             return response()->json(['error' => 'Ваш номер не может быть использован'], 200);
         }
         return response()->json(['success' => 'Ожидайте СМС'], 200);
