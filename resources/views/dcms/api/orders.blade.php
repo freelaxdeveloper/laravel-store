@@ -5,7 +5,7 @@
 
 <div class="modal-body">
     @if ( count($products) )
-        <h4><b>{{ $products->count() }}</b> {{ trans_choice('plural.product', $products->count()) }} на сумму <b>{{ number_format(price($products->sum('price'))) }}</b> {{ env('CURRENCY') }}</h4>
+        <h4><b>{{ $products->count() }}</b> {{ trans_choice('plural.product', $products->count()) }} на сумму <b>{{ number_format($products->sum('price')) }}</b> {{ env('CURRENCY') }}</h4>
     @endif
     {{-- @lang('plural.product') --}}
 
@@ -19,7 +19,7 @@
               <p>{{ $product->description }}</p>
               <p><b>Код товара:</b> {{ $product->id }}</p>
               <p>
-                  <b>Стоимость:</b> {{ number_format(price($product->price)) }} {{ env('CURRENCY') }}
+                  <b>Стоимость:</b> {{ number_format($product->price) }} {{ env('CURRENCY') }}
                   @if ( Auth::check() && Auth::user()->discount )
                     (-{{ Auth::user()->discount }}%)
                   @endif

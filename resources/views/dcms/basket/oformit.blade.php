@@ -20,11 +20,11 @@
     @csrf
     <div class="form-group">
         <label for="first_last">Имя и фамилия:</label>
-        <input name="first_last" type="text" class="form-control" value="@auth {{ Auth::user()->name }} @else {{ old('first_last') }} @endauth" @auth disabled @endauth>
+        <input name="first_last" type="text" class="form-control" value="@auth {{ Auth::user()->name }} @else {{ old('first_last') }} @endauth">
     </div>
     <div class="form-group">
         <label for="mobile">Номер телефона:</label>
-        <input name="mobile" value="@auth {{ Auth::user()->mobile }} @else {{ old('mobile') }} @endauth" type="text" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd" @auth disabled @endauth>
+        <input name="mobile" value="@auth {{ Auth::user()->mobile }} @else {{ old('mobile') }} @endauth" type="text" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd">
     </div>
     <hr class="red title-hr">
     <p><h4>Адрес доставки</h4></p>
@@ -73,11 +73,11 @@
         <div class="products">
             @foreach ($products as $product)
                 <div class="product">
-                    {{ $product->title }} (<b>{{ number_format(price($product->price)) }}</b> {{ env('CURRENCY') }})
+                    {{ $product->title }} (<b>{{ number_format($product->price) }}</b> {{ env('CURRENCY') }})
                 </div>
             @endforeach
         </div>
-        Всего: <b>{{ number_format(price($products->sum('price'))) }}</b> {{ env('CURRENCY') }}
+        Всего: <b>{{ number_format($products->sum('price')) }}</b> {{ env('CURRENCY') }}
     </div>
 </div>
 

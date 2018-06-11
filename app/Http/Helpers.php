@@ -23,3 +23,8 @@ function percent(int $one, int $two): int
 {
     return $one / $two * 100 - 100;
 }
+
+function order()
+{
+    return (new \App\Plugins\Ordered);
+}

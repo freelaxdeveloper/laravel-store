@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-/*         $nova_poshta = new \App\Plugins\NovaPoshta;
+ /*         $nova_poshta = new \App\Plugins\NovaPoshta;
         $regions = $nova_poshta->getRegions();
         $cities = $nova_poshta->getCities('db5c88de-391c-11dd-90d9-001a92567626');
         $offices = $nova_poshta->getOffices('a9522a7e-eaf5-11e7-ba66-005056b2fc3d');

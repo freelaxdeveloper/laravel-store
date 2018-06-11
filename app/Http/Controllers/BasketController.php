@@ -14,7 +14,7 @@ class BasketController extends Controller
     {
         $nova_poshta = new \App\Plugins\NovaPoshta;
         $regions = $nova_poshta->getRegions();
-        $products = Product::whereIn('id', session()->get('orders', []))->get();
+        $products = order()->products();
 
         return view('basket.oformit', compact('regions', 'products'));
     }
@@ -27,22 +27,26 @@ class BasketController extends Controller
             'region' => 'required',
             'cities' => 'required',
             'offices' => 'required',
-            'sms_code' => 'required|sms',
             'g-recaptcha-response' => 'required|captcha',
         ])->validate();
 
+        if ( !\Auth::check() ) {
+            Validator::make($request->all(), [
+                'sms_code' => 'required|sms',
+            ])->validate();
+        }
 
-        if ( !$orders = session()->pull('orders')) {
+
+        if ( !$products = order()->pull()) {
             return redirect()->back()->withErrors('Ваша корзина пуста')->withInput($request->all());
         }
-        $products = Product::whereIn('id', $orders)->get();
 
         $user = User::firstOrCreate(
             ['mobile' => Filter::mobile($request->mobile)],
             [
                 'name' => $request->first_last,
                 'password' => bcrypt(str_random(8)),
-                ]
+            ]
         );
 
         $order = Order::create([

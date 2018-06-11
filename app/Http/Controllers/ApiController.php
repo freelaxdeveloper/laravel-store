@@ -11,8 +11,7 @@ class ApiController extends Controller
 {
     public function basket(Request $request, $view = null)
     {
-        $orders = session('orders') ?? [];
-        $products = Product::whereIn('id', $orders)->get();
+        $products = order()->products();
 
         if ( $view ) {
             return view('api.orders', compact('products'));
@@ -27,16 +26,17 @@ class ApiController extends Controller
         Validator::make($request->all(), [
             'product_id' => 'required|integer',
         ], $messages)->validate();
-        
-        session()->push('orders', $request->product_id);
-        session()->save();
 
-        return response()->json(['success' => true, 'countOrders' => count(collect(session()->get('orders'))->unique())], 200);
+        $product = Product::findOrFail($request->product_id);
+
+        $countOrders = order()->push($product)->count();
+
+        return response()->json(['success' => true, 'countOrders' => $countOrders], 200);
     }
 
     public function basketClear(Request $request)
     {
-        session()->forget('orders');
+        order()->clear();
         
         return redirect()->back();
     }
