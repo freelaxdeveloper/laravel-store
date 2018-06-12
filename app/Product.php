@@ -16,6 +16,8 @@ class Product extends Model
         'options' => 'array',
     ];
 
+    protected $appends = ['screens'];
+
     /**
      * список скринов
      */

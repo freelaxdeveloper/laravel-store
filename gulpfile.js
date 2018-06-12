@@ -12,6 +12,7 @@ elixir(function(mix) {
             'dcmsx/holder.min.js',
             'dcmsx/select2.min.js',
             'dcmsx/buy.js',
+            'dcmsx/spoiler.js',
         ], 'public/js/dcmsx.js')
 });
 /* elixir(function(mix) {

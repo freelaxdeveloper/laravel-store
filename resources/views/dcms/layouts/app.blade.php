@@ -127,28 +127,28 @@
 			<div class="row">
 			<!-- Left Column -->
 			<div class="col-sm-12 col-lg-2">
-
-				<!-- List-Group Panel -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h1 class="panel-title"><span class="glyphicon glyphicon-random"></span> Категории</h1>
-					</div>
-					<div class="list-group">
-						@each('categories.tree.listing', $categories, 'category')
-					</div>
-				</div>
-
-				<!-- Text Panel -->
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h1 class="panel-title"><span class="glyphicon glyphicon-cog"></span> О сайте</h1>
+				@section('left')
+					<!-- List-Group Panel -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h1 class="panel-title"><span class="glyphicon glyphicon-random"></span> Категории</h1>
+						</div>
+						<div class="list-group">
+							@each('categories.tree.listing', $categories, 'category')
+						</div>
 					</div>
 
-					<div class="panel-body">
-						<p>Сайт находится в разработке, о всех найденных ошибках сообщите на email Sanek_OS9@yahoo.com</p>
+					<!-- Text Panel -->
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h1 class="panel-title"><span class="glyphicon glyphicon-cog"></span> О сайте</h1>
+						</div>
+
+						<div class="panel-body">
+							<p>Сайт находится в разработке, о всех найденных ошибках сообщите на email Sanek_OS9@yahoo.com</p>
+						</div>
 					</div>
-				</div>
-			
+				@show
 			</div><!--/Left Column-->
 
 
@@ -178,97 +178,96 @@
 			<!-- Right Column -->
 			<div class="col-sm-4 col-lg-3">
 
-				@if (!empty($actions))
-					<div class="panel panel-primary">
-						<div class="panel-heading">Действия</div>
-						<div class="list-group">
-							@foreach ($actions as $action)
-								<a href="{{$action['link']}}" class="list-group-item">{{$action['title']}}</a>
-							@endforeach
-						</div>
-					</div>
-				@endif
-
-				@yield('right-column')
-				<div class="panel panel-default">
-					<div class="panel-heading"><b>Доставка</b></div>
-					<div class="list-group">
-						<div class="list-group-item">
-							Киев <span class="badge">180 грн</span>
-						</div>
-						<div class="list-group-item">
-							Белая Церковь <span class="badge">90 грн</span>
-						</div>
-						<div class="list-group-item">
-							Бровары, Боярка, Ирпень <span class="badge">205 грн</span>
-						</div>
-						<div class="list-group-item">
-							Борисполь, Обухов, Васильков <span class="badge">215 грн</span>
-						</div>
-						<div class="list-group-item">
-							Одесса, Николаев, Умань, Жашков <span class="badge">250 грн</span>
-						</div>
-					
-						<div class="list-group-item">
-							Чернигов <span class="badge">250 грн</span>
-						</div>
-						<div class="list-group-item">
-							<h5>В другие регионы доставка осуществляется перевозчиком Новая Почта по их тарифам.<br />
-							Стоимость заноса на этаж (при отсутствии лифта) и сборки уточняйте у менеджера.</h5>
-						</div>
-					</div>
-				</div>
-				
-				@if ('prod.view' != Route::currentRouteName())
-					{{-- @include('chat.chat-panel') --}}
-				@endif
-
-
-
-
-				@auth
-						{{-- <div class="row">
-							<div class="col-sm-12">
-					
-								<div class="card hovercard">
-									<div class="cardheader">
-					
-									</div>
-									<div class="avatar">
-										<img alt="" src="{{Auth::user()->avatar}}">
-									</div>
-									<div class="info">
-										<div class="title">
-											<a href="{{route('user.view', [Auth::user()->id])}}">{{ Auth::user()->name }}</a>
-										</div>
-										@forelse (Auth::user()->roles as $role)
-											<div class="desc">{{$role->name}}</div>
-										@empty
-											<div class="desc">Пользователь</div>
-										@endforelse
-									</div>
-									<div class="bottom">
-										<a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
-											<i class="fa fa-twitter"></i>
-										</a>
-										<a class="btn btn-danger btn-sm" rel="publisher"
-										href="https://plus.google.com/+ahmshahnuralam">
-											<i class="fa fa-google-plus"></i>
-										</a>
-										<a class="btn btn-primary btn-sm" rel="publisher"
-										href="https://plus.google.com/shahnuralam">
-											<i class="fa fa-facebook"></i>
-										</a>
-										<a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
-											<i class="fa fa-behance"></i>
-										</a>
-									</div>
-								</div>
-					
+				@section('right')
+					@if (!empty($actions))
+						<div class="panel panel-primary">
+							<div class="panel-heading">Действия</div>
+							<div class="list-group">
+								@foreach ($actions as $action)
+									<a href="{{$action['link']}}" class="list-group-item">{{$action['title']}}</a>
+								@endforeach
 							</div>
+						</div>
+					@endif
+
+					@yield('right-column')
+					<div class="panel panel-default">
+						<div class="panel-heading"><b>Доставка</b></div>
+						<div class="list-group">
+							<div class="list-group-item">
+								Киев <span class="badge">180 грн</span>
+							</div>
+							<div class="list-group-item">
+								Белая Церковь <span class="badge">90 грн</span>
+							</div>
+							<div class="list-group-item">
+								Бровары, Боярка, Ирпень <span class="badge">205 грн</span>
+							</div>
+							<div class="list-group-item">
+								Борисполь, Обухов, Васильков <span class="badge">215 грн</span>
+							</div>
+							<div class="list-group-item">
+								Одесса, Николаев, Умань, Жашков <span class="badge">250 грн</span>
+							</div>
+						
+							<div class="list-group-item">
+								Чернигов <span class="badge">250 грн</span>
+							</div>
+							<div class="list-group-item">
+								<h5>В другие регионы доставка осуществляется перевозчиком Новая Почта по их тарифам.<br />
+								Стоимость заноса на этаж (при отсутствии лифта) и сборки уточняйте у менеджера.</h5>
+							</div>
+						</div>
+					</div>
 					
-						</div> --}}
-				@endauth
+					@if ('prod.view' != Route::currentRouteName())
+						{{-- @include('chat.chat-panel') --}}
+					@endif
+
+					@auth
+							{{-- <div class="row">
+								<div class="col-sm-12">
+						
+									<div class="card hovercard">
+										<div class="cardheader">
+						
+										</div>
+										<div class="avatar">
+											<img alt="" src="{{Auth::user()->avatar}}">
+										</div>
+										<div class="info">
+											<div class="title">
+												<a href="{{route('user.view', [Auth::user()->id])}}">{{ Auth::user()->name }}</a>
+											</div>
+											@forelse (Auth::user()->roles as $role)
+												<div class="desc">{{$role->name}}</div>
+											@empty
+												<div class="desc">Пользователь</div>
+											@endforelse
+										</div>
+										<div class="bottom">
+											<a class="btn btn-primary btn-twitter btn-sm" href="https://twitter.com/webmaniac">
+												<i class="fa fa-twitter"></i>
+											</a>
+											<a class="btn btn-danger btn-sm" rel="publisher"
+											href="https://plus.google.com/+ahmshahnuralam">
+												<i class="fa fa-google-plus"></i>
+											</a>
+											<a class="btn btn-primary btn-sm" rel="publisher"
+											href="https://plus.google.com/shahnuralam">
+												<i class="fa fa-facebook"></i>
+											</a>
+											<a class="btn btn-warning btn-sm" rel="publisher" href="https://plus.google.com/shahnuralam">
+												<i class="fa fa-behance"></i>
+											</a>
+										</div>
+									</div>
+						
+								</div>
+						
+							</div> --}}
+					@endauth
+				@show
 			</div><!--/Right Column -->
 
 		</div><!--/container-fluid-->
@@ -314,6 +313,7 @@
 			});
 		});
 	</script>
+	@yield('js')
 </body>
 
 </html>

@@ -7473,4 +7473,68 @@ section .section-title {
   100% {
     -webkit-transform: rotate(720deg) scale(1); } }
 
+/* MULTI SPOILER */
+.spoiler-wrap {
+  background-color: #60646D;
+  border: 1px solid #60646D;
+  border-left-width: 2px;
+  clear: both;
+  display: block;
+  margin: 6px auto;
+  padding: 0;
+  width: 95%; }
+  .spoiler-wrap a {
+    color: #fff;
+    text-decoration: none; }
+
+.spoiler-body {
+  background: #6c757d;
+  color: #fff;
+  border-top: 1px solid #60646D;
+  padding: 2px 6px;
+  display: none; }
+
+.spoiler-head {
+  color: #fff;
+  cursor: pointer;
+  display: block;
+  font-weight: bold;
+  line-height: 1.5em;
+  margin-left: 6px;
+  padding: 0 6px 0 14px;
+  text-align: left;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+  .spoiler-head.collapsed {
+    background: url(data:image/gif;base64,R0lGODlhCQAJAMQfAIqZyoGSxv3+/trl84CQxYCRxn6PxMXQ7efq9H+Pwtnk8oKTxoCQxKy44QAAANvl9rvG6fD5/o2by4GRxvb8//v9//7+/ubw+v39/ouayoKSxoOTx/7+/wwMDP///////yH5BAEAAB8ALAAAAAAJAAkAAAU84AdoGkNmX4Z4HldRirSxXMdF1zK7nXU9mk2t4+h0BIlNhWPpYTCBDQXXwRwggczgJ8BAGhLRZGIoEFAhADs=) no-repeat left center; }
+  .spoiler-head.expanded {
+    background: url(data:image/gif;base64,R0lGODlhCQAJAMQeAOLt+ff8//z+/4CRxo2by7vF6a254X6PxICQw87a74CQxuXo84CQxM/b7/H6/v7+/oGRxouayoGSxv7+/8LN7IqZyv7//4KSxur0/MrV74OTx9Ld8trl9gwMDP///wAAACH5BAEAAB4ALAAAAAAJAAkAAAU4oFcpwzFAkWgUVLZxCQGxLgdgGtS+t6NJmY5QOEFcNo/kZGLRXGwYR0DQjDSiU8uCIJJIGJdLKgQAOw==) no-repeat left center; }
+
+.orders .order .spoiler-wrap .spoiler-head {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+      flex-direction: row;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-line-pack: center;
+      align-content: center; }
+  .orders .order .spoiler-wrap .spoiler-head div {
+    width: 100%; }
+    .orders .order .spoiler-wrap .spoiler-head div:last-child {
+      text-align: right; }
+
+.orders .order .spoiler-wrap .spoiler-body .products .product {
+  margin: 7px;
+  cursor: pointer; }
+  .orders .order .spoiler-wrap .spoiler-body .products .product img {
+    height: 40px; }
+  .orders .order .spoiler-wrap .spoiler-body .products .product div {
+    display: inline-block;
+    vertical-align: top; }
+  .orders .order .spoiler-wrap .spoiler-body .products .product:hover {
+    background-color: rgba(53, 53, 53, 0.35); }
+
 /*# sourceMappingURL=dcmsx.css.map */
