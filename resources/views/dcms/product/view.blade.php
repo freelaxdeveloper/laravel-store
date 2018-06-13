@@ -3,13 +3,30 @@
 @section('title', $product->title)
 
 @section('meta')
-<link rel="canonical" href="{{route('prod.view', [$product->id])}}"/>
-@if ($product->meta_description)
-    <meta name="description" content="{{$product->meta_description}}" />
-@endif
+
+    <link rel="canonical" href="{{route('prod.view', [$product->id])}}"/>
+    @if ($product->meta_description)
+        <meta name="description" content="{{$product->meta_description}}" />
+    @endif
+
 @endsection
 
 @section('content')
+    <!--  Modal content for the mixer image example -->
+    <div class="modal fade pop-up-1" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    <h4 class="modal-title" id="myLargeModalLabel-1">{{ $product->title }}</h4>
+                </div>
+                <div class="modal-body">
+                    <img src="http://i.imgur.com/YZ7AGyF.jpg.jpg" class="img-responsive" alt="">
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal mixer image -->
+
 <div class="row">
     <div class="btn-group btn-breadcrumb">
         <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
@@ -38,7 +55,18 @@
         </h1>
     </div>
         <hr class="red title-hr">
-        <img src="{{$product->screens->first()['src']}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image" width="500">
+        <div class="row">
+            <div class="col-md-8">
+                <a href="#" data-toggle="modal" data-target=".pop-up-1">
+                    <img src="{{$product->screens->first()['src']}}" class="product-screen" width="500">
+                </a>
+            </div>
+            <div class="col-md-4">
+                @foreach($product->screens as $screen)
+                    <img src="{{$screen['src']}}" class="other-screen" width="128">
+                @endforeach
+            </div>
+        </div>
         <hr>
         @if ($product->description)
             <div class="row mx-md-5 px-md-4 px-5 mt-3">
@@ -50,6 +78,26 @@
     </div>
     <!--/.Card-->
 </div>
+@endsection
+
+@section('js')
+    <script>
+        $(document).ready(function () {
+
+            $('.other-screen').click(function () {
+                let $this = $(this);
+                console.log($this.attr('src'));
+
+                $('.product-screen').attr('src', $this.attr('src'));
+            });
+
+            $('.product-screen').click(function() {
+                let $this = $(this);
+                $('.img-responsive').attr('src', $this.attr('src'));
+            });
+        });
+    </script>
+
 @endsection
 
 @section('right-column')

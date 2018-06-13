@@ -19,4 +19,9 @@ class UserController extends Controller
 
         return view('users.my');
     }
+
+    public function myOrders()
+    {
+        return view('users.myOrders');
+    }
 }

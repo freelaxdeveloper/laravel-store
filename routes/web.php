@@ -31,6 +31,9 @@ Route::name('user.')->prefix('user')->group(function () {
 
     Route::middleware('auth')->group(function () {
         Route::get('/my', 'UserController@my')->name('my');
+        Route::name('my.')->prefix('my')->group(function () {
+            Route::get('/orders', 'UserController@myOrders')->name('orders');
+        });
     });
 });
 

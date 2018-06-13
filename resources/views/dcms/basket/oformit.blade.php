@@ -3,7 +3,15 @@
 @section('title', 'Оформление заказа')
 
 @section('content')
+<!-- Modal -->
+<div class="modal fade" id="agreement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
 
+        </div>
+    </div>
+</div>
+  
 {{-- {{dd(Config::get('sms.test'))}} --}}
 <div class="row">
     <div class="btn-group btn-breadcrumb">
@@ -60,6 +68,10 @@
         </div>
     @endguest
     {!! NoCaptcha::display() !!}
+
+    <div class="form-group">
+        Подтверждая заказ, я принимаю условия пользовательского соглашения <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#agreement">пользовательского соглашения</a>
+    </div>
 
     <input type="submit" value="Заказать" class="btn btn-primary">
 </form>

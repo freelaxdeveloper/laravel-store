@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/agreement/{view?}', 'ApiController@agreement')->name('agreement');
 Route::get('/basket/{view?}', 'ApiController@basket')->name('basket');
 Route::post('/basket', 'ApiController@basketPush');
 Route::post('/basketClear', 'ApiController@basketClear')->name('basketClear')->middleware('csrf');

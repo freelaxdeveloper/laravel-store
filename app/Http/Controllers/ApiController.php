@@ -9,6 +9,15 @@ use Validator;
 
 class ApiController extends Controller
 {
+
+    public function agreement(Request $request, $view = null)
+    {
+        if ( $view ) {
+            return view('api.agreement');
+        }
+        // return response()->json(['products' => $products], 200);
+    }
+
     public function basket(Request $request, $view = null)
     {
         $products = order()->products();
