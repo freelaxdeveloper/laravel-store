@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="navbar-brand" href="{{route('home')}}"><span class="glyphicon glyphicon-globe"></span> DCMSX</a>
+				<a class="navbar-brand" href="{{route('home')}}?{{ request()->getQueryString() }}"><span class="glyphicon glyphicon-globe"></span> DCMSX</a>
             </div>
             <!-- Navbar links -->
             <div class="collapse navbar-collapse bs-dark" id="navbar">
@@ -77,7 +77,7 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						  Кабинет 
-						  <img src="{{Auth::user()->avatar}}" class="img-circle" alt="Profile Image" />
+						  {{-- <img src="{{Auth::user()->avatar}}" class="img-circle" alt="Profile Image" /> --}}
 						  </a>
 						  <ul class="dropdown-menu">
 							<li><a href="{{ route('user.my') }}">Мой кабинет</a></li>

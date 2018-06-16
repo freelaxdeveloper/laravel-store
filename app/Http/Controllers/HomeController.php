@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\{Category, Product};
 use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
 {
@@ -38,8 +39,21 @@ class HomeController extends Controller
         } */
         // b3debd00-89b4-11e3-b441-0050568002cf
         // dd($regions);
-        
-        $products = Product::orderBy('id', 'desc')->paginate(9);
+        if ( !request()->has('limit') ) {
+            request()->merge(['limit' => 4]);
+        }
+        $limit = request()->get('limit');
+
+        $columns = Schema::getColumnListing('products');
+        if ( !request()->has('sort') || !in_array(request()->get('sort'), $columns) ) {
+            request()->merge(['sort' => 'created_at']);
+        }
+        $sort = request()->get('sort');
+        $order = request()->get('order') ?? 'desc';
+
+        $products = Product::when($sort, function ($query) use ($sort, $order) {
+            return $query->orderBy($sort, $order);
+        })->paginate($limit);
 
         return view('home', compact('products'));
     }

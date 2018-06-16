@@ -35,29 +35,7 @@
                 </div>
                 @endforeach
             </div> --}}
-                @forelse ($products as $product)
-                    @include('listing.product', [
-                        'id' => $product->id,
-                        'title' => $product->title,
-                        'url' => route('prod.view', [$product]),
-                        'description' => $product->description,
-                        'description_small' => $product->description,
-                        'image' => $product->screens->first()['src'],
-                        'price' => $product->price,
-                        'price_old' => $product->price_old,
-                        'discount' => $product->discount,
-                        'button' => [
-                            ['url' => '#', 'title' => '2 Comments'],
-                            ['url' => '#', 'title' => '8 Shares'],
-                        ],
-                    ])
-                @empty
-                    <div class="single-post mb-4 mr-3">
-                        <p>Товары в эту категорию еще не были добавлены</p>
-                    </div>
-                @endforelse
+            @include('listing.products', ['products' => $products])
         </section>
-
-        {{ $products->links() }}
     </div>
 @endsection

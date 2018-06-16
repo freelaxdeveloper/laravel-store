@@ -9,28 +9,11 @@
 @section('content')
     <!-- Team -->
     <section id="team">
-        <div class="">
-            @foreach ($products as $product)
-                @include('listing.product', [
-                    'id' => $product->id,
-                    'price' => $product->price,
-					'price_old' => $product->price_old,
-                    'discount' => $product->discount,
-                    'title' => $product->title,
-                    'url' => route('prod.view', [$product]),
-                    'description' => $product->description,
-                    'description_small' => $product->description,
-                    'image' => $product->screens->first()['src'],
-                    'size' => $product->size,
-                    'button' => [
-                        ['url' => '#', 'title' => '2 Comments'],
-                        ['url' => '#', 'title' => '8 Shares'],
-                    ],
-                ])
-            @endforeach
+
+        <div class="col-md-12">
+			@include('listing.products', ['products' => $products])
         </div>
     </section>
-    {{ $products->links() }}
     <!-- Team -->
 @endsection
 

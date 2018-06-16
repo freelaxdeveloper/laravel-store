@@ -6,13 +6,28 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use App\{Category,Product};
 use Auth;
+use Illuminate\Support\Facades\Schema;
 
 class CategoryController extends Controller
 {
     
     public function view(Category $category)
     {
-        $products = Product::categorized($category)->paginate(15);
+        if ( !request()->has('limit') ) {
+            request()->merge(['limit' => 4]);
+        }
+        $limit = request()->get('limit');
+
+        $columns = Schema::getColumnListing('products');
+        if ( !request()->has('sort') || !in_array(request()->get('sort'), $columns) ) {
+            request()->merge(['sort' => 'created_at']);
+        }
+        $sort = request()->get('sort');
+        $order = request()->get('order') ?? 'desc';
+
+        $products = Product::when($sort, function ($query) use ($sort, $order) {
+            return $query->orderBy($sort, $order);
+        })->categorized($category)->paginate($limit);
 
         if (Auth::user() && Auth::user()->hasRole('Admin')) {
             $actions = [

@@ -1,6 +1,6 @@
 @php ( $cssclassActive = in_array($category->id, $currentCategoriesId) ? 'active' : '' )
 
-<a href="{{route('cat.view', [$category])}}" class="list-group-item {{ $cssclassActive }}">
+<a href="{{route('cat.view', [$category])}}?{{ request()->getQueryString() }}" class="list-group-item {{ $cssclassActive }}">
     {{$category->name}} <span class="badge">{{$category->products_count}}</span>
 </a>
 
