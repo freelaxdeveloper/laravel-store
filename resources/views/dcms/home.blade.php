@@ -9,14 +9,11 @@
 @section('content')
     <!-- Team -->
     <section id="team">
-
-        <div class="col-md-12">
-			@include('listing.products', ['products' => $products])
-        </div>
+		@include('listing.products', ['products' => $products])
     </section>
     <!-- Team -->
 @endsection
-
+{{-- 
 @section('info')
 <!-- Services section -->
 <section id="what-we-do">
@@ -86,3 +83,4 @@
 <!-- /Services-->
 @endsection
 
+ --}}

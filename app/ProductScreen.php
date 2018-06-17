@@ -55,6 +55,12 @@ class ProductScreen {
         return unlink($screen['path']);
     }
 
+    public function hightlightById(int $screen_id)
+    {
+        $screen = $this->all()->firstWhere('id', $screen_id);
+        return rename($screen['path'], $screen['dirname'] . '/' . time() . md5(microtime()) . '.' . $screen['extension']);
+    }
+
     /**
      * формирование данных к скриншоту
      */

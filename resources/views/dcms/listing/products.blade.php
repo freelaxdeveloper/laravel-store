@@ -25,15 +25,14 @@
     </div>
 </div>
 
-<div class="col-md-12">
-    @forelse ($products as $product)
-        @include('listing.product', ['product' => $product])
-    @empty
-        <div class="single-post mb-4 mr-3">
-            <p>Товары в эту категорию еще не были добавлены</p>
-        </div>
-    @endforelse
-</div>
+
+@forelse ($products as $product)
+    @include('listing.product', ['product' => $product])
+@empty
+    <div class="single-post mb-4 mr-3">
+        <p>Товары в эту категорию еще не были добавлены</p>
+    </div>
+@endforelse
 <div class="col-md-12">
     {{ $products->appends(request()->except('page'))->links() }}
 </div>

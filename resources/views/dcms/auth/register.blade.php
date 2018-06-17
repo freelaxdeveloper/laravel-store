@@ -44,7 +44,7 @@
                         <!-- Material input mobile -->
                         <div class="md-form">
                             <i class="fa fa-envelope prefix grey-text"></i> <label for="mobile">Ваш номер телефона</label>
-                            <input name="mobile" type="text" id="mobile" class="form-control" value="{{ old('mobile') }}" required>
+                            <input name="mobile" type="text" id="mobile" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd" value="{{ old('mobile') }}" required>
                             @if ($errors->has('mobile'))
                                 <span class="invalid-feedback" style="display: block;">
                                     <strong>{{ $errors->first('mobile') }}</strong>

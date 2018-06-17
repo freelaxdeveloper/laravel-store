@@ -10,6 +10,7 @@
     <title>@yield('title')</title>
 
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<link rel="canonical" href="{{ url()->current() }}"/>
 	
     <!-- Bootstrap Core CSS -->
 	<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
@@ -103,7 +104,7 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						  Кабинет 
-						  <img src="https://cdn4.iconfinder.com/data/icons/avatar-and-user/86/Avatar_person_user_character_man_woman_human-04-512.png" class="img-circle" alt="Profile Image" />
+						  {{-- <img src="https://cdn4.iconfinder.com/data/icons/avatar-and-user/86/Avatar_person_user_character_man_woman_human-04-512.png" class="img-circle" alt="Profile Image" /> --}}
 						  </a>
 						  <ul class="dropdown-menu">
 							<li><a href="{{ route('register') }}">Регистрация</a></li>
@@ -139,7 +140,7 @@
 					</div>
 
 					<!-- Text Panel -->
-					<div class="panel panel-default">
+					{{-- <div class="panel panel-default">
 						<div class="panel-heading">
 							<h1 class="panel-title"><span class="glyphicon glyphicon-cog"></span> О сайте</h1>
 						</div>
@@ -147,7 +148,7 @@
 						<div class="panel-body">
 							<p>Сайт находится в разработке, о всех найденных ошибках сообщите на email Sanek_OS9@yahoo.com</p>
 						</div>
-					</div>
+					</div> --}}
 				@show
 			</div><!--/Left Column-->
 

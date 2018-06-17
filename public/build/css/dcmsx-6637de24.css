@@ -6435,6 +6435,9 @@ body {
   padding-top: 60px;
   /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */ }
 
+a:hover {
+  text-decoration: none; }
+
 h1, h2, h3, h4, h5, h6,
 h1 a:link, h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link {
   color: black; }
@@ -6896,7 +6899,7 @@ span.success {
   float: left;
   box-sizing: border-box;
   height: 394px;
-  padding: 0;
+  padding: 0 3px;
   /* margin: 0px 5px 5px 0; */ }
 
 .product-cart {
@@ -7093,16 +7096,33 @@ span.success {
   -ms-flex-pack: space-evenly;
       justify-content: space-evenly;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap; }
+      flex-wrap: wrap;
+  -ms-flex-direction: row;
+      flex-direction: row; }
 
 .screen {
-  position: relative;
+  display: -ms-flexbox;
+  display: flex;
   -ms-flex-direction: column;
       flex-direction: column;
+  position: relative;
   margin-bottom: 15px;
   background-color: #dcd5cf;
-  padding: 7px;
-  border-radius: 10px; }
+  -ms-flex-pack: end;
+      justify-content: flex-end;
+  -ms-flex-align: center;
+      align-items: center; }
+  .screen .title {
+    display: block;
+    padding: 4px;
+    width: 100%;
+    text-align: center;
+    background-color: #969681;
+    color: #fff; }
+    .screen .title:hover {
+      background-color: #888879; }
+  .screen div {
+    width: 100%; }
   .screen img {
     order-radius: 10px; }
 
@@ -7110,10 +7130,11 @@ span.success {
   position: absolute;
   top: -10px;
   right: -10px;
-  padding: 5px 10px 5px 10px;
+  padding: 2px 6px 2px 6px;
   background-color: #fff;
   border: 1px solid #ddd;
-  border-radius: 50px; }
+  border-radius: 50px;
+  font-size: 11px; }
 
 .product-filter {
   display: -ms-flexbox;
@@ -7123,7 +7144,9 @@ span.success {
   -ms-flex-pack: justify;
       justify-content: space-between;
   width: 100%;
-  margin-bottom: 10px; }
+  margin-bottom: 3px;
+  padding: 0 3px;
+  border-radius: 3px; }
   .product-filter i {
     float: left;
     vertical-align: top;
@@ -7136,7 +7159,6 @@ span.success {
     border-right: none;
     border-radius: 3px 0 0 3px; }
   .product-filter select {
-    max-width: 130px;
     border-radius: 0 3px 3px 0;
     background: #F8F8F8;
     border: 1px solid #ccc;
@@ -7148,9 +7170,6 @@ span.success {
     /* width: 32%; */ } }
 
 /* FontAwesome for working BootSnippet :> */
-#team {
-  background: #eee !important; }
-
 .backside > .btn-primary:hover,
 .backside > .btn-primary:focus {
   background-color: #108d6f;

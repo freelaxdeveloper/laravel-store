@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Plugins\Filter;
 
 class LoginController extends Controller
 {
@@ -57,6 +58,10 @@ class LoginController extends Controller
         $login = request()->input('email');
 
         $fieldType = filter_var($login, FILTER_VALIDATE_EMAIL) ? 'email' : 'mobile';
+
+        if ( $login && 'mobile' == $fieldType ) {
+            $login = (string) Filter::mobile($login);
+        }
 
         request()->merge([$fieldType => $login]);
 

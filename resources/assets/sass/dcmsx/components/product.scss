@@ -2,7 +2,7 @@
     float: left;
     box-sizing: border-box;
     height: 394px;
-    padding: 0;
+    padding: 0 3px;
     /* margin: 0px 5px 5px 0; */
   }
   
@@ -227,15 +227,34 @@
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
+    flex-direction: row;
   }
   
   .screen {
-    position: relative;
+    display: flex;
     flex-direction: column;
+    position: relative;
     margin-bottom: 15px;
     background-color: #dcd5cf;
-    padding: 7px;
-    border-radius: 10px;
+    // padding: 7px;
+    // border-radius: 10px;
+    justify-content: flex-end;
+    align-items: center;
+    .title {
+      display: block;
+      padding: 4px;
+      width: 100%;
+      text-align: center;
+      background-color: #969681;
+      color: #fff;
+      &:hover {
+        background-color: #888879;
+      }
+      
+    }
+    div {
+      width: 100%;
+    }
     img {
       order-radius: 10px;
     }
@@ -245,10 +264,11 @@
     position: absolute;
     top: -10px;
     right: -10px;
-    padding: 5px 10px 5px 10px;
+    padding: 2px 6px 2px 6px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 50px;
+    font-size: 11px;
   }
 
 .product-filter {
@@ -256,7 +276,9 @@
     flex-direction: row-reverse;
     justify-content: space-between;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
+    padding: 0 3px;
+    border-radius: 3px;
     i {
         // padding: 5px;
         // background-color: #765;
@@ -272,7 +294,7 @@
         border-radius: 3px 0 0 3px;
     }
     select {
-        max-width: 130px;
+        // max-width: 130px;
         border-radius: 0 3px 3px 0;
         background: #F8F8F8;
         border: 1px solid #ccc;

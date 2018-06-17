@@ -1,7 +1,11 @@
 body {
     padding-top: 60px; /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
 }
-
+a {
+	&:hover {
+		text-decoration: none;
+	}
+}
 h1, h2, h3, h4, h5, h6,
 h1 a:link, h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link {
 	color: black;

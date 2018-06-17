@@ -86,6 +86,7 @@ Route::name('prod.')->prefix('product')->group(function () {
         Route::get('/screen/{product}', 'ProductController@screen')->name('screen');
         Route::post('/screen/{product}', 'ProductController@screenSave');
         Route::get('/screen/{product}/{id}/delete', 'ProductController@screenDelete')->name('screenDelete');
+        Route::get('/screen/{product}/{id}/hightlight', 'ProductController@screenHightlight')->name('screenHightlight');
 
         Route::get('/delete/{product}', 'ProductController@delete')->name('delete');
     });

@@ -30,7 +30,12 @@
             @endif
             <div class="screen">
                 <span class="screen-del"><a href="{{ route('prod.screenDelete', [$product, $screen['id']]) }}"><i class="glyphicon glyphicon-remove"></i></a></span>
-                <img src="{{ $screen['src'] }}" alt="" width="240">
+                <div><img src="{{ $screen['src'] }}" alt="" width="240"></div>
+                <div>
+                    @if( !$loop->last )
+                        <a href="{{ route('prod.screenHightlight', [$product, $screen['id']]) }}" class="title">Сделать основным</a>
+                    @endif
+                </div>
             </div>
         @endforeach
     </div>

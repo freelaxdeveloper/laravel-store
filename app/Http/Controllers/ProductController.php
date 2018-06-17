@@ -76,6 +76,14 @@ class ProductController extends Controller
         return redirect(route('prod.screen', $product))->with('status', 'Скриншот удален');
     }
 
+
+    public function screenHightlight(Product $product, int $screen_id)
+    {
+        $product->screenHightlightById($screen_id);
+
+        return redirect(route('prod.screen', $product))->with('status', 'Скриншот помечен как основной');
+    }
+
     public function view(Product $product)
     {
         $product->with(['categories']);

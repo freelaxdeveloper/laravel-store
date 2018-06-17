@@ -26,12 +26,22 @@ class Product extends Model
         return (new ProductScreen($this))->all();
     }
 
+    public function getScreenAttribute()
+    {
+        return $this->screens->sortByDesc('filename')->first();
+    }
+
     /**
      * удаление скриншота по его ID
      */
     public function screenDeleteById(int $screen_id): bool
     {
         return (new ProductScreen($this))->deleteById($screen_id);
+    }
+
+    public function screenHightlightById(int $screen_id): bool
+    {
+        return (new ProductScreen($this))->hightlightById($screen_id);
     }
 
     /**

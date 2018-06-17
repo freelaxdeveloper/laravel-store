@@ -45,7 +45,7 @@
                 <i class="fa fa-eye dark-grey-text"></i> <strong>{{$product->views}}</strong> 
             </p>
             @foreach ($product->categories()->get() as $category)
-                <a href="{{ route('cat.view', [$category]) }}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
+                <a href="{{ route('cat.view', [$category]) }}?{{ request()->getQueryString() }}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
             @endforeach
         </div>
 
@@ -58,7 +58,7 @@
         <div class="row">
             <div class="col-md-8">
                 <a href="#" data-toggle="modal" data-target=".pop-up-1">
-                    <img src="{{$product->screens->first()['src']}}" class="product-screen" width="500">
+                    <img src="{{$product->screen['src']}}" class="product-screen" width="500">
                 </a>
             </div>
             <div class="col-md-4">

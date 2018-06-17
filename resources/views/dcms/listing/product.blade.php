@@ -2,12 +2,12 @@
     <div class="block product-cart">
         <div class="product-cart-over clear">
             <div class="product-info-wrapper">
-                <a href="{{ route('prod.view', [$product]) }}" class="product-cover-link" data-product="{{ $product->id }}" data-name="{{ $product->title }}" data-page="1">
-                    <img src="{{ $product->screens->first()['src'] }}" alt="{{ $product->title }}" title="{{ $product->title }}" width="259" height="190">
+                <a href="{{ route('prod.view', [$product]) }}?{{ request()->getQueryString() }}" class="product-cover-link" data-product="{{ $product->id }}" data-name="{{ $product->title }}" data-page="1">
+                    <img src="{{ $product->screen['src'] }}" alt="{{ $product->title }}" title="{{ $product->title }}" width="259" height="190">
                 </a>
                 <div class="product-cart-title">
                     <h3>
-                        <a href="{{ route('prod.view', [$product]) }}" data-product="{{ $product->id }}" data-name="{{ $product->title }}" data-page="1">{{ $product->title }}</a>
+                        <a href="{{ route('prod.view', [$product]) }}?{{ request()->getQueryString() }}" data-product="{{ $product->id }}" data-name="{{ $product->title }}" data-page="1">{{ $product->title }}</a>
                     </h3>
                 </div>
                 <div class="product-cart-info">
