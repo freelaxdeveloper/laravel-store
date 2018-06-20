@@ -6895,6 +6895,16 @@ span.success {
   display: inline-block;
   text-align: center; }
 
+.navbar-inverse {
+  background-color: #fff;
+  border-color: #dadada; }
+
+.navbar-nav > li > a {
+  padding-top: 20px; }
+
+.navbar-inverse .navbar-nav > li > a:focus, .navbar-inverse .navbar-nav > li > a:hover {
+  color: #444; }
+
 .product-cart-wrapper {
   float: left;
   box-sizing: border-box;
