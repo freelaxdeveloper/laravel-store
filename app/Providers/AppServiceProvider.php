@@ -3,8 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\View;
-use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\{View, Cache};
 use App\{Category,Chat};
 
 class AppServiceProvider extends ServiceProvider
@@ -23,13 +22,16 @@ class AppServiceProvider extends ServiceProvider
          * @param closure получение новых данных 
          * https://laravel.com/docs/5.6/cache
          */
-        $categories = Cache::remember('categories', 15, function () {
-            return Category::roots()->withCount('products')->get();
-        });
-        $chats = Chat::with(['user'])->orderBy('id', 'desc')->get()->take(20);
-        View::share('categories', $categories);
-        View::share('chats', $chats);
-        View::share('currentCategoriesId', []);
+        try {
+            $categories = Cache::remember('categories', 15, function () {
+                return Category::roots()->withCount('products')->get();
+            });
+            $chats = Chat::with(['user'])->orderBy('id', 'desc')->get()->take(20);
+            View::share('categories', $categories);
+            View::share('chats', $chats);
+            View::share('currentCategoriesId', []);
+
+        } catch (\Exception $e) {}
     }
 
     /**
