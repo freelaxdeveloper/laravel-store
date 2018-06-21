@@ -14,7 +14,7 @@ class CategoryController extends Controller
     public function view(Category $category)
     {
         if ( !request()->has('limit') ) {
-            request()->merge(['limit' => 4]);
+            request()->merge(['limit' => 20]);
         }
         $limit = request()->get('limit');
 

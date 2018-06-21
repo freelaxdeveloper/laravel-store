@@ -3,7 +3,7 @@
 @section('title', 'Категории')
 
 @section('css')
-    <link href="{{elixir('dcmsx/css/tree.css')}}" rel="stylesheet">
+    <link href="{{elixir('css/tree.css')}}" rel="stylesheet">
 @endsection
 
 @section('content')

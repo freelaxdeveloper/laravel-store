@@ -2,7 +2,7 @@ var elixir = require("laravel-elixir");
 
 elixir(function(mix) {
     mix
-        .sass('dcmsx/dcmsx.scss')
+        .sass(['dcmsx/dcmsx.scss', 'dcmsx/tree.scss'])
         .scripts([
             'dcmsx/jquery-1.11.3.min.js',
             'dcmsx/dcmsx.js',

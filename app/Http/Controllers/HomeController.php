@@ -40,7 +40,7 @@ class HomeController extends Controller
         // b3debd00-89b4-11e3-b441-0050568002cf
         // dd($regions);
         if ( !request()->has('limit') ) {
-            request()->merge(['limit' => 4]);
+            request()->merge(['limit' => 20]);
         }
         $limit = request()->get('limit');
 
