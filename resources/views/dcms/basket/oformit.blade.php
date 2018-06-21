@@ -2,6 +2,12 @@
 
 @section('title', 'Оформление заказа')
 
+@section('head')
+    @parent
+
+    <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
+@endsection
+
 @section('content')
 <!-- Modal -->
 <div class="modal fade" id="agreement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
