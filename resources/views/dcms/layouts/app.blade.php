@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-				<a class="navbar-brand" href="{{route('home')}}?{{ request()->getQueryString() }}"><img src="/images/logo.png" alt="" width="135px"></a>
+				<a class="navbar-brand" href="{{route('home')}}?{{ request()->getQueryString() }}"><img src="/images/logo2.png" alt="" width="135px"></a>
             </div>
             <!-- Navbar links -->
             <div class="collapse navbar-collapse bs-dark" id="navbar">

@@ -1,3 +1,4 @@
+@if( count($products) )
 <div class="product-filter">
     <div class="limit"><i class="fa fa-eye" title="Показывать:"></i>
         {{-- @php( $limitValues = [1, 2, 3, 4, 5] ) --}}
@@ -24,7 +25,7 @@
         </select>
     </div>
 </div>
-
+@endif
 
 @forelse ($products as $product)
     @include('listing.product', ['product' => $product])
