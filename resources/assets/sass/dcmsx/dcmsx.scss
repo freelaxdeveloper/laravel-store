@@ -1,9 +1,13 @@
 @import "library/bootstrap.min";
 @import "library/bootstrap-formhelpers.min";
-@import "components/custom";
+@import "library/select2.min";
+@import "library/font-awesome.min";
+
 @import "components/product";
 @import "components/backside";
 @import "components/breadcrumb";
 @import "components/loading";
 @import "components/spoiler";
 @import "components/order";
+
+@import "components/custom";
