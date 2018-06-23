@@ -633,4 +633,5 @@ span.success {
 .flex {
 	display: flex;
 	justify-content: flex-end;
+	min-height: calc(100vh - 157px);
 }
