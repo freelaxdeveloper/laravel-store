@@ -375,7 +375,7 @@ form.search > .row > .col-sm-6 {
     overflow-y: scroll;
     height: 350px;
 }
-
+/*
 ::-webkit-scrollbar-track
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
@@ -393,7 +393,7 @@ form.search > .row > .col-sm-6 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
 }
-
+*/
 .search-box {
 	border: 1px solid #dadada;
 	height:35px;
@@ -553,7 +553,6 @@ section#what-we-do .section-title{
 .container-fluid {
 	min-height: calc(100vh - 120px);
 	transition: 0.5s;
-  position: relative;
 	z-index: 0;
 	padding: 0;
 	margin: 0;

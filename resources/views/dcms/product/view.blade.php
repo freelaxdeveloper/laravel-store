@@ -21,7 +21,7 @@
                     <h4 class="modal-title" id="myLargeModalLabel-1">{{ $product->title }}</h4>
                 </div>
                 <div class="modal-body">
-                    <img src="http://i.imgur.com/YZ7AGyF.jpg.jpg" class="img-responsive" alt="">
+                    <img src="#" class="img-responsive" alt="">
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -54,16 +54,24 @@
     </div>
         <hr class="red title-hr">
         <div class="row">
-            <div class="col-md-8">
-                <a href="#" data-toggle="modal" data-target=".pop-up-1">
-                    <img src="{{$product->screen['src']}}" class="product-screen" width="500">
-                </a>
+            <div class="col-md-8 screen-block">
+                <div class="other-screen-list">
+                    @foreach($product->screens as $screen)
+                        <img src="{{$screen['src']}}" width="128">
+                    @endforeach
+                </div>
+                <div class="product-screen">
+                    <a href="#" data-toggle="modal" data-target=".pop-up-1">
+                        <img src="{{$product->screen['src']}}" width="500">
+                    </a>
+                </div>
+                
             </div>
-            <div class="col-md-4">
+            {{-- <div class="col-md-4 other-screen-list">
                 @foreach($product->screens as $screen)
                     <img src="{{$screen['src']}}" class="other-screen" width="128">
                 @endforeach
-            </div>
+            </div> --}}
         </div>
         <hr>
         @if ($product->description)
@@ -82,14 +90,14 @@
     <script>
         $(document).ready(function () {
 
-            $('.other-screen').click(function () {
+            $('.other-screen-list img').click(function () {
                 let $this = $(this);
                 console.log($this.attr('src'));
 
-                $('.product-screen').attr('src', $this.attr('src'));
+                $('.product-screen img').attr('src', $this.attr('src'));
             });
 
-            $('.product-screen').click(function() {
+            $('.product-screen img').click(function() {
                 let $this = $(this);
                 $('.img-responsive').attr('src', $this.attr('src'));
             });
