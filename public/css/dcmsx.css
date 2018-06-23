@@ -7012,7 +7012,7 @@ button.close {
     z-index: 130; }
 
 .product-code {
-  background: rgba(119, 102, 85, 0.75);
+  background: rgba(198, 63, 47, 0.69);
   color: #fff;
   font-size: 12px;
   font-weight: 400;
@@ -7074,7 +7074,7 @@ button.close {
   font-weight: 600; }
   .product-cart .button.buy:hover {
     display: block;
-    background-color: #876;
+    background-color: #a53628;
     color: #fff; }
 
 .button {
@@ -7087,7 +7087,7 @@ button.close {
   line-height: 13px;
   text-align: center;
   text-decoration: none;
-  background-color: #765;
+  background-color: #c63f2f;
   color: #fff;
   border: 0;
   border-radius: 2px;
@@ -7101,12 +7101,12 @@ button.close {
     font-size: 22px;
     text-transform: uppercase; }
   .button:hover {
-    background-color: #876;
+    background-color: #470d06;
     color: #fff; }
 
 .product-cart-wrapper:hover .product-cart-over {
   z-index: 128;
-  box-shadow: 0 0 32px 4px #aaa; }
+  box-shadow: 0 0 32px 1px #aaa; }
 
 .product .info .price .old {
   margin-top: 8px;
@@ -7644,9 +7644,49 @@ section .section-title {
   .orders .order .spoiler-wrap .spoiler-body .products .product:hover {
     background-color: rgba(53, 53, 53, 0.35); }
 
+.nav-menu {
+  background-color: #e8e8e8;
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 3px; }
+  .nav-menu a {
+    color: #444; }
+  .nav-menu ul {
+    display: -ms-flexbox;
+    display: flex;
+    min-width: 250px;
+    -ms-flex-direction: row;
+        flex-direction: row;
+    -ms-flex-pack: space-evenly;
+        justify-content: space-evenly;
+    list-style-type: none; }
+  .nav-menu .has-children {
+    position: relative; }
+    .nav-menu .has-children ul {
+      display: none; }
+      .nav-menu .has-children ul li {
+        display: block;
+        position: relative; }
+        .nav-menu .has-children ul li .badge {
+          position: absolute;
+          right: 0;
+          top: 7px; }
+      .nav-menu .has-children ul.display {
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-direction: column;
+            flex-direction: column;
+        position: absolute;
+        z-index: 300;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 5px 10px; }
+
 body {
-  padding-top: 60px;
-  /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */ }
+  padding-top: 57px;
+  /* Padding for .navbar-fixed-top. Change value if navbar height changes. Remove if using .navbar-static-top. */
+  background: linear-gradient(#ffffff 60%, #c1bebd); }
 
 a {
   color: #d0938b; }
@@ -7678,9 +7718,24 @@ h1 a:link, h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link {
   padding: 20px; }
 
 .small-print {
-  background-color: #470d06;
+  margin-top: 3px;
   color: #fff;
-  padding: 30px 0; }
+  padding-top: 10px;
+  -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 100%, 0% 100%);
+          clip-path: polygon(0% 0%, 75% 0%, 100% 100%, 0% 100%);
+  background-image: linear-gradient(81deg, #a53628 29%, #470d06 109%); }
+  .small-print a {
+    background-color: #fff;
+    -webkit-clip-path: polygon(17% 0%, 75% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(17% 0%, 75% 0%, 100% 100%, 0% 100%);
+    width: 250px;
+    display: inline-block;
+    color: #656567; }
+    .small-print a:hover {
+      background-color: #e8e3e3;
+      color: #656567; }
+  .small-print p {
+    margin: 7px 0 0px; }
 
 .feature,
 .page-intro,
@@ -8072,9 +8127,6 @@ section#what-we-do .section-title {
 .container-fluid {
   min-height: calc(100vh - 120px); }
 
-.small-print {
-  padding: 0; }
-
 .activeChild {
   background-color: #e0dddd; }
 
@@ -8127,5 +8179,22 @@ span.success {
 
 .navbar-brand {
   padding: 4px 15px; }
+
+.panel-default > .panel-heading {
+  color: #fff;
+  background-color: #c63f2f;
+  border: 1px solid #c63f2f; }
+
+.content {
+  background-color: #fff;
+  padding: 7px;
+  border: 1px solid #ddd;
+  min-height: 100%; }
+
+.flex {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: end;
+      justify-content: flex-end; }
 
 /*# sourceMappingURL=dcmsx.css.map */

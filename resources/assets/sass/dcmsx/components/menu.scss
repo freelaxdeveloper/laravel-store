@@ -1,0 +1,44 @@
+.nav-menu {
+  background-color: #e8e8e8;
+  border-bottom: 1px solid #ddd;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 3px;
+  a {
+    color: #444;
+  }
+  ul {
+    display: flex;
+    min-width: 250px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    list-style-type: none;
+  }
+  
+  .has-children {
+    position: relative;
+     ul {
+      display: none;
+      li {
+        display: block;
+        position: relative;
+        .badge {
+          position: absolute;
+          right: 0;
+          top: 7px;
+        }
+      }
+      
+      &.display {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        z-index: 300;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        padding: 5px 10px;
+      }
+    }
+    
+  }
+}

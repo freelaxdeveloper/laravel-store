@@ -123,10 +123,17 @@
         </div>
         <!-- /.container -->
 	</nav>
+
+		<nav class="nav-menu">
+			<ul>
+				@each('categories.treeMenu.listing', $categories, 'category')
+			</ul>
+		</nav>
+
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row flex">
 			<!-- Left Column -->
-			<div class="col-sm-12 col-lg-2">
+			{{-- <div class="col-sm-12 col-lg-2">
 				@section('left')
 					<!-- List-Group Panel -->
 					<div class="panel panel-default">
@@ -137,23 +144,12 @@
 							@each('categories.tree.listing', $categories, 'category')
 						</div>
 					</div>
-
-					<!-- Text Panel -->
-					{{-- <div class="panel panel-default">
-						<div class="panel-heading">
-							<h1 class="panel-title"><span class="glyphicon glyphicon-cog"></span> О сайте</h1>
-						</div>
-
-						<div class="panel-body">
-							<p>Сайт находится в разработке, о всех найденных ошибках сообщите на email Sanek_OS9@yahoo.com</p>
-						</div>
-					</div> --}}
-				@show
-			</div><!--/Left Column-->
+				@endsection
+			</div><!--/Left Column--> --}}
 
 
 			<!-- Center Column -->
-			<div class="col-sm-8 col-lg-7">
+			<div class="col-sm-8 col-lg-8">
 			
 				@if ($errors->any())
 					@foreach ($errors->all() as $error)
@@ -171,7 +167,7 @@
 					</div>		
 				@endif
 
-				<div class="row">
+				<div class="row content">
 					@yield('content')
 				</div>
 			</div><!--/Center Column-->
@@ -275,33 +271,13 @@
 
 	@yield('info')
 
-	<footer>
-		{{--  <div class="footer-blurb">
+	<footer>       
+		<div class="small-print">
 			<div class="container">
-				<div class="row">
-					<div class="col-sm-4 footer-blurb-item">
-						<h3><span class="glyphicon glyphicon-text-size"></span> DCMSX</h3>
-						<p>DCMSX - это продолжение популярной CMS системы DCMS, разработанной DESURE</p>
-					</div>
-					<div class="col-sm-4 footer-blurb-item">
-						<h3><span class="glyphicon glyphicon-wrench"></span> Преимущества</h3>
-						<p>DCMSX - использует современный фрейморк Laravel новой версии 5.6, совместно с PHP7.2 движок показывает отменную производительность. (с версиями PHP 7.0, 7.1 производильноть заметно хуже)</p>
-					</div>
-					<div class="col-sm-4 footer-blurb-item">
-						<h3><span class="glyphicon glyphicon-paperclip"></span> Complete</h3>
-						<p>Professionally cultivate one-to-one customer service with robust ideas. Completely synergize resource taxing relationships via premier niche markets. Dynamically innovate resource-leveling customer service for state of the art customer service.</p>
-					</div>
-				</div>
-				<!-- /.row -->	
+				<p>&copy; DCMSX by Sanek_OS9 2018 </p>
+				<p><a href="#">Terms &amp; Conditions</a> <a href="#">Privacy Policy</a> <a href="#">Contact</a></p>
 			</div>
-        </div>  --}}
-        
-        <div class="small-print">
-        	<div class="container">
-        		<p><a href="#">Terms &amp; Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Contact</a></p>
-        		<p>&copy; DCMSX by Sanek_OS9 2018 </p>
-        	</div>
-        </div>
+		</div>
 	</footer>
 
 	

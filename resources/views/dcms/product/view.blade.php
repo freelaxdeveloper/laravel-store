@@ -27,11 +27,9 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal mixer image -->
 
-<div class="row">
-    <div class="btn-group btn-breadcrumb">
-        <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
-        <a href="{{ URL::previous() }}" class="btn btn-primary">Вернуться</a>
-    </div>
+<div class="btn-group btn-breadcrumb">
+    <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
+    <a href="{{ URL::previous() }}" class="btn btn-primary">Вернуться</a>
 </div>
 
 <div class="col-xl-8 col-md-12">

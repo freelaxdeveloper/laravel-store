@@ -13,6 +13,7 @@ elixir(function(mix) {
             'dcmsx/select2.min.js',
             'dcmsx/buy.js',
             'dcmsx/spoiler.js',
+            'dcmsx/menu.js',
         ], 'public/js/dcmsx.js')
 });
 /* elixir(function(mix) {
