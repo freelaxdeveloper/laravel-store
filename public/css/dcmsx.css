@@ -8302,6 +8302,7 @@ span.success {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: end;
-      justify-content: flex-end; }
+      justify-content: flex-end;
+  min-height: calc(100vh - 157px); }
 
 /*# sourceMappingURL=dcmsx.css.map */
