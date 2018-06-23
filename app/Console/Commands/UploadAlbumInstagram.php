@@ -68,7 +68,7 @@ class UploadAlbumInstagram extends Command
             if (!$ig = $this->login($account)) {
                 continue;
             }
-            $ig->timeline->uploadPhoto($product->screenPath, ['caption' => $this->getCaption($product->id)]);
+            $ig->timeline->uploadPhoto(url($product->screen), ['caption' => $this->getCaption($product->id)]);
             echo "Скинул №{$product->id}\n\n";
         }
         $product->instagrams()->attach($accounts->pluck('id'));

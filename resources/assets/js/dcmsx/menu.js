@@ -15,4 +15,13 @@ $(document).ready(function () {
     e.preventDefault();
   });
 
+
+  $('.menu-btn').on('click', function(e) {
+    e.preventDefault();
+    $('.menu').toggleClass('menu_active');
+    $('.container-fluid').toggleClass('content_active');
+
+    $(this).toggleClass('menu-btn_active');
+  })
+
 });

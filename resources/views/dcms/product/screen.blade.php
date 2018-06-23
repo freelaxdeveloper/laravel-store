@@ -3,11 +3,9 @@
 @section('title', 'Упрвление фотографиями')
 
 @section('content')
-    <div class="row">
-        <div class="btn-group btn-breadcrumb">
-            <a href="{{ route('home') }}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
-            <a href="{{ route('prod.view', [$product]) }}" class="btn btn-primary">Вернуться</a>
-        </div>
+    <div class="btn-group btn-breadcrumb">
+        <a href="{{ route('home') }}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
+        <a href="{{ route('prod.view', [$product]) }}" class="btn btn-primary">Вернуться</a>
     </div>
     <hr class="red title-hr">
     <form class="form" enctype="multipart/form-data" method="post" action="{{ route('prod.screen', $product)}}">

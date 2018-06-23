@@ -37,6 +37,20 @@
   </div>
 </div>
 
+<div class="wrapper">
+	<div class="menu">
+			<a href="#" class="menu-btn">
+				<span></span>
+			</a>
+			<nav class="menu-list">
+				<a href="#">Главная</a>
+				<a href="#">Новости</a>
+				<a href="#">Контакты</a>
+				<a href="#">Портфолио</a>
+			</nav>
+	</div>
+
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -123,14 +137,15 @@
         </div>
         <!-- /.container -->
 	</nav>
-
+<div class="container-fluid">
 		<nav class="nav-menu">
 			<ul>
 				@each('categories.treeMenu.listing', $categories, 'category')
 			</ul>
 		</nav>
 
-		<div class="container-fluid">
+		
+
 			<div class="row flex">
 			<!-- Left Column -->
 			{{-- <div class="col-sm-12 col-lg-2">
@@ -267,9 +282,6 @@
 			</div><!--/Right Column -->
 
 		</div><!--/container-fluid-->
-	</div>	
-
-	@yield('info')
 
 	<footer>       
 		<div class="small-print">
@@ -279,6 +291,9 @@
 			</div>
 		</div>
 	</footer>
+	</div>	
+
+	@yield('info')
 
 	
 	<script src="{{elixir('/js/dcmsx.js')}}"></script>
@@ -290,6 +305,8 @@
 		});
 	</script>
 	@yield('js')
+
+</div> <!-- end wrapper -->
 </body>
 
 </html>

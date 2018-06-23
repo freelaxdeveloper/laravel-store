@@ -45,15 +45,15 @@ h1 a:link, h2 a:link, h3 a:link, h4 a:link, h5 a:link, h6 a:link {
 	clip-path: polygon(0% 0%, 75% 0%, 100% 100%, 0% 100%);
 	background-image: linear-gradient(81deg, #a53628 29%, #470d06 109%);
 	a {
-		background-color: #fff;
+		background-color: #cdcaca;
     -webkit-clip-path: polygon(17% 0%, 75% 0%, 100% 100%, 0% 100%);
     clip-path: polygon(17% 0%, 75% 0%, 100% 100%, 0% 100%);
     width: 250px;
     display: inline-block;
-    color: #656567;
+    color: #1f1f1f;
 		&:hover {
 			background-color: #e8e3e3;
-			color: #656567;
+			color: #333;
 		}
 	}
 	p {
@@ -552,6 +552,14 @@ section#what-we-do .section-title{
 
 .container-fluid {
 	min-height: calc(100vh - 120px);
+	transition: 0.5s;
+  position: relative;
+	z-index: 0;
+	padding: 0;
+	margin: 0;
+}
+.wrapper {
+	overflow-x: hidden;
 }
 .activeChild {
 	background-color: #e0dddd;

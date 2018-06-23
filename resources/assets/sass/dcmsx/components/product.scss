@@ -302,6 +302,13 @@
         padding: 0 2px;
     }
 }
+
+.other-screen {
+  cursor: pointer;
+}
+.product-screen {
+  cursor: zoom-in;
+}
   
   @media screen and (max-width: 1590px) {
     .product-cart-wrapper {
