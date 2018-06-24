@@ -17,8 +17,17 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                    <h4 class="modal-title" id="myLargeModalLabel-1">{{ $product->title }}</h4>
+                    <div>
+                        <h4 class="modal-title" id="myLargeModalLabel-1">
+                            {{ $product->title }} <span>({{ $product->created_at }})</span>
+                        </h4>
+                    </div>
+                    <div>
+                        {{ price($product->price) }} {{ env('CURRENCY') }}
+                        <a class="btn btn-primary btn-sm buy" href="#" data-product-id="{{ $product->id }}" onclick="return false;">Купить</a>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+    
                 </div>
                 <div class="modal-body">
                     <img src="#" class="img-responsive" alt="">
@@ -62,7 +71,7 @@
                 </div>
                 <div class="product-screen">
                     <a href="#" data-toggle="modal" data-target=".pop-up-1">
-                        <img src="{{$product->screen['src']}}" width="500">
+                        <img src="{{$product->screen['src']}}">
                     </a>
                 </div>
                 

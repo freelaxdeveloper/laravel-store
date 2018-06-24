@@ -15,6 +15,7 @@ elixir(function(mix) {
             'dcmsx/spoiler.js',
             'dcmsx/menu.js',
         ], 'public/js/dcmsx.js')
+        .copy('resources/assets/images/*', 'public/images/');
 });
 /* elixir(function(mix) {
     mix

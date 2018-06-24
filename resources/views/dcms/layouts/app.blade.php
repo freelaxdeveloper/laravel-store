@@ -287,7 +287,7 @@
 		<div class="small-print">
 			<div class="container">
 				<p>&copy; DCMSX by Sanek_OS9 2018 </p>
-				<p><a href="#">Terms &amp; Conditions</a> <a href="#">Privacy Policy</a> <a href="#">Contact</a></p>
+				<p><a href="#">Terms &amp; Conditions</a> <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#agreement">Соглашение</a> <a href="#">Contact</a></p>
 			</div>
 		</div>
 	</footer>

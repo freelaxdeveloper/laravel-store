@@ -321,7 +321,12 @@
     
   }
   .product-screen {
-    cursor: zoom-in;
+    a {
+      cursor: zoom-in;
+    }
+    img {
+      max-width: 500px;
+    }
   }
   
   ::-webkit-scrollbar-thumb {
