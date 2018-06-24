@@ -24,7 +24,7 @@ $(document).ready(function () {
         $(this).removeData('bs.modal');
     });
     
-    $('select[name=region]').change(function (e) {
+    $('select[name=region]').change(function () {
         const refRegion = $( this ).val();
 
         $.ajax({
@@ -41,7 +41,7 @@ $(document).ready(function () {
                 dcmsx.loaderHide();
             },
             success: function(response){
-                let options = '<option></option>';
+                var options = '<option></option>';
                 response.cities.forEach(function(item, i, arr) {
                     options += '<option value="' + item.Ref + '">' + item.DescriptionRu + '</option>';
                 });
@@ -83,8 +83,8 @@ $(document).ready(function () {
                 }
             },
             error: function (error) {
-                let errorText = error.statusText;
-                let timer = true;
+                var errorText = error.statusText;
+                var timer = true;
                 if ( typeof(error.responseJSON.errors) != 'undefined') {
                     errorText = error.responseJSON.errors['captcha'];
                     timer = false;
@@ -122,7 +122,7 @@ $(document).ready(function () {
                 dcmsx.loaderHide();
             },
             success: function(response){
-                let options = '';
+                var options = '';
                 response.offices.forEach(function(item, i, arr) {
                     options += '<option value="' + item.Ref + '">' + item.DescriptionRu + '</option>';
                 });

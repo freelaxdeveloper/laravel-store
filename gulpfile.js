@@ -15,7 +15,9 @@ elixir(function(mix) {
             'dcmsx/spoiler.js',
             'dcmsx/menu.js',
         ], 'public/js/dcmsx.js')
-        .copy('resources/assets/images/*', 'public/images/');
+        .version([ '/css/*', '/js/*' ])
+        .copy('resources/assets/images/*.*', 'public/images/')
+        .copy('resources/assets/fonts/*.*', 'public/fonts/');
 });
 /* elixir(function(mix) {
     mix

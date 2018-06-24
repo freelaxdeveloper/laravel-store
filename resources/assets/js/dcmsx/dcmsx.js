@@ -1,5 +1,8 @@
 const dcmsx = {
-    loaderShow: function (selector, customClass = 'cssloadDefault') {
+    loaderShow: function (selector, customClass) {
+        if (typeof customClass == 'undefined') {
+            customClass = 'cssloadDefault';
+        }
         $( selector ).after( '\
             <div class="cssload-fond ' + customClass + '">\
                 <div class="cssload-container-general">\
@@ -11,11 +14,18 @@ const dcmsx = {
             </div>\
         ' );
     },
-    loaderHide: function (customClass = 'cssloadDefault') {
+    loaderHide: function (customClass) {
+        if (typeof customClass == 'undefined') {
+            customClass = 'cssloadDefault';
+        }
         $( '.' + customClass ).remove();
     },
 
-    timer: function (selector, seconds, callback, className = 'timerDefault') {
+
+    timer: function (selector, seconds, callback, className) {
+        if (typeof className == 'undefined') {
+            className = 'timerDefault';
+        }
         className = className + Math.floor(Math.random() * (9999 - 1111)) + 1111;
         $( selector ).after('<span class="seconds ' + className + '">' + seconds + '</span>');
 
