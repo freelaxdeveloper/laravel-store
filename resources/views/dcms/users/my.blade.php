@@ -2,7 +2,7 @@
 
 @section('title', 'Личный кабинет')
 
-@section('left')
+@section('right')
 
     Мой кабинет
 

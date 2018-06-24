@@ -12,7 +12,7 @@
     @forelse( $products as $product )
         <div class="media">
             <a class="pull-left" href="#">
-              <img class="media-object" width="120" src="{{ $product->screens->first()['src'] }}" alt="{{ $product->title }}">
+              <img class="media-object" width="120" src="{{ $product->screen['src'] }}" alt="{{ $product->title }}">
             </a>
             <div class="media-body">
               <h4 class="media-heading">{{ $product->title }}</h4>

@@ -14,8 +14,10 @@
 		<link rel="canonical" href="{{ url()->current() }}"/>
 		
 		<!-- Bootstrap Core CSS -->
-		<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
-		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		@section('css')
+			<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
+			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+		@show
 
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -43,10 +45,9 @@
 				<span></span>
 			</a>
 			<nav class="menu-list">
-				<a href="#">Главная</a>
-				<a href="#">Новости</a>
-				<a href="#">Контакты</a>
-				<a href="#">Портфолио</a>
+				<div>
+					В разработке!
+				</div>
 			</nav>
 	</div>
 
@@ -171,15 +172,22 @@
 						<!-- Alert -->
 						<div class="alert alert-danger alert-dismissible" role="alert">
 							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							{{ $error }}
+							{!! $error !!}
 						</div>		
 					@endforeach
 				@endif
+
 				@if (session('status'))
-					<div class="alert alert-success alert-dismissible" role="alert">
-						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						{{ session('status') }}
-					</div>		
+					@php( $messages = session('status') )
+					@if(!is_array($messages))
+						@php($messages = [$messages])
+					@endif
+					@foreach( $messages as $msg )
+						<div class="alert alert-success alert-dismissible" role="alert">
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							{!! $msg !!}
+						</div>
+					@endforeach
 				@endif
 
 				<div class="row content">
@@ -287,7 +295,7 @@
 		<div class="small-print">
 			<div class="container">
 				<p>&copy; DCMSX by Sanek_OS9 2018 </p>
-				<p><a href="#">Terms &amp; Conditions</a> <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#agreement">Соглашение</a> <a href="#">Contact</a></p>
+				<p><a href="#">Terms &amp; Conditions</a> <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#basket">Соглашение</a> <a href="#">Contact</a></p>
 			</div>
 		</div>
 	</footer>

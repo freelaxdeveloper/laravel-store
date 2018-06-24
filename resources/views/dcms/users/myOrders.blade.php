@@ -2,7 +2,7 @@
 
 @section('title', 'Мои заказы')
 
-@section('left')
+@section('right')
 
     Мой кабинет
 
@@ -22,7 +22,7 @@
                     <div>{{ $order['created_at'] }}</div> 
                     <div>
                         @foreach ($order->products() as $product)
-                            <img src="{{ $product['screens'][0]['src'] }}" width="32">
+                            <img src="{{ $product['screen']['src'] }}" width="32">
                         @endforeach
                     </div>
                     <div>{{ $order->products()->count() }} {{ trans_choice('plural.product', $order->products()->count()) }} на {{ number_format($order->products()->sum('price')) }} грн.</div>
@@ -31,7 +31,7 @@
                     <div class="products">
                         @foreach ($order->products() as $product)
                             <div class="product">
-                                <div><img src="{{ $product['screens'][0]['src'] }}" width="64"></div>
+                                <div><img src="{{ $product['screen']['src'] }}" width="64"></div>
                                 <div>
                                     <a href="{{ route('prod.view', [$product['slug']]) }}">{{ $product['title'] }}</a> №{{ $product['id'] }}<br>
                                     {{ number_format($product['price']) }} грн.

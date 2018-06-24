@@ -3,6 +3,7 @@
 @section('title', 'Категории')
 
 @section('css')
+    @parent
     <link href="{{elixir('css/tree.css')}}" rel="stylesheet">
 @endsection
 
@@ -16,7 +17,7 @@
                     Категории: <a href="{{route('cat.new')}}">[+]</a>
                     <form>
                     <div class="tree">
-                        @each('categories.tree.listing', $categories, 'category')
+                        @each('categories.tree2.listing', $categories, 'category')
                     </div>
                     <input type="reset" value="Collapse All">
                     </form>

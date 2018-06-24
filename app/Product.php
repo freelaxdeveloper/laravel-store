@@ -7,6 +7,7 @@ use App\{Category, AccountInstagram, ProductScreen};
 use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 use File;
+use Auth;
 
 class Product extends Model
 {
@@ -16,8 +17,20 @@ class Product extends Model
         'options' => 'array',
     ];
 
-    protected $appends = ['screens'];
+    protected $appends = ['screens', 'screen'];
 
+    public function getAdminActionsAttribute()
+    {
+        $actions = [];
+        if (Auth::user() && Auth::user()->hasRole('Admin')) {
+            $actions = [
+                ['link' => route('prod.edit', [$this]), 'title' => 'Изменть'],
+                ['link' => route('prod.screen', [$this]), 'title' => 'Фотографии'],
+                ['link' => route('prod.delete', [$this]), 'title' => 'Удалить'],
+            ];
+            }
+        return $actions;
+    }
     /**
      * список скринов
      */

@@ -19,12 +19,10 @@
 </div>
   
 {{-- {{dd(Config::get('sms.test'))}} --}}
-<div class="row">
     <div class="btn-group btn-breadcrumb">
         <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
         <a href="{{ URL::previous() }}" class="btn btn-primary">Продолжить покупки</a>
     </div>
-</div>
 
 <form method="POST" action="{{ route('basket.oformit-zakaz') }}">
     <p><h3>Оформление заказа</h3></p>

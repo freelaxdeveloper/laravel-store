@@ -49,7 +49,9 @@ class ProductController extends Controller
 
     public function screen(Product $product)
     {
-        return view('product.screen', compact('product'));
+        $actions = $product->adminActions;
+
+        return view('product.screen', compact('product', 'actions'));
     }
 
     public function screenSave(Request $request, Product $product)
@@ -89,13 +91,7 @@ class ProductController extends Controller
         $product->with(['categories']);
         $product->increment('views');
 
-        if (Auth::user() && Auth::user()->hasRole('Admin')) {
-            $actions = [
-                ['link' => route('prod.edit', [$product]), 'title' => 'Изменть'],
-                ['link' => route('prod.screen', [$product]), 'title' => 'Фотографии'],
-                ['link' => route('prod.delete', [$product]), 'title' => 'Удалить'],
-            ];
-        }
+        $actions = $product->adminActions;
 
         $products = Product::with(['categories'])->where('id', '!=', $product->id)->orderBy('id', 'desc')->get()->take(12);
 
@@ -106,8 +102,9 @@ class ProductController extends Controller
     {
         $categoriesAll = Category::get();
         $productCategories = $product->categories()->pluck('id')->toArray();
+        $actions = $product->adminActions;
 
-        return view('product.edit', compact('categoriesAll', 'product', 'productCategories'));
+        return view('product.edit', compact('categoriesAll', 'product', 'productCategories', 'actions'));
     }
 
     public function delete(Product $product)
