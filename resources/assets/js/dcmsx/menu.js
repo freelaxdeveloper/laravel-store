@@ -7,7 +7,6 @@ $(document).ready(function () {
   });
 
   $( 'body' ).click(function () {
-    console.log('click');
     $('.has-children > ul').removeClass('display');
   });
   

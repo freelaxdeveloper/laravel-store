@@ -100,3 +100,14 @@
 </div>
 
 @endsection
+
+@section('js')
+    <script src="{{elixir('/js/select2.min.js')}}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.region').select2({
+                placeholder: 'Область',
+            });
+        });
+    </script>
+@endsection
