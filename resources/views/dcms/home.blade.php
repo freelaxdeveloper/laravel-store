@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'DCMSX - CMS система управления сайтом')
+@section('title', 'Твоя мебель - магазин мебели: купить мебель для офиса и дома')
 
 @section('meta')
 <link rel="canonical" href="{{url('/')}}/"/>

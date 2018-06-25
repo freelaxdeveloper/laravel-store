@@ -29,7 +29,7 @@
                         </div>
                     
                         <!-- Material input email -->
-                        <div class="md-form">
+                        {{-- <div class="md-form">
                             <i class="fa fa-envelope prefix grey-text"></i> <label for="email">Ваш E-mail</label>
                             <input name="email" type="email" id="email" class="form-control" value="{{ old('email') }}" required>
                             @if ($errors->has('email'))
@@ -38,7 +38,7 @@
                                 </span>
                             @endif
                             
-                        </div>
+                        </div> --}}
                     
                     
                         <!-- Material input mobile -->

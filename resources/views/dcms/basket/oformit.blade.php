@@ -62,15 +62,16 @@
             <option>Выберите город</option>
         </select>
     </div>
-    @guest
+    {{-- @guest
         <div class="form-group">
             <label for="first_last">Код пришедший в СМС: <span class="confirm-phone-text">[<span>отправить</span>]</span></label>
             <input name="sms_code" type="text" class="form-control">
-            {{-- <p class="form-text text-muted">
-                При отправки кода, у вас должна быть пройдена капча Google
-            </p> --}}
         </div>
-    @endguest
+    @endguest --}}
+    <div class="form-group">
+        <label for="offices">Комментарий к заказу:</label>
+        <textarea name="comment" id="" class="form-control"></textarea>
+    </div>
     {!! NoCaptcha::display() !!}
 
     <div class="form-group">

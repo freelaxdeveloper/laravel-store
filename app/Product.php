@@ -31,6 +31,17 @@ class Product extends Model
             }
         return $actions;
     }
+
+    public function setPriceAttribute($value)
+    {
+        $this->attributes['price'] = abs($value);
+    }
+
+    public function setPriceOldAttribute($value)
+    {
+        $this->attributes['price_old'] = abs($value);
+    }
+
     /**
      * список скринов
      */

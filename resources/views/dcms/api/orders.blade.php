@@ -11,7 +11,7 @@
 
     @forelse( $products as $product )
         <div class="media">
-            <a class="pull-left" href="#">
+            <a class="pull-left" href="{{ route('prod.view', [$product]) }}">
               <img class="media-object" width="120" src="{{ $product->screen['src'] }}" alt="{{ $product->title }}">
             </a>
             <div class="media-body">

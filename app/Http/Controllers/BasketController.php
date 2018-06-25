@@ -14,6 +14,9 @@ class BasketController extends Controller
     {
         $nova_poshta = new \App\Plugins\NovaPoshta;
         $regions = $nova_poshta->getRegions();
+        if ( !order()->count() ) {
+            return redirect(route('home'));
+        }
         $products = order()->products();
 
         return view('basket.oformit', compact('regions', 'products'));
@@ -31,6 +34,7 @@ class BasketController extends Controller
             'region' => 'required',
             'cities' => 'required',
             'offices' => 'required',
+            'comment' => 'string|nullable',
             'g-recaptcha-response' => 'required|captcha',
         ])->validate();
 

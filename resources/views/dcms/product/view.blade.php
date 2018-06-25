@@ -30,7 +30,7 @@
     
                 </div>
                 <div class="modal-body">
-                    <img src="#" class="img-responsive" alt="">
+                    <img src="{{$product->screen['src']}}" class="img-responsive" alt="">
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->

@@ -55,12 +55,20 @@ class RegisterController extends Controller
             'password.confirmed' => 'Вы не подтверили пароль',
         ];
 
-        return Validator::make($data, [
+        $validator = Validator::make($data, [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            // 'email' => 'required|string|email|max:255|unique:users',
             'mobile' => 'required|string|max:20|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ], $messages);
+
+        $user = User::where('mobile', Filter::mobile($data['mobile']))->first();
+        $validator->after(function ($validator) use ($user) {
+            if ($user) {
+                $validator->errors()->add('mobile.unique', 'Такой номер телефона уже зарегистрирован у нас на сайте');
+            }
+        });
+        return $validator;
     }
 
     /**
@@ -73,7 +81,7 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            // 'email' => $data['email'],
             'mobile' => Filter::mobile($data['mobile']),
             'password' => bcrypt($data['password']),
         ]);
