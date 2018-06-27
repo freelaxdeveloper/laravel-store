@@ -51,6 +51,9 @@ class Handler extends ExceptionHandler
         if ($exception instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
             return redirect()->back()->withErrors('Ваш запрос был слишком большим.');
         }
+        if ($exception instanceof \ValidateException) {
+            return redirect()->back()->withErrors($exception->getMessage());
+        }
         
         return parent::render($request, $exception);
     }

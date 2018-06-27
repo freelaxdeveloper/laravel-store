@@ -8,6 +8,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 use File;
 use Auth;
+use App\Plugins\Filter;
 
 class Product extends Model
 {
@@ -113,9 +114,22 @@ class Product extends Model
         parent::boot();
 
         static::saving(function ($model) {
+            if ( !$model->title = Filter::input_text($model->title) ) {
+                throw new \Exception('Не допустимое значение в названии');
+            }
+            if ( $model->description && !$model->description = Filter::input_text($model->description) ) {
+                throw new \Exception('Не допустимое значение описания');
+            }
+            if ( $model->meta_description && !$model->meta_description = Filter::input_text($model->meta_description) ) {
+                throw new \Exception('Не допустимое описание мета тега');
+            }
+
             $model->slug = str_slug($model->title);
-            while(Product::where([['slug', $model->slug], ['id', '!=', $model->id]])->first()) {
-                $model->slug = $model->slug . '_' . mt_rand(111, 999);
+            if ( !$model->slug ) {
+                throw new \ValidateException('Не допустимое значение в названии');
+            }
+            while( Product::where([['slug', $model->slug], ['id', '!=', $model->id]])->first() ) {
+                $model->slug = $model->slug . '_' . mt_rand(1111, 9999);
             }
             Category::cacheClear();
         });

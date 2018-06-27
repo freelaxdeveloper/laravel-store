@@ -20,6 +20,7 @@
                         <div class="md-form">
                             <i class="fa fa-envelope prefix grey-text"></i> <label for="email">Номер телефона</label>
                             <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }} bfh-phone" data-format="+38 (ddd) ddd-dddd" name="email" value="{{ old('email') }}" required autofocus>
+                            <p class="help-block">Ваш номер телефона не разглашается, и использоуется только для обратной связи и входа в свой личный кабинет</p>
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback">

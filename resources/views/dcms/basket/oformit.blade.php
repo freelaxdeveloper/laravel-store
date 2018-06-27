@@ -37,6 +37,7 @@
     <div class="form-group">
         <label for="mobile">Номер телефона:</label>
         <input name="mobile" value="@auth {{ Auth::user()->mobile }} @else {{ old('mobile') }} @endauth" type="text" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd">
+        <p class="help-block">Ваш номер телефона не разглашается, и использоуется только для обратной связи и входа в свой личный кабинет</p>
     </div>
     <hr class="red title-hr">
     <p><h4>Адрес доставки</h4></p>
@@ -70,12 +71,12 @@
     @endguest --}}
     <div class="form-group">
         <label for="offices">Комментарий к заказу:</label>
-        <textarea name="comment" id="" class="form-control"></textarea>
+        <textarea name="comment" id="" class="form-control" placeholder="Не обязательное поле"></textarea>
     </div>
     {!! NoCaptcha::display() !!}
 
     <div class="form-group">
-        Подтверждая заказ, я принимаю условия пользовательского соглашения <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#agreement">пользовательского соглашения</a>
+        Подтверждая заказ, Вы принимаете условия пользовательского соглашения <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#agreement">пользовательского соглашения</a>
     </div>
 
     <input type="submit" value="Заказать" class="btn btn-primary">

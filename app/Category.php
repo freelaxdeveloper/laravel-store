@@ -5,6 +5,7 @@ namespace App;
 use Baum\Node;
 use App\Product;
 use Illuminate\Support\Facades\Cache;
+use App\Plugins\Filter;
 
 class Category extends Node
 {
@@ -23,12 +24,19 @@ class Category extends Node
         parent::boot();
 
         static::saving(function ($model) {
-            $slug = str_slug($model->name);
-            if (!Category::where('slug', $slug)->first()) {
-                $model->slug = $slug;
-            } else {
-                $model->slug = $slug . '_' . mt_rand(111, 999);
+            if ( !$model->name = Filter::input_text($model->name) ) {
+                throw new \ValidateException('Не допустимое значение в названии');
             }
+            
+            $slug = str_slug($model->name);
+            if ( !$slug ) {
+                throw new \ValidateException('Не допустимое значение в названии');
+            }
+            while (Category::where([['slug', $slug], ['id', '!=', $model->id]])->first()) {
+                $slug .= '_' . mt_rand(1111, 9999);
+            }
+            $model->slug = $slug;
+            
             // очищаем кеш категорий при изменении категории
             Category::cacheClear();
         });

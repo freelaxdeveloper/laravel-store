@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\{View, Cache};
 use App\{Category,Chat};
+use URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +16,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if ( env('SSL', false) ) {
+            URL::forceScheme('https');
+        }
+        
         /**
          * Cache::remember() - извлечение данных из кеша, если их нету добавляет
          * @param string ключ для получения данных

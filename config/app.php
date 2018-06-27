@@ -213,6 +213,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
+        'ValidateException' => App\Exceptions\ValidateException::class,
+        'Filter' => App\Plugins\Filter::class,
         
     ],
 
