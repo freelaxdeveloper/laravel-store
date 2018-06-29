@@ -162,7 +162,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Baum\Providers\BaumServiceProvider::class,
-        App\Providers\SmsServceProvider::class,        
+        App\Providers\SmsServceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
 
     ],
 
@@ -215,6 +216,8 @@ return [
         'NoCaptcha' => Anhskohbo\NoCaptcha\Facades\NoCaptcha::class,
         'ValidateException' => App\Exceptions\ValidateException::class,
         'Filter' => App\Plugins\Filter::class,
+        'Form' => Collective\Html\FormFacade::class,
+        'Html' => Collective\Html\HtmlFacade::class,
         
     ],
 
