@@ -18,6 +18,7 @@
 		<!-- Bootstrap Core CSS -->
 		@section('css')
 			<link href="{{elixir('/css/dcmsx.css')}}" rel="stylesheet">
+			<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
 			<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		@show
 
@@ -47,12 +48,31 @@
 				<span></span>
 			</a>
 			<nav class="menu-list">
-				<div>
-					В разработке!
+
+	<form class="form-amount-box">
+		<div class="form-group">
+			<label>Текущий ценовой диапазон</label>
+			<div id="slider-container"></div>
+		</div>
+		<div class="form-group amount-box flex-between">
+				<div class="">
+					<label for="amount-from">От: </label>
+					<input type="text" id="amount-from" onkeypress="return isNumberKey(event)" value="500">
 				</div>
+				<div class="">
+					<label for="amount-to">До: </label>
+					<input type="tel" id="amount-to" onkeypress="return isNumberKey(event)" value="15000">
+				</div>
+		</div>
+		<div class="flex-between">
+		<button type="reset" class="btn btn-reset">Reset</button>
+		<button type="submit" class="btn btn-info btn-filter btn-bidnow">Filter</button>
+		</div>
+
+	</form>      
+
 			</nav>
 	</div>
-
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -167,7 +187,7 @@
 
 
 			<!-- Center Column -->
-			<div class="col-sm-8 col-lg-8">
+			<div class="col-xs-12 col-sm-8 col-lg-8">
 			
 				@if ($errors->any())
 					@foreach ($errors->all() as $error)
@@ -192,12 +212,12 @@
 					@endforeach
 				@endif
 
-				<div class="row content">
+				<div class="content">
 					@yield('content')
 				</div>
 			</div><!--/Center Column-->
 			<!-- Right Column -->
-			<div class="col-sm-4 col-lg-3">
+			<div class="col-xs-12 col-sm-4 col-lg-3">
 
 				@section('right')
 					@if (!empty($actions))
@@ -293,11 +313,11 @@
 
 		</div><!--/container-fluid-->
 
-	<footer>       
+	<footer class="col-xs-12">       
 		<div class="small-print">
 			<div class="container">
-				<p>&copy; DCMSX by Sanek_OS9 2018 </p>
-				<p><a href="#">Terms &amp; Conditions</a> <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#basket">Соглашение</a> <a href="#">Contact</a></p>
+				<p>&copy; T-Mebel 2018 </p>
+				<p class="mobile-flex"><a href="#">Правила</a> <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#basket">Соглашение</a> <a href="#">Контакты</a></p>
 			</div>
 		</div>
 	</footer>

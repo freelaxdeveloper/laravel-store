@@ -114,16 +114,6 @@ class Product extends Model
         parent::boot();
 
         static::saving(function ($model) {
-            if ( !$model->title = Filter::input_text($model->title) ) {
-                throw new \Exception('Не допустимое значение в названии');
-            }
-            if ( $model->description && !$model->description = Filter::input_text($model->description) ) {
-                throw new \Exception('Не допустимое значение описания');
-            }
-            if ( $model->meta_description && !$model->meta_description = Filter::input_text($model->meta_description) ) {
-                throw new \Exception('Не допустимое описание мета тега');
-            }
-
             $model->slug = str_slug($model->title);
             if ( !$model->slug ) {
                 throw new \ValidateException('Не допустимое значение в названии');

@@ -19,6 +19,11 @@ class HomeController extends Controller
         //$this->middleware('auth');
     }
 
+    public function test()
+    {
+        return view('page');
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -50,9 +55,15 @@ class HomeController extends Controller
         }
         $sort = request()->get('sort');
         $order = request()->get('order') ?? 'desc';
+        $minPrice = request()->get('minPrice');
+        $maxPrice = request()->get('maxPrice');
 
         $products = Product::when($sort, function ($query) use ($sort, $order) {
             return $query->orderBy($sort, $order);
+        })->when($minPrice, function ($query) use ($minPrice) {
+            return $query->where('price', '>=', $minPrice);
+        })->when($maxPrice, function ($query) use ($maxPrice) {
+            return $query->where('price', '<=', $maxPrice);
         })->paginate($limit);
 
         return view('home', compact('products'));

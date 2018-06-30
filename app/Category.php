@@ -23,11 +23,7 @@ class Category extends Node
     {
         parent::boot();
 
-        static::saving(function ($model) {
-            if ( !$model->name = Filter::input_text($model->name) ) {
-                throw new \ValidateException('Не допустимое значение в названии');
-            }
-            
+        static::saving(function ($model) {            
             $slug = str_slug($model->name);
             if ( !$slug ) {
                 throw new \ValidateException('Не допустимое значение в названии');

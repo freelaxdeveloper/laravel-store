@@ -69,6 +69,31 @@
             <input name="sms_code" type="text" class="form-control">
         </div>
     @endguest --}}
+
+    <div class="form-group">
+        <div id="datetimepicker3" class="input-append">
+            <label for="offices">Укажите время в которое с Вами можно связаться:</label><br>
+            <div class="form-group">
+                C&nbsp; <input data-format="hh:mm:ss" type="text" value="09:00:00"></input>
+                <span class="add-on">
+                <i data-time-icon="glyphicon glyphicon-time prefix grey-text" data-date-icon="icon-calendar">
+                </i>
+                </span>
+            </div>
+        </div>
+        <div id="datetimepicker4" class="input-append">
+            <div class="form-group">
+                по
+                <input data-format="hh:mm:ss" type="text" value="20:00:00"></input>
+                <span class="add-on">
+                <i data-time-icon="glyphicon glyphicon-time prefix grey-text" data-date-icon="icon-calendar">
+                </i>
+                </span>
+            </div>
+        </div>
+
+      </div>
+
     <div class="form-group">
         <label for="offices">Комментарий к заказу:</label>
         <textarea name="comment" id="" class="form-control" placeholder="Не обязательное поле"></textarea>
@@ -110,4 +135,22 @@
             });
         });
     </script>
+
+    <script type="text/javascript"
+    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js">
+   </script>
+   <script type="text/javascript"
+    src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.pt-BR.js">
+   </script>
+   <script type="text/javascript">
+     $(function() {
+    $('#datetimepicker3, #datetimepicker4').datetimepicker({
+        icons: {
+        up: 'glyphicon glyphicon-chevron-up',
+        down: 'glyphicon glyphicon-chevron-down'
+      },
+      pickDate: false,
+    });
+  });
+   </script>
 @endsection

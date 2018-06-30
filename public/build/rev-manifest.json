@@ -1,9 +1,11 @@
 {
-  "css/dcmsx.css": "css/dcmsx-fde8bd98.css",
-  "css/dcmsx.css.map": "css/dcmsx.css-bc64abf9.map",
+  "css/dcmsx.css": "css/dcmsx-c809b575.css",
+  "css/dcmsx.css.map": "css/dcmsx.css-ae258b1e.map",
   "css/tree.css": "css/tree-efa160f7.css",
   "css/tree.css.map": "css/tree.css-c119b5b8.map",
-  "js/dcmsx.js": "js/dcmsx-a4bcdc75.js",
-  "js/dcmsx.js.map": "js/dcmsx.js-302a1940.map",
-  "js/select2.min.js": "js/select2.min-090dfbc8.js"
+  "js/dcmsx.js": "js/dcmsx-3e23021c.js",
+  "js/dcmsx.js.map": "js/dcmsx.js-fb0729f1.map",
+  "js/select2.min.js": "js/select2.min-090dfbc8.js",
+  "js/tinymce_ru.js": "js/tinymce_ru-74eccf3f.js",
+  "js/tinymce_ru.js.map": "js/tinymce_ru.js-36c55157.map"
 }

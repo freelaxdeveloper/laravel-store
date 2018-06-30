@@ -10,10 +10,23 @@ use Auth;
 class ProductController extends Controller
 {
 
+    public function screen_test(Request $request, Product $product)
+    {
+        reset($_FILES);
+        $temp = current($_FILES);
+        $directoryPath = '/images/products/' . $product->id . '/';
+        $destinationPath = $directoryPath . time() . md5(microtime()) . '.jpg';
+        \File::makeDirectory(public_path($directoryPath), 0777, true, true);
+        move_uploaded_file($temp['tmp_name'], public_path($destinationPath));
+
+        return response()->json(['location' => $product->screen['src']], 200);
+        
+    }
     public function add(Category $category)
     {
         $categoriesAll = Category::get();
-        return view('product.add', compact('category', 'categoriesAll'));
+
+        return view('product.edit', compact('category', 'categoriesAll'));
     }
 
     public function new(Request $request, Category $category)
@@ -101,7 +114,7 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categoriesAll = Category::get();
-        $productCategories = $product->categories()->pluck('id')->toArray();
+        //$productCategories = $product->categories()->pluck('id')->toArray();
         $actions = $product->adminActions;
 
         return view('product.edit', compact('categoriesAll', 'product', 'productCategories', 'actions'));

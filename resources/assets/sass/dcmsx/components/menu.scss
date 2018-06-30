@@ -52,12 +52,12 @@
 
 .menu {
   position: fixed;
-  left: 0;top: 0;
+  left: 0;top: 56px;
   z-index: 99;
   width: 20%;
   height: 100vh;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   background-color: #fff;
   border: 1px solid #ddd;
@@ -69,10 +69,11 @@
 }
 .menu-list {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   height: 50%;
   flex-direction: column;
+  width: 100%;
 }
 .menu-list a {
   text-decoration: none;
@@ -85,7 +86,7 @@
   background-color: transparent;
   position: absolute;
   right: -33px;
-  top: 56px;
+  top: 0;
   border-radius: 50%;
   transition: 0.5s;
   span, span::before, span::after {
@@ -112,7 +113,7 @@
 }
 .menu-btn_active {
   right: -31px;
-  top: 57px;
+  top: 0;
   transition: 0.5s;
   background-color: #c63f2f;
   span {
@@ -139,5 +140,5 @@
 //   z-index: 0;
 // }
 .content_active {
-  transform: translateX(20%);
+  transform: translateX(11%);
 }

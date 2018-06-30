@@ -7,12 +7,13 @@ use Illuminate\Foundation\Http\Middleware\TransformsRequest as Middleware;
 class ValidateStrings extends Middleware
 {
     /**
-     * The names of the attributes that should not be trimmed.
+     * Поля, которые нужно фильтровать от всякой нечисти
      *
      * @var array
      */
     protected $only = [
         'title',
+        'name',
         'meta_description',
         'description',
     ];
@@ -22,7 +23,7 @@ class ValidateStrings extends Middleware
         if (!in_array($key, $this->only, true)) {
             return $value;
         }
-        return $value;
+        return \Filter::input_text($value);
     }
 
 }

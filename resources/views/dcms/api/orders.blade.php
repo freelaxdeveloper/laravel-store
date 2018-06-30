@@ -16,7 +16,7 @@
             </a>
             <div class="media-body">
               <h4 class="media-heading">{{ $product->title }}</h4>
-              <p>{{ $product->description }}</p>
+              <p>{!! $product->description !!}</p>
               <p><b>Код товара:</b> {{ $product->id }}</p>
               <p>
                   <b>Стоимость:</b> {{ number_format($product->price) }} {{ env('CURRENCY') }}

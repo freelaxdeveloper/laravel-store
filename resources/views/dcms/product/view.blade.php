@@ -86,7 +86,7 @@
         @if ($product->description)
             <div class="row mx-md-5 px-md-4 px-5 mt-3">
                 <p class="dark-grey-text article">
-                    {{$product->description}}
+                    {!! $product->description !!}
                 </p>
             </div>
         @endif

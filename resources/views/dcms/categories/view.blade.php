@@ -15,7 +15,7 @@
     <div class="btn-group btn-breadcrumb">
         <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
         @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
-            <a href="{{route('cat.view', [$breadcrumbs])}}" class="btn btn-primary">{{$breadcrumbs->name}}</a>
+            <a href="{{route('cat.view', [$breadcrumbs])}}?{{ request()->getQueryString() }}" class="btn btn-primary">{{$breadcrumbs->name}}</a>
         @endforeach
     </div>
     <div class="col-xl-7 col-md-12">

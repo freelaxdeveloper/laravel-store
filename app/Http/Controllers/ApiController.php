@@ -10,6 +10,13 @@ use Validator;
 class ApiController extends Controller
 {
 
+    public function test()
+    {
+        return response("data: Hello Worlds\n\nid: 3\n\n", 200)
+                  ->header('Content-Type', 'text/event-stream')
+                  ->header('Cache-Control', 'no-cache');
+    }
+
     public function agreement(Request $request, $view = null)
     {
         if ( $view ) {

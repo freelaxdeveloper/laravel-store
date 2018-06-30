@@ -8,9 +8,7 @@
 
 @section('content')
     <!-- Team -->
-    <section id="team">
 		@include('listing.products', ['products' => $products])
-    </section>
     <!-- Team -->
 @endsection
 {{-- 

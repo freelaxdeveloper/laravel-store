@@ -558,11 +558,12 @@ section#what-we-do .section-title{
 }
 
 .container-fluid {
-	min-height: calc(100vh - 120px);
+	// min-height: calc(100vh - 120px);
 	transition: 0.5s;
 	z-index: 0;
 	padding: 0;
 	margin: 0;
+	// overflow: hidden;
 }
 .wrapper {
 	overflow-x: hidden;
@@ -637,11 +638,13 @@ span.success {
 	background-color: #fff;
 	padding: 7px;
 	border: 1px solid #ddd;
-	// min-height: 100%;
+	min-height: 100%;
 }
 .flex {
+	// background-color: #fff;
 	display: flex;
 	justify-content: flex-end;
+	// border: 1px solid #ddd;
 	min-height: calc(100vh - 157px);
 }
 
@@ -652,4 +655,20 @@ span.success {
 }
 .close {
 	margin-left: 7px;
+}
+
+.input-append .add-on, .input-prepend .add-on {
+	margin-left: -4px;
+	width: auto;
+	height: 20px;
+	min-width: 16px;
+	padding: 4px 5px;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 20px;
+	text-align: center;
+	text-shadow: 0 1px 0 #ffffff;
+	background-color: #eeeeee;
+	border: 1px solid #ccc;
+	cursor: pointer;
 }

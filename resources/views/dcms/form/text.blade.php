@@ -12,10 +12,11 @@
     $attributesDefault = array_merge($attributesDefault, $attributes);
   }
   $method = $method ?? 'text';
+  $icon = isset($icon) ? "<i class='fa fa-{$icon} prefix grey-text'></i> " : null;
 @endphp
 
 <div class="md-form">
-  {!! Form::label($name, "<i class='fa fa-{$icon} prefix grey-text'></i> {$title}", [], false) !!}
+  {!! Form::label($name, "{$icon} {$title}", [], false) !!}
   @if ( 'password' == $method )
     {!! Form::$method($name, $attributesDefault) !!}
   @else

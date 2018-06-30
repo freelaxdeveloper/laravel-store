@@ -5,6 +5,7 @@ elixir(function(mix) {
         .sass(['dcmsx/dcmsx.scss', 'dcmsx/tree.scss'])
         .scripts([
             'dcmsx/jquery-1.11.3.min.js',
+            'dcmsx/jquery-ui.min.js',
             'dcmsx/dcmsx.js',
             'dcmsx/bootstrap.min.js',
             'dcmsx/bootstrap-formhelpers.min.js',
@@ -13,7 +14,12 @@ elixir(function(mix) {
             'dcmsx/buy.js',
             'dcmsx/spoiler.js',
             'dcmsx/menu.js',
+            'dcmsx/prism.js',
+            'dcmsx/bootstrap-datetimepicker.min.js',
         ], 'public/js/dcmsx.js')
+        .scripts([
+            'dcmsx/tinymce_ru.js',
+        ], 'public/js/tinymce_ru.js')
         .version([ '/css/*', '/js/*' ])
         .copy('resources/assets/images/*.*', 'public/images/')
         .copy('resources/assets/js/dcmsx/select2.min.js', 'public/js/')

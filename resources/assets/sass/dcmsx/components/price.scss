@@ -1,0 +1,30 @@
+#slider-container{
+  position: relative;
+  width: 100%;
+}
+.form-amount-box {
+  width: 100%;
+  padding: 20px;
+}
+
+.amount-box {
+  margin-bottom: 3px;
+  label {
+    // display: block;
+  }
+}
+.amount-box input[type=text], .amount-box input[type=tel]{
+  text-align: center;
+  border: 1px solid #ccc;
+  width: 70px;
+  font-size: 16px;
+  color: #676262;
+  border-radius: 5px;
+  margin-bottom: 5px;
+}
+.flex-between {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
