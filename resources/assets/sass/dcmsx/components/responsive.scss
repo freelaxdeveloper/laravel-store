@@ -66,5 +66,16 @@
   .btn-breadcrumb .btn:last-child {
     padding:9px 18px 6px 24px;
   }
+
+  .screen-block .product-screen img {
+    max-width: 300px;
+  }
+  .other-screen-list {
+    overflow: visible;
+    img {
+      max-width: 60px;
+    }
+    
+  }
   
 }
