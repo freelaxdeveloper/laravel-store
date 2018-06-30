@@ -57,4 +57,14 @@
   .nav-menu ul {
     min-width: 190px;
   }
+  .btn-breadcrumb .btn {
+    padding:9px 12px 6px 24px;
+  }
+  .btn-breadcrumb .btn:first-child {
+    padding:9px 6px 6px 10px;
+  }
+  .btn-breadcrumb .btn:last-child {
+    padding:9px 18px 6px 24px;
+  }
+  
 }
