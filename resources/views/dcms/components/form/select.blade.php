@@ -7,6 +7,9 @@
     $attributesDefault = array_merge($attributesDefault, $attributes);
   }
   $icon = isset($icon) ? "<i class='fa fa-{$icon} prefix grey-text'></i> " : null;
+
+  // if(isset($empty))
+  //   $items->prepend(false, false);
 @endphp
 
 <div class="form-group">

@@ -28,7 +28,7 @@
 @endif
 
 @forelse ($products as $product)
-    @include('listing.product', ['product' => $product])
+    @include('components.listing.product', ['product' => $product])
 @empty
     <div class="single-post mb-4 mr-3">
         <p>Товары в эту категорию еще не были добавлены</p>

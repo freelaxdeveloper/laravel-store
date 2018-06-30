@@ -6,6 +6,11 @@
 <link rel="canonical" href="{{route('cat.view', [$category])}}"/>
 @endsection
 
+@section('menu-left')
+    @include('components.filter')
+@endsection
+
+
 @section('content')
 
 
@@ -33,7 +38,7 @@
                 </div>
                 @endforeach
             </div> --}}
-            @include('listing.products', ['products' => $products])
+            @include('components.listing.products', ['products' => $products])
         </section>
     </div>
 @endsection

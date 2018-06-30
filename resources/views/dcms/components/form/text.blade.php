@@ -13,6 +13,8 @@
   }
   $method = $method ?? 'text';
   $icon = isset($icon) ? "<i class='fa fa-{$icon} prefix grey-text'></i> " : null;
+
+  $value = old($name) ?? $value ?? null;
 @endphp
 
 <div class="md-form">
@@ -20,7 +22,7 @@
   @if ( 'password' == $method )
     {!! Form::$method($name, $attributesDefault) !!}
   @else
-    {!! Form::$method($name, old($name), $attributesDefault) !!}
+    {!! Form::$method($name, $value, $attributesDefault) !!}
   @endif
   
   @if ($errors->has($name))

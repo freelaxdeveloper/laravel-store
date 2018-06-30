@@ -1,4 +1,4 @@
-@include('form.text', [
+@include('components.form.text', [
   'name' => $name, 
   'title' => $title, 
   'icon' => $icon,

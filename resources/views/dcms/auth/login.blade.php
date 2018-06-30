@@ -17,7 +17,7 @@
 
                     {!! Form::open(['route' => 'login']) !!}
 
-                    @include('form.text', [
+                    @include('components.form.text', [
                         'name' => 'email', 
                         'title' => 'Номер телефона', 
                         'icon' => 'envelope', 
@@ -27,15 +27,15 @@
                             'autofocus',
                         ],
                     ])
-                    @include('form.password', [
+                    @include('components.form.password', [
                         'name' => 'password', 
                         'title' => 'Пароль', 
                         'icon' => 'lock',
                     ])
 
-                    @include('form.checkbox', ['name' => 'remember', 'title' => 'Запомнить'])
+                    @include('components.form.checkbox', ['name' => 'remember', 'title' => 'Запомнить'])
 
-                    @include('form.submit', ['title' => 'Авторизация'])
+                    @include('components.form.submit', ['title' => 'Авторизация'])
 
                     {!! Form::close() !!}
 

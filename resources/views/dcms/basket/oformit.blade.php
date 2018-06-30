@@ -24,32 +24,44 @@
         <a href="{{ URL::previous() }}" class="btn btn-primary">Продолжить покупки</a>
     </div>
 
-<form method="POST" action="{{ route('basket.oformit-zakaz') }}">
+    {!! Form::open(['route' => ['basket.oformit-zakaz']]) !!}
     <p><h3>Оформление заказа</h3></p>
     <p class="form-text text-muted">
         В большинстве случаев, оплата заказа производится по факту получения. На некоторые виды товара может понадобиться частичная предоплата. Полные условия оплаты и этапы выполнения заказа Вам сообщат наши менеджеры при обработке заказа в телефонном режиме.
     </p>
     @csrf
     <div class="form-group">
-        <label for="first_last">Имя и фамилия:</label>
-        <input name="first_last" type="text" class="form-control" value="@auth {{ Auth::user()->name }} @else {{ old('first_last') }} @endauth">
+        @php( $first_last = Auth::user()->name ?? null )
+        @include('components.form.text', [
+            'name' => 'first_last', 
+            'title' => 'Имя и фамилия',
+            'value' => $first_last,
+        ])
     </div>
     <div class="form-group">
-        <label for="mobile">Номер телефона:</label>
-        <input name="mobile" value="@auth {{ Auth::user()->mobile }} @else {{ old('mobile') }} @endauth" type="text" class="form-control bfh-phone" data-format="+38 (ddd) ddd-dddd">
+        @php( $mobile = Auth::user()->mobile ?? null )
+        @include('components.form.text', [
+            'name' => 'mobile', 
+            'title' => 'Номер телефона',
+            'value' => $mobile, 
+            'attributes' => [
+                'class' => 'form-control bfh-phone', 
+                'data-format' => '+38 (ddd) ddd-dddd',
+            ],
+        ])
         <p class="help-block">Ваш номер телефона не разглашается, и использоуется только для обратной связи и входа в свой личный кабинет</p>
     </div>
     <hr class="red title-hr">
     <p><h4>Адрес доставки</h4></p>
-    <div class="form-group">
-        <label for="region">Область:</label>
-        <select name="region" class="form-control region">
-            <option></option>
-            @foreach ( $regions as $region )
-                <option value="{{ $region->Ref }}">{{ $region->Description }}</option>
-            @endforeach
-        </select>
-    </div>
+    @include('components.form.select', [
+        'name' => 'region',
+        'title' => 'Область',
+        'items' => $regions->pluck('Description', 'Ref'),
+        'empty' => true,
+        'attributes' => [
+            'class' => 'form-control region'
+        ],
+    ])
     <div class="form-group">
         <label for="cities">Город:</label>
 
@@ -63,16 +75,10 @@
             <option>Выберите город</option>
         </select>
     </div>
-    {{-- @guest
-        <div class="form-group">
-            <label for="first_last">Код пришедший в СМС: <span class="confirm-phone-text">[<span>отправить</span>]</span></label>
-            <input name="sms_code" type="text" class="form-control">
-        </div>
-    @endguest --}}
 
     <div class="form-group">
         <div id="datetimepicker3" class="input-append">
-            <label for="offices">Укажите время в которое с Вами можно связаться:</label><br>
+            <label>Укажите время в которое с Вами можно связаться:</label><br>
             <div class="form-group">
                 C&nbsp; <input data-format="hh:mm:ss" type="text" value="09:00:00"></input>
                 <span class="add-on">
@@ -95,8 +101,15 @@
       </div>
 
     <div class="form-group">
-        <label for="offices">Комментарий к заказу:</label>
-        <textarea name="comment" id="" class="form-control" placeholder="Не обязательное поле"></textarea>
+        @include('components.form.textarea', [
+            'name' => 'comment', 
+            'title' => 'Комментарий к заказу',
+            'method' => 'textarea', 
+            'attributes' => [
+                'placeholder' => 'Не обязательное поле',
+            ],
+            'required' => false,
+        ])
     </div>
     {!! NoCaptcha::display() !!}
 
@@ -104,8 +117,8 @@
         Подтверждая заказ, Вы принимаете условия пользовательского соглашения <a data-toggle="modal" href="{{ route('agreement', ['view']) }}" data-target="#agreement">пользовательского соглашения</a>
     </div>
 
-    <input type="submit" value="Заказать" class="btn btn-primary">
-</form>
+    @include('components.form.submit', ['title' => 'Заказать'])
+{!! Form::close() !!}
 @endsection
 
 @section('right-column')

@@ -15,7 +15,7 @@
                 <div class="card-body">
 
                     {!! Form::open(['route' => 'register']) !!}
-                        @include('form.text', [
+                        @include('components.form.text', [
                             'name' => 'name', 
                             'title' => 'Ваше имя', 
                             'icon' => 'user', 
@@ -24,7 +24,7 @@
                             ],
                         ])
 
-                        @include('form.text', [
+                        @include('components.form.text', [
                             'name' => 'mobile', 
                             'title' => 'Ваш номер телефона', 
                             'icon' => 'envelope', 
@@ -34,19 +34,19 @@
                             ],
                         ])
 
-                        @include('form.password', [
+                        @include('components.form.password', [
                             'name' => 'password', 
                             'title' => 'Пароль', 
                             'icon' => 'lock',
                         ])
 
-                        @include('form.password', [
+                        @include('components.form.password', [
                             'name' => 'password_confirmation', 
                             'title' => 'Повторите пароль', 
                             'icon' => 'exclamation-triangle',
                         ])
                     
-                        @include('form.submit', ['title' => 'Регистрация'])
+                        @include('components.form.submit', ['title' => 'Регистрация'])
                     {!! Form::close() !!}
 
                 </div>

@@ -37,20 +37,20 @@
                                 {!! Form::open(['route' => ['prod.new', $category]]) !!}
                             @endif
                             
-                                @include('form.text', [
+                                @include('components.form.text', [
                                     'name' => 'title', 
-                                    'title' => 'Название', 
+                                    'title' => 'Название',
                                 ])
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-2">
-                                            @include('form.text', [
+                                            @include('components.form.text', [
                                                 'name' => 'price', 
                                                 'title' => 'Цена', 
                                             ])
                                         </div>
                                         <div class="col-xs-2">
-                                            @include('form.text', [
+                                            @include('components.form.text', [
                                                 'name' => 'price_old', 
                                                 'title' => 'Старая цена',
                                                 'required' => false,
@@ -61,21 +61,21 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-xs-2">
-                                            @include('form.text', [
+                                            @include('components.form.text', [
                                                 'name' => 'options[size][length]', 
                                                 'title' => 'Длина',
                                                 'required' => false,
                                             ])
                                         </div>
                                         <div class="col-xs-2">
-                                            @include('form.text', [
+                                            @include('components.form.text', [
                                                 'name' => 'options[size][height]', 
                                                 'title' => 'Высота',
                                                 'required' => false,
                                             ])
                                         </div>
                                         <div class="col-xs-3">
-                                            @include('form.text', [
+                                            @include('components.form.text', [
                                                 'name' => 'options[size][width]', 
                                                 'title' => 'Ширина',
                                                 'required' => false,
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @include('form.textarea', [
+                                @include('components.form.textarea', [
                                     'name' => 'description', 
                                     'title' => 'Описание',
                                     'method' => 'textarea', 
@@ -93,7 +93,7 @@
                                     ],
                                     'required' => false,
                                 ])
-                                @include('form.textarea', [
+                                @include('components.form.textarea', [
                                     'name' => 'meta_description', 
                                     'title' => 'Описание (META)',
                                     'method' => 'textarea', 
@@ -102,7 +102,7 @@
                                     ],
                                     'required' => false,
                                 ])
-                                @include('form.select', [
+                                @include('components.form.select', [
                                     'name' => 'categories[]',
                                     'title' => 'Категории',
                                     'items' => $categoriesAll->pluck('name', 'id'),
@@ -110,7 +110,7 @@
                                         'multiple' => 'multiple',
                                     ],
                                 ])
-                                @include('form.submit', ['title' => 'Сохранить'])
+                                @include('components.form.submit', ['title' => 'Сохранить'])
                             {!! Form::close() !!}
                         </div>
                         <!--/.Leave a reply form-->

@@ -2,13 +2,17 @@
 
 @section('title', 'Твоя мебель - магазин мебели: купить мебель для офиса и дома')
 
+@section('menu-left')
+	@include('components.filter')
+@endsection
+
 @section('meta')
 <link rel="canonical" href="{{url('/')}}/"/>
 @endsection
 
 @section('content')
     <!-- Team -->
-		@include('listing.products', ['products' => $products])
+		@include('components.listing.products', ['products' => $products])
     <!-- Team -->
 @endsection
 {{-- 
