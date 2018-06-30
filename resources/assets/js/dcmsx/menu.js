@@ -6,6 +6,12 @@ $(document).ready(function () {
     $(this).children( 'ul' ).addClass('display');
   });
 
+  $('.nav-menu li').click(function (e) {
+    e.stopPropagation();
+    // $(this).children( 'ul' ).toggleClass('display');
+    $(this).children( 'ul' ).addClass('display');
+  });
+
   $( 'body' ).click(function () {
     $('.has-children > ul').removeClass('display');
   });
@@ -80,16 +86,19 @@ $('.btn-filter').click(function(e) {
   localStorage.setItem('minPrice', from);
   localStorage.setItem('maxPrice', to);
 
-  const getParams = query => {
+  function getParams(query) {
     if (!query) {
       return { };
     }
   
     return (/^[?#]/.test(query) ? query.slice(1) : query)
       .split('&')
-      .reduce((params, param) => {
-        let [ key, value ] = param.split('=');
-        params[key] = value ? decodeURIComponent(value.replace(/\+/g, ' ')) : '';
+      .reduce(function(params, param) {
+        // let [ key, value ] = param.split('=');
+        // console.log('key', key);
+        // console.log('value', value);
+        // console.log('split', param.split('='));
+        params[param.split('=')[0]] = param.split('=')[1] ? decodeURIComponent(param.split('=')[1].replace(/\+/g, ' ')) : '';
         return params;
       }, { });
   };

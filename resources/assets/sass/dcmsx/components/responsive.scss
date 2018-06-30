@@ -8,6 +8,7 @@
     top: 51px;
   }
   .menu-btn {
+    top: 5px;
     border-radius: 1px;
     border: 1px solid #ddd;
     background-color: #fff;
@@ -32,6 +33,7 @@
   }
   .small-print {
     clip-path: none;
+    margin: -20px -14px 0px -15px;
     // padding-bottom: 28px;
     a {
       clip-path: none;
@@ -51,5 +53,8 @@
   }
   .content_active {
     transform: translateX(70%);
+  }
+  .nav-menu ul {
+    min-width: 190px;
   }
 }
