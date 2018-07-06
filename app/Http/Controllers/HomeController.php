@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\{Category, Product};
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\View;
+use App\Jobs\{UserJob, OneJob, TwoJob, ThreeJob};
 
 class HomeController extends Controller
 {
@@ -19,9 +21,30 @@ class HomeController extends Controller
         //$this->middleware('auth');
     }
 
-    public function test()
+    public function effect(Request $request)
     {
-        return view('page');
+        if (View::exists('effects.' . $request->effect)) {
+            return view('effects.' . $request->effect);
+        }
+        return '=)';
+    }
+
+    public function telegram()
+    {
+        $messageText = 'dfdfff';
+        // for($i = 0; $i < 10; $i++)
+        // $messageText .= 'lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol lol ';
+        $chatId = '@dcms_pro';
+        $bot = new \TelegramBot\Api\BotApi(env('TELEGRAM_BOT'));
+
+        //$bot->sendMessage('@dcms_pro', $messageText);
+        $media = new \TelegramBot\Api\Types\InputMedia\ArrayOfInputMedia();
+        $media->addItem(new \TelegramBot\Api\Types\InputMedia\InputMediaPhoto('https://cdn.taburetka.ua/4e/73/h9dvedkihb9rbv0ff9ahefqougavm.jpg', "description description description description description description description description description description description description description description\nhttps://скачай-ка.рф"));
+        //$media->addItem(new \TelegramBot\Api\Types\InputMedia\InputMediaPhoto('https://avatars3.githubusercontent.com/u/9335727'));
+        // Same for video
+        // $media->addItem(new TelegramBot\Api\Types\InputMedia\InputMediaVideo('http://clips.vorwaerts-gmbh.de/VfE_html5.mp4'));
+        $bot->sendMediaGroup($chatId, $media);
+        $bot->sendMessage($chatId, $messageText);
     }
 
     /**
@@ -30,7 +53,15 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   
+        $user = \Auth::user();
+
+        OneJob::withChain([
+            (new TwoJob($user, 2))->delay(5),
+            (new ThreeJob($user, 3))->delay(5),
+        ])->dispatch($user, 1)->delay(5);
+
+
  /*         $nova_poshta = new \App\Plugins\NovaPoshta;
         $regions = $nova_poshta->getRegions();
         $cities = $nova_poshta->getCities('db5c88de-391c-11dd-90d9-001a92567626');

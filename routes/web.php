@@ -21,7 +21,8 @@ Auth::routes();
 Route::post('/test_screen/{product}', 'ProductController@screen_test')->name('screen_save_test');
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/test', 'HomeController@test');
+
+Route::get('/effects/{effect}', 'HomeController@effect');
 
 Route::get('/categories', [
     'as' => 'cat',

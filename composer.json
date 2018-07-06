@@ -20,7 +20,8 @@
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
         "mgp25/instagram-php": "^3.1",
-        "mobiledetect/mobiledetectlib": "^2.8"
+        "mobiledetect/mobiledetectlib": "^2.8",
+        "telegram-bot/api": "^2.3"
     },
     "require-dev": {
         "filp/whoops": "~2.0",
