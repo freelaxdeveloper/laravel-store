@@ -10,7 +10,7 @@
 		@yield('meta')
 		<title>@yield('title')</title>
 
-		<link rel="icon" type="image/x-icon" href="{{url('favicon.ico')}}" />
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 		<link rel="canonical" href="{{ url()->current() }}"/>
