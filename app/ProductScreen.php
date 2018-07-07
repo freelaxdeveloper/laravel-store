@@ -4,6 +4,7 @@ namespace App;
 
 use App\Product;
 use Illuminate\Support\Collection;
+use App\Services\Image\Image;
 
 class ProductScreen {
 
@@ -29,6 +30,7 @@ class ProductScreen {
     {
         $screens = [];
         $files = glob($this->getPath('*'));
+        rsort($files);
         for($i = 0, $id = 1; $i < count($files); $i++, $id++) {
             $screens[] = $this->screen($files[$i], $id);
         }
@@ -66,10 +68,9 @@ class ProductScreen {
      */
     public function screen(string $path, int $id): array
     {
-        $screen = pathinfo($path);
-        $screen['src'] = str_replace(public_path(), '', $path);
-        $screen['path'] = $screen['dirname'] . '/' . $screen['basename'];
+        $screen = Image::info($path);
         $screen['id'] = $id;
+        $screen['image'] = (new Image($screen['path']));
 
         return $screen;
     }

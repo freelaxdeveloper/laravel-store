@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\{Product, Category};
 use Validator;
 use Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -67,6 +68,24 @@ class ProductController extends Controller
         return view('product.screen', compact('product', 'actions'));
     }
 
+    public function screenView(Product $product, int $screen_id, int $width, int $height)
+    {
+        $resizeWhiteList = ['50x50', '100x100', '150x150', '240x320', '480x640', '320x240'];
+
+        if (!in_array("{$width}x{$height}", $resizeWhiteList)) {
+            return response()->json(['success' => 'error'], 403);
+        }
+        if ( !$screen = $product->screens->where('id', $screen_id)->first()) {
+            $screen = $product->screen;
+        }
+        $image = $screen['image']->size($width, $height);
+
+        return response(file_get_contents($image['path']))
+            ->withHeaders([
+                'Content-Type' => 'image/' . $screen['extension'],
+            ]);
+    }
+
     public function screenSave(Request $request, Product $product)
     {
         $this->validate($request, [
@@ -122,6 +141,17 @@ class ProductController extends Controller
 
     public function delete(Product $product)
     {
+        $actions = $product->adminActions;
+
+        return view('product.delete', compact('product', 'actions'));
+    }
+
+    public function deleteConfirm(Request $request, Product $product)
+    {
+        Validator::make($request->all(), [
+            'g-recaptcha-response' => 'required|captcha',
+        ])->validate();
+
         $product->delete();
 
         return redirect(route('home'));

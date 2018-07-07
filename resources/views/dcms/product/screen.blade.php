@@ -2,6 +2,10 @@
 
 @section('title', 'Упрвление фотографиями')
 
+@section('menu-left')
+	@include('components.actions', $actions)
+@endsection
+
 @section('content')
     <div class="btn-group btn-breadcrumb">
         <a href="{{ route('home') }}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>

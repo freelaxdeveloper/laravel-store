@@ -3,6 +3,7 @@
 /storage/images/
 /node_modules
 /public/hot
+/public/temp
 /public/storage
 /storage/*.key
 /vendor

@@ -88,17 +88,17 @@
 						  {{-- <img src="{{Auth::user()->avatar}}" class="img-circle" alt="Profile Image" /> --}}
 						  </a>
 						  <ul class="dropdown-menu">
-							<li><a href="{{ route('user.my') }}">Мой кабинет</a></li>
-							{{-- <li><a href="#">Почта</a></li> --}}
-							<li role="separator" class="divider"></li>
-							{{-- <li><a href="{{route('photo.upload', [Auth::user()->id])}}">Мои фото</a></li> --}}
-							{{-- <li><a href="#">Настройки</a></li> --}}
-							<li><a href="{{ route('logout') }}"
-								onclick="event.preventDefault();
+								<li><a href="{{ route('user.my') }}">Мой кабинет</a></li>
+								{{-- <li><a href="#">Почта</a></li> --}}
+								<li role="separator" class="divider"></li>
+								{{-- <li><a href="{{route('photo.upload', [Auth::user()->id])}}">Мои фото</a></li> --}}
+								{{-- <li><a href="#">Настройки</a></li> --}}
+								<li><a href="{{ route('logout') }}"
+									onclick="event.preventDefault();
 											  document.getElementById('logout-form').submit();">Выйти</a></li>
-							@if (Auth::user() && Auth::user()->hasRole('admin'))
-								<li><a href="{{route('admin.index')}}">Админка</a></li>
-							@endif
+								@auth('admin'))
+									<li><a href="{{route('admin.index')}}">Админка</a></li>
+								@endauth
 						  </ul>
 						</li>
 					  </ul>
@@ -134,6 +134,12 @@
 <div class="container-fluid">
 		<nav class="nav-menu">
 			<ul>
+				<li>
+					<a href="{{ route('home') }}">
+						<i class="category0"></i>
+						Главная
+					</a>
+				</li>
 				@each('categories.treeMenu.listing', $categories, 'category')
 			</ul>
 		</nav>
@@ -191,7 +197,7 @@
 			<div class="col-xs-12 col-sm-4 col-lg-3">
 
 				@section('right')
-					@if (!empty($actions))
+					{{-- @if (!empty($actions))
 						<div class="panel panel-primary">
 							<div class="panel-heading">Действия</div>
 							<div class="list-group">
@@ -200,7 +206,7 @@
 								@endforeach
 							</div>
 						</div>
-					@endif
+					@endif --}}
 
 					@yield('right-column')
 					<div class="panel panel-default">

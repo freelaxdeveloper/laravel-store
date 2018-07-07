@@ -1,4 +1,5 @@
 <?php
+use App\Services\Image\Image;
 
 function lang(string $key, array $replace = [], string $locale = null): string
 {
@@ -27,4 +28,9 @@ function percent(int $one, int $two): int
 function order()
 {
     return (new \App\Plugins\Ordered);
+}
+
+function image(string $imagePath): Image
+{
+    return new Image($imagePath);
 }

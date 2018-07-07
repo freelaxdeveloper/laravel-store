@@ -304,7 +304,8 @@
 }
 
 .screen-block {
-  display: flex;
+  position: relative;
+  float: left;
   .other-screen-list {
     width: 135px;
     display: flex;
@@ -325,7 +326,7 @@
       cursor: zoom-in;
     }
     img {
-      max-width: 500px;
+      max-width: 320px;
     }
   }
   

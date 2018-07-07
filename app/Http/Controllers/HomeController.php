@@ -8,6 +8,8 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use App\Jobs\{UserJob, OneJob, TwoJob, ThreeJob};
+use Gumlet\ImageResize as Resize;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -19,6 +21,28 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+    }
+
+    public function resize()
+    {
+        // $product = Product::first();
+        // //Storage::disk('s3')->put('t2.jpg', file_get_contents($product->screen['image']->size(50, 50)['path']), 'public');
+        // Storage::disk('s3')->makeDirectory('test');
+        // echo Storage::disk('s3')->url('products-photo/t2.jpg');
+        // echo "<img src='{$product->screen['image']->size(50, 50)['src']}' />";
+        // dd();
+        $product = Product::first();
+        echo "<img src='{$product->screen['image']->size(240, 320)['src']}' />";
+        dd();
+        $product = Product::first();
+        $screen = $product->screen['path'];
+
+        $image = new Resize($screen);
+        $image->crop(240, 320, Resize::CROPCENTER);
+
+        $result = $image->save(base_path() . '/public/test2.jpg', null, 100);
+        
+        echo '<img src="/test2.jpg" />';
     }
 
     public function effect(Request $request)
@@ -56,10 +80,10 @@ class HomeController extends Controller
     {   
         $user = \Auth::user();
 
-        OneJob::withChain([
-            (new TwoJob($user, 2))->delay(5),
-            (new ThreeJob($user, 3))->delay(5),
-        ])->dispatch($user, 1)->delay(5);
+        // OneJob::withChain([
+        //     (new TwoJob($user, 2))->delay(5),
+        //     (new ThreeJob($user, 3))->delay(5),
+        // ])->dispatch($user, 1)->delay(5);
 
 
  /*         $nova_poshta = new \App\Plugins\NovaPoshta;

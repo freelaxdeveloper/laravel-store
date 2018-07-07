@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Вы выбрали №' . $product->id)
+@section('title', "Вы выбрали №" . $product->id)
 
 @section('meta')
 <link rel="canonical" href="{{route('prod.view', [$product->id])}}"/>

@@ -12,11 +12,11 @@
     @forelse( $products as $product )
         <div class="media">
             <a class="pull-left" href="{{ route('prod.view', [$product]) }}">
-              <img class="media-object" width="120" src="{{ $product->screen['src'] }}" alt="{{ $product->title }}">
+              <img class="media-object" src="{{ $product->screen['image']->size(100, 80)->get('src') }}" alt="{{ $product->title }}">
             </a>
             <div class="media-body">
               <h4 class="media-heading">{{ $product->title }}</h4>
-              <p>{!! $product->description !!}</p>
+              <p>{!! $product->meta_description !!}</p>
               <p><b>Код товара:</b> {{ $product->id }}</p>
               <p>
                   <b>Стоимость:</b> {{ number_format($product->price) }} {{ env('CURRENCY') }}

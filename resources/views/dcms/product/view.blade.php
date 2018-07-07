@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', $product->title)
+@section('title', $product->title . ' - заказать онлайн')
 
 @section('meta')
 
@@ -35,36 +35,57 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal mixer image -->
-
-<div class="btn-group btn-breadcrumb">
-    <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
-    <a href="{{ URL::previous() }}" class="btn btn-primary">Вернуться</a>
-</div>
-
-<div class="col-xl-8 col-md-12">
-
-    <!--Card-->
-    <div class="card card-body mb-5 px-0 py-0">
-<div class="row">
-        <div class="col-md-4">
-            <p class="font-small grey-text mb-0">
-                <i class="fa fa-clock-o"></i> {{$product->created_at}}
-                <i class="fa fa-eye dark-grey-text"></i> <strong>{{$product->views}}</strong> 
-            </p>
-            @foreach ($product->categories()->get() as $category)
-                <a href="{{ route('cat.view', [$category]) }}?{{ request()->getQueryString() }}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
-            @endforeach
+    <div class="col-md-8">
+        <div class="btn-group btn-breadcrumb">
+            <a href="{{route('home')}}" class="btn btn-primary"><i class="glyphicon glyphicon-home"></i></a>
+            <a href="{{ URL::previous() }}" class="btn btn-primary">Вернуться</a>
         </div>
-
-        <!--Title-->
+    </div>
+    <div class="col-md-4 text-right">
+        <p class="font-small grey-text mb-0">
+            <i class="fa fa-clock-o"></i> {{$product->created_at}}
+            @auth('admin')
+                <i class="fa fa-eye dark-grey-text"></i> <strong>{{$product->views}}</strong>
+            @endauth
+        </p>
+    </div>
+    <div class="col-md-12 text-center">
         <h1 style="margin-top: 0;">
             <strong>{{$product->title}}</strong>
         </h1>
-    </div>
-        <hr class="red title-hr">
+    </div>    
+<div class="col-xl-8 col-md-12">
+
+    <!--Card-->
         <div class="row">
-            <div class="col-md-8 screen-block">
-                <div class="other-screen-list">
+            <div class="col-md-8">
+                @foreach ($product->categories()->get() as $category)
+                    <a href="{{ route('cat.view', [$category]) }}?{{ request()->getQueryString() }}" rel="nofollow"><span class="badge indigo">{{$category->name}}</span></a>
+                @endforeach
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="screen-block">
+
+
+                <div class="timeline-container timeline-theme-1">
+                    <div class="timeline js-timeline">
+                        @foreach($product->screens as $screen)
+                            <div data-time="Фото №{{$screen['id']}}">
+                                <div class="product-screen">
+                                    <a href="#" data-toggle="modal" data-target=".pop-up-1">
+                                        <img data-src="{{ $screen['src'] }}" src="{{ $screen['image']->text('TMebel')->text("Фото №{$screen['id']}", 'top')->size(320, 240)->get('src') }}">
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>    <!-- Team -->
+
+
+
+                {{-- <div class="other-screen-list">
                     @foreach($product->screens as $screen)
                         <img src="{{$screen['src']}}" width="128">
                     @endforeach
@@ -73,7 +94,7 @@
                     <a href="#" data-toggle="modal" data-target=".pop-up-1">
                         <img src="{{$product->screen['src']}}">
                     </a>
-                </div>
+                </div> --}}
                 
             </div>
             {{-- <div class="col-md-4 other-screen-list">
@@ -90,10 +111,15 @@
                 </p>
             </div>
         @endif
-    </div>
     <!--/.Card-->
 </div>
 @endsection
+
+@if( $actions )
+    @section('menu-left')
+        @include('components.actions', $actions)
+    @endsection
+@endif
 
 @section('js')
     <script>
@@ -103,14 +129,20 @@
                 let $this = $(this);
                 console.log($this.attr('src'));
 
-                $('.product-screen img').attr('src', $this.attr('src'));
+                $('.product-screen img').attr('src', $this.data('src'));
             });
 
             $('.product-screen img').click(function() {
                 let $this = $(this);
-                $('.img-responsive').attr('src', $this.attr('src'));
+                $('.img-responsive').attr('src', $this.data('src'));
             });
         });
+
+
+        $('.timeline').Timeline({
+            // startItem: 'last',
+        });
+
     </script>
 
 @endsection
@@ -125,7 +157,7 @@
         @if ( $product->price )
             <div class="list-group-item text-center" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                 <h3 itemprop="price" content="{{ $product->price }}">{{ number_format(price($product->price)) }} <span itemprop="priceCurrency" content="UAH">{{ env('CURRENCY') }}</span> {{ $product->type }}</h3>
-                <a class="btn btn-primary btn-lg buy" href="#" data-product-id="{{ $product->id }}" onclick="return false;">Купить</a>
+                <a class="btn btn-primary btn-lg buy" href="#" data-product-id="{{ $product->id }}" onclick="return false;">Купить @if ($product->discount) со скидкой @endif</a>
             </div>
         @endif
     </div>

@@ -1,0 +1,463 @@
+/*!
+	Timeline - v0.0.1
+	ilker Yılmaz
+	https://github.com/ilkeryilmaz/timeline
+ */
+
+
+// Timeline Variables
+// --------------------------------------------------------
+$item-width: 400px;
+$transition-time: 1s;
+$transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+
+$dots-item-width: 38px;
+
+
+// Timeline Mixins
+// --------------------------------------------------------
+@mixin clearfix {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+
+
+// Timeline Structure
+// --------------------------------------------------------
+
+.timeline-container {
+  // position: relative;
+  position: unset;
+  @include clearfix;
+}
+
+.timeline {
+  width: 100%;
+}
+
+.timeline-list {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline-list-wrap {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  transform: translate3d(0, 0, 0);
+  transition: transform $transition-time $transition-ease;
+}
+
+.timeline-item {
+  float: left;
+  width: 400px;
+  height: 400px;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
+}
+
+
+// Timeline Dots
+// --------------------------------------------------------
+.timeline-dots-wrap {
+  position: absolute;
+  overflow: hidden;
+
+	.timeline-horizontal &{
+		// width: 100%;
+		width: unset;
+		height: $dots-item-width;
+	}
+
+	.timeline-vertical &{
+		width: $dots-item-width + 30px;
+		height: 100%;
+		top: 0;
+	}
+
+  &.bottom {
+    // bottom: -50px;
+  }
+
+  &.top {
+    top: -50px;
+  }
+
+	&.left {
+		left: -65px;
+	}
+
+	&.right {
+		// right: -70px;
+		right: 0px;
+	}
+}
+
+.timeline-dots {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform $transition-time $transition-ease;
+
+	.timeline-horizontal &{
+		background: url('../../images/timeline-bg.png') bottom repeat-x;
+	}
+
+	.timeline-vertical & {
+		background: url('../../images/timeline-vertical-bg.png') left repeat-y;
+	}
+
+  li {
+    transition: all $transition-time $transition-ease;
+    list-style: none;
+    overflow: hidden;
+
+		.timeline-horizontal &{
+			float: left;
+			width: 80px;
+			// width: 50px;
+			text-align: center;
+		}
+
+		.timeline-vertical &{
+			width: 100%;
+		}
+
+    &.slide-active {
+      button {
+        color: #2972ca;
+        font-size: 14px;
+      }
+    }
+  }
+
+  button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #333;
+    font-size: 12px;
+    transition: all $transition-time $transition-ease;
+
+
+		.timeline-horizontal & {
+			background: url('../../images/date-icon.png') bottom no-repeat;
+			padding-bottom: 15px;
+		}
+
+		.timeline-vertical & {
+			background: url("../../images/date-icon-vertical.png") left no-repeat;
+			padding-left: 15px;
+		}
+  }
+}
+
+
+
+// Timeline Theme
+// --------------------------------------------------------
+
+.timeline-container {
+  width: $item-width;
+  margin: 0 auto;
+}
+
+.timeline-list {
+  width: 400px;
+}
+
+.timeline-item {
+  // text-align: center;
+  width: $item-width;
+  // height: 400px;
+  height: 300px;
+  padding: 10px;
+  border: 0px solid #ddd
+}
+/*************************************/
+
+
+
+
+
+// Variables
+// --------------------------------------------------------
+$color-primary: #4A2AB2;
+$color-second: #23A5E9;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+html {
+  font-size: 14px;
+
+  @media (min-width: 576px) {
+    font-size: 15px;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 16px;
+  }
+}
+
+body {
+  font-family: "Lato",Arial,sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #292b2c;
+  background: linear-gradient(to bottom right, $color-primary, $color-second);
+}
+
+p {
+  margin-bottom: 0.5rem;
+}
+.container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+code, pre {
+  padding: 0.5rem;
+  background-color: #f6f8fa;
+  color: $color-primary;
+  line-height: 1.7;
+}
+
+pre {
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  overflow: auto;
+}
+
+code {
+  padding: 0.2rem;
+  margin-bottom: 0.1rem;
+  font-size: 90%;
+  background-color: #f6f8fa;
+  border-radius: .25rem;
+
+	.pln,
+	.pun{
+		color: $color-primary;
+	}
+}
+
+// Header
+// --------------------------------------------------------
+.header-wrapper {
+  padding: 5rem 0;
+}
+
+.page-intro {
+  text-align: center;
+  line-height: 1.2;
+  h1 {
+    display: inline-block;
+    font-weight: 300;
+    font-size: 4rem;
+    color: #7dffc3;
+    background: -webkit-linear-gradient(135deg, #fff9b0, #7dffc3);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  h2 {
+    font-weight: 300;
+    font-size: 1.5rem;
+    line-height: 1.7;
+    color: #fff;
+    margin-bottom: 2rem;
+  }
+}
+
+
+// Main
+// --------------------------------------------------------
+.section-list {
+  padding: 3rem 2.5rem;
+  margin-bottom: 2rem;
+  background: #fff;
+
+  @media (min-width: 576px) {
+    border-radius: 1rem;
+  }
+
+	a {
+		color: $color-primary;
+	}
+
+  h2 {
+	margin-bottom: 1.25rem;
+	font-size: 2rem;
+	color: $color-primary;
+  }
+}
+
+.section-list-box:not(:last-child) {
+  border-bottom: 1px solid #dddddd;
+  margin: 3rem 0;
+  padding-bottom: 5rem;
+}
+
+
+.table {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 1rem;
+  border-collapse: collapse;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+
+  thead {
+    th {
+      padding: .75rem;
+      vertical-align: top;
+      text-align: left;
+      border-top: 1px solid #eceeef;
+      border-bottom: 2px solid #eceeef;
+    }
+  }
+
+  td {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #eceeef;
+  }
+
+  code {
+    display: table;
+  }
+}
+
+.row-large {
+	width: 50%;
+}
+
+// Footer
+// --------------------------------------------------------
+.footer-wrapper {
+  padding: 1rem 0;
+  color: #fff;
+  text-align: center;
+
+  a {
+	color: currentColor;
+  }
+}
+
+
+
+// Demo Theme
+// --------------------------------------------------------
+
+.timeline-theme-1 {
+  width: 400px;
+  // margin: 100px auto;
+  margin: 10px auto;
+}
+
+.timeline-1 {
+  .timeline-list {
+    width: 400px;
+		height: 350px;
+  }
+
+  .timeline-item {
+    width: 400px;
+    height: 350px;
+    background: #ddd;
+    border: none;
+  }
+}
+
+.timeline-visual {
+  float: left;
+  width: 43%;
+  margin-right: 3%;
+  line-height: 1;
+
+  img {
+		max-width: 100%;
+  }
+}
+
+.timeline-detail {
+  float: left;
+  width: 53%;
+	height: 100%;
+	overflow-y: auto;
+}
+
+.timeline-detail-list {
+  margin: 10px;
+  padding: 10px;
+
+  li {
+		margin-bottom: 0.4rem;
+  }
+}
+
+
+.timeline-theme-2 {
+  width: 600px;
+  margin: 70px auto auto
+}
+
+.timeline-small-box {
+  .timeline-list {
+    width: 600px;
+		height: 250px;
+  }
+  .box-item {
+    float: left;
+    width: 600px;
+    height: 250px;
+    color: #fff;
+    text-align: center;
+  }
+}
+
+
+.theme-1 {
+  background: #4A2AB2;
+}
+
+.theme-2 {
+  background: #7dffc3;
+}
+
+.theme-3 {
+  background: #23A5E9;
+}
+
+.theme-4 {
+  background: #93C763;
+}
+
+.theme-5 {
+  background: #949923;
+}
+
+.theme-6 {
+  background: #990055;
+}

@@ -3,7 +3,7 @@
         <div class="product-cart-over clear">
             <div class="product-info-wrapper">
                 <a href="{{ route('prod.view', [$product]) }}?{{ request()->getQueryString() }}" class="product-cover-link" data-product="{{ $product->id }}" data-name="{{ $product->title }}" data-page="1">
-                    <img src="{{ $product->screen['src'] }}" alt="{{ $product->title }}" title="{{ $product->title }}" width="259" height="190">
+                    <img src="{{ $product->screen['image']->text('TMebel')->size(259, 190)->get('src') }}" alt="{{ $product->title }}" title="{{ $product->title }}">
                 </a>
                 <div class="product-cart-title">
                     <h3>

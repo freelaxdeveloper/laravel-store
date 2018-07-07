@@ -19,6 +19,7 @@
         "laravel/passport": "^6.0",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.6",
+        "league/flysystem-aws-s3-v3": "^1.0",
         "mgp25/instagram-php": "^3.1",
         "mobiledetect/mobiledetectlib": "^2.8",
         "telegram-bot/api": "^2.3"

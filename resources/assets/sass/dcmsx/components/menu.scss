@@ -1,11 +1,55 @@
 .nav-menu {
-  background-color: #e8e8e8;
-  border-bottom: 1px solid #ddd;
-  height: 30px;
-  line-height: 30px;
-  margin-bottom: 3px;
+  height: 70px;
+  background-color: #765;
+  border: 1px solid #473c32;
+  border-radius: 2px;
+  overflow: hidden;
   a {
-    color: #444;
+    color: #fff;
+    padding: 8px 0;
+    display: block;
+    &:hover {
+      color: #fff;
+    }
+    i {
+      margin: 0 8px;
+      display: block;
+      height: 32px;
+      background: url('../../../images/menu5.png') no-repeat;
+      &.category0 {
+        background-position: center 0px;
+      }
+      &.category26 {
+        background-position: center -32px;
+      }
+      &.category28 {
+        background-position: center -64px;
+      }
+      &.category29 {
+        background-position: center -128px;
+      }
+      &.category30 {
+        background-position: center -160px;
+      }
+      &.category31 {
+        background-position: center -224px;
+      }
+      &.category32 {
+        background-position: center -320px;
+      }
+      &.category33 {
+        background-position: center -192px;
+      }
+      &.category34 {
+        background-position: center -352px;
+      }
+      &.category35 {
+        background-position: center -256px;
+      }
+      &.category36 {
+        background-position: center -288px;
+      }
+    }
   }
   ul {
     display: flex;
@@ -13,6 +57,16 @@
     flex-direction: row;
     justify-content: space-evenly;
     list-style-type: none;
+    li {
+      min-width: 80px;
+      width: 9%;
+      text-align: center;
+      // padding: 0 10px;
+      &:hover {
+        cursor: pointer;
+        background-color: #473c32;
+      }
+    }
   }
   
   .has-children {
@@ -74,6 +128,13 @@
   height: 50%;
   flex-direction: column;
   width: 100%;
+  .actions {
+    width: 100%;
+    padding-left: 10px;
+    .action {
+      display: block;
+    }
+  }
 }
 .menu-list a {
   text-decoration: none;
@@ -83,17 +144,18 @@
 .menu-btn {
   width: 30px;
   height: 30px;
-  background-color: transparent;
+  background-color: #c63f2f;
   position: absolute;
   right: -33px;
-  top: 0;
-  border-radius: 50%;
+  top: 5px;
+  border-radius: 4px;
   transition: 0.5s;
+  border: 1px solid #963131;
   span, span::before, span::after {
     position: absolute;
     width: 20px;
     height: 2px;
-    background-color: #c63f2f;
+    background-color: #fff;
     top: 50%; margin-top: -1px;
     left: 50%; margin-left: -10px;
   }

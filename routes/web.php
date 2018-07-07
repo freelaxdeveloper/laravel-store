@@ -21,6 +21,7 @@ Auth::routes();
 Route::post('/test_screen/{product}', 'ProductController@screen_test')->name('screen_save_test');
 
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('/resize', 'HomeController@resize')->name('resize');
 
 Route::get('/effects/{effect}', 'HomeController@effect');
 
@@ -80,6 +81,8 @@ Route::name('prod.')->prefix('product')->group(function () {
         'uses' => 'ProductController@view',
     ]);
 
+    Route::get('/screen/view/{product}/{id}/{width}/{height}', 'ProductController@screenView')->name('screenView');
+
     Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {
         Route::get('/add/{category}', 'ProductController@add')->name('add');
         Route::post('/add/{category}', 'ProductController@new')->name('new');
@@ -93,6 +96,7 @@ Route::name('prod.')->prefix('product')->group(function () {
         Route::get('/screen/{product}/{id}/hightlight', 'ProductController@screenHightlight')->name('screenHightlight');
 
         Route::get('/delete/{product}', 'ProductController@delete')->name('delete');
+        Route::post('/delete/confirm/{product}', 'ProductController@deleteConfirm')->name('deleteConfirm');
     });
 });
 

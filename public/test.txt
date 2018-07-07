@@ -1,3 +1,0 @@
-{"file":{"name":"[object Object]","type":"image\/jpeg","tmp_name":"\/tmp\/phpFS6A84","error":0,"size":272414}}
-
-{"product_id":"18"}

@@ -11,7 +11,7 @@
 @endsection
 
 @section('content')
-    <!-- Team -->
+ <!-- Team -->
 		@include('components.listing.products', ['products' => $products])
     <!-- Team -->
 @endsection

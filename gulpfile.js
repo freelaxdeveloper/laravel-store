@@ -4,7 +4,7 @@ elixir(function(mix) {
     mix
         .sass(['dcmsx/dcmsx.scss', 'dcmsx/tree.scss'])
         .scripts([
-            'dcmsx/jquery-1.11.3.min.js',
+            'dcmsx/jquery-1.12.4.min.js',
             'dcmsx/jquery-ui.min.js',
             'dcmsx/dcmsx.js',
             'dcmsx/bootstrap.min.js',
@@ -16,6 +16,7 @@ elixir(function(mix) {
             'dcmsx/menu.js',
             'dcmsx/prism.js',
             'dcmsx/bootstrap-datetimepicker.min.js',
+            'dcmsx/timeline.js',
         ], 'public/js/dcmsx.js')
         .scripts([
             'dcmsx/tinymce_ru.js',

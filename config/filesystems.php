@@ -57,11 +57,11 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+            'key' => env('AWS_ACCESS_KEY_ID', 'AKIAJXSA5YHQDOMGDIGA'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY', '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'),
+            'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
+            'bucket' => env('AWS_BUCKET', 'mebel-store'),
+            'url' => env('AWS_URL', 'https://s3.amazonaws.com/mebel-store/'),
         ],
 
     ],

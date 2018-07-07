@@ -6,6 +6,10 @@
     @section('title', 'Добавление товара в - ' . $category->name)
 @endif
 
+@section('menu-left')
+	@include('components.actions', $actions)
+@endsection
+
 @section('content')
     <section class="section extra-margins listing-section mt-2 col-xl-7 col-md-12">
         <div class="row">
