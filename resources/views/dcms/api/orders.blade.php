@@ -5,7 +5,7 @@
 
 <div class="modal-body">
     @if ( count($products) )
-        <h4><b>{{ $products->count() }}</b> {{ trans_choice('plural.product', $products->count()) }} на сумму <b>{{ number_format($products->sum('price')) }}</b> {{ env('CURRENCY') }}</h4>
+        <h4><b class="productsCount">{{ order()->count() }}</b> {{ trans_choice('plural.product', order()->count()) }} на сумму <b class="allPrice">{{ number_format($products->sum('price')) }}</b> {{ env('CURRENCY') }} </h4>
     @endif
     {{-- @lang('plural.product') --}}
 
@@ -19,10 +19,15 @@
               <p>{!! $product->meta_description !!}</p>
               <p><b>Код товара:</b> {{ $product->id }}</p>
               <p>
-                  <b>Стоимость:</b> {{ number_format($product->price) }} {{ env('CURRENCY') }}
-                  @if ( Auth::check() && Auth::user()->discount )
-                    (-{{ Auth::user()->discount }}%)
-                  @endif
+                <b>Стоимость:</b> <span data-product-price="{{$product->price}}" class="test productPrice{{ $product->id }}">{{ number_format($product->price) }}</span> {{ env('CURRENCY') }}
+                @if ( Auth::check() && Auth::user()->discount )
+                  (-{{ Auth::user()->discount }}%)
+                @endif
+                <span class="quantity product{{ $product->id }}" data-product-id="{{ $product->id }}">
+                  <button type="button" class="no-radius btn btn-primary btn-xs minus ">-</button>
+                  <input name="qty" class="form-input" type="text" value="{{ $product->count }}" size="2" disabled>
+                  <button type="button" class="btn btn-primary btn-xs plus no-radius">+</button>
+                </span>
               </p>
             </div>
         </div>
@@ -46,3 +51,45 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Начать покупки</button>
     @endif
 </div>
+<script>
+
+  $(function() {
+    $('.quantity > button').click(function(){
+      $this = this;
+      var product_id = $(this).parent('.quantity').data('product-id');
+      var quantity = $('.quantity.product' + product_id + ' > input');
+      var price = $('.productPrice' + product_id);
+
+      quantity.val( function(i, oldval) {
+        let count;
+        if ($($this).hasClass('plus')) {
+          count = ++oldval;
+        } else {
+          count = --oldval;
+        }
+        if (count < 1) {
+          count = 1;
+        }
+        let newPrice = price.data('product-price') * count;
+        price.html(newPrice);
+
+        return count;
+      });
+
+      var arr = document.getElementsByClassName('test');;
+      var tot = 0;
+      for(var i=0; i < arr.length; i++){
+        tot += Number(arr[i].innerHTML);
+      }
+      var arr = document.getElementsByName('qty');;
+      var tot2 = 0;
+      for(var i=0; i < arr.length; i++){
+        tot2 += Number(arr[i].value);
+      }
+      $('.allPrice').html(tot);
+      $('.productsCount').html(tot2);
+
+    });
+  });
+
+</script>

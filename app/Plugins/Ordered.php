@@ -15,7 +15,7 @@ class Ordered {
      */
     public function push(Product $product): self
     {
-        session()->push(self::SESSION_KEY, $product->id);
+        session()->push(self::SESSION_KEY, ['product_id' => $product->id, 'count' => 1]);
         session()->save();
 
         return $this;
@@ -23,7 +23,7 @@ class Ordered {
 
     public function count(): int
     {
-        return $this->productsId()->count();
+        return $this->products()->sum('count');
     }
 
     public function pull(): Collection
@@ -43,10 +43,18 @@ class Ordered {
 
     public function products(): Collection
     {
+        static $products;
+
+        if ($products) {
+            return $products;
+        }
         $products = Product::whereIn('id', $this->productsId())->get();
-        
-        $products = $products->map(function ($product) {
-            $product->price = price($product->price);
+        $productsCount = $this->productsCount();
+
+        $products = $products->map(function ($product) use ($productsCount) {
+            $product->count = $productsCount[$product->id];
+            $product->price = price($product->price * $product->count);
+            $product->price_old = price($product->price_old * $product->count);
             return $product;
         });
 
@@ -55,7 +63,12 @@ class Ordered {
 
     public function productsId(): Collection
     {
-        return collect(session('orders', []))->unique();
+        return collect(session(self::SESSION_KEY, []))->pluck('product_id')->unique();
+    }
+
+    public function productsCount(): Collection
+    {
+        return collect(session(self::SESSION_KEY, []))->pluck('count', 'product_id');
     }
 
 }
