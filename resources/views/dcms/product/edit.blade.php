@@ -6,9 +6,11 @@
     @section('title', 'Добавление товара в - ' . $category->name)
 @endif
 
-@section('menu-left')
-	@include('components.actions', $actions)
-@endsection
+@if (isset($actions))
+    @section('menu-left')
+        @include('components.actions', $actions)
+    @endsection
+@endif
 
 @section('content')
     <section class="section extra-margins listing-section mt-2 col-xl-7 col-md-12">
@@ -152,7 +154,7 @@
 
     images_upload_handler: function (blobInfo, success, failure) {
     var xhr, formData;
-    var webPath = '{{route("screen_save_test", [$product])}}';
+    var webPath = '/test';
     xhr = new XMLHttpRequest();
     xhr.withCredentials = false;
     xhr.open('POST', webPath);

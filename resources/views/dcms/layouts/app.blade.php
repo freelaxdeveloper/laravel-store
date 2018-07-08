@@ -197,7 +197,7 @@
 			<div class="col-xs-12 col-sm-4 col-lg-3">
 
 				@section('right')
-					{{-- @if (!empty($actions))
+					@if (!empty($actions))
 						<div class="panel panel-primary">
 							<div class="panel-heading">Действия</div>
 							<div class="list-group">
@@ -206,7 +206,7 @@
 								@endforeach
 							</div>
 						</div>
-					@endif --}}
+					@endif
 
 					@yield('right-column')
 					<div class="panel panel-default">
