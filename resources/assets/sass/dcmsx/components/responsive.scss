@@ -10,20 +10,20 @@
   .menu-btn {
     top: 5px;
     border-radius: 1px;
-    border: 1px solid #ddd;
-    background-color: #fff;
+    // border: 1px solid #ddd;
+    // background-color: #fff;
   }
   .menu-btn_active {
     right: -30px;
     top: -1px;
     border: none;
     span {
-      background-color: #c63f2f;
+      background-color: #fff;
       &::before {
-        background-color: #c63f2f;
+        background-color: #fff;
       }
       &::after {
-        background-color: #c63f2f;
+        background-color: #fff;
       }
     }
   }
