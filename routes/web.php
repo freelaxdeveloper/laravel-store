@@ -16,6 +16,10 @@
     'roles' => ['admin'],
 ])->middleware('roles');
  */
+if ( env('SSL', false) ) {
+    URL::forceScheme('https');
+}
+
 Auth::routes();
 
 Route::post('/test_screen/{product}', 'ProductController@screen_test')->name('screen_save_test');

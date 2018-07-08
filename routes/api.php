@@ -12,6 +12,10 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+if ( env('SSL', false) ) {
+    URL::forceScheme('https');
+}
+
 Route::get('/test', 'ApiController@test')->name('test');
 
 Route::get('/agreement/{view?}', 'ApiController@agreement')->name('agreement');
