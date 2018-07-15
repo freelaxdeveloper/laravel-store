@@ -71,7 +71,7 @@
 
                 <div class="timeline-container timeline-theme-1">
                     <div class="timeline js-timeline">
-                        @foreach($product->screens as $screen)
+                        @foreach($product->screens->sortByDesc('filename') as $screen)
                             <div data-time="Фото №{{$screen['id']}}">
                                 <div class="product-screen">
                                     <a href="#" data-toggle="modal" data-target=".pop-up-1">

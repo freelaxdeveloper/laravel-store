@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\View;
 use App\Jobs\{UserJob, OneJob, TwoJob, ThreeJob};
 use Gumlet\ImageResize as Resize;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Mail;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class HomeController extends Controller
 {
@@ -77,7 +79,28 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   
+    {
+        // configure with favored image driver (gd by default)
+        // Image::configure(array('driver' => 'imagick'));
+
+        // $watermark = Image::make(public_path('images/avatar.png'))->opacity(50)->rotate(-45);
+        // return Image::make(public_path('images/nature.jpeg'))->text('foo2', 0, 0, function($font) {
+        //     $font->file(base_path("/resources/assets/fonts/OpenSans-Bold.ttf"));
+        //     $font->size(24);
+        //     $font->color('#333');
+        //     $font->align('center');
+        //     $font->valign('top');
+        //     //$font->angle(45);
+        // })->opacity(100)->insert($watermark, 'bottom-right', 10, 10)->response('png');
+        // Storage::delete('public/uploads/lMrCA7sLmhKq8YZ0sAtvCmXbiobEYyqrUMakzFSA.jpeg');
+        // dd(\Storage::allFiles('public/uploads'));
+        // dd( order()->products()->sum('count') );
+        // $user = \Auth::user();
+        // Mail::send('emails.q', ['user' => $user], function ($m) use ($user) {
+        //     $m->from('hello@app.com', 'Your Application');
+      
+        //     $m->to($user->email, $user->name)->subject('Your Reminder!');
+        // });
         $user = \Auth::user();
 
         // OneJob::withChain([

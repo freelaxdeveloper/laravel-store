@@ -18,9 +18,9 @@ class ProductScreen {
     /**
      * путь к категории со скринами
      */
-    public function getPath(string $path = null): string
+    public function getPath(string $path = null)
     {
-        return public_path("/images/products/{$this->product->id}/{$path}");
+        return public_path("/storage/uploads/products/{$this->product->id}/{$path}");
     }
 
     /**
@@ -30,7 +30,6 @@ class ProductScreen {
     {
         $screens = [];
         $files = glob($this->getPath('*'));
-        rsort($files);
         for($i = 0, $id = 1; $i < count($files); $i++, $id++) {
             $screens[] = $this->screen($files[$i], $id);
         }
@@ -54,7 +53,7 @@ class ProductScreen {
     public function deleteById(int $screen_id): bool
     {
         $screen = $this->all()->firstWhere('id', $screen_id);
-        return unlink($screen['path']);
+        return \Storage::delete($screen['storage']);
     }
 
     public function hightlightById(int $screen_id)

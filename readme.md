@@ -40,3 +40,24 @@
   </dd>
   <dt>Для работы очередей </dt>
 </dl>
+
+### Прочие полезности
+<dl>
+  <dt>Разрешаем доступ к папке ./storage/app/public/</dt>
+  <dd>
+
+  ```
+  php artisan storage:link
+  ```
+
+  <dd>
+  <dt>Устанавливаем php-imagick</dt>
+  <dd>
+
+  ```
+  sudo apt-get install php-imagick
+  sudo service apache2 restart
+  ```
+
+  <dd>
+</dl>

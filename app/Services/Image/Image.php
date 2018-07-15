@@ -91,6 +91,7 @@ class Image extends ImageResize
   {
     $screen = pathinfo($pathImage);
     $screen['src'] = str_replace(public_path(), '', $pathImage);
+    $screen['storage'] = str_replace(public_path() . '/storage', 'public', $pathImage);
     $screen['path'] = $screen['dirname'] . '/' . $screen['basename'];
 
     return $screen;

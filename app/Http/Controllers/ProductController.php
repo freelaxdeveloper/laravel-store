@@ -94,9 +94,10 @@ class ProductController extends Controller
         ]);
         $images = $request->file('input_img');
 
-        $destinationPath = public_path('/images/products/' . $product->id);
+        $destinationPath = public_path('/storage/uploads/products/' . $product->id);
 
         foreach ( $images as $image ) {
+            //$image->store('uploads/products/' . $product->id, 'public');
             $image->move($destinationPath, time() . md5(microtime()) . '.' . $image->getClientOriginalExtension());
         }
         

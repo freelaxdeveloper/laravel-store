@@ -24,9 +24,11 @@ class AppServiceProvider extends ServiceProvider
          * @param closure получение новых данных 
          * https://laravel.com/docs/5.6/cache
          */
+        // Category::cacheClear();
         try {
             $categories = Cache::remember('categories', 15, function () {
-                return Category::roots()->withCount('products')->get();
+                return Category::withCount('products')->get()->toHierarchy();
+                // return Category::roots()->withCount('products')->get();
             });
             $chats = Chat::with(['user'])->orderBy('id', 'desc')->get()->take(20);
             View::share('categories', $categories);
