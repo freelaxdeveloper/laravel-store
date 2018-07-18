@@ -35,6 +35,17 @@ class ApiController extends Controller
         return response()->json(['products' => $products], 200);
     }
 
+    public function basketDelete(Request $request)
+    {
+        Validator::make($request->all(), [
+            'product_id' => 'required|integer',
+        ])->validate();
+
+        order()->forget($request->product_id);
+
+        return response()->json(['product_id' => $request->product_id], 200);
+    }
+
     public function basketPush(Request $request)
     {
         $messages = [];
@@ -47,7 +58,7 @@ class ApiController extends Controller
 
         $countOrders = order()->push($product)->count();
 
-        return response()->json(['success' => true, 'countOrders' => $countOrders], 200);
+        return response()->json(['success' => true, 'countOrders' => $countOrders, 'product' => $product], 200);
     }
 
     public function basketClear(Request $request)

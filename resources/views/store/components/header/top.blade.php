@@ -13,7 +13,7 @@
                 </li>
               @endauth
               <li>
-                <a href="{{ route('basket.oformit-zakaz') }}" title="Моя корзина"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Моя корзина</span></a>
+                <a id="myBasket" data-toggle="modal" href="{{ route('basket', ['view']) }}" data-target="#basket"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Моя корзина</span></a>
               </li>
               <li>
                 <a href="{{ route('basket.oformit-zakaz') }}" title="Оформить заказ"><span class="top-icon top-icon-check"></span><span class="hide-for-xs">Оформить заказ</span></a>

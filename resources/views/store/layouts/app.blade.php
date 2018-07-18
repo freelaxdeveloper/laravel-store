@@ -7,15 +7,11 @@
 	<title>Venedor - Responsive eCommerce Template</title>
 	<meta content="Responsive modern ecommerce Html5 Template" name="description"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 	<meta content="width=device-width,initial-scale=1" name="viewport">
-
+	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300" id="googlefont" rel="stylesheet">
 	<link href="{{elixir('/css/store.css')}}" rel="stylesheet">
-
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="{{elixir('js/modernizr.custom.js')}}"></script>
-	<script>
-		window.jQuery||document.write('<script src="js/jquery-1.11.1.min.js"><\/script>');
-	</script>
+	{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
+	{{-- <script src="https://unpkg.com/sweetalert2@7.17.0/dist/sweetalert2.all.js"></script> --}}
 	
 	<!--[if lt IE 9]><script src="js/html5shiv.js"></script>
 						<script src="js/respond.min.js"></script><![endif]-->
@@ -24,7 +20,17 @@
 	</style>
 </head>
 <body>
-	@include('components.header.option-panel')
+	<!-- Modal -->
+	<div class="modal fade" id="basket" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+	
+		</div>
+		</div>
+	</div>
+	
+	
+	{{-- @include('components.header.option-panel') --}}
 	<div id="wrapper">
 		<header id="header">
 			@include('components.header.top')
@@ -143,45 +149,35 @@
 	</div><a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a> 
 	{{-- <script src="{{elixir('/js/store.js')}}"></script> --}}
 
-	<script src="{{elixir('js/bootstrap.min.js')}}">
-	</script>
-	<script src="{{elixir('js/smoothscroll.js')}}">
-	</script>
-	<script src="{{elixir('js/jquery.debouncedresize.js')}}">
-	</script>
-	<script src="{{elixir('js/retina.min.js')}}">
-	</script>
-	<script src="{{elixir('js/jquery.placeholder.js')}}">
-	</script>
-	<script src="{{elixir('js/jquery.hoverIntent.min.js')}}">
-	</script>
-	<script src="{{elixir('js/jquery.tweet.min.js')}}">
-	</script>
-	<script src="{{elixir('js/jquery.flexslider-min.js')}}">
-	</script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="{{elixir('js/modernizr.custom.js')}}"></script>
+	<script src="{{elixir('js/sweetalert.min.js')}}"></script>
+
+	<script src="{{elixir('js/bootstrap.min.js')}}"></script>
+	<script src="{{elixir('js/smoothscroll.js')}}"></script>
+	<script src="{{elixir('js/jquery.debouncedresize.js')}}"></script>
+	<script src="{{elixir('js/retina.min.js')}}"></script>
+	<script src="{{elixir('js/jquery.placeholder.js')}}"></script>
+	<script src="{{elixir('js/jquery.hoverIntent.min.js')}}"></script>
+	<script src="{{elixir('js/jquery.tweet.min.js')}}"></script>
+	<script src="{{elixir('js/jquery.flexslider-min.js')}}"></script>
 
 	{{-- Only form select --}}
-	<script src="{{elixir('js/jquery.selectbox.min.js')}}">
-	</script>
+	<script src="{{elixir('js/jquery.selectbox.min.js')}}"></script>
 	
-	<script src="{{elixir('js/owl.carousel.min.js')}}">
-	</script>
-	<script src="{{elixir('js/jflickrfeed.min.js')}}">
-	</script>
+	<script src="{{elixir('js/owl.carousel.min.js')}}"></script>
+	<script src="{{elixir('js/jflickrfeed.min.js')}}"></script>
 
 	<script src="{{elixir('js/jquery.prettyPhoto.js')}}"></script>
 
 	{{-- Only when video youtube --}}
 	<script src="{{elixir('js/jquery.fitvids.js')}}"></script>
 
-	<script src="{{elixir('js/jquery.themepunch.tools.min.js')}}">
-	</script>
-	<script src="{{elixir('js/jquery.themepunch.revolution.min.js')}}">
-	</script>
+	<script src="{{elixir('js/jquery.themepunch.tools.min.js')}}"></script>
+	<script src="{{elixir('js/jquery.themepunch.revolution.min.js')}}"></script>
 
 	
-	<script src="{{elixir('js/bootstrap-switch.min.js')}}">
-	</script>
+	<script src="{{elixir('js/bootstrap-switch.min.js')}}"></script>
 	
 	<script src="{{elixir('js/colpick.js')}}">
 	</script>
@@ -194,7 +190,30 @@
 	<script src="{{elixir('js/main.js')}}">
 	</script>
 
+	
+
 	<script>
+		
+		// swal({
+		// 	html: true,
+		// 	title: "Good job!",
+		// 	text: "You clicked the button!",
+		// 	icon: "success",
+		// 	buttons: {
+		// 		cancel: "Продолжить покупки",
+		// 		catch: {
+		// 			text: "Оформить заказ",
+		// 			value: "catch",
+		// 		},
+		// 	},
+		// }).then((value) => {
+		// 	switch (value) {
+		// 		case "catch":
+		// 			swal("Тут будет перенаправление на оформление заказа");
+		// 		break;
+		// 	}
+		// });
+
 		$(function() {
 			jQuery("#slider-rev").revolution({
 				delay: 8e3,

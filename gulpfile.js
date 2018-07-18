@@ -5,6 +5,7 @@ elixir(function(mix) {
         .sass(['store/store.scss'])
         .scripts([
             'store/main.js',
+            'store/buy.js',
         ], 'public/js/main.js')
 
         .scripts([
@@ -58,6 +59,10 @@ elixir(function(mix) {
         ], 'public/js/retina.min.js')
 
         .scripts([
+            'store/sweetalert.min.js',
+        ], 'public/js/sweetalert.min.js')
+
+        .scripts([
             'store/jquery.debouncedresize.js',
         ], 'public/js/jquery.debouncedresize.js')
 
@@ -97,32 +102,30 @@ elixir(function(mix) {
 
 
 
-// elixir(function(mix) {
-//     mix
-//         .sass(['dcmsx/dcmsx.scss', 'dcmsx/tree.scss'])
-//         .scripts([
-//             'dcmsx/jquery-1.12.4.min.js',
-//             'dcmsx/jquery-ui.min.js',
-//             'dcmsx/dcmsx.js',
-//             'dcmsx/bootstrap.min.js',
-//             'dcmsx/bootstrap-formhelpers.min.js',
-//             'dcmsx/ie10-viewport-bug-workaround.js',
-//             'dcmsx/holder.min.js',
-//             'dcmsx/buy.js',
-//             'dcmsx/spoiler.js',
-//             'dcmsx/menu.js',
-//             'dcmsx/prism.js',
-//             'dcmsx/bootstrap-datetimepicker.min.js',
-//             'dcmsx/timeline.js',
-//         ], 'public/js/dcmsx.js')
-//         .scripts([
-//             'dcmsx/tinymce_ru.js',
-//         ], 'public/js/tinymce_ru.js')
-//         .version([ '/css/*', '/js/*' ])
-//         .copy('resources/assets/images/*.*', 'public/images/')
-//         .copy('resources/assets/js/dcmsx/select2.min.js', 'public/js/')
-//         .copy('resources/assets/fonts/*.*', 'public/fonts/');
-// });
+elixir(function(mix) {
+    mix
+        .sass(['dcmsx/dcmsx.scss', 'dcmsx/tree.scss'])
+        .scripts([
+            'dcmsx/jquery-1.12.4.min.js',
+            'dcmsx/bootstrap.min.js',
+            'dcmsx/bootstrap-formhelpers.min.js',
+            'dcmsx/ie10-viewport-bug-workaround.js',
+            'dcmsx/holder.min.js',
+            'dcmsx/buy.js',
+            'dcmsx/spoiler.js',
+            'dcmsx/menu.js',
+            'dcmsx/prism.js',
+            'dcmsx/bootstrap-datetimepicker.min.js',
+            'dcmsx/timeline.js',
+        ], 'public/js/dcmsx.js')
+        .scripts([
+            'dcmsx/tinymce_ru.js',
+        ], 'public/js/tinymce_ru.js')
+        .version([ '/css/*', '/js/*' ])
+        .copy('resources/assets/images/*.*', 'public/images/')
+        .copy('resources/assets/js/dcmsx/select2.min.js', 'public/js/')
+        .copy('resources/assets/fonts/*.*', 'public/fonts/');
+});
 
 
 /* elixir(function(mix) {

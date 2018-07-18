@@ -22,6 +22,7 @@ Route::get('/agreement/{view?}', 'ApiController@agreement')->name('agreement');
 Route::get('/basket/{view?}', 'ApiController@basket')->name('basket');
 Route::post('/basket', 'ApiController@basketPush');
 Route::post('/basketClear', 'ApiController@basketClear')->name('basketClear')->middleware('csrf');
+Route::post('/basket/delete', 'ApiController@basketDelete')->name('basketDelete')->middleware('csrf');
 
 Route::name('np.')->prefix('np')->group(function () {
     Route::post('/cities', 'ApiController@cities')->name('cities')->middleware('csrf');

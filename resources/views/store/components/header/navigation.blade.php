@@ -84,38 +84,33 @@
           <div id="quick-access">
             <div class="dropdown-cart-menu-container pull-right">
               <div class="btn-group dropdown-cart">
-                <button class="btn btn-custom dropdown-toggle" data-toggle="dropdown" type="button"><span class="cart-menu-icon"></span> 0 товар(ов) <span class="drop-price">- &#8372;0.00</span></button>
+                <button class="btn btn-custom dropdown-toggle" data-toggle="dropdown" type="button"><span class="cart-menu-icon"></span> <span id="basket-counter">{{ order()->count() }}</span> товар(ов) <span class="drop-price">- &#8372;{{ number_format(order()->products()->sum('price')) }}</span></button>
                 <div class="dropdown-menu dropdown-cart-menu pull-right clearfix" role="menu">
                   <p class="dropdown-cart-description">Недавно добавленный товар(ы).</p>
                   <ul class="dropdown-cart-product-list">
-                    <li class="item clearfix">
-                      <a class="delete-item" href="index.html#" title="Delete item"><i class="fa fa-times"></i></a> <a class="edit-item" href="index.html#" title="Edit item"><i class="fa fa-pencil"></i></a>
-                      <figure>
-                        <a href="product.html"><img alt="phone 4" src="/images/products/thumbnails/item12.jpg"></a>
-                      </figure>
-                      <div class="dropdown-cart-details">
-                        <p class="item-name"><a href="product.html">Cam Optia AF Webcam</a></p>
-                        <p>1x <span class="item-price">$499</span></p>
-                      </div>
-                    </li>
-                    <li class="item clearfix">
-                      <a class="delete-item" href="index.html#" title="Delete item"><i class="fa fa-times"></i></a> <a class="edit-item" href="index.html#" title="Edit item"><i class="fa fa-pencil"></i></a>
-                      <figure>
-                        <a href="product.html"><img alt="phone 2" src="/images/products/thumbnails/item13.jpg"></a>
-                      </figure>
-                      <div class="dropdown-cart-details">
-                        <p class="item-name"><a href="product.html">Iphone Case Cover Original</a></p>
-                        <p>1x <span class="item-price">$499<span class="sub-price">.99</span></span></p>
-                      </div>
-                    </li>
+
+                    @foreach(order()->products() as $product)
+                      <li class="item clearfix itemBasket{{ $product->id }}">
+                        <a class="delete-item" data-product-id="{{ $product->id }}" href="#" title="Delete item"><i class="fa fa-times"></i></a> <a class="edit-item" href="#" title="Edit item" data-product-id="{{ $product->id }}"><i class="fa fa-pencil"></i></a>
+                        <figure>
+                          <a href="{{ route('prod.view', [$product]) }}"><img alt="phone 4" src="{{ $product->screen['image']->size(122, 170)->get('src') }}"></a>
+                        </figure>
+                        <div class="dropdown-cart-details">
+                          <p class="item-name"><a href="{{ route('prod.view', [$product]) }}">{{ $product->title }}</a></p>
+                          <p>{{ $product->count }}x <span class="item-price">&#8372;{{ number_format(price($product->price)) }}</span></p>
+                        </div>
+                      </li>
+                    @endforeach
+
                   </ul>
                   <ul class="dropdown-cart-total">
-                    <li><span class="dropdown-cart-total-title">Доставка:</span>&#8372;7</li>
-                    <li><span class="dropdown-cart-total-title">Всего:</span>&#8372;1005<span class="sub-price">.99</span></li>
+                    {{-- <li><span class="dropdown-cart-total-title">Доставка:</span>&#8372;7</li> --}}
+                    <li style="height:28px;">&nbsp;</li>
+                    <li><span class="dropdown-cart-total-title">Всего:</span>&#8372;{{ number_format(order()->products()->sum('price')) }}</li>
                   </ul>
                   <div class="dropdown-cart-action">
-                    <p><a class="btn btn-custom-2 btn-block" href="cart.html">Корзина</a></p>
-                    <p><a class="btn btn-custom btn-block" href="checkout.html">Оформить</a></p>
+                    <p><a class="btn btn-custom-2 btn-block" href="#">Корзина</a></p>
+                    <p><a class="btn btn-custom btn-block" href="{{ route('basket.oformit-zakaz') }}">Оформить</a></p>
                   </div>
                 </div>
               </div>

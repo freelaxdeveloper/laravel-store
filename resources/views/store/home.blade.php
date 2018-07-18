@@ -2,7 +2,7 @@
 
 @section('content')
 
-@include('components.slider')
+{{-- @include('components.slider') --}}
 <section id="content">
 
   <div class="md-margin2x"></div>
@@ -15,42 +15,11 @@
               <h2 class="title">Наши продукты</h2>
               <p class="title-desc">Сохраните ваши деньги и время в нашем магазине. Вот лучшая часть нашего впечатляющего ассортимента.</p>
             </header>
-            <ul class="tab-style-1 clearfix" id="products-tabs-list">
-              <li class="active">
-                <a data-toggle="tab" href="index.html#all">Все</a>
-              </li>
-              <li>
-                <a data-toggle="tab" href="index.html#latest">Последние</a>
-              </li>
-              <li>
-                <a data-toggle="tab" href="index.html#featured">Рекомендуемые</a>
-              </li>
-              <li>
-                <a data-toggle="tab" href="index.html#bestsellers">Бестселлеры</a>
-              </li>
-              <li>
-                <a data-toggle="tab" href="index.html#special">Особые</a>
-              </li>
-            </ul>
             <div class="row tab-content" id="products-tabs-content">
-              <div class="tab-pane active" id="all">
-                @include('components.listing.products', ['products' => $products, 'grid' => true])
-              </div>
-              <div class="tab-pane" id="latest">
-                {{-- @include('components.listing.products', ['products' => $products, 'grid' => true]) --}}
-              </div>
-              <div class="tab-pane" id="featured">
-                {{-- @include('components.listing.products', ['products' => $products, 'grid' => true]) --}}
-              </div>
-              <div class="tab-pane" id="bestsellers">
-                {{-- @include('components.listing.products', ['products' => $products, 'grid' => true]) --}}
-              </div>
-              <div class="tab-pane" id="special">
-                {{-- @include('components.listing.products', ['products' => $products, 'grid' => true]) --}}
-              </div>
+              @include('components.listing.products', ['products' => $products, 'grid' => true])
             </div>
             <div class="xlg-margin"></div>
-            <div class="hot-items carousel-wrapper">
+            {{-- <div class="hot-items carousel-wrapper">
               <header class="content-title">
                 <div class="title-bg">
                   <h2 class="title">Так же в продаже</h2>
@@ -65,9 +34,9 @@
                 @include('components.listing.products', ['products' => $products])
               </div>
               <div class="lg-margin"></div>
-            </div>
+            </div> --}}
           </div>
-          <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
+          {{-- <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
             <div class="widget subscribe">
               <h3>Узнай первым</h3>
               <p>Получите всю последнюю информацию о событиях, продажах и предложениях. Подпишитесь на информационный бюллетень магазина ТМебель сегодня.</p>
@@ -180,7 +149,7 @@
                 </ul>
               </div>
             </div> --}}
-          </div>
+          {{-- </div> --}}
         </div>
       </div>
     </div>

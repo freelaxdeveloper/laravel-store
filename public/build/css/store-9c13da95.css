@@ -16405,6 +16405,30 @@ html[xmlns] .slides {
 #option-panel #panel-font .panel {
   margin-bottom: 10px; }
 
+.modal-header.close {
+  position: absolute; }
+
+button.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  float: unset; }
+
+.quantity .form-input {
+  color: #797878;
+  border: 1px solid #c7c1c1;
+  text-align: center;
+  height: 22px;
+  font-size: 12px;
+  margin-left: -5px;
+  margin-right: -5px; }
+
+.quantity button.btn-xs {
+  border-radius: 0; }
+
+.modal-open {
+  overflow-y: scroll; }
+
 /* Venedor Premium Ecommerce Template - Eon  */
 @media (min-width: 1200px) {
   .title {

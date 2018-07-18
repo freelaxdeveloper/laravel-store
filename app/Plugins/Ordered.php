@@ -21,6 +21,19 @@ class Ordered {
         return $this;
     }
 
+    /**
+     * удаление товара из корзины
+     */
+    public function forget(int $product_id): void
+    {
+        $keys = collect(session(self::SESSION_KEY))->where('product_id', $product_id)->keys();
+        for ($i = 0; $i < count($keys); $i++) {
+            session()->forget(self::SESSION_KEY . '.' . $keys[$i]);
+        }
+        session()->save();
+        return;
+    }
+
     public function count(): int
     {
         return $this->products()->sum('count');

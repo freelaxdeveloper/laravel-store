@@ -21,9 +21,9 @@
       </div>
       <h3 class="item-name"><a href="{{ route('prod.view', [$product]) }}">{{ $product->title }}</a></h3>
       <div class="item-action">
-        <a class="item-add-btn" href="index.html#"><span class="icon-cart-text">В корзину</span></a>
+        <a data-product-id="{{ $product->id }}" class="item-add-btn buy" href="/korzina" onclick="return false;"><span class="icon-cart-text">В корзину</span></a>
         <div class="item-action-inner">
-          <a class="icon-button icon-like" href="index.html#">Избранное</a> <a class="icon-button icon-compare" href="index.html#">Купить</a>
+          <a data-product-id="{{ $product->id }}" class="icon-button icon-like" href="#">Избранное</a> {{-- <a class="icon-button icon-compare" href="#">Купить</a> --}}
         </div>
       </div>
     </div>

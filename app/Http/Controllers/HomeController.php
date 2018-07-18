@@ -80,6 +80,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // dd(session('orders'));
         // configure with favored image driver (gd by default)
         // Image::configure(array('driver' => 'imagick'));
 
