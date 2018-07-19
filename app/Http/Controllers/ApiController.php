@@ -43,7 +43,7 @@ class ApiController extends Controller
 
         order()->forget($request->product_id);
 
-        return response()->json(['product_id' => $request->product_id], 200);
+        return response()->json(order()->toArray(), 200);
     }
 
     public function basketPush(Request $request)
@@ -58,7 +58,7 @@ class ApiController extends Controller
 
         $countOrders = order()->push($product)->count();
 
-        return response()->json(['success' => true, 'countOrders' => $countOrders, 'product' => $product], 200);
+        return response()->json(['orders' => order()->toArray(), 'success' => true, 'countOrders' => $countOrders, 'product' => $product], 200);
     }
 
     public function basketClear(Request $request)

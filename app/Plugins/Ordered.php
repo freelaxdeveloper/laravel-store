@@ -21,17 +21,27 @@ class Ordered {
         return $this;
     }
 
+    public function toArray()
+    {
+        $products = $this->products();
+        return [
+            'products' => $products,
+            'count' => $products->sum('count'),
+            'count_sum' => $products->sum('price'),
+        ];
+    }
+
     /**
      * удаление товара из корзины
      */
-    public function forget(int $product_id): void
+    public function forget(int $product_id): Collection
     {
         $keys = collect(session(self::SESSION_KEY))->where('product_id', $product_id)->keys();
         for ($i = 0; $i < count($keys); $i++) {
             session()->forget(self::SESSION_KEY . '.' . $keys[$i]);
         }
         session()->save();
-        return;
+        return $this->products();
     }
 
     public function count(): int
@@ -56,11 +66,11 @@ class Ordered {
 
     public function products(): Collection
     {
-        static $products;
+        // static $products;
 
-        if ($products) {
-            return $products;
-        }
+        // if ($products) {
+        //     return $products;
+        // }
         $products = Product::whereIn('id', $this->productsId())->get();
         $productsCount = $this->productsCount();
 

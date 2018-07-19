@@ -1,39 +1,56 @@
 $(document).ready(function () {
-
   $('.delete-item').click(function () {
-    const productId = $(this).data('product-id');
+    var productId = $(this).data('product-id');
 
     var ob = {product_id: productId};
+    swal({
+        title: "Вы серьезно?",
+        text: "Подтвердите удаление, но прежде подумайте еще раз, стоит ли отказыватся от качественной мебели.",
+        icon: "warning",
+        buttons: ["Продолжить покупки", "Удалить из корзины"],
+        dangerMode: true,
+    })
+    .then(function(willDelete) {
+      if (willDelete) {
 
-    fetch('/api/basket/delete', { 
-        method: 'POST', 
-        credentials: 'same-origin',
-        headers: { 
-            'Content-Type': 'application/json',
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }, 
-        body: JSON.stringify(ob) }
-    ).then( function(a) {
-        console.log( a );
-    }, function(er) {
-        console.log(er); 
+        fetch('/api/basket/delete', { 
+          method: 'POST', 
+          credentials: 'same-origin',
+          headers: { 
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }, 
+          body: JSON.stringify(ob),
+        }).then(function(results) {
+          return results.json();
+        }).then(function(json) {
+            $('.basket-counter').html(json.count);
+            $('.basket-sum').html(new Intl.NumberFormat('en-IN').format(json.count_sum));
+            swal("Нам не хотелось, но мы удалили наш товар с Вашей корзины", {
+                icon: "success",
+            });
+            $('.itemBasket' + productId).fadeOut(300);
+        });
+          
+      }
     });
 
-    $('.itemBasket' + productId).fadeOut(300);
+    
 
   });
 
   $('.edit-item').click(function () {
     swal("Введите количество товара", {
       content: "input",
+      icon: "success",
     })
-    .then((value) => {
-      swal(`Вам будет доставлено: ${value}шт.`);
+    .then(function(value) {
+      swal('Вам будет доставлено: ' + value + 'шт.');
     });
   });
 
   $('.icon-like').click(function() {
-    const productId = $(this).data('product-id');
+    var productId = $(this).data('product-id');
     swal("Успешно!", "Приятно что наша мебель нравится Вам!", "success", {
       button: "Вернутся",
     });
@@ -42,7 +59,7 @@ $(document).ready(function () {
   });
 
     $(".buy").click(function () {
-        const productId = $(this).data('product-id');
+        var productId = $(this).data('product-id');
         console.log('productId', productId);
         $.ajax({
             type: "POST",
@@ -65,15 +82,27 @@ $(document).ready(function () {
                         value: "catch",
                       },
                     },
-                  }).then((value) => {
+                  }).then(function(value) {
                     switch (value) {
                       case "catch":
                         swal("Тут будет перенаправление на оформление заказа");
                       break;
                     }
                   });
-
-                $('#basket-counter').html(msg.countOrders);
+                  $('.itemBasket' + msg.product.id).remove();
+                $('.dropdown-cart-product-list').append('\
+                  <li class="item clearfix itemBasket' + msg.product.id + '">\
+                    <figure>\
+                      <a href="/product/view/' + msg.product.slug + '"><img alt="phone 4" src="' + msg.product.screen.src + '"></a>\
+                    </figure>\
+                    <div class="dropdown-cart-details">\
+                      <p class="item-name"><a href="/product/view/' + msg.product.slug + '">' + msg.product.title + '</a></p>\
+                      <p>1x <span class="item-price">&#8372;' + new Intl.NumberFormat('en-IN').format(msg.product.price) + '</span></p>\
+                    </div>\
+                  </li>\
+                ');
+                $('.basket-counter').html(msg.countOrders);
+                $('.basket-sum').html(new Intl.NumberFormat('en-IN').format(msg.orders.count_sum));
 
                 //$('#myBasket').trigger('click');
                 
@@ -90,7 +119,7 @@ $(document).ready(function () {
     });
     
     $('select[name=region]').change(function () {
-        const refRegion = $( this ).val();
+        var refRegion = $( this ).val();
 
         $.ajax({
             type: "POST",
@@ -117,7 +146,7 @@ $(document).ready(function () {
     });
 
     $('.confirm-phone-text').click(function () {
-        const mobile = $('input[name=mobile]').val();
+        var mobile = $('input[name=mobile]').val();
         var current = $( this );
 
         $.ajax({
@@ -171,7 +200,7 @@ $(document).ready(function () {
     });
     
     $('select[name=cities]').change(function (e) {
-        const refCity = $( this ).val();
+        var refCity = $( this ).val();
 
         $.ajax({
             type: "POST",

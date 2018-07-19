@@ -84,14 +84,14 @@
           <div id="quick-access">
             <div class="dropdown-cart-menu-container pull-right">
               <div class="btn-group dropdown-cart">
-                <button class="btn btn-custom dropdown-toggle" data-toggle="dropdown" type="button"><span class="cart-menu-icon"></span> <span id="basket-counter">{{ order()->count() }}</span> товар(ов) <span class="drop-price">- &#8372;{{ number_format(order()->products()->sum('price')) }}</span></button>
+                <button class="btn btn-custom dropdown-toggle" data-toggle="dropdown" type="button"><span class="cart-menu-icon"></span> <span class="basket-counter">{{ order()->count() }}</span> товар(ов) <span class="drop-price">- &#8372;<span class="basket-sum">{{ number_format(order()->products()->sum('price')) }}</span></span></button>
                 <div class="dropdown-menu dropdown-cart-menu pull-right clearfix" role="menu">
                   <p class="dropdown-cart-description">Недавно добавленный товар(ы).</p>
                   <ul class="dropdown-cart-product-list">
 
                     @foreach(order()->products() as $product)
                       <li class="item clearfix itemBasket{{ $product->id }}">
-                        <a class="delete-item" data-product-id="{{ $product->id }}" href="#" title="Delete item"><i class="fa fa-times"></i></a> <a class="edit-item" href="#" title="Edit item" data-product-id="{{ $product->id }}"><i class="fa fa-pencil"></i></a>
+                        <a onclick="return false;" class="delete-item" data-product-id="{{ $product->id }}" href="#" title="Удалить"><i class="fa fa-times"></i></a> {{-- <a class="edit-item" href="#" title="Редактировать" data-product-id="{{ $product->id }}"><i class="fa fa-pencil"></i></a> --}}
                         <figure>
                           <a href="{{ route('prod.view', [$product]) }}"><img alt="phone 4" src="{{ $product->screen['image']->size(122, 170)->get('src') }}"></a>
                         </figure>
@@ -106,7 +106,7 @@
                   <ul class="dropdown-cart-total">
                     {{-- <li><span class="dropdown-cart-total-title">Доставка:</span>&#8372;7</li> --}}
                     <li style="height:28px;">&nbsp;</li>
-                    <li><span class="dropdown-cart-total-title">Всего:</span>&#8372;{{ number_format(order()->products()->sum('price')) }}</li>
+                    <li><span class="dropdown-cart-total-title">Всего:</span>&#8372;<span class="basket-sum">{{ number_format(order()->products()->sum('price')) }}</span></li>
                   </ul>
                   <div class="dropdown-cart-action">
                     <p><a class="btn btn-custom-2 btn-block" href="#">Корзина</a></p>
