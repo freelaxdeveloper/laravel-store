@@ -8,7 +8,7 @@
 	<meta content="Responsive modern ecommerce Html5 Template" name="description"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 	<meta content="width=device-width,initial-scale=1" name="viewport">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300" id="googlefont" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic,700italic%7CPT+Gudea:400,700,400italic%7CPT+Oswald:400,700,300" id="googlefont" rel="stylesheet">
 	<link href="{{elixir('/css/store.css')}}" rel="stylesheet">
 	{{-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> --}}
 	{{-- <script src="https://unpkg.com/sweetalert2@7.17.0/dist/sweetalert2.all.js"></script> --}}
@@ -102,7 +102,7 @@
 						<div class="col-md-3 col-sm-12 col-xs-12 widget">
 							<h3>FACEBOOK LIKE BOX</h3>
 							<div class="facebook-likebox">
-								<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fenvato&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false"></iframe>
+								<iframe src="https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fenvato&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false"></iframe>
 							</div>
 						</div>
 					</div>
@@ -149,7 +149,7 @@
 	</div><a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a> 
 	{{-- <script src="{{elixir('/js/store.js')}}"></script> --}}
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 	<script src="{{elixir('js/modernizr.custom.js')}}"></script>
 	<script src="{{elixir('js/sweetalert.min.js')}}"></script>
 
