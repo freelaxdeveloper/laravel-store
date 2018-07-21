@@ -147,73 +147,16 @@
 			</div>
 		</footer>
 	</div><a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a> 
-	{{-- <script src="{{elixir('/js/store.js')}}"></script> --}}
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<script src="{{elixir('js/modernizr.custom.js')}}"></script>
-	<script src="{{elixir('js/sweetalert.min.js')}}"></script>
+	<script src="{{elixir('js/store.js')}}"></script>
 
-	<script src="{{elixir('js/bootstrap.min.js')}}"></script>
-	<script src="{{elixir('js/smoothscroll.js')}}"></script>
-	<script src="{{elixir('js/jquery.debouncedresize.js')}}"></script>
-	<script src="{{elixir('js/retina.min.js')}}"></script>
-	<script src="{{elixir('js/jquery.placeholder.js')}}"></script>
-	<script src="{{elixir('js/jquery.hoverIntent.min.js')}}"></script>
-	<script src="{{elixir('js/jquery.tweet.min.js')}}"></script>
-	<script src="{{elixir('js/jquery.flexslider-min.js')}}"></script>
-
-	{{-- Only form select --}}
-	<script src="{{elixir('js/jquery.selectbox.min.js')}}"></script>
+	<script src="{{elixir('js/slider.js')}}"></script>
 	
-	<script src="{{elixir('js/owl.carousel.min.js')}}"></script>
-	<script src="{{elixir('js/jflickrfeed.min.js')}}"></script>
-
-	<script src="{{elixir('js/jquery.prettyPhoto.js')}}"></script>
-
-	{{-- Only when video youtube --}}
-	<script src="{{elixir('js/jquery.fitvids.js')}}"></script>
-
-	<script src="{{elixir('js/jquery.themepunch.tools.min.js')}}"></script>
-	<script src="{{elixir('js/jquery.themepunch.revolution.min.js')}}"></script>
-
-	
-	<script src="{{elixir('js/bootstrap-switch.min.js')}}"></script>
-	
-	<script src="{{elixir('js/colpick.js')}}">
-	</script>
-
-	{{-- Only product --}}
-	<script src="{{elixir('js/jquery.elevateZoom.min.js')}}"></script>
-	<script src="{{elixir('js/jquery.elastislide.js')}}"></script>
-
-	
-	<script src="{{elixir('js/main.js')}}">
-	</script>
+	<script src="{{elixir('js/main.js')}}"></script>
 
 	
 
 	<script>
-		
-		// swal({
-		// 	html: true,
-		// 	title: "Good job!",
-		// 	text: "You clicked the button!",
-		// 	icon: "success",
-		// 	buttons: {
-		// 		cancel: "Продолжить покупки",
-		// 		catch: {
-		// 			text: "Оформить заказ",
-		// 			value: "catch",
-		// 		},
-		// 	},
-		// }).then((value) => {
-		// 	switch (value) {
-		// 		case "catch":
-		// 			swal("Тут будет перенаправление на оформление заказа");
-		// 		break;
-		// 	}
-		// });
-
 		$(function() {
 			jQuery("#slider-rev").revolution({
 				delay: 8e3,
