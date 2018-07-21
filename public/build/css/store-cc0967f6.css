@@ -16429,6 +16429,10 @@ button.close {
 .modal-open {
   overflow-y: scroll; }
 
+.invalid-feedback {
+  color: #ea3b3b;
+  font-size: 12px; }
+
 /* Venedor Premium Ecommerce Template - Eon  */
 @media (min-width: 1200px) {
   .title {

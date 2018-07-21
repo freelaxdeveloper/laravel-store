@@ -4,7 +4,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="utf-8">
-	<title>Venedor - Responsive eCommerce Template</title>
+	<title>@yield('title')</title>
 	<meta content="Responsive modern ecommerce Html5 Template" name="description"><!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 	<meta content="width=device-width,initial-scale=1" name="viewport">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
@@ -99,12 +99,12 @@
 							</ul>
 						</div>
 						<div class="clearfix visible-sm"></div>
-						<div class="col-md-3 col-sm-12 col-xs-12 widget">
+						{{-- <div class="col-md-3 col-sm-12 col-xs-12 widget">
 							<h3>FACEBOOK LIKE BOX</h3>
 							<div class="facebook-likebox">
 								<iframe src="https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fenvato&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false"></iframe>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>
@@ -147,10 +147,6 @@
 			</div>
 		</footer>
 	</div><a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a> 
-
-	<script src="{{elixir('js/store.js')}}"></script>
-
-	<script src="{{elixir('js/slider.js')}}"></script>
 	
 	<script src="{{elixir('js/main.js')}}"></script>
 

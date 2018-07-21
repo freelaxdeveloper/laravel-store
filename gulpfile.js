@@ -14,18 +14,13 @@ elixir(function(mix) {
             'store/jquery.placeholder.js',
             'store/jquery.hoverIntent.min.js',
             'store/buy.js',
-        ], 'public/js/store.js')
-        .scripts([
             'store/jquery.flexslider-min.js',
-            'store/owl.carousel.min.js',
-        ], 'public/js/slider.js')
-
-        .scripts([
             'store/jquery.selectbox.min.js',
             'store/jquery.fitvids.js',
             'store/jflickrfeed.min.js',
             'store/jquery.prettyPhoto.js',
             'store/jquery.themepunch.tools.min.js',
+            'store/owl.carousel.min.js',
             'store/jquery.themepunch.revolution.min.js',
             'store/jquery.elevateZoom.min.js',
             'store/jquery.elastislide.js',
@@ -33,7 +28,6 @@ elixir(function(mix) {
             'store/colpick.js',
             'store/main.js',
         ], 'public/js/main.js')
-
         .version([ '/css/*', '/js/*' ])
         .copy('resources/assets/images/*', 'public/images/')
         .copy('resources/assets/images/*.*', 'public/images/')
