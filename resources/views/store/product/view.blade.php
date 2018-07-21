@@ -142,9 +142,9 @@
                   <li>
                     <a data-toggle="tab" href="product.html#additional">Доп. информация</a>
                   </li>
-                  <li>
+                  {{-- <li>
                     <a data-toggle="tab" href="product.html#video">Видео</a>
-                  </li>
+                  </li> --}}
                 </ul>
                 <div class="tab-content clearfix">
                   <div class="tab-pane active" id="overview">
@@ -181,14 +181,14 @@
                       <li>Quae laudantium iste libero</li>
                     </ul>
                   </div>
-                  <div class="tab-pane" id="video">
+                  {{-- <div class="tab-pane" id="video">
                     <div class="video-container">
                       <strong>A Video about Product</strong>
                       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur adipisci esse.</p>
                       <hr>
                       <iframe height="315" src="http://www.youtube.com/embed/Z0MNVFtyO30?rel=0" width="560"></iframe>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
               </div>
               <div class="lg-margin visible-xs"></div>
