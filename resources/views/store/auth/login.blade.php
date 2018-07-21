@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('meta')
-<meta name=”robots” content=”noindex, follow”>
+  <meta name=”robots” content=”noindex, follow”>
 @endsection
 
 @section('title', 'Авторизация')
 
 @section('content')
-<section id="content">
+  <section id="content">
     <div id="breadcrumb-container">
       <div class="container">
         <ul class="breadcrumb">
@@ -36,15 +36,30 @@
               <h2>Зарегистрированные клиенты</h2>
               <p>Если у вас есть аккаунт у нас, войдите в систему.</p>
               <div class="xs-margin"></div>
-              <form action="{{ route('login') }}" id="login-form" method="POST" name="login-form">
-                @csrf
-                <div class="input-group">
-                  <span class="input-group-addon"><span class="input-icon input-icon-phone"></span><span class="input-text">Моб.телефон&#42;</span></span> <input class="form-control input-lg" placeholder="Ваш моб.телефон" required="" type="text" name="email">
-                </div>
-                <div class="input-group xs-margin">
-                  <span class="input-group-addon"><span class="input-icon input-icon-password"></span><span class="input-text">Пароль&#42;</span></span> <input class="form-control input-lg" placeholder="Ваш пароль" required="" type="password" name="password">
-                </div><span class="help-block text-right"><a href="#">Забыли пароль?</a></span> <button class="btn btn-custom-2">Авторизоваться</button>
-              </form>
+              {!! Form::open(['route' => 'login']) !!}
+              @include('components.form.text', [
+                'name' => 'email', 
+                'title' => 'Моб.телефон&#42;', 
+                'icon' => 'phone', 
+                'attributes' => [
+                  'class' => 'form-control bfh-phone', 
+                  'data-format' => '+38 (ddd) ddd-dddd',
+                  'placeholder' => 'Ваш моб.телефон',
+                  'autofocus',
+                ],
+              ])
+              @include('components.form.password', [
+                'name' => 'password', 
+                'title' => 'Пароль&#42;', 
+                'icon' => 'password',
+                'attributes' => [
+                  'placeholder' => 'Ваш пароль',
+                ]
+              ])
+              @include('components.form.checkbox', ['name' => 'remember', 'title' => 'Запомнить'])
+
+              @include('components.form.submit', ['title' => 'Авторизоваться'])
+              {!! Form::close() !!}
               <div class="sm-margin"></div>
             </div>
           </div>

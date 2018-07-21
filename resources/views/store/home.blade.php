@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title', 'Твоя мебель - магазин мебели: купить мебель для офиса и дома')
+
 @section('content')
 
 {{-- @include('components.slider') --}}
@@ -36,7 +38,7 @@
               <div class="lg-margin"></div>
             </div> --}}
           </div>
-          {{-- <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
+          <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
             <div class="widget subscribe">
               <h3>Узнай первым</h3>
               <p>Получите всю последнюю информацию о событиях, продажах и предложениях. Подпишитесь на информационный бюллетень магазина ТМебель сегодня.</p>
@@ -134,7 +136,7 @@
                 </ul>
               </div>
             </div>
-            {{-- <div class="widget banner-slider-container">
+            <div class="widget banner-slider-container">
               <div class="banner-slider flexslider">
                 <ul class="banner-slider-list clearfix">
                   <li>
@@ -148,8 +150,8 @@
                   </li>
                 </ul>
               </div>
-            </div> --}}
-          {{-- </div> --}}
+            </div>
+          </div>
         </div>
       </div>
     </div>

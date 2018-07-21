@@ -2,7 +2,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-5 col-sm-5 col-xs-12 logo-container">
-          <h1 class="logo clearfix"><span>Responsive eCommerce Template</span> <a href="{{route('home')}}" title="Venedor eCommerce Template"><img alt="Venedor Commerce Template" height="76" src="/images/logo.png" width="238"></a></h1>
+          <h1 class="logo clearfix"><span>Твоя мебель - магазин мебели: купить мебель для офиса и дома</span> <a href="{{route('home')}}" title="Твоя мебель - магазин мебели: купить мебель для офиса и дома"><img alt="Твоя мебель - магазин мебели: купить мебель для офиса и дома" height="76" src="/images/logo.png" width="238"></a></h1>
         </div>
         <div class="col-md-7 col-sm-7 col-xs-12 header-inner-right">
           <div class="header-box contact-infos pull-right">

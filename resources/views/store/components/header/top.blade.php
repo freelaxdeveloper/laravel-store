@@ -4,9 +4,9 @@
         <div class="col-md-12">
           <div class="header-top-left">
             <ul class="clearfix" id="top-links">
-              <li>
+              {{-- <li>
                 <a href="#" title="Мой список желаний"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Мой список желаний</span></a>
-              </li>
+              </li> --}}
               @auth
                 <li>
                   <a href="{{ route('user.my') }}" title="Мой аккаунт"><span class="top-icon top-icon-user"></span><span class="hide-for-xs">Мой аккаунт</span></a>
@@ -21,7 +21,7 @@
             </ul>
           </div>
           <div class="header-top-right">
-            <div class="header-top-dropdowns pull-right">
+            {{-- <div class="header-top-dropdowns pull-right">
               <div class="btn-group dropdown-money">
                 <button class="btn btn-custom dropdown-toggle" data-toggle="dropdown" type="button"><span class="hide-for-xs">US Dollar</span><span class="hide-for-lg">$</span></button>
                 <ul class="dropdown-menu pull-right" role="menu">
@@ -50,7 +50,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> --}}
             <div class="header-text-container pull-right">
               <p class="header-text">Твоя Мебель привествует тебя!</p>
               <p class="header-link">

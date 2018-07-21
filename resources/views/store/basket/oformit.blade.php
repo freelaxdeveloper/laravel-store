@@ -1,0 +1,252 @@
+@extends('layouts.app')
+
+@section('title', 'Оформление заказа')
+
+@section('head')
+    @parent
+
+@endsection
+
+@section('content')
+<section id="content">
+    <div id="breadcrumb-container">
+      <div class="container">
+        <ul class="breadcrumb">
+          <li>
+            <a href="index.html">Главная</a>
+          </li>
+          <li class="active">Корзина</li>
+        </ul>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <header class="content-title">
+            <h1 class="title">Корзина</h1>
+            <p class="title-desc">Только на этой неделе вы можете использовать бесплатную премиальную доставку.</p>
+          </header>
+          <div class="xs-margin"></div>
+          <div class="row">
+              <div class="col-md-12 table-responsive">
+                <table class="table cart-table">
+                  <thead>
+                    <tr>
+                      <th class="table-title">Название</th>
+                      <th class="table-title">Цена</th>
+                      <th class="table-title">Количество</th>
+                      <th class="table-title">Всего</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+          
+                  @forelse( $products as $product )
+                    <tr>
+                      <td class="item-name-col">
+                        <figure>
+                          <a href="cart.html#"><img alt="{{ $product->title }}" src="{{ $product->screen['image']->size(100, 100)->get('src') }}"></a>
+                        </figure>
+                        <header class="item-name">
+                          <a href="cart.html#">{{ $product->title }}</a>
+                        </header>
+                        {{-- <ul>
+                          <li>Color: White</li>
+                          <li>Size: SM</li>
+                        </ul> --}}
+                      </td>
+                      <td class="item-price-col">&#8372;<span class="item-price-special">{{ number_format($product->price) }}</span></td>
+                      <td>
+                        <div class="custom-quantity-input product{{ $product->id }}" data-product-id="{{ $product->id }}">
+                          <input name="quantity" type="text" value="1" disabled> <a class="quantity-btn quantity-input-up" href="cart.html#" onclick="return!1"><i class="fa fa-angle-up"></i></a> <a class="quantity-btn quantity-input-down" href="cart.html#" onclick="return!1"><i class="fa fa-angle-down"></i></a>
+                        </div>
+                      </td>
+                      <td class="item-total-col">
+                        &#8372;<span data-product-price="{{$product->price}}" class="item-price-special test productPrice{{ $product->id }}">{{ number_format($product->price) }}</span> <a class="close-button" href="cart.html#"></a>
+                      </td>
+                    </tr>
+          
+                  @empty 
+          
+                  @endforelse
+                  {{-- <tr>
+                    <td>Оформить заказ</td>
+                    <td class="item-price-col">&#8372;<span class="item-price-special">{{ number_format($products->sum('price')) }}</span></td>
+                    <td>
+                      <div class="custom-quantity-input">
+                        <input class="productsCount" type="text" value="{{ order()->count() }}" disabled>
+                      </div>
+                    </td>
+                    <td>&#8372;<span class="item-price-special allPrice">{{ number_format($products->sum('price')) }}</span></td>
+                  </tr> --}}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          <div class="lg-margin"></div>
+          <div class="row">
+            <div class="col-md-8 col-sm-12 col-xs-12 lg-margin">
+              <div class="tab-container left clearfix">
+                <ul class="nav-tabs">
+                  <li class="active">
+                    <a data-toggle="tab" href="cart.html#shipping">Доставка</a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="cart.html#discount">Код скидки</a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="cart.html#gift">Подарочный сертификат</a>
+                  </li>
+                </ul>
+                <div class="tab-content clearfix">
+                  <div class="tab-pane active" id="shipping">
+                    <form action="cart.html#" id="shipping-form" name="shipping-form">
+                      <p class="shipping-desc">Введите пункт назначения, чтобы получить оценку доставки.</p>
+                      <div class="form-group">
+                        <label class="control-label" for="select-country">Страна&#42;</label>
+                        <div class="input-container normal-selectbox">
+                          <select class="selectbox" id="select-country" name="select-country">
+                            <option value="Japan">
+                              Japan
+                            </option>
+                            <option value="Brazil">
+                              Brazil
+                            </option>
+                            <option value="France">
+                              France
+                            </option>
+                            <option value="Italy">
+                              Italy
+                            </option>
+                            <option value="Spain">
+                              Spain
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="xss-margin"></div>
+                      <div class="form-group">
+                        <label class="control-label" for="select-state">Регион/Штат&#42;</label>
+                        <div class="input-container normal-selectbox">
+                          <select class="selectbox" id="select-state" name="select-state">
+                            <option value="California">
+                              California
+                            </option>
+                            <option value="Texas">
+                              Texas
+                            </option>
+                            <option value="NewYork">
+                              NewYork
+                            </option>
+                            <option value="Narnia">
+                              Narnia
+                            </option>
+                            <option value="Jumanji">
+                              Jumanji
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="xss-margin"></div>
+                      <p class="text-right"><input class="btn btn-custom-2" type="submit" value="GET QUOTES"></p>
+                    </form>
+                  </div>
+                  <div class="tab-pane" id="discount">
+                    <p>Введите свой скидочный купон здесь.</p>
+                    <form action="cart.html#">
+                      <div class="input-group">
+                        <input class="form-control" placeholder="Купон" required="" type="text">
+                      </div><input class="btn btn-custom-2" type="submit" value="Применить купон">
+                    </form>
+                  </div>
+                  <div class="tab-pane" id="gift">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi dignissimos nostrum debitis optio molestiae in quam dicta labore obcaecati ullam necessitatibus animi deleniti minima dolor suscipit nobis est excepturi inventore.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 col-sm-12 col-xs-12">
+              <table class="table total-table">
+                <tbody>
+                  <tr>
+                    <td class="total-table-title">Промежуточный итог:</td>
+                    <td>&#8372;<span class="allPrice">{{ number_format($products->sum('price')) }}</span></td>
+                  </tr>
+                  <tr>
+                    <td class="total-table-title">Перевозка:</td>
+                    <td>&#8372;6.00</td>
+                  </tr>
+                  <tr>
+                    <td class="total-table-title">Доставка (0%):</td>
+                    <td>м0.00</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td>Всего:</td>
+                    <td>&#8372;<span class="allPrice">{{ number_format($products->sum('price') + 6) }}</span></td>
+                  </tr>
+                </tfoot>
+              </table>
+              <div class="md-margin"></div><a class="btn btn-custom-2" href="cart.html#">Продолжить покупки</a> <a class="btn btn-custom" href="cart.html#">Оформить</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+@endsection
+
+@section('js')
+
+<script>
+          
+    $(function() {
+      $('.custom-quantity-input > a').click(function(){
+        $this = this;
+        console.log('=)');
+        var product_id = $(this).parent('.custom-quantity-input').data('product-id');
+        var quantity = $('.custom-quantity-input.product' + product_id + ' > input');
+        var price = $('.productPrice' + product_id);
+        console.log('product_id', product_id);
+        console.log('price', price.data('product-price'));
+        quantity.val( function(i, oldval) {
+          let count;
+          if ($($this).hasClass('quantity-input-up')) {
+            count = ++oldval;
+          } else {
+            count = --oldval;
+          }
+          if (count < 1) {
+            count = 1;
+          }
+          let newPrice = price.data('product-price') * count;
+          console.log('newPrice', newPrice);
+          price.html(new Intl.NumberFormat('en-IN').format(newPrice));
+  
+          return count;
+        });
+  
+        var arr = document.getElementsByClassName('test');;
+        var tot = 0;
+        for(var i=0; i < arr.length; i++){
+          tot += Number(String(arr[i].innerHTML).replace(',', '').replace(',', ''));
+        }
+  
+        var arr = document.getElementsByName('quantity');;
+        var tot2 = 0;
+        for(var i=0; i < arr.length; i++){
+          tot2 += Number(arr[i].value);
+        }
+        console.log('tot2', tot2);
+        $('.allPrice').html(new Intl.NumberFormat('en-IN').format(tot));
+        $('.productsCount').val(tot2);
+  
+      });
+    });
+  
+  </script>
+
+
+@endsection

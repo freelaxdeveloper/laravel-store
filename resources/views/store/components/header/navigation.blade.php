@@ -109,7 +109,9 @@
                     <li><span class="dropdown-cart-total-title">Всего:</span>&#8372;<span class="basket-sum">{{ number_format(order()->products()->sum('price')) }}</span></li>
                   </ul>
                   <div class="dropdown-cart-action">
-                    <p><a class="btn btn-custom-2 btn-block" href="#">Корзина</a></p>
+                    <p>
+                      <a class="btn btn-custom-2 btn-block" id="myBasket" data-toggle="modal" href="{{ route('basket', ['view']) }}" data-target="#basket">Корзина</a>
+                    </p>
                     <p><a class="btn btn-custom btn-block" href="{{ route('basket.oformit-zakaz') }}">Оформить</a></p>
                   </div>
                 </div>

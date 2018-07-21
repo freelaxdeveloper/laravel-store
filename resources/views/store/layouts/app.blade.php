@@ -150,7 +150,7 @@
 	
 	<script src="{{elixir('js/main.js')}}"></script>
 
-	
+	@yield('js')
 
 	<script>
 		$(function() {
