@@ -46,6 +46,18 @@ class ApiController extends Controller
         return response()->json(order()->toArray(), 200);
     }
 
+    public function updateProductCount(Request $request)
+    {
+        Validator::make($request->all(), [
+            'product_id' => 'required|integer',
+            'count' => 'required|integer',
+        ])->validate();
+
+        order()->updateCountProduct($request->product_id, $request->count);
+
+        return response()->json(order()->toArray(), 200); 
+    }
+
     public function basketPush(Request $request)
     {
         $messages = [];
@@ -56,9 +68,11 @@ class ApiController extends Controller
 
         $product = Product::findOrFail($request->product_id);
 
-        $countOrders = order()->push($product)->count();
+        if (!$order = order()->orders()->where('product_id', $request->product_id)->first()) {
+            order()->push($product);
+        }
 
-        return response()->json(['orders' => order()->toArray(), 'success' => true, 'countOrders' => $countOrders, 'product' => $product], 200);
+        return response()->json(['orders' => order()->toArray(), 'success' => true, 'countOrders' => order()->count(), 'product' => $product], 200);
     }
 
     public function basketClear(Request $request)

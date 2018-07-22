@@ -1,6 +1,6 @@
 @php
   $attributesDefault = [
-    'class' => 'form-control',
+    'class' => 'selectbox',
   ];
 
   if ( !empty($attributes) ) {
@@ -13,6 +13,9 @@
 @endphp
 
 <div class="form-group">
-  {!! Form::label($name, "{$icon} {$title}", [], false) !!}
-  {!! Form::select($name, $items, null, $attributesDefault) !!}
+  {!! Form::label($name, "{$icon} {$title}", ['class' => 'control-label'], false) !!}
+  <div class="input-container normal-selectbox">
+    {!! Form::select($name, $items, null, $attributesDefault) !!}
+  </div>
 </div>
+<div class="xss-margin"></div>

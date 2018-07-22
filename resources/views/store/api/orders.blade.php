@@ -19,7 +19,7 @@
               <p>{!! $product->meta_description !!}</p>
               <p><b>Код товара:</b> {{ $product->id }}</p>
               <p>
-                <b>Стоимость:</b> <span data-product-price="{{$product->price}}" class="test productPrice{{ $product->id }}">{{ number_format($product->price) }}</span> {{ env('CURRENCY') }}
+                <b>Стоимость:</b> <span data-product-price="{{$product->price_origin}}" class="test productPrice{{ $product->id }}">{{ number_format($product->price) }}</span> {{ env('CURRENCY') }}
                 @if ( Auth::check() && Auth::user()->discount )
                   (-{{ Auth::user()->discount }}%)
                 @endif
@@ -70,6 +70,16 @@
         if (count < 1) {
           count = 1;
         }
+        fetch('/api/basket/update/count', { 
+          method: 'POST', 
+          credentials: 'same-origin',
+          headers: { 
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          body: JSON.stringify({product_id: product_id, count: count}),
+        });
+
         let newPrice = price.data('product-price') * count;
         price.html(new Intl.NumberFormat('en-IN').format(newPrice));
 

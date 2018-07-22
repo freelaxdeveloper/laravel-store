@@ -121,6 +121,7 @@ $(document).ready(function () {
     $('select[name=region]').change(function () {
         var refRegion = $( this ).val();
 
+        console.log('=)', refRegion);
         $.ajax({
             type: "POST",
             url: "/api/np/cities",

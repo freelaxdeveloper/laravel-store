@@ -1,5 +1,6 @@
 /public/products/
 /resources/views/store/green
+/resources/views/store/admin_html
 /resources/archive/
 /storage/images/
 /node_modules

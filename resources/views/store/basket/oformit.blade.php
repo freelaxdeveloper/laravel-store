@@ -57,11 +57,11 @@
                       <td class="item-price-col">&#8372;<span class="item-price-special">{{ number_format($product->price) }}</span></td>
                       <td>
                         <div class="custom-quantity-input product{{ $product->id }}" data-product-id="{{ $product->id }}">
-                          <input name="quantity" type="text" value="1" disabled> <a class="quantity-btn quantity-input-up" href="cart.html#" onclick="return!1"><i class="fa fa-angle-up"></i></a> <a class="quantity-btn quantity-input-down" href="cart.html#" onclick="return!1"><i class="fa fa-angle-down"></i></a>
+                          <input name="quantity" type="text" value="{{ $product->count }}" disabled> <a class="quantity-btn quantity-input-up" href="cart.html#" onclick="return!1"><i class="fa fa-angle-up"></i></a> <a class="quantity-btn quantity-input-down" href="cart.html#" onclick="return!1"><i class="fa fa-angle-down"></i></a>
                         </div>
                       </td>
                       <td class="item-total-col">
-                        &#8372;<span data-product-price="{{$product->price}}" class="item-price-special test productPrice{{ $product->id }}">{{ number_format($product->price) }}</span> <a class="close-button" href="cart.html#"></a>
+                        &#8372;<span data-product-price="{{$product->price_origin}}" class="item-price-special test productPrice{{ $product->id }}">{{ number_format($product->price) }}</span> <a class="close-button" href="cart.html#"></a>
                       </td>
                     </tr>
           
@@ -102,52 +102,35 @@
                   <div class="tab-pane active" id="shipping">
                     <form action="cart.html#" id="shipping-form" name="shipping-form">
                       <p class="shipping-desc">Введите пункт назначения, чтобы получить оценку доставки.</p>
-                      <div class="form-group">
-                        <label class="control-label" for="select-country">Страна&#42;</label>
-                        <div class="input-container normal-selectbox">
-                          <select class="selectbox" id="select-country" name="select-country">
-                            <option value="Japan">
-                              Japan
-                            </option>
-                            <option value="Brazil">
-                              Brazil
-                            </option>
-                            <option value="France">
-                              France
-                            </option>
-                            <option value="Italy">
-                              Italy
-                            </option>
-                            <option value="Spain">
-                              Spain
-                            </option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="xss-margin"></div>
-                      <div class="form-group">
-                        <label class="control-label" for="select-state">Регион/Штат&#42;</label>
-                        <div class="input-container normal-selectbox">
-                          <select class="selectbox" id="select-state" name="select-state">
-                            <option value="California">
-                              California
-                            </option>
-                            <option value="Texas">
-                              Texas
-                            </option>
-                            <option value="NewYork">
-                              NewYork
-                            </option>
-                            <option value="Narnia">
-                              Narnia
-                            </option>
-                            <option value="Jumanji">
-                              Jumanji
-                            </option>
-                          </select>
-                        </div>
-                      </div>
-                      <div class="xss-margin"></div>
+                      @include('components.form.select', [
+                        'name' => 'region',
+                        'title' => 'Область&#42;',
+                        'items' => $regions->pluck('Description', 'Ref'),
+                        'empty' => true,
+                        'attributes' => [
+                            'class' => 'form-control region'
+                        ],
+                      ])
+                      @include('components.form.select', [
+                        'name' => 'cities',
+                        'title' => 'Город&#42;',
+                        'items' => ['Выберите область'],
+                        'empty' => true,
+                        'attributes' => [
+                            'class' => 'form-control cities',
+                            'disabled' => 'disabled',
+                        ],
+                      ])                
+                      @include('components.form.select', [
+                        'name' => 'offices',
+                        'title' => 'Отделение №:&#42;',
+                        'items' => ['Выберите Город'],
+                        'empty' => true,
+                        'attributes' => [
+                            'class' => 'form-control offices',
+                            'disabled' => 'disabled',
+                        ],
+                      ])                
                       <p class="text-right"><input class="btn btn-custom-2" type="submit" value="GET QUOTES"></p>
                     </form>
                   </div>
@@ -199,9 +182,8 @@
 @endsection
 
 @section('js')
-
+<script src="{{elixir('/js/select2.min.js')}}"></script>
 <script>
-          
     $(function() {
       $('.custom-quantity-input > a').click(function(){
         $this = this;
@@ -224,7 +206,15 @@
           let newPrice = price.data('product-price') * count;
           console.log('newPrice', newPrice);
           price.html(new Intl.NumberFormat('en-IN').format(newPrice));
-  
+          fetch('/api/basket/update/count', { 
+            method: 'POST', 
+            credentials: 'same-origin',
+            headers: { 
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            body: JSON.stringify({product_id: product_id, count: count}),
+          });
           return count;
         });
   

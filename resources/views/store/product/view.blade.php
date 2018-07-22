@@ -1,7 +1,9 @@
 @extends('layouts.app')
 
+@section('title', $product->title . ' - заказать онлайн')
+
 @section('content')
-<section id="content">
+  <section id="content">
     <div id="breadcrumb-container">
       <div class="container">
         <ul class="breadcrumb">
@@ -53,78 +55,12 @@
                 <li><span>Код товара:</span>{{ $product->id }}</li>
               </ul>
               <hr>
-              <div class="product-color-filter-container">
-                <span>Select Color:</span>
-                <div class="xs-margin"></div>
-                <ul class="filter-color-list clearfix">
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#fff" href="product.html#"></a>
-                  </li>
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#d1d2d4" href="product.html#"></a>
-                  </li>
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#666467" href="product.html#"></a>
-                  </li>
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#515151" href="product.html#"></a>
-                  </li>
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#bcdae6" href="product.html#"></a>
-                  </li>
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#5272b3" href="product.html#"></a>
-                  </li>
-                  <li>
-                    <a class="filter-color-box" data-bgcolor="#acbf0b" href="product.html#"></a>
-                  </li>
-                </ul>
-              </div>
-              <div class="product-size-filter-container">
-                <span>Select Size:</span>
-                <div class="xs-margin"></div>
-                <ul class="filter-size-list clearfix">
-                  <li>
-                    <a href="product.html#">XS</a>
-                  </li>
-                  <li>
-                    <a href="product.html#">S</a>
-                  </li>
-                  <li>
-                    <a href="product.html#">M</a>
-                  </li>
-                  <li>
-                    <a href="product.html#">L</a>
-                  </li>
-                  <li>
-                    <a href="product.html#">XL</a>
-                  </li>
-                </ul>
-              </div>
-              <hr>
               <div class="product-add clearfix">
-                <div class="custom-quantity-input">
-                  <input name="quantity" type="text" value="1"> <a class="quantity-btn quantity-input-up" href="product.html#" onclick="return!1"><i class="fa fa-angle-up"></i></a> <a class="quantity-btn quantity-input-down" href="product.html#" onclick="return!1"><i class="fa fa-angle-down"></i></a>
-                </div><button class="btn btn-custom-2">Добавить в корзину</button>
+                <button class="btn btn-custom-2 buy" data-product-id="{{ $product->id }}" onclick="return false;">Добавить в корзину</button>
               </div>
               <div class="md-margin"></div>
               <div class="product-extra clearfix">
-                <div class="product-extra-box-container clearfix">
-                  <div class="item-action-inner">
-                    <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                  </div>
-                </div>
                 <div class="md-margin visible-xs"></div>
-                {{-- <div class="share-button-group">
-                  <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-                    <a class="addthis_button_facebook"></a> <a class="addthis_button_twitter"></a> <a class="addthis_button_email"></a> <a class="addthis_button_print"></a> <a class="addthis_button_compact"></a><a class="addthis_counter addthis_bubble_style"></a>
-                  </div>
-                  <script type="text/javascript">
-                  var addthis_config={data_track_addressbar:!0};
-                  </script>
-                  <script src="http://s7.addthis.com/js/300/addthis_widget.js#pubid=ra-52b2197865ea0183" type="text/javascript">
-                  </script>
-                </div> --}}
               </div>
             </div>
           </div>
@@ -142,9 +78,6 @@
                   <li>
                     <a data-toggle="tab" href="product.html#additional">Доп. информация</a>
                   </li>
-                  {{-- <li>
-                    <a data-toggle="tab" href="product.html#video">Видео</a>
-                  </li> --}}
                 </ul>
                 <div class="tab-content clearfix">
                   <div class="tab-pane active" id="overview">
@@ -181,14 +114,6 @@
                       <li>Quae laudantium iste libero</li>
                     </ul>
                   </div>
-                  {{-- <div class="tab-pane" id="video">
-                    <div class="video-container">
-                      <strong>A Video about Product</strong>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur adipisci esse.</p>
-                      <hr>
-                      <iframe height="315" src="http://www.youtube.com/embed/Z0MNVFtyO30?rel=0" width="560"></iframe>
-                    </div>
-                  </div> --}}
                 </div>
               </div>
               <div class="lg-margin visible-xs"></div>
@@ -323,156 +248,6 @@
             </div>
           </div>
           <div class="lg-margin2x"></div>
-          <div class="purchased-items-container carousel-wrapper">
-            <header class="content-title">
-              <div class="title-bg">
-                <h2 class="title">Аналогичные продукты</h2>
-              </div>
-              <p class="title-desc">Обратите внимание на аналогичные продукты - после покупки на сумму более &#8372;500 вы можете получить скидку.</p>
-            </header>
-            <div class="carousel-controls">
-              <div class="carousel-btn carousel-btn-prev" id="purchased-items-slider-prev"></div>
-              <div class="carousel-btn carousel-btn-next carousel-space" id="purchased-items-slider-next"></div>
-            </div>
-            <div class="purchased-items-slider owl-carousel">
-              <div class="item item-hover">
-                <div class="item-image-wrapper">
-                  <figure class="item-image-container">
-                    <a href="product.html"><img alt="item1" class="item-image" src="/images/products/item7.jpg"> <img alt="item1 Hover" class="item-image-hover" src="/images/products/item7-hover.jpg"></a>
-                  </figure>
-                  <div class="item-price-container">
-                    <span class="item-price">$160<span class="sub-price">.99</span></span>
-                  </div><span class="new-rect">New</span>
-                </div>
-                <div class="item-meta-container">
-                  <div class="ratings-container">
-                    <div class="ratings">
-                      <div class="ratings-result" data-result="80"></div>
-                    </div><span class="ratings-amount">5 Reviews</span>
-                  </div>
-                  <h3 class="item-name"><a href="product.html">Phasellus consequat</a></h3>
-                  <div class="item-action">
-                    <a class="item-add-btn" href="product.html#"><span class="icon-cart-text">Add to Cart</span></a>
-                    <div class="item-action-inner">
-                      <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item item-hover">
-                <div class="item-image-wrapper">
-                  <figure class="item-image-container">
-                    <a href="product.html"><img alt="item1" class="item-image" src="/images/products/item8.jpg"> <img alt="item1 Hover" class="item-image-hover" src="/images/products/item8-hover.jpg"></a>
-                  </figure>
-                  <div class="item-price-container">
-                    <span class="item-price">$100</span>
-                  </div><span class="new-rect">New</span>
-                </div>
-                <div class="item-meta-container">
-                  <div class="ratings-container">
-                    <div class="ratings">
-                      <div class="ratings-result" data-result="99"></div>
-                    </div><span class="ratings-amount">4 Reviews</span>
-                  </div>
-                  <h3 class="item-name"><a href="product.html">Phasellus consequat</a></h3>
-                  <div class="item-action">
-                    <a class="item-add-btn" href="product.html#"><span class="icon-cart-text">Add to Cart</span></a>
-                    <div class="item-action-inner">
-                      <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item item-hover">
-                <div class="item-image-wrapper">
-                  <figure class="item-image-container">
-                    <a href="product.html"><img alt="item1" class="item-image" src="/images/products/item9.jpg"> <img alt="item1 Hover" class="item-image-hover" src="/images/products/item9-hover.jpg"></a>
-                  </figure>
-                  <div class="item-price-container">
-                    <span class="old-price">$100</span> <span class="item-price">$80</span>
-                  </div><span class="discount-rect">-20%</span>
-                </div>
-                <div class="item-meta-container">
-                  <div class="ratings-container">
-                    <div class="ratings">
-                      <div class="ratings-result" data-result="75"></div>
-                    </div><span class="ratings-amount">2 Reviews</span>
-                  </div>
-                  <h3 class="item-name"><a href="product.html">Phasellus consequat</a></h3>
-                  <div class="item-action">
-                    <a class="item-add-btn" href="product.html#"><span class="icon-cart-text">Add to Cart</span></a>
-                    <div class="item-action-inner">
-                      <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item item-hover">
-                <div class="item-image-wrapper">
-                  <figure class="item-image-container">
-                    <a href="product.html"><img alt="item1" class="item-image" src="/images/products/item6.jpg"> <img alt="item1 Hover" class="item-image-hover" src="/images/products/item6-hover.jpg"></a>
-                  </figure>
-                  <div class="item-price-container">
-                    <span class="item-price">$99</span>
-                  </div><span class="new-rect">New</span>
-                </div>
-                <div class="item-meta-container">
-                  <div class="ratings-container">
-                    <div class="ratings">
-                      <div class="ratings-result" data-result="40"></div>
-                    </div><span class="ratings-amount">3 Reviews</span>
-                  </div>
-                  <h3 class="item-name"><a href="product.html">Phasellus consequat</a></h3>
-                  <div class="item-action">
-                    <a class="item-add-btn" href="product.html#"><span class="icon-cart-text">Add to Cart</span></a>
-                    <div class="item-action-inner">
-                      <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item item-hover">
-                <div class="item-image-wrapper">
-                  <figure class="item-image-container">
-                    <a href="product.html"><img alt="item1" class="item-image" src="/images/products/item7.jpg"> <img alt="item1 Hover" class="item-image-hover" src="/images/products/item7-hover.jpg"></a>
-                  </figure>
-                  <div class="item-price-container">
-                    <span class="item-price">$280</span>
-                  </div>
-                </div>
-                <div class="item-meta-container">
-                  <div class="ratings-container"></div>
-                  <h3 class="item-name"><a href="product.html">Phasellus consequat</a></h3>
-                  <div class="item-action">
-                    <a class="item-add-btn" href="product.html#"><span class="icon-cart-text">Add to Cart</span></a>
-                    <div class="item-action-inner">
-                      <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="item item-hover">
-                <div class="item-image-wrapper">
-                  <figure class="item-image-container">
-                    <a href="product.html"><img alt="item1" class="item-image" src="/images/products/item10.jpg"> <img alt="item1 Hover" class="item-image-hover" src="/images/products/item10-hover.jpg"></a>
-                  </figure>
-                  <div class="item-price-container">
-                    <span class="old-price">$150</span> <span class="item-price">$120</span>
-                  </div>
-                </div>
-                <div class="item-meta-container">
-                  <div class="ratings-container"></div>
-                  <h3 class="item-name"><a href="product.html">Phasellus consequat</a></h3>
-                  <div class="item-action">
-                    <a class="item-add-btn" href="product.html#"><span class="icon-cart-text">Add to Cart</span></a>
-                    <div class="item-action-inner">
-                      <a class="icon-button icon-like" href="product.html#">Favourite</a> <a class="icon-button icon-compare" href="product.html#">Checkout</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>

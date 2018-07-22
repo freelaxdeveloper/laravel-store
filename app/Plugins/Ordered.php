@@ -21,6 +21,33 @@ class Ordered {
         return $this;
     }
 
+    public function orders(): Collection
+    {
+        return collect(session(self::SESSION_KEY, []));
+    }
+
+    public function updateCountProduct(int $product_id, int $count = 1)
+    {
+        $orders =  $this->orders();
+
+        if (!$orders->where('product_id', $product_id)->count()) {
+            return $this;
+        }
+        $keys = $orders->where('product_id', $product_id)->keys();
+
+        $order = $orders[$keys[0]];
+        $order['count'] = $count;
+        // ++$order['count'];
+
+        $orders->forget($keys[0]);
+        $orders->push($order);
+
+        session(['orders' => $orders]);
+        session()->save();
+
+        return $this;
+    }
+
     public function toArray()
     {
         $products = $this->products();
@@ -36,7 +63,7 @@ class Ordered {
      */
     public function forget(int $product_id): Collection
     {
-        $keys = collect(session(self::SESSION_KEY))->where('product_id', $product_id)->keys();
+        $keys = $this->orders()->where('product_id', $product_id)->keys();
         for ($i = 0; $i < count($keys); $i++) {
             session()->forget(self::SESSION_KEY . '.' . $keys[$i]);
         }
@@ -76,6 +103,7 @@ class Ordered {
 
         $products = $products->map(function ($product) use ($productsCount) {
             $product->count = $productsCount[$product->id];
+            $product->price_origin = price($product->price);
             $product->price = price($product->price * $product->count);
             $product->price_old = price($product->price_old * $product->count);
             return $product;
@@ -86,12 +114,12 @@ class Ordered {
 
     public function productsId(): Collection
     {
-        return collect(session(self::SESSION_KEY, []))->pluck('product_id')->unique();
+        return $this->productsCount()->keys();
     }
 
     public function productsCount(): Collection
     {
-        return collect(session(self::SESSION_KEY, []))->pluck('count', 'product_id');
+        return $this->orders()->sortBy('count')->pluck('count', 'product_id');
     }
 
 }
