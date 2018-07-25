@@ -85,7 +85,8 @@ $(document).ready(function () {
                   }).then(function(value) {
                     switch (value) {
                       case "catch":
-                        swal("Тут будет перенаправление на оформление заказа");
+                        // swal("Тут будет перенаправление на оформление заказа");
+                        window.location.replace("/basket/oformit-zakaz");
                       break;
                     }
                   });
