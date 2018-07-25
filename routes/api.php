@@ -16,6 +16,10 @@ if ( env('SSL', false) ) {
     URL::forceScheme('https');
 }
 
+Route::namespace('API')->group(function () {
+    Route::post('/subscribe/email', 'SubscribeController@subscribeEmail')->name('subscribeEmail');
+});
+
 Route::get('/test', 'ApiController@test')->name('test');
 
 Route::get('/agreement/{view?}', 'ApiController@agreement')->name('agreement');

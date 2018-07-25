@@ -39,15 +39,17 @@
             </div> --}}
           </div>
           <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
-            <div class="widget subscribe">
-              <h3>Узнай первым</h3>
-              <p>Получите всю последнюю информацию о событиях, продажах и предложениях. Подпишитесь на информационный бюллетень магазина ТМебель сегодня.</p>
-              <form action="index.html#" id="subscribe-form" name="subscribe-form">
-                <div class="form-group">
-                  <input class="form-control" id="subscribe-email" placeholder="Введите Ваш E-mail адрес" type="email">
-                </div><input class="btn btn-custom" type="submit" value="Подписаться">
-              </form>
-            </div>
+            @if (!session()->has('subscribeEmail'))
+              <div class="widget subscribe">
+                <h3>Узнай первым</h3>
+                <p>Получите всю последнюю информацию о событиях, продажах и предложениях. Подпишитесь на информационный бюллетень магазина ТМебель сегодня.</p>
+                <form action="{{ route('subscribeEmail') }}" id="subscribe-form" name="subscribe-form" method="POST">
+                  <div class="form-group">
+                    <input name="email" class="form-control" id="subscribe-email" placeholder="Введите Ваш E-mail адрес" type="email" required>
+                  </div><input class="btn btn-custom" type="submit" value="Подписаться">
+                </form>
+              </div>
+            @endif
             <div class="widget testimonials">
               <h3>Отзывы</h3>
               <div class="testimonials-slider flexslider sidebarslider">
