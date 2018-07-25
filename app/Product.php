@@ -9,6 +9,7 @@ use Illuminate\Filesystem\Filesystem;
 use File;
 use Auth;
 use App\Plugins\Filter;
+use Carbon\Carbon;
 
 class Product extends Model
 {
@@ -41,6 +42,14 @@ class Product extends Model
     public function setPriceOldAttribute($value)
     {
         $this->attributes['price_old'] = abs($value);
+    }
+
+    /**
+     * На протяжении 7ми дней считаем что продукт новый
+     */
+    public function getIsNewAttribute()
+    {
+        return Carbon::toDay()->addDay(-7) < $this->attributes['created_at'];
     }
 
     /**

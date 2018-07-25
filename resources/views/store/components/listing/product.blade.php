@@ -10,7 +10,9 @@
         @endif
         <span class="item-price">&#8372;{{ number_format(price($product->price)) }}</span>
       </div>
-      <span class="new-rect">New</span> 
+      @if ($product->isNew)
+        <span class="new-rect">New</span>
+      @endif 
       @if ($product->discount)<span class="discount-rect">{{$product->discount}}%</span>@endif
     </div>
     <div class="item-meta-container">
