@@ -29,7 +29,7 @@
                   @endforeach
                  </div>
               </li>
-              <li>
+              {{-- <li>
                 <a href="index.html#">Portfolio</a>
                 <ul>
                   <li>
@@ -75,10 +75,10 @@
                     </ul>
                   </li>
                 </ul>
-              </li>
-              <li>
+              </li> --}}
+              {{-- <li>
                 <a href="contact.html">Контакты</a>
-              </li>
+              </li> --}}
             </ul>
           </nav>
           <div id="quick-access">
