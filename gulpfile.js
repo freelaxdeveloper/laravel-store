@@ -8,6 +8,7 @@ elixir(function(mix) {
             'store/modernizr.custom.js',
             'store/sweetalert.min.js',
             'store/bootstrap.min.js',
+            'store/bootstrap-formhelpers.min.js',
             'store/smoothscroll.js',
             'store/jquery.debouncedresize.js',
             'store/retina.min.js',
