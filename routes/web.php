@@ -85,6 +85,9 @@ Route::name('prod.')->prefix('product')->group(function () {
         'uses' => 'ProductController@view',
     ]);
 
+    Route::get('/comment/{product}', 'ProductController@comment')->name('comment');
+    Route::post('/comment/{product}', 'ProductController@postComment');
+
     Route::get('/screen/view/{product}/{id}/{width}/{height}', 'ProductController@screenView')->name('screenView');
 
     Route::group(['middleware' => ['roles'], 'roles' => ['admin']], function () {

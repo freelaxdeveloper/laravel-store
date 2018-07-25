@@ -48,7 +48,7 @@
               <div class="ratings-container">
                 <div class="ratings separator">
                   <div class="ratings-result" data-result="70"></div>
-                </div><span class="ratings-amount separator">{{ $product->views }} {{ trans_choice('plural.views', $product->views) }}</span> <span class="separator">|</span> <a class="rate-this" href="product.html#review">Оставить отзыв</a>
+                </div><span class="ratings-amount separator">{{ $product->views }} {{ trans_choice('plural.views', $product->views) }}</span> <span class="separator">|</span> <a id="myBasket" data-toggle="modal" href="{{ route('prod.comment', [$product]) }}" data-target="#basket" class="rate-this">Оставить отзыв</a>
               </div>
               <ul class="product-list">
                 <li><span>Доступность:</span>В наличии</li>

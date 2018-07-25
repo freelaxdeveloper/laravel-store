@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Product, Category};
+use App\Models\ProductComment;
 use Validator;
 use Auth;
 use Illuminate\Support\Facades\Storage;
@@ -117,6 +118,27 @@ class ProductController extends Controller
         $product->screenHightlightById($screen_id);
 
         return redirect(route('prod.screen', $product))->with('status', 'Скриншот помечен как основной');
+    }
+
+    public function comment(Product $product)
+    {
+        return view('product.comment', compact('product'));
+    }
+
+    public function postComment(Request $request, Product $product)
+    {
+        $this->validate($request, [
+            'comment' => 'required|string',
+            'name' => 'required|string',
+        ]);
+
+        ProductComment::create([
+            'name' => $request->name,
+            'comment' => $request->comment,
+            'user_id' => Auth::user()->id ?? null,
+        ]);
+
+        return redirect()->back();
     }
 
     public function view(Product $product)

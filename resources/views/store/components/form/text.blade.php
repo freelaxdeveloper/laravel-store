@@ -15,9 +15,10 @@
   $icon = isset($icon) ? "<span class='input-icon input-icon-{$icon}'></span> " : null;
 
   $value = old($name) ?? $value ?? null;
+  $groupClass = $groupClass ?? 'input-group';
 @endphp
 
-<div class="input-group">
+<div class="{{ $groupClass }}">
   {{-- {!! Form::label($name, "<span class='input-group-addon'>{$icon} {$title}</span>", [], false) !!} --}}
   <span class='input-group-addon'>{!! $icon !!} {!!$title!!}</span>
   @if ( 'password' == $method )
