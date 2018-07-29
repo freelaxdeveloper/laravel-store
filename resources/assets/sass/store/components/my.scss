@@ -42,3 +42,70 @@ button {
 .form-group {
   position: relative;
 }
+.static {
+  position: static;
+}
+.mce-panel {
+  z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+
+
+.screens {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 15px;
+  background-color: #dcd5cf;
+  // padding: 7px;
+  // border-radius: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  .title {
+    display: block;
+    padding: 4px;
+    width: 100%;
+    text-align: center;
+    background-color: #969681;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 0;W
+    &:hover {
+      background-color: #888879;
+    }
+    
+  }
+  div {
+    width: 100%;
+  }
+  img {
+    order-radius: 10px;
+  }
+}
+
+.screen-del a {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 6px 2px 6px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 11px;
+}

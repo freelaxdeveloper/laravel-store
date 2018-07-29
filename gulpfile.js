@@ -30,6 +30,9 @@ elixir(function(mix) {
             'store/dcmsx.js',
             'store/main.js',
         ], 'public/js/main.js')
+        .scripts([
+            'store/tinymce_ru.js',
+        ], 'public/js/tinymce_ru.js')
         .version([ '/css/*', '/js/*' ])
         .copy('resources/assets/js/dcmsx/select2.min.js', 'public/js/')
         .copy('resources/assets/images/*', 'public/images/')
