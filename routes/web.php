@@ -104,6 +104,9 @@ Route::name('prod.')->prefix('product')->group(function () {
 
         Route::get('/delete/{product}', 'ProductController@delete')->name('delete');
         Route::post('/delete/confirm/{product}', 'ProductController@deleteConfirm')->name('deleteConfirm');
+
+        Route::get('/actions/{product}', 'ProductController@actions')->name('actions');
+
     });
 });
 

@@ -120,6 +120,11 @@ class ProductController extends Controller
         return redirect(route('prod.screen', $product))->with('status', 'Скриншот помечен как основной');
     }
 
+    public function actions(Product $product)
+    {
+        return view('product.actions', compact('product'));
+    }
+
     public function comment(Product $product)
     {
         return view('product.comment', compact('product'));
@@ -146,11 +151,9 @@ class ProductController extends Controller
         $product->with(['categories']);
         $product->increment('views');
 
-        $actions = $product->adminActions;
-
         $products = Product::with(['categories'])->where('id', '!=', $product->id)->orderBy('id', 'desc')->get()->take(12);
 
-        return view('product.view', compact('products', 'product', 'actions'));
+        return view('product.view', compact('products', 'product'));
     }
 
     public function edit(Product $product)

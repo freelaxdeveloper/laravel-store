@@ -8,7 +8,7 @@
       <div class="container">
         <ul class="breadcrumb">
           <li>
-            <a href="{{ route('home') }}">Домой</a>
+            <a href="{{ route('home') }}">Главная</a>
           </li>
           <li class="active">{{ $product->title }}</li>
         </ul>
@@ -48,7 +48,11 @@
               <div class="ratings-container">
                 <div class="ratings separator">
                   <div class="ratings-result" data-result="70"></div>
-                </div><span class="ratings-amount separator">{{ $product->views }} {{ trans_choice('plural.views', $product->views) }}</span> <span class="separator">|</span> <a id="myBasket" data-toggle="modal" href="{{ route('prod.comment', [$product]) }}" data-target="#basket" class="rate-this">Оставить отзыв</a>
+                </div>
+                <span class="ratings-amount separator">{{ $product->views }} {{ trans_choice('plural.views', $product->views) }}</span> <span class="separator">|</span> <a id="myBasket" data-toggle="modal" href="{{ route('prod.comment', [$product]) }}" data-target="#basket" class="rate-this">Оставить отзыв</a>
+                @auth('admin')
+                  <span class="separator">|</span> <a id="myBasket" data-toggle="modal" href="{{ route('prod.actions', [$product]) }}" data-target="#basket" class="rate-this">Управление</a>
+                @endauth
               </div>
               <ul class="product-list">
                 <li><span>Доступность:</span>В наличии</li>
