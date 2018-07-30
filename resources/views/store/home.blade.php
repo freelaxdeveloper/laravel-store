@@ -54,32 +54,27 @@
               <h3>Отзывы</h3>
               <div class="testimonials-slider flexslider sidebarslider">
                 <ul class="testimonials-list clearfix">
-                  <li>
-                    <div class="testimonial-details">
-                      <header>
-                        Лучший сервис!
-                      </header>Это лучший магазин в котором мне когда-либо приходилось покупать.
-                    </div>
-                    <figure class="clearfix">
-                      <img alt="Computer Ceo" src="/images/testimonials/anna.jpg">
-                      <figcaption>
-                        <a href="index.html#">Anna Retallic</a> <span>12.05.2013</span>
-                      </figcaption>
-                    </figure>
-                  </li>
-                  <li>
-                    <div class="testimonial-details">
-                      <header>
-                        Хороший стиль!
-                      </header>Стильно, модно, молодежно!
-                    </div>
-                    <figure class="clearfix">
-                      <img alt="Computer Ceo" src="/images/testimonials/jake.jpg">
-                      <figcaption>
-                        <a href="index.html#">Jake Suasoo</a> <span>17.05.2013</span>
-                      </figcaption>
-                    </figure>
-                  </li>
+                  @foreach ($comments as $comment)
+                    <li>
+                      <div class="testimonial-details">
+                        <header>
+                          {{ $comment->ratingStr }}
+                          <div class="container">
+                            <div class="ratings separator">
+                              <div class="ratings-result" data-result="{{ $comment->rating / 5 * 100 }}"></div>
+                            </div>
+                          </div>
+                        </header>
+                        {{ $comment->comment }}
+                      </div>
+                      <figure class="clearfix">
+                        <img alt="Computer Ceo" src="https://placeimg.com/75/75/people?t={{ microtime() }}">
+                        <figcaption>
+                          <a href="#">{{ $comment->name }}</a> <span>{{ $comment->created_at->format('Y-m-d') }}</span>
+                        </figcaption>
+                      </figure>
+                    </li>
+                  @endforeach
                 </ul>
               </div>
             </div>

@@ -13,7 +13,7 @@
                 <a class="active" href="{{ route('home') }}">Главная</a>
               </li>
               <li class="mega-menu-container">
-                <a href="index.html#">Категории</a>
+                <a href="#">Категории</a>
                 <div class="mega-menu clearfix">
                   @foreach($categories as $category)
                     <div class="col-5">

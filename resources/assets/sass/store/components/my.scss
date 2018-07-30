@@ -109,3 +109,51 @@ button {
   border-radius: 50px;
   font-size: 11px;
 }
+
+
+
+/****** Style Star Rating Widget *****/
+
+.rating-my { 
+  border: none;
+  float: left;
+  margin: 0;
+}
+
+.rating-my > input { display: none; } 
+.rating-my > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating-my > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating-my > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-my > input:checked ~ label, /* show gold star when clicked */
+.rating-my:not(:checked) > label:hover, /* hover current star */
+.rating-my:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating-my > input:checked + label:hover, /* hover current star when changing rating */
+.rating-my > input:checked ~ label:hover,
+.rating-my > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-my > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+
+
+
+.comments {
+  margin-top: 70px;
+}

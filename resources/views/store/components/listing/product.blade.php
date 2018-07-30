@@ -18,8 +18,8 @@
     <div class="item-meta-container">
       <div class="ratings-container">
         <div class="ratings">
-          <div class="ratings-result" data-result="80"></div>
-        </div><span class="ratings-amount">5 Отзывов</span>
+          <div class="ratings-result" data-result="{{ $product->ratingAvg / 5 * 100 }}"></div>
+        </div><span class="ratings-amount">{{ $product->comments_count }} Отзыв{{ trans_choice('plural.other', $product->comments_count) }}</span>
       </div>
       <h3 class="item-name"><a href="{{ route('prod.view', [$product]) }}">{{ $product->title }}</a></h3>
       <div class="item-action">

@@ -47,7 +47,7 @@
               <h1 class="product-name">{{ $product->title }}</h1>
               <div class="ratings-container">
                 <div class="ratings separator">
-                  <div class="ratings-result" data-result="70"></div>
+                  <div class="ratings-result" data-result="{{ $product->ratingAvg / 5 * 100 }}"></div>
                 </div>
                 <span class="ratings-amount separator">{{ $product->views }} {{ trans_choice('plural.views', $product->views) }}</span> <span class="separator">|</span> <a id="myBasket" data-toggle="modal" href="{{ route('prod.comment', [$product]) }}" data-target="#basket" class="rate-this">Оставить отзыв</a>
                 @auth('admin')
@@ -121,6 +121,41 @@
                 </div>
               </div>
               <div class="lg-margin visible-xs"></div>
+
+              <div class="comments">
+                <header class="title-bg">
+                  <h3>Комментарии ({{ $product->comments->count() }})</h3>
+                </header>
+                <ul class="comments-list">
+
+                  @foreach( $product->comments as $comment)
+                    <li>
+                      <div class="comment clearfix">
+                        <figure>
+                          <img alt="Comment Author" src="https://placeimg.com/70/70/people?t={{ microtime() }}">
+                        </figure>
+                        <div class="comment-details">
+                          <div class="comment-title">
+                              {{ $comment->ratingStr }}
+                              <div class="ratings separator">
+                                <div class="ratings-result" data-result="{{ $comment->rating / 5 * 100 }}"></div>
+                              </div>
+                          </div>
+                          <div class="comment-meta-container">
+                            <a href="single.html#">{{ $comment->name }}</a> <span>{{ $comment->created_at->format('Y-m-d') }}</span>{{--  <a class="replay-button" href="single.html#">Replay</a> --}}
+                          </div>
+                          <p>{{ $comment->comment }}</p>
+                        </div>
+                      </div>
+                    </li>
+
+                  @endforeach
+                </ul>
+                <a class="btn btn-custom-2" id="myBasket" data-toggle="modal" href="{{ route('prod.comment', [$product]) }}" data-target="#basket" class="rate-this">Написать отзыв</a>
+              </div>
+            
+
+
             </div>
             <div class="lg-margin2x visible-sm visible-xs"></div>
             <div class="col-md-3 col-sm-12 col-xs-12 sidebar">

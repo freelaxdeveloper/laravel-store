@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\{Category, AccountInstagram, ProductScreen};
+use App\Models\ProductComment;
 use Illuminate\Support\Collection;
 use Illuminate\Filesystem\Filesystem;
 use File;
@@ -19,7 +20,12 @@ class Product extends Model
         'options' => 'array',
     ];
 
-    protected $appends = ['screens', 'screen'];
+    protected $appends = ['screens', 'screen', 'rating_avg'];
+
+    public function getRatingAvgAttribute()
+    {
+        return $this->comments->avg('rating');
+    }
 
     public function getAdminActionsAttribute()
     {
@@ -32,6 +38,11 @@ class Product extends Model
             ];
             }
         return $actions;
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(ProductComment::class)->orderBy('id', 'DESC');
     }
 
     public function setPriceAttribute($value)

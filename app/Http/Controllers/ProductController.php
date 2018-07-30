@@ -135,12 +135,15 @@ class ProductController extends Controller
         $this->validate($request, [
             'comment' => 'required|string',
             'name' => 'required|string',
+            'rating' => 'required|numeric|max:5|min:0.5',
         ]);
 
         ProductComment::create([
             'name' => $request->name,
             'comment' => $request->comment,
+            'product_id' => $product->id,
             'user_id' => Auth::user()->id ?? null,
+            'rating' => $request->rating,
         ]);
 
         return redirect()->back();
@@ -148,7 +151,7 @@ class ProductController extends Controller
 
     public function view(Product $product)
     {
-        $product->with(['categories']);
+        $product->with(['categories', 'comments']);
         $product->increment('views');
 
         $products = Product::with(['categories'])->where('id', '!=', $product->id)->orderBy('id', 'desc')->get()->take(12);

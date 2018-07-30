@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\{Category, Product};
+use App\Models\ProductComment;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
@@ -137,7 +138,7 @@ class HomeController extends Controller
         $minPrice = request()->get('minPrice');
         $maxPrice = request()->get('maxPrice');
 
-        $products = Product::when($sort, function ($query) use ($sort, $order) {
+        $products = Product::with(['comments'])->withCount(['comments'])->when($sort, function ($query) use ($sort, $order) {
             return $query->orderBy($sort, $order);
         })->when($minPrice, function ($query) use ($minPrice) {
             return $query->where('price', '>=', $minPrice);
@@ -145,6 +146,8 @@ class HomeController extends Controller
             return $query->where('price', '<=', $maxPrice);
         })->paginate($limit);
 
-        return view('home', compact('products'));
+        $comments = ProductComment::get();
+
+        return view('home', compact('products', 'comments'));
     }
 }

@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $minPrice = request()->get('minPrice');
         $maxPrice = request()->get('maxPrice');
 
-        $products = Product::when($sort, function ($query) use ($sort, $order) {
+        $products = Product::with(['comments'])->withCount(['comments'])->when($sort, function ($query) use ($sort, $order) {
             return $query->orderBy($sort, $order);
         })->when($minPrice, function ($query) use ($minPrice) {
             return $query->where('price', '>=', $minPrice);
