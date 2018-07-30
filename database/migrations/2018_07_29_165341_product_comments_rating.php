@@ -16,6 +16,9 @@ class ProductCommentsRating extends Migration
         Schema::table('product_comments', function(Blueprint $table)
         {
             $table->dropColumn('rating');
+        });
+        Schema::table('product_comments', function(Blueprint $table)
+        {
             $table->float('rating');
         });
     }
