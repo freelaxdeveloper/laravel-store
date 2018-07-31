@@ -16,11 +16,12 @@
 
   $value = old($name) ?? $value ?? null;
   $groupClass = $groupClass ?? 'input-group';
+  $classGroupAddon = $classGroupAddon ?? 'input-group-addon';
 @endphp
 
 <div class="{{ $groupClass }}">
   {{-- {!! Form::label($name, "<span class='input-group-addon'>{$icon} {$title}</span>", [], false) !!} --}}
-  <span class='input-group-addon'>{!! $icon !!} {!!$title!!}</span>
+  <span class='{{ $classGroupAddon }}'>{!! $icon !!} {!!$title!!}</span>
   @if ( 'password' == $method )
     {!! Form::$method($name, $attributesDefault) !!}
   @else

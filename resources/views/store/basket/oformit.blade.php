@@ -5,6 +5,7 @@
 @section('head')
     @parent
 
+    <script src="https://www.google.com/recaptcha/api.js?" async defer></script>
 @endsection
 
 @section('content')
@@ -94,14 +95,31 @@
                   <li>
                     <a data-toggle="tab" href="cart.html#discount">Код скидки</a>
                   </li>
-                  <li>
-                    <a data-toggle="tab" href="cart.html#gift">Подарочный сертификат</a>
-                  </li>
                 </ul>
                 <div class="tab-content clearfix">
                   <div class="tab-pane active" id="shipping">
-                    <form action="cart.html#" id="shipping-form" name="shipping-form">
-                      <p class="shipping-desc">Введите пункт назначения, чтобы получить оценку доставки.</p>
+                    {!! Form::open(['route' => ['basket.oformit-zakaz']]) !!}
+                    @php( $first_last = Auth::user()->name ?? null )
+                    @include('components.form.text', [
+                      'name' => 'first_last', 
+                      'title' => 'Имя',
+                      'value' => $first_last,
+                      'classGroupAddon' => '',
+                    ])
+                    @php( $mobile = Auth::user()->mobile ?? null )
+                    @include('components.form.text', [
+                      'name' => 'mobile', 
+                      'title' => 'Номер телефона',
+                      'value' => $mobile, 
+                      'attributes' => [
+                        'class' => 'form-control bfh-phone', 
+                        'data-format' => '+38 (ddd) ddd-dddd',
+                      ],
+                      'classGroupAddon' => '',
+                    ])
+                    <p class="help-block">Ваш номер телефона не разглашается, и использоуется только для обратной связи и входа в свой личный кабинет</p>
+
+                    <p class="shipping-desc">Введите пункт назначения</p>
                       @include('components.form.select', [
                         'name' => 'region',
                         'title' => 'Область&#42;',
@@ -130,20 +148,17 @@
                             'class' => 'form-control offices',
                             'disabled' => 'disabled',
                         ],
-                      ])                
-                      <p class="text-right"><input class="btn btn-custom-2" type="submit" value="GET QUOTES"></p>
-                    </form>
+                      ])
+                      {!! NoCaptcha::display() !!}
+                      {{-- <p class="text-right"><input class="btn btn-custom-2" type="submit" value="GET QUOTES"></p> --}}
+                    @include('components.form.submit', ['title' => 'Оформить', 'attributes' => ['class' => 'btn btn-custom']])
+                    {!! Form::close() !!}
                   </div>
                   <div class="tab-pane" id="discount">
                     <p>Введите свой скидочный купон здесь.</p>
-                    <form action="cart.html#">
                       <div class="input-group">
                         <input class="form-control" placeholder="Купон" required="" type="text">
                       </div><input class="btn btn-custom-2" type="submit" value="Применить купон">
-                    </form>
-                  </div>
-                  <div class="tab-pane" id="gift">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi dignissimos nostrum debitis optio molestiae in quam dicta labore obcaecati ullam necessitatibus animi deleniti minima dolor suscipit nobis est excepturi inventore.</p>
                   </div>
                 </div>
               </div>
@@ -159,10 +174,10 @@
                     <td class="total-table-title">Перевозка:</td>
                     <td>&#8372;6.00</td>
                   </tr>
-                  <tr>
+                  {{-- <tr>
                     <td class="total-table-title">Доставка (0%):</td>
                     <td>м0.00</td>
-                  </tr>
+                  </tr> --}}
                 </tbody>
                 <tfoot>
                   <tr>
@@ -171,7 +186,7 @@
                   </tr>
                 </tfoot>
               </table>
-              <div class="md-margin"></div><a class="btn btn-custom-2" href="cart.html#">Продолжить покупки</a> <a class="btn btn-custom" href="cart.html#">Оформить</a>
+              <div class="md-margin"></div><a class="btn btn-custom-2" href="{{ url()->previous() }}">Продолжить покупки</a>
             </div>
           </div>
         </div>

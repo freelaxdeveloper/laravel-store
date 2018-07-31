@@ -137,9 +137,12 @@ class HomeController extends Controller
         $order = request()->get('order') ?? 'desc';
         $minPrice = request()->get('minPrice');
         $maxPrice = request()->get('maxPrice');
+        $search = request()->get('search');
 
         $products = Product::with(['comments'])->withCount(['comments'])->when($sort, function ($query) use ($sort, $order) {
             return $query->orderBy($sort, $order);
+        })->when($search, function ($query) use ($search) {
+            return $query->where('title', 'like', "%{$search}%");
         })->when($minPrice, function ($query) use ($minPrice) {
             return $query->where('price', '>=', $minPrice);
         })->when($maxPrice, function ($query) use ($maxPrice) {

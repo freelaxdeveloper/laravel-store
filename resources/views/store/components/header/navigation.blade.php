@@ -117,9 +117,9 @@
                 </div>
               </div>
             </div>
-            <form action="index.html#" class="form-inline quick-search-form" role="form">
+            <form action="?" class="form-inline quick-search-form" role="form">
               <div class="form-group">
-                <input class="form-control" placeholder="Найти" type="text">
+                <input name="search" class="form-control" placeholder="Найти" type="text">
               </div><button class="btn btn-custom" id="quick-search" type="submit"></button>
             </form>
           </div>

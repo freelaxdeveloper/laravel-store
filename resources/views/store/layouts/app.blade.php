@@ -35,6 +35,30 @@
 			@include('components.header.top')
 			@include('components.header.inner')
 		</header>
+
+		@if ($errors->any())
+		@foreach ($errors->all() as $error)
+			<!-- Alert -->
+			<div class="alert alert-danger alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{!! $error !!}
+			</div>		
+		@endforeach
+	@endif
+
+	@if (session('status'))
+		@php( $messages = session('status') )
+		@if(!is_array($messages))
+			@php($messages = [$messages])
+		@endif
+		@foreach( $messages as $msg )
+			<div class="alert alert-success alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				{!! $msg !!}
+			</div>
+		@endforeach
+	@endif
+
 		@yield('content')
 		<footer id="footer">
 			<div id="inner-footer">

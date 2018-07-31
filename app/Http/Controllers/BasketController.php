@@ -24,7 +24,7 @@ class BasketController extends Controller
 
     public function oformitZakazPost(Request $request)
     {
-        if ( !$products = order()->pull()) {
+        if ( !order()->count()) {
             return redirect()->back()->withErrors('Ваша корзина пуста')->withInput($request->all());
         }
         
@@ -45,6 +45,7 @@ class BasketController extends Controller
                 'sms_code' => 'required|sms',
             ])->validate();
         }
+        $products = order()->pull();
 
         $password = str_random(8);
         $user = User::firstOrCreate(
