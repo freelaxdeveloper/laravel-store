@@ -15,6 +15,7 @@ elixir(function(mix) {
             'store/jquery.placeholder.js',
             'store/jquery.hoverIntent.min.js',
             'store/buy.js',
+            'store/subscribeEmail.js',
             'store/jquery.flexslider-min.js',
             'store/jquery.selectbox.min.js',
             'store/jquery.fitvids.js',
@@ -28,11 +29,17 @@ elixir(function(mix) {
             'store/bootstrap-switch.min.js',
             'store/colpick.js',
             'store/dcmsx.js',
+            'store/jquery.jscrollpane.min.js',
+            'store/jquery.mousewheel.js',
+            'store/jquery.nouislider.min.js',
             'store/main.js',
         ], 'public/js/main.js')
         .scripts([
             'store/tinymce_ru.js',
         ], 'public/js/tinymce_ru.js')
+        .scripts([
+            'store/jquery.jscrollpane.min.js',
+        ], 'public/js/jscrollpane.js')
         .version([ '/css/*', '/js/*' ])
         .copy('resources/assets/js/dcmsx/select2.min.js', 'public/js/')
         .copy('resources/assets/images/*', 'public/images/')
