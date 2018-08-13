@@ -48,6 +48,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException) {
+            return response()->json(['status' => 'error', 'message' => 'Error JWT authorize']);
+        }
+
         if ($exception instanceof \Illuminate\Http\Exceptions\PostTooLargeException) {
             return redirect()->back()->withErrors('Ваш запрос был слишком большим.');
         }

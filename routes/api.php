@@ -20,6 +20,10 @@ Route::namespace('API')->group(function () {
     Route::post('/subscribe/email', 'SubscribeController@subscribeEmail')->name('subscribeEmail');
 });
 
+Route::namespace('Auth')->group(function () {
+    Route::post('/auth', 'JWTAuthController@auth');
+});
+
 Route::get('/test', 'ApiController@test')->name('test');
 
 Route::get('/agreement/{view?}', 'ApiController@agreement')->name('agreement');

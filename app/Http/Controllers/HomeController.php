@@ -24,6 +24,12 @@ class HomeController extends Controller
     public function __construct()
     {
         //$this->middleware('auth');
+        // $this->middleware('auth', ['only' => 'index']);
+    }
+
+    public function jwttest()
+    {
+        return response()->json(['=)']);
     }
 
     public function resize()

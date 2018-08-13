@@ -27,6 +27,8 @@ Route::post('/test_screen/{product}', 'ProductController@screen_test')->name('sc
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/resize', 'HomeController@resize')->name('resize');
 
+Route::get('/jwt/test', 'HomeController@jwttest')->middleware(['jwt.auth']);
+
 Route::get('/effects/{effect}', 'HomeController@effect');
 
 Route::get('/categories', [
