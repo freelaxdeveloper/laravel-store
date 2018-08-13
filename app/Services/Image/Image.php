@@ -50,6 +50,9 @@ class Image extends ImageResize
    */
   public function size(int $width, ?int $height = null)
   {
+    if ('default' == $this->properties['filename']) {
+      return $this;
+    }
     $height = $height ?? $width;
     
     $this->properties['width'] = $width;
