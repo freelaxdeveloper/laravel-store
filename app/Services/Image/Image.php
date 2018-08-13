@@ -18,29 +18,43 @@ class Image extends ImageResize
   /**
    * накладываем текст
    */
-  public function text(string $text, string $position = 'bottom', string $font = 'OpenSans-Semibold')
+  public function text(string $text, array $options)
   {
+    $position = $options['position'] ?? 'bottom';
+    $font = $options['font'] ?? 'OpenSans-Semibold';
+    $options['size'] = $options['size'] ?? 15;
+    $options['top'] = $options['top'] ?? 15;
+    $options['left'] = $options['left'] ?? 15;
+
     $this->text .= $text;
     $this->properties['font'] = $font;
     $this->properties['position'] = $position;
     $strlen = mb_strlen($text);
 
-    $this->addFilter(function ($imageDesc) use ($strlen, $position, $text, $font) {
+    $this->addFilter(function ($imageDesc) use ($strlen, $position, $text, $font, $options) {
       $color = ImageColorAllocate($imageDesc, 255, 255, 255); //получаем идентификатор цвета
       $image_width = imagesx($imageDesc);
       $image_height = imagesy($imageDesc);
 
       switch ($position) {
         case 'bottom' : 
-          $x = $image_width - ($strlen * 15);
-          $y = $image_height - 10;
+          $x = $image_width - ($strlen * $options['left']);
+          $y = $image_height - $options['top'];
           break;
         case 'top' :
-          $y = 20;
-          $x = $image_width - ($strlen * 15);
+          $y = $options['top'];
+          $x = $image_width - ($strlen * $options['left']);
+          break;
+        case 'left' :
+          $y = $image_height - $options['top'];
+          $x = $options['left'];
+          break;
+        case 'left-top' :
+          $y = $options['top'];
+          $x = $options['left'];
           break;
       }
-      ImageTTFtext($imageDesc, 15, 0, $x, $y, $color, base_path("/resources/assets/fonts/{$font}.ttf") , $text);
+      ImageTTFtext($imageDesc, $options['size'], 0, $x, $y, $color, base_path("/resources/assets/fonts/{$font}.ttf") , $text);
     });
     return $this;
   }
