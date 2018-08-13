@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
-@section('title', 'Редактирование №' . $product->id)
+@isset($product)
+    @section('title', 'Редактирование №' . $product->id)
+@endisset
 
 @section('content')
     <section class="section extra-margins listing-section mt-2 col-xl-7 col-md-12">
@@ -8,11 +10,18 @@
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="{{route('home')}}">Главная</a></li>
-                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('prod.view', [$product->id])}}">№{{$product->id}}</a></li>
+
+                @isset($product)
+                    <li class="breadcrumb-item active" aria-current="page"><a href="{{route('prod.view', [$product])}}">№{{$product->id}}</a></li>
+                @endisset
             </ol>
         </nav>
 
-        <h4 class="font-bold"><strong>Редактирование</strong> №{{$product->id}}</h4>
+        {{-- <h4 class="font-bold">
+            @isset($product)
+                <strong>Редактирование</strong> №{{$product->id}}
+            @endisset
+        </h4> --}}
         <hr class="red title-hr">
         @if ($errors->any())
             <div class="alert alert-danger">
@@ -38,39 +47,56 @@
 
                         <!--Leave a reply form-->
                         <div class="reply-form">
-                            <form action="{{route('prod.save', [$product->id])}}" method="POST">
-                                @csrf
+                            {{-- <form action="{{route('prod.save', [$product->id])}}" method="POST"> --}}
+                            @if ( isset($product) )
+                                {!! Form::model($product, ['route' => ['prod.save', $product]]) !!}
+                            @else
+                                {!! Form::open(['route' => ['prod.new', $category]]) !!}
+                            @endif
+                                {{-- @csrf --}}
                                 <div class="row">
                                     <div class="md-form">
                                         <i class="fa fa-rub prefix grey-text"></i>
-                                        <input name="price" id="price" type="text" value="{{$product->price}}">
-                                        <label for="price">Цена</label>
+                                        {!! Form::text('price', null) !!}
+                                        <label for="price">Цена от</label>
                                     </div>
                                     <div class="md-form">
-                                        <input name="type" type="text" value="{{$product->type}}">
+                                        {!! Form::text('price_old', null) !!}
+                                        <label for="price">Цена до</label>
                                     </div>
                                 </div>
-                                <div class="md-form">
-                                    <i class="fa fa-pencil prefix grey-text"></i>
-                                    <textarea name='description' type="text" id="replyForm-mess" class="md-textarea">{{$product->description}}</textarea>
-                                    <label for="replyForm-mess">Описание</label>
+
+                                <div class="row">
+                                    <div class="md-form">
+                                        {!! Form::text('options[size][goal]', null) !!}
+                                        <label for="price">Размер ворот</label>
+                                    </div>
+                                    <div class="md-form">
+                                        {!! Form::text('options[size][gate]', null) !!}
+                                        <label for="price">Размер калитки</label>
+                                    </div>
                                 </div>
+                                <div class="row">
+                                    <div class="md-form">
+                                        <i class="fa fa-pencil prefix grey-text"></i>
+                                        {!! Form::textarea('description', null, ['class' => 'md-textarea']) !!}
+                                        <label for="replyForm-mess">Описание</label>
+                                    </div>
+                                    <div class="md-form">
+                                        <i class="fa fa-pencil prefix grey-text"></i>
+                                        {!! Form::textarea('meta_description', null, ['class' => 'md-textarea']) !!}
+                                        <label for="meta_description">Описание (META)</label>
+                                    </div>
+                                    <!-- Material checked -->
+                                    <div class="form-check">
+                                        <input name="options[running_meter]" type="checkbox" class="form-check-input" id="materialChecked2" style="display:none;" @isset($product->options['running_meter']) checked @endisset>
+                                        <label class="form-check-label" for="materialChecked2">За погонный метр</label>
+                                    </div>                                
+                                </div>                                
                                 <div class="md-form">
-                                    <i class="fa fa-pencil prefix grey-text"></i>
-                                    <textarea name='meta_description' type="text" id="meta_description" class="md-textarea">{{$product->meta_description}}</textarea>
-                                    <label for="meta_description">Описание (META)</label>
+                                    {!! Form::select('categories[]', $categoriesAll->pluck('name', 'id'), null, ['multiple' => 'multiple', 'class' => 'js-example-basic-multiple']) !!}
                                 </div>
-                                <div class="md-form">
-                                    <select class="js-example-basic-multiple" name="categories[]" multiple="multiple">
-                                        @foreach ($categoriesAll as $category)
-                                            <option value="{{$category->id}}" @if (in_array($category->id, $productCategories)) selected @endif>
-                                                @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
-                                                    {{$breadcrumbs->name}}/
-                                                @endforeach
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div> 
+
 
                                 <div class="text-center">
                                     <button class="btn btn-indigo btn-rounded">Сохранить</button>

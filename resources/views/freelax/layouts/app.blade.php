@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <!-- Bootstrap core CSS -->
-    <link href="{{elixir('freelax/css/core.css')}}" rel="stylesheet">
+    <link href="{{elixir('css/freelax.css')}}" rel="stylesheet">
     @yield('css')
 </head>
 <body class="fixed-sn homepage-v5">
@@ -63,6 +63,7 @@
                             @else
                                 @if (Auth::user()->hasRole('admin'))
                                     <a class="dropdown-item" href="{{ route('cat') }}">Категории</a>
+                                    @yield('admin-menu')
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();

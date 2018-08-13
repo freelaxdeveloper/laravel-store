@@ -75,15 +75,16 @@ elixir(function(mix) {
 // });
 
 
-/* elixir(function(mix) {
+elixir(function(mix) {
     mix
-        .styles([
-            'freelax/bootstrap.css',
-            'freelax/mdb.css',
-        ], 'public/freelax/css/core.css')
-        .styles([
-            'freelax/tree.css',
-        ], 'public/freelax/css/tree.css')
+        .sass(['freelax/freelax.scss'])
+        // .styles([
+        //     'freelax/bootstrap.css',
+        //     'freelax/mdb.css',
+        // ], 'public/freelax/css/core.css')
+        // .styles([
+        //     'freelax/tree.css',
+        // ], 'public/freelax/css/tree.css')
         .scripts([
             'freelax/jquery-3.2.1.min.js',
         ], 'public/freelax/js/jquery.js')
@@ -100,4 +101,3 @@ elixir(function(mix) {
         //    'default/highcharts/vue-highcharts.min.js',
         //], 'public/default/js/highcharts.js')
 });
- */

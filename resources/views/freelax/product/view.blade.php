@@ -26,11 +26,29 @@
 
         <!--Title-->
         <h1 class="font-bold mt-3 text-center">
-            <strong>{{$product->categories()->first()->name}} №{{$product->id}}</strong>
+            @if ($category = $product->categories()->first())
+                <strong>{{$category->name}} №{{$product->id}}</strong>
+            @endif
         </h1>
         <hr class="red title-hr">
 
-        <img src="{{$product->screen}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image">
+        <img src="{{$product->screen['image']
+            ->text("№{$product->id}", [
+                'position' => 'top',
+                'size' => 25,
+                'top' => 30,
+                'left' => 30,
+            ])
+            ->text(route('prod.view', [$product]), [
+                'position' => 'left',
+                'size' => 25,
+            ])            
+            ->text('+750665478569', [
+                'position' => 'left-top',
+                'size' => 25,
+                'top' => 30,
+            ])            
+            ->size(1080, 1000)->get('src')}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image">
 
         <div class="row px-4">
 
@@ -38,13 +56,23 @@
                 <div class="col-md-6 mt-4">
 
                     <h5 class="font-bold dark-grey-text">
-                        <i class="fa fa-eye dark-grey-text"></i>
-                        <strong>{{$product->views}}</strong> 
+                        {{-- @auth('admin')
+                            <i class="fa fa-eye dark-grey-text"></i>
+                            <strong>{{$product->views}}</strong> 
+                        @endauth --}}
                         @if ($product->price)
-                            <span itemprop="offers" itemscope itemtype="http://schema.org/Offer"><i class="fa fa-rub"></i> <span itemprop="price" content="{{$product->price}}">{{number_format($product->price)}}</span> <span itemprop="priceCurrency" content="RUB">руб.</span> {{$product->type}}</span>
+                            <span itemprop="offers" itemscope itemtype="http://schema.org/Offer"><i class="fa fa-rub"></i> <span itemprop="price" content="{{$product->price}}">{{number_format($product->price)}} - {{number_format($product->price_old)}}</span> <span itemprop="priceCurrency" content="RUB">руб.</span> за @isset($product->options['running_meter']) п.м. @else кв.м. @endisset</span>
                         @endif
+                        
                     </h5>
-
+                    <p>
+                        @isset($product->options['size']['goal'])
+                            <b>Ворота:</b> {{$product->options['size']['goal']}} 
+                        @endisset
+                        @isset($product->options['size']['gate'])
+                            <b>Калитка:</b> {{$product->options['size']['gate']}}
+                        @endisset
+                    </p>
                 </div>
                 <!--Grid column-->
                 @auth
@@ -53,9 +81,13 @@
                         <div class="col-md-6 mt-2 d-flex justify-content-end">
 
                             <!--Edit-->
-                            <a href="{{route('prod.edit', $product->id)}}" type="button" class="btn-floating btn-small btn-fb">
+                            <a href="{{route('prod.edit', $product)}}" type="button" class="btn-floating btn-small btn-fb">
                                 <i class="fa fa-edit"></i>
                             </a>
+                            <a href="{{route('prod.screen', $product)}}" type="button" class="btn-floating btn-small btn-fb">
+                                <i class="fa fa-image"></i>
+                            </a>
+    
                         </div>
                         <!--Grid column-->
                     @endif
@@ -66,14 +98,14 @@
         @if ($product->description)
             <div class="row mx-md-5 px-md-4 px-5 mt-3">
                 <p class="dark-grey-text article">
-                    {{$product->description}}
+                    {!! $product->description !!}
                 </p>
             </div>
         @endif
         <section class="text-left mt-4">
 
             <h4 class="px-1 font-bold mt-5 mb-3">
-                <strong>Другие наши работы</strong>
+                <strong>Вам могут понравиться</strong>
             </h4>
 
             <!--Carousel Wrapper-->
@@ -104,7 +136,7 @@
 
                                         <!--Card image-->
                                         <div class="view overlay hm-white-slight">
-                                            <img src="{{$product->screen}}" class="img-fluid" alt="sample image">
+                                            <img src="{{$product->screen['image']->size(228, 319)->get('src')}}" class="img-fluid" alt="sample image">
                                             <a>
                                                 <div class="mask waves-effect waves-light"></div>
                                             </a>
@@ -123,7 +155,7 @@
                                             <p class="font-small font-bold dark-grey-text mb-1">
                                                 <i class="fa fa-clock-o"></i> {{$product->created_at}}</p>
                                             <p class="text-right mb-0 font-small font-bold">
-                                                <a href="{{route('prod.view', [$product->id])}}">подробнее
+                                                <a href="{{route('prod.view', [$product])}}">подробнее
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
                                             </p>
@@ -155,7 +187,7 @@
 
                                         <!--Card image-->
                                         <div class="view overlay hm-white-slight">
-                                            <img src="{{$product->screen}}" class="img-fluid" alt="sample image">
+                                            <img src="{{$product->screen['image']->size(228, 319)->get('src')}}" class="img-fluid" alt="sample image">
                                             <a>
                                                 <div class="mask waves-effect waves-light"></div>
                                             </a>
@@ -174,7 +206,7 @@
                                             <p class="font-small font-bold dark-grey-text mb-1">
                                                 <i class="fa fa-clock-o"></i> {{$product->created_at}}</p>
                                             <p class="text-right mb-0 font-small font-bold">
-                                                <a href="{{route('prod.view', [$product->id])}}">подробнее
+                                                <a href="{{route('prod.view', [$product])}}">подробнее
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
                                             </p>
@@ -206,7 +238,7 @@
 
                                         <!--Card image-->
                                         <div class="view overlay hm-white-slight">
-                                            <img src="{{$product->screen}}" class="img-fluid" alt="sample image">
+                                            <img src="{{$product->screen['image']->size(228, 319)->get('src')}}" class="img-fluid" alt="sample image">
                                             <a>
                                                 <div class="mask waves-effect waves-light"></div>
                                             </a>
@@ -225,7 +257,7 @@
                                             <p class="font-small font-bold dark-grey-text mb-1">
                                                 <i class="fa fa-clock-o"></i> {{$product->created_at}}</p>
                                             <p class="text-right mb-0 font-small font-bold">
-                                                <a href="{{route('prod.view', [$product->id])}}">подробнее
+                                                <a href="{{route('prod.view', [$product])}}">подробнее
                                                     <i class="fa fa-angle-right"></i>
                                                 </a>
                                             </p>

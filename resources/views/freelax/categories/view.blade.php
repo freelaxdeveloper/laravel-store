@@ -3,7 +3,11 @@
 @section('title', $category->name)
 
 @section('meta')
-<link rel="canonical" href="{{route('cat.view', [$category->slug])}}"/>
+<link rel="canonical" href="{{route('cat.view', [$category])}}"/>
+@endsection
+
+@section('admin-menu')
+    <a class="dropdown-item" href="{{ route('prod.add', [$category]) }}">Добавить товар</a>
 @endsection
 
 @section('content')

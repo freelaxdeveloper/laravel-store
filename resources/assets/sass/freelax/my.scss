@@ -1,0 +1,162 @@
+.modal-header {
+  &.close {
+    position: absolute;
+  }
+}
+button {
+  &.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    float: unset;
+  }
+}
+
+.quantity {
+  .form-input {
+    color: #797878;
+    border: 1px solid #c7c1c1;
+    text-align: center;
+    height: 22px;
+    font-size: 12px;
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  button {
+    &.btn-xs {
+      border-radius: 0;
+    }
+  }
+}
+
+.modal-dialog {
+  // width: 1000px;
+}
+.modal-open {
+  overflow-y: scroll;
+}
+.invalid-feedback {
+  color: #ea3b3b;
+  font-size: 12px;
+}
+.form-group {
+  position: relative;
+}
+.static {
+  position: static;
+}
+.mce-panel {
+  z-index: 100;
+}
+
+
+
+
+
+
+
+
+
+
+
+.screens {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.screen {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  margin-bottom: 15px;
+  background-color: #dcd5cf;
+  // padding: 7px;
+  // border-radius: 10px;
+  justify-content: flex-end;
+  align-items: center;
+  .title {
+    display: block;
+    padding: 4px;
+    width: 100%;
+    text-align: center;
+    background-color: #969681;
+    color: #fff;
+    font-size: 15px;
+    margin-bottom: 0;W
+    &:hover {
+      background-color: #888879;
+    }
+    
+  }
+  div {
+    width: 100%;
+  }
+  img {
+    order-radius: 10px;
+  }
+}
+
+.screen-del a {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 2px 6px 2px 6px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  font-size: 11px;
+  z-index: 100;
+}
+
+
+
+/****** Style Star Rating Widget *****/
+
+.rating-my { 
+  border: none;
+  float: left;
+  margin: 0;
+}
+
+.rating-my > input { display: none; } 
+.rating-my > label:before { 
+  margin: 5px;
+  font-size: 1.25em;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+
+.rating-my > .half:before { 
+  content: "\f089";
+  position: absolute;
+}
+
+.rating-my > label { 
+  color: #ddd; 
+ float: right; 
+}
+
+/***** CSS Magic to Highlight Stars on Hover *****/
+
+.rating-my > input:checked ~ label, /* show gold star when clicked */
+.rating-my:not(:checked) > label:hover, /* hover current star */
+.rating-my:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+.rating-my > input:checked + label:hover, /* hover current star when changing rating */
+.rating-my > input:checked ~ label:hover,
+.rating-my > label:hover ~ input:checked ~ label, /* lighten current selection */
+.rating-my > input:checked ~ label:hover ~ label { color: #FFED85;  } 
+
+
+
+
+
+.comments {
+  margin-top: 70px;
+}
+
+

@@ -14,9 +14,8 @@ return [
     */
 
     'paths' => [
-        resource_path('views/store'),
-        resource_path('views/dcms'),
-        //resource_path('views/freelax'),
+        resource_path('views/' . env('DESIGN', 'store')),
+        resource_path('views/freelax'),
     ],
 
     /*

@@ -639,43 +639,6 @@
     }))
   })
 }(jQuery),
-function() {
-  "use strict";
-
-  function a() {
-    var a = new google.maps.LatLng(51.520068, -.156299),
-      b = {
-        center: a,
-        zoom: 15,
-        scrollwheel: !1,
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        styles: [{
-          elementType: "geometry",
-          stylers: [{
-            hue: "#000"
-          }, {
-            weight: 1
-          }, {
-            saturation: -200
-          }, {
-            gamma: .7
-          }, {
-            visibility: "on"
-          }]
-        }]
-      },
-      c = new google.maps.Map(document.getElementById("map"), b),
-      d = "images/pin.png";
-    new google.maps.Marker({
-      position: a,
-      map: c,
-      icon: d,
-      animation: google.maps.Animation.DROP,
-      title: "Venedor"
-    })
-  }
-  document.getElementById("map") && google.maps.event.addDomListener(window, "load", a)
-}(),
 function(a) {
   "function" == typeof define && define.amd ? define(["jquery"], a) : a(jQuery)
 }(function(a) {

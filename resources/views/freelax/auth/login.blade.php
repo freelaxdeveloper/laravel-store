@@ -7,7 +7,7 @@
 @section('title', 'Авторизация')
 
 @section('content')
-<div class="container">
+<div class="col-xl-8 col-md-12">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
@@ -19,7 +19,7 @@
 
                         <div class="md-form">
                             <i class="fa fa-envelope prefix grey-text"></i>
-                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <input id="email" type="text" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback">
