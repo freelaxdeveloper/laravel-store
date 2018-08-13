@@ -71,55 +71,20 @@
           <div class="lg-margin2x"></div>
           <div class="row">
             <div class="col-md-9 col-sm-12 col-xs-12">
-              <div class="tab-container left product-detail-tab clearfix">
-                <ul class="nav-tabs">
-                  <li class="active">
-                    <a data-toggle="tab" href="product.html#overview">Обзор</a>
-                  </li>
-                  <li>
-                    <a data-toggle="tab" href="product.html#description">Описание</a>
-                  </li>
-                  <li>
-                    <a data-toggle="tab" href="product.html#additional">Доп. информация</a>
-                  </li>
-                </ul>
-                <div class="tab-content clearfix">
-                  <div class="tab-pane active" id="overview">
-                    <p>Sed volutpat ac massa eget lacinia. Suspendisse non purus semper, tellus vel, tristique urna.</p>
-                    <p>Cumque nihil facere itaque mollitia consectetur saepe cupiditate debitis fugiat temporibus soluta maxime doloremque alias enim officia aperiam at similique quae vel sapiente nulla molestiae tenetur deleniti architecto ratione accusantium.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti in impedit modi aliquid explicabo aperiam illum esse quibusdam aspernatur commodi voluptate veritatis vero quidem porro vitae non nihil architecto optio!</p>
-                    <p>Phasellus consequat id purus in convallis. Nulla quis nunc auctor, pretium enimnec, tristique magna.</p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam minima officiis consequatur expedita nesciunt voluptates at enim. Reprehenderit possimus vitae dolor tempore earum nulla maxime delectus repellendus excepturi suscipit qui?</p>
-                  </div>
-                  <div class="tab-pane" id="description">
-                    <p>The perfect mix of portability and performance in a slim 1" form factor:</p>
-                    <ul class="product-details-list">
-                      <li>3rd gen Intel® Core™ i7 quad core processor available;</li>
-                      <li>Windows 8 Pro available;</li>
-                      <li>13.3" and 15.5" screen sizes available;</li>
-                      <li>Double your battery life with available sheet battery;</li>
-                      <li>4th gen Intel® Core™ i7 processor available;</li>
-                      <li>Full HD TRILUMINOS IPS touchscreen (1920 x 1080);</li>
-                      <li>Super fast 512GB PCIe SSD available;</li>
-                      <li>Ultra-light at just 2.34 lbs.</li>
-                      <li>And more...</li>
-                    </ul>
-                  </div>
-                  <div class="tab-pane" id="additional">
-                    <strong>Additional Informations</strong>
-                    <p>Quae eum placeat reiciendis enim at dolorem eligendi?</p>
-                    <hr>
-                    <ul class="product-details-list">
-                      <li>Lorem ipsum dolor sit quam</li>
-                      <li>Consectetur adipisicing elit</li>
-                      <li>Illum autem tempora officia</li>
-                      <li>Amet id odio architecto explicabo</li>
-                      <li>Voluptatem laborum veritatis</li>
-                      <li>Quae laudantium iste libero</li>
-                    </ul>
+              @if ($product->description)
+                <div class="tab-container left product-detail-tab clearfix">
+                  <ul class="nav-tabs">
+                    <li class="active">
+                      <a data-toggle="tab" href="product.html#overview">Описание</a>
+                    </li>
+                  </ul>
+                  <div class="tab-content clearfix">
+                    <div class="tab-pane active" id="overview">
+                      {!! $product->description !!}
+                    </div>
                   </div>
                 </div>
-              </div>
+              @endif
               <div class="lg-margin visible-xs"></div>
 
               <div class="comments">

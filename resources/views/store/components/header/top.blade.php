@@ -15,7 +15,7 @@
               <li>
                 <a id="myBasket" data-toggle="modal" href="{{ route('basket', ['view']) }}" data-target="#basket"><span class="top-icon top-icon-cart"></span><span class="hide-for-xs">Моя корзина</span></a>
               </li>
-              <li>
+              <li @if (!order()->count()) style="display:none;" @endif>
                 <a href="{{ route('basket.oformit-zakaz') }}" title="Оформить заказ"><span class="top-icon top-icon-check"></span><span class="hide-for-xs">Оформить заказ</span></a>
               </li>
             </ul>

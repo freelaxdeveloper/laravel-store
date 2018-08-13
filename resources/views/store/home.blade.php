@@ -46,7 +46,7 @@
                 <form action="{{ route('subscribeEmail') }}" id="subscribe-form" name="subscribe-form" method="POST">
                   <div class="form-group">
                     <input name="email" class="form-control" id="subscribe-email" placeholder="Введите Ваш E-mail адрес" type="email" required>
-                  </div><input class="btn btn-custom" type="submit" value="Подписаться">
+                  </div><input id="subscribeEmail" class="btn btn-custom" type="submit" value="Подписаться">
                 </form>
               </div>
             @endif
@@ -78,7 +78,7 @@
                 </ul>
               </div>
             </div>
-            <div class="widget latest-posts">
+            {{-- <div class="widget latest-posts">
               <h3>Новости</h3>
               <div class="latest-posts-slider flexslider sidebarslider">
                 <ul class="latest-posts-list clearfix">
@@ -147,7 +147,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> --}}
           </div>
         </div>
       </div>

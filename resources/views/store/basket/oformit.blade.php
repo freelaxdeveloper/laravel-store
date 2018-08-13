@@ -92,9 +92,9 @@
                   <li class="active">
                     <a data-toggle="tab" href="cart.html#shipping">Доставка</a>
                   </li>
-                  <li>
+                  {{-- <li>
                     <a data-toggle="tab" href="cart.html#discount">Код скидки</a>
-                  </li>
+                  </li> --}}
                 </ul>
                 <div class="tab-content clearfix">
                   <div class="tab-pane active" id="shipping">
@@ -154,12 +154,12 @@
                     @include('components.form.submit', ['title' => 'Оформить', 'attributes' => ['class' => 'btn btn-custom']])
                     {!! Form::close() !!}
                   </div>
-                  <div class="tab-pane" id="discount">
+                  {{-- <div class="tab-pane" id="discount">
                     <p>Введите свой скидочный купон здесь.</p>
                       <div class="input-group">
                         <input class="form-control" placeholder="Купон" required="" type="text">
                       </div><input class="btn btn-custom-2" type="submit" value="Применить купон">
-                  </div>
+                  </div> --}}
                 </div>
               </div>
             </div>
