@@ -40,7 +40,7 @@ class ProductController extends Controller
         ];
         
         Validator::make($request->all(), [
-            'title' => 'required|string',
+            'title' => 'nullable|string',
             'description' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'price' => 'required|integer',
@@ -188,6 +188,7 @@ class ProductController extends Controller
 
     public function save(Request $request, Product $product)
     {
+        // dd($request->all());
         $product->with(['categories']);
         $messages = [
             //'price.required' => 'Цена обязательна для заполнения',
@@ -196,7 +197,7 @@ class ProductController extends Controller
         ];
         
         Validator::make($request->all(), [
-            'title' => 'required|string',
+            'title' => 'nullable|string',
             'description' => 'nullable|string',
             'meta_description' => 'nullable|string',
             'price' => 'nullable|integer',

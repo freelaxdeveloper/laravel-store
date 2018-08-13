@@ -134,6 +134,9 @@ class Product extends Model
         parent::boot();
 
         static::saving(function ($model) {
+            if (!$model->title) {
+                $model->title = mt_rand(1111, 9999);
+            }
             $model->slug = str_slug($model->title);
             if ( !$model->slug ) {
                 throw new \ValidateException('Не допустимое значение в названии');
@@ -147,6 +150,10 @@ class Product extends Model
         static::creating(function ($model) {
             // очищаем кеш категорий при создании новой категории
             Category::cacheClear();
+
+            if (!$model->title) {
+                $model->title = mt_rand(1111, 9999);
+            }
         });
 
         static::deleting(function ($model) {
