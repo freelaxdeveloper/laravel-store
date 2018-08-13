@@ -2762,6 +2762,7 @@ select.input-lg {
 }
 .item .item-image-container img {
   width: 100%;
+  min-height: 311px;
   height: auto;
   -webkit-transition: all .3s;
   -moz-transition: all .3s;
