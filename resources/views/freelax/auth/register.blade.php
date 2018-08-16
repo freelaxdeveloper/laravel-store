@@ -27,17 +27,31 @@
                             @endif
                             <label for="name">Ваше имя</label>
                         </div>
+                        @if($errors->count())
+                            {{-- {{dd($errors->all())}} --}}
+                        @endif
+                        <!-- Material input mobile -->
+                        <div class="md-form">
+                            <i class="fa fa-mobile prefix grey-text"></i>
+                            <input name="mobile" type="text" id="mobile" class="form-control" value="{{ old('mobile') }}" required>
+                            @if ($errors->has('mobile'))
+                                <span class="invalid-feedback" style="display: block;">
+                                    <strong>{{ $errors->first('mobile') }}</strong>
+                                </span>
+                            @endif
+                            <label for="mobile">Ваш номер телефона</label>
+                        </div>
                     
                         <!-- Material input email -->
                         <div class="md-form">
                             <i class="fa fa-envelope prefix grey-text"></i>
-                            <input name="email" type="email" id="email" class="form-control" value="{{ old('email') }}" required>
+                            <input name="email" type="text" id="email" class="form-control" value="{{ old('email') }}" required>
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" style="display: block;">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
-                            <label for="email">Ваш E-mail</label>
+                            <label for="mobile">Ваш Email</label>
                         </div>
                     
                         <!-- Material input email -->
