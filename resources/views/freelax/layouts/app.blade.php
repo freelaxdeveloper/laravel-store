@@ -17,6 +17,7 @@
     <!-- Bootstrap core CSS -->
     <link href="{{elixir('css/freelax.css')}}" rel="stylesheet">
     @yield('css')
+    @yield('head')
 </head>
 <body class="fixed-sn homepage-v5">
     <!-- Navigation -->

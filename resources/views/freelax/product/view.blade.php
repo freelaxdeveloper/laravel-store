@@ -87,7 +87,9 @@
                             <a href="{{route('prod.screen', $product)}}" type="button" class="btn-floating btn-small btn-fb">
                                 <i class="fa fa-image"></i>
                             </a>
-    
+                            <a href="{{route('prod.delete', $product)}}" type="button" class="btn-floating btn-small btn-fb">
+                                <i class="fa fa-remove"></i>
+                            </a>    
                         </div>
                         <!--Grid column-->
                     @endif
