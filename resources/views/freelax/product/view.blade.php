@@ -97,6 +97,11 @@
             </div>
 
         <hr>
+        @if (!empty($product->options['estimated_price']['from']) && !empty($product->options['estimated_price']['before']))
+            <div class="mx-md-4">
+                <b>Ориентировочная цена:</b> от {{$product->options['estimated_price']['from']}} руб. до {{$product->options['estimated_price']['before']}} руб.
+            </div>
+        @endif
         @if ($product->description)
             <div class="row mx-md-5 px-md-4 px-5 mt-3">
                 <p class="dark-grey-text article">

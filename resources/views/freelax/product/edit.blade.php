@@ -65,6 +65,17 @@
                                         <label for="price">Цена до</label>
                                     </div>
                                 </div>
+                                <div class="row">
+                                    <div class="md-form">
+                                        <i class="fa fa-rub prefix grey-text"></i>
+                                        {!! Form::text('options[estimated_price][from]', null) !!}
+                                        <label for="estimated_price_from">Ориентир. цена от</label>
+                                    </div>
+                                    <div class="md-form">
+                                        {!! Form::text('options[estimated_price][before]', null) !!}
+                                        <label for="estimated_price_before">Ориентир. цена до</label>
+                                    </div>
+                                </div>
 
                                 <div class="row">
                                     <div class="md-form">

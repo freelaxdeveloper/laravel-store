@@ -13339,7 +13339,7 @@ input[type=date].input-alternate:focus, input[type=date].input-alternate:hover, 
   position: absolute;
   top: .8rem;
   left: 0;
-  font-size: 1rem;
+  font-size: 0.8rem;
   cursor: text; }
 
 .md-form label.active {
