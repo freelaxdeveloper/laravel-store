@@ -1,0 +1,39 @@
+.orders {
+    .order {
+        .spoiler-wrap {
+            .spoiler-head {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-content: center;
+                div {
+                    width: 100%;
+                    &:last-child {
+                        text-align: right;
+                    }
+                }
+                &.collapsed {
+
+                }
+            }
+            .spoiler-body {
+                .products {
+                    .product {
+                        margin: 7px;
+                        cursor: pointer;
+                        img {
+                            height: 40px;
+                        }
+                        div {
+                            display: inline-block;
+                            vertical-align: top;
+                        }
+                        &:hover {
+                            background-color: rgba(53, 53, 53, 0.35);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

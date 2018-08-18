@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Твоя мебель - магазин мебели: купить мебель для офиса и дома')
+@section('title', 'Табуретка - магазин мебели: купить мебель для офиса и дома')
 
 @section('content')
 
@@ -40,7 +40,7 @@
           </div>
           <div class="col-md-3 col-sm-4 col-xs-12 sidebar">
             @if (!session()->has('subscribeEmail'))
-              <div class="widget subscribe">
+              {{-- <div class="widget subscribe">
                 <h3>Узнай первым</h3>
                 <p>Получите всю последнюю информацию о событиях, продажах и предложениях. Подпишитесь на информационный бюллетень магазина ТМебель сегодня.</p>
                 <form action="{{ route('subscribeEmail') }}" id="subscribe-form" name="subscribe-form" method="POST">
@@ -48,36 +48,38 @@
                     <input name="email" class="form-control" id="subscribe-email" placeholder="Введите Ваш E-mail адрес" type="email" required>
                   </div><input id="subscribeEmail" class="btn btn-custom" type="submit" value="Подписаться">
                 </form>
+              </div> --}}
+            @endif
+            @if($comments->count())
+              <div class="widget testimonials">
+                <h3>Отзывы</h3>
+                <div class="testimonials-slider flexslider sidebarslider">
+                  <ul class="testimonials-list clearfix">
+                    @foreach ($comments as $comment)
+                      <li>
+                        <div class="testimonial-details">
+                          <header>
+                            {{ $comment->ratingStr }}
+                            <div class="container">
+                              <div class="ratings separator">
+                                <div class="ratings-result" data-result="{{ $comment->rating / 5 * 100 }}"></div>
+                              </div>
+                            </div>
+                          </header>
+                          {{ $comment->comment }}
+                        </div>
+                        <figure class="clearfix">
+                          <img alt="Computer Ceo" src="https://placeimg.com/75/75/people?t={{ microtime() }}">
+                          <figcaption>
+                            <a href="#">{{ $comment->name }}</a> <span>{{ $comment->created_at->format('Y-m-d') }}</span>
+                          </figcaption>
+                        </figure>
+                      </li>
+                    @endforeach
+                  </ul>
+                </div>
               </div>
             @endif
-            <div class="widget testimonials">
-              <h3>Отзывы</h3>
-              <div class="testimonials-slider flexslider sidebarslider">
-                <ul class="testimonials-list clearfix">
-                  @foreach ($comments as $comment)
-                    <li>
-                      <div class="testimonial-details">
-                        <header>
-                          {{ $comment->ratingStr }}
-                          <div class="container">
-                            <div class="ratings separator">
-                              <div class="ratings-result" data-result="{{ $comment->rating / 5 * 100 }}"></div>
-                            </div>
-                          </div>
-                        </header>
-                        {{ $comment->comment }}
-                      </div>
-                      <figure class="clearfix">
-                        <img alt="Computer Ceo" src="https://placeimg.com/75/75/people?t={{ microtime() }}">
-                        <figcaption>
-                          <a href="#">{{ $comment->name }}</a> <span>{{ $comment->created_at->format('Y-m-d') }}</span>
-                        </figcaption>
-                      </figure>
-                    </li>
-                  @endforeach
-                </ul>
-              </div>
-            </div>
             {{-- <div class="widget latest-posts">
               <h3>Новости</h3>
               <div class="latest-posts-slider flexslider sidebarslider">

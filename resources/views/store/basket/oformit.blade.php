@@ -45,10 +45,10 @@
                     <tr>
                       <td class="item-name-col">
                         <figure>
-                          <a href="cart.html#"><img alt="{{ $product->title }}" src="{{ $product->screen['image']->size(100, 100)->get('src') }}"></a>
+                          <a href="{{ route('prod.view', [$product]) }}"><img alt="{{ $product->title }}" src="{{ $product->screen['image']->size(100, 100)->get('src') }}"></a>
                         </figure>
                         <header class="item-name">
-                          <a href="cart.html#">{{ $product->title }}</a>
+                          <a href="{{ route('prod.view', [$product]) }}">{{ $product->title }}</a>
                         </header>
                         {{-- <ul>
                           <li>Color: White</li>

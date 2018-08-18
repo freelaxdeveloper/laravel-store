@@ -8,7 +8,7 @@ use App\UserDevice;
 
 class Order extends Model
 {
-    protected $fillable = ['user_id', 'products', 'price', 'comment'];
+    protected $fillable = ['user_id', 'products', 'price', 'comment', 'mobile'];
 
     protected $casts = [
         'products' => 'array',

@@ -40,6 +40,9 @@ class ImportImage extends Command
      */
     public function handle()
     {
+        // Product::query()->delete();
+        // Storage::deleteDirectory('public');
+        // dd();
         $categoriesID = $this->ask('В какие категории добавить? (перечислите ID или названия категорий через запятую)');
         $categoriesID = explode(',', $categoriesID);
 

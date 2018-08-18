@@ -1,6 +1,7 @@
 <?php namespace App\Services\Image;
 
 use Gumlet\ImageResize;
+use File;
 
 class Image extends ImageResize
 {
@@ -10,6 +11,9 @@ class Image extends ImageResize
 
   public function __construct($filename)
   {
+    if (!File::exists($filename)) {
+      $filename = public_path('images/default.png');
+    }
     parent::__construct($filename);
     $this->path = $filename;
     $this->properties = $this->getProperties();

@@ -123,7 +123,7 @@
 
             </div>
             <div class="lg-margin2x visible-sm visible-xs"></div>
-            <div class="col-md-3 col-sm-12 col-xs-12 sidebar">
+            {{-- <div class="col-md-3 col-sm-12 col-xs-12 sidebar">
               <div class="widget related">
                 <h3>Related</h3>
                 <div class="related-slider flexslider sidebarslider">
@@ -249,7 +249,7 @@
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> --}}
           </div>
           <div class="lg-margin2x"></div>
         </div>

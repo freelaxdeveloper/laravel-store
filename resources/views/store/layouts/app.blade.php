@@ -61,7 +61,7 @@
 
 		@yield('content')
 		<footer id="footer">
-			<div id="inner-footer">
+			{{-- <div id="inner-footer">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-3 col-sm-4 col-xs-12 widget">
@@ -122,19 +122,19 @@
 							</ul>
 						</div>
 						<div class="clearfix visible-sm"></div>
-						{{-- <div class="col-md-3 col-sm-12 col-xs-12 widget">
+						<div class="col-md-3 col-sm-12 col-xs-12 widget">
 							<h3>FACEBOOK LIKE BOX</h3>
 							<div class="facebook-likebox">
 								<iframe src="https://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fenvato&amp;colorscheme=dark&amp;show_faces=true&amp;header=false&amp;stream=false&amp;show_border=false"></iframe>
 							</div>
-						</div> --}}
+						</div>
 					</div>
 				</div>
-			</div>
+			</div> --}}
 			<div id="footer-bottom">
 				<div class="container">
 					<div class="row">
-						<div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">
+						{{-- <div class="col-md-7 col-sm-7 col-xs-12 footer-social-links-container">
 							<ul class="social-links clearfix">
 								<li>
 									<a class="social-icon icon-facebook" href="#"></a>
@@ -161,9 +161,9 @@
 									<a class="social-icon icon-email" href="#"></a>
 								</li>
 							</ul>
-						</div>
-						<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container">
-							<p>&copy; 2018 ТМебель&trade;. Все права защищены.</p>
+						</div> --}}
+						<div class="col-md-5 col-sm-5 col-xs-12 footer-text-container text-right">
+							<p>&copy; 2018 Табуретка&trade;</p>
 						</div>
 					</div>
 				</div>

@@ -35,12 +35,12 @@ class BasketController extends Controller
             'cities' => 'required',
             'offices' => 'required',
             'comment' => 'string|nullable',
-            'g-recaptcha-response' => 'required|captcha',
+            // 'g-recaptcha-response' => 'required|captcha',
         ])->validate();
 
         // требуем код который приходит в смс
         // пока что отключим эту ф-цию
-        if ( !\Auth::check() && false ) {
+        if ( !Auth::check() && false ) {
             Validator::make($request->all(), [
                 'sms_code' => 'required|sms',
             ])->validate();
@@ -48,18 +48,24 @@ class BasketController extends Controller
         $products = order()->pull();
 
         $password = str_random(8);
-        $user = User::firstOrCreate(
-            ['mobile' => Filter::mobile($request->mobile)],
-            [
-                'name' => $request->first_last,
-                'password' => bcrypt($password),
-            ]
-        );
+        
+        if (!Auth::check()) {
+            $user = User::firstOrCreate(
+                ['mobile' => Filter::mobile($request->mobile)],
+                [
+                    'name' => $request->first_last,
+                    'password' => bcrypt($password),
+                ]
+            );    
+        } else {
+            $user = Auth::user();
+        }
 
         $order = Order::create([
             'user_id' => $user->id,
             'products' => $products->toArray(),
             'comment' => $request->comment,
+            'mobile' => $request->mobile,
         ]);
 
         $messages = ['Ваш заказ принят в оработку'];

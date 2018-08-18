@@ -33,6 +33,7 @@ elixir(function(mix) {
             'store/jquery.mousewheel.js',
             'store/jquery.nouislider.min.js',
             'store/main.js',
+            'store/spoiler.js',
         ], 'public/js/main.js')
         .scripts([
             'store/tinymce_ru.js',
