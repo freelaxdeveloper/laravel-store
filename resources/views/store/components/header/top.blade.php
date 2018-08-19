@@ -7,6 +7,11 @@
               {{-- <li>
                 <a href="#" title="Мой список желаний"><span class="top-icon top-icon-pencil"></span><span class="hide-for-xs">Мой список желаний</span></a>
               </li> --}}
+              @auth('admin')
+                <li>
+                  <a href="{{ route('admin.index') }}" title="Админка"><span class="fa fa-gear"></span> <span class="hide-for-xs">Админка</span></a>
+                </li>
+              @endauth
               @auth
                 <li>
                   <a href="{{ route('user.my') }}" title="Мой аккаунт"><span class="top-icon top-icon-user"></span><span class="hide-for-xs">Мой аккаунт</span></a>

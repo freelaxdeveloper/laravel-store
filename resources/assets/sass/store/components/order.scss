@@ -7,6 +7,9 @@
                 justify-content: space-between;
                 align-content: center;
                 div {
+                    .img-min {
+                        display: inline-block !important;
+                    }
                     width: 100%;
                     &:last-child {
                         text-align: right;

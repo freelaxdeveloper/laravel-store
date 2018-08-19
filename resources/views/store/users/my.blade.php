@@ -38,7 +38,7 @@
                     <div>{{ $order['created_at'] }}</div> 
                     <div>
                         @foreach ($order->products() as $product)
-                            <img src="{{ image($product['screen']['path'])->size(32)->get('src') }}">
+                            <img class="img-min" src="{{ image($product['screen']['path'])->size(32)->get('src') }}">
                         @endforeach
                     </div>
                     <div>{{ $order->products()->count() }} {{ trans_choice('plural.product', $order->products()->count()) }} на {{ number_format($order->products()->sum('price')) }} грн.</div>

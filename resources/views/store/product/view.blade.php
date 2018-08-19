@@ -10,6 +10,11 @@
           <li>
             <a href="{{ route('home') }}">Главная</a>
           </li>
+          @foreach ($product->categories()->get() as $category)
+            <li>
+              <a href="{{route('cat.view', [$category])}}" rel="nofollow">{{$category->name}}</a>
+            </li>
+          @endforeach
           <li class="active">{{ $product->title }}</li>
         </ul>
       </div>
@@ -72,18 +77,7 @@
           <div class="row">
             <div class="col-md-9 col-sm-12 col-xs-12">
               @if ($product->description)
-                <div class="tab-container left product-detail-tab clearfix">
-                  <ul class="nav-tabs">
-                    <li class="active">
-                      <a data-toggle="tab" href="product.html#overview">Описание</a>
-                    </li>
-                  </ul>
-                  <div class="tab-content clearfix">
-                    <div class="tab-pane active" id="overview">
-                      {!! $product->description !!}
-                    </div>
-                  </div>
-                </div>
+                {!! $product->description !!}
               @endif
               <div class="lg-margin visible-xs"></div>
 

@@ -3,7 +3,7 @@
 @if ( isset($product) )
     @section('title', 'Редактирование №' . $product->id)
 @else
-    @section('title', 'Добавление товара в - ' . $category->name)
+    @section('title', 'Добавление товара')
 @endif
 
 @section('content')
@@ -37,7 +37,7 @@
                             @if ( isset($product) )
                                 {!! Form::model($product, ['route' => ['prod.save', $product]]) !!}
                             @else
-                                {!! Form::open(['route' => ['prod.new', $category]]) !!}
+                                {!! Form::open(['route' => ['prod.new']]) !!}
                             @endif
                             
                                 @include('components.form.text', [

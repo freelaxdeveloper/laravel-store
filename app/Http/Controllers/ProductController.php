@@ -24,14 +24,14 @@ class ProductController extends Controller
         return response()->json(['location' => $product->screen['src']], 200);
         
     }
-    public function add(Category $category)
+    public function add()
     {
         $categoriesAll = Category::get();
 
-        return view('product.edit', compact('category', 'categoriesAll'));
+        return view('product.edit', compact('categoriesAll'));
     }
 
-    public function new(Request $request, Category $category)
+    public function new(Request $request)
     {
         $messages = [
             'price.required' => 'Цена обязательна для заполнения',

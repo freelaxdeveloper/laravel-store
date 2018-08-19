@@ -17097,6 +17097,8 @@ html[xmlns] .slides {
       align-content: center; }
   .orders .order .spoiler-wrap .spoiler-head div {
     width: 100%; }
+    .orders .order .spoiler-wrap .spoiler-head div .img-min {
+      display: inline-block !important; }
     .orders .order .spoiler-wrap .spoiler-head div:last-child {
       text-align: right; }
 
