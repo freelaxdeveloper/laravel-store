@@ -3,7 +3,13 @@
 @section('title', 'Табуретка - магазин мебели: купить мебель для офиса и дома')
 
 @section('content')
+<div id="app">
+    <basket></basket>
+    <b-alert show>Default Alert</b-alert>
 
+    <b-alert variant="success" show>Success Alert</b-alert>
+  @{{ message }}
+</div>
 {{-- @include('components.slider') --}}
 <section id="content">
 

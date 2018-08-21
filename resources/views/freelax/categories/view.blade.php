@@ -7,7 +7,7 @@
 @endsection
 
 @section('admin-menu')
-    <a class="dropdown-item" href="{{ route('prod.add', [$category]) }}">Добавить товар</a>
+    {{-- <a class="dropdown-item" href="{{ route('prod.add', [$category]) }}">Добавить товар</a> --}}
 @endsection
 
 @section('content')

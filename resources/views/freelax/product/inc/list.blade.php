@@ -23,6 +23,7 @@
                 @if ($product->price_old)
                     - {{number_format($product->price_old)}} руб.
                 @endif
+                за @isset($product->options['running_meter']) п.м. @else кв.м. @endisset
             </ul>
         </div>
         <!-- Card footer -->

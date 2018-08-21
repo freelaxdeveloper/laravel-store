@@ -18,12 +18,14 @@
     "gulp": "^3.9.1",
     "gulp-changed": "^3.2.0",
     "jquery": "^3.2",
-    "laravel-elixir": "^1.0",
+    "laravel-elixir": "^5.0.0",
+    "laravel-elixir-webpack": "^1.0.1",
     "laravel-mix": "^2.0",
     "lodash": "^4.17.4",
     "popper.js": "^1.12",
     "require-dir": "^1.0.0",
-    "vue": "^2.5.7"
+    "vue": "^2.5.7",
+    "webpack": "^4.16.5"
   },
   "dependencies": {
     "laravel-elixir-images": "^2.0.0",

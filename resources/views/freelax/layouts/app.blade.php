@@ -63,7 +63,9 @@
                                 <a class="dropdown-item" href="{{ route('register') }}" rel="nofollow">Регистрация</a>
                             @else
                                 @if (Auth::user()->hasRole('admin'))
+                                <a class="dropdown-item" href="{{ route('prod.add') }}">Добавить товар</a>
                                     <a class="dropdown-item" href="{{ route('cat') }}">Категории</a>
+                                    <a class="dropdown-item" href="{{ route('admin.index') }}">Админка</a>
                                     @yield('admin-menu')
                                 @endif
                                 <a class="dropdown-item" href="{{ route('logout') }}"

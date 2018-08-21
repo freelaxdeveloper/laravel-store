@@ -51,7 +51,7 @@
                             @if ( isset($product) )
                                 {!! Form::model($product, ['route' => ['prod.save', $product]]) !!}
                             @else
-                                {!! Form::open(['route' => ['prod.new', $category]]) !!}
+                                {!! Form::open(['route' => ['prod.new']]) !!}
                             @endif
                                 {{-- @csrf --}}
                                 <div class="row">

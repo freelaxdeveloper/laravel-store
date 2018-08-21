@@ -171,6 +171,7 @@
 		</footer>
 	</div><a href="#" id="scroll-top" title="Scroll to Top"><i class="fa fa-angle-up"></i></a> 
 	<script src="{{elixir('js/main.js')}}"></script>
+	<script src="{{elixir('js/vue.js')}}"></script>
 
 	@yield('js')
 
