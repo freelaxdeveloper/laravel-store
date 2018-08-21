@@ -11,10 +11,19 @@
 @endsection
 
 @section('content')
-    @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
-        {{--  {{$breadcrumbs->name}}   --}}
-    @endforeach
     <div class="col-xl-7 col-md-12">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            @foreach ($category->getAncestorsAndSelf() as $breadcrumbs)
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{route('cat.view', [$breadcrumbs])}}">{{$breadcrumbs->name}}</a></li>
+            @endforeach
+        </ol>
+    </nav>
+
+
+
+
+
         <section class="section extra-margins listing-section mt-2">
             <h2 class="font-bold"><strong>{{$category->name}}</strong></h2>
             <hr class="red title-hr">
