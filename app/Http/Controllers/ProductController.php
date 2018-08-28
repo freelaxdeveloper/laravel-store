@@ -46,6 +46,8 @@ class ProductController extends Controller
             'price' => 'required|integer',
             'price_old' => 'nullable|integer',
             'categories.*' => 'integer|exists:categories,id',
+            'input_img' => 'array|min:1',
+            'input_img.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ], $messages)->validate();
 
         $product = new Product;
@@ -59,6 +61,14 @@ class ProductController extends Controller
 
         $product->categories()->attach($request->input('categories'));
 
+        $images = $request->file('input_img');
+
+        $destinationPath = public_path('/storage/uploads/products/' . $product->id);
+
+        foreach ( $images as $image ) {
+            $image->move($destinationPath, time() . md5(microtime()) . '.' . $image->getClientOriginalExtension());
+        }
+        
         return redirect(route('prod.view', $product));
     }
 

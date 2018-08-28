@@ -51,9 +51,8 @@
                             @if ( isset($product) )
                                 {!! Form::model($product, ['route' => ['prod.save', $product]]) !!}
                             @else
-                                {!! Form::open(['route' => ['prod.new']]) !!}
+                                {!! Form::open(['route' => ['prod.new'], 'files' => true]) !!}
                             @endif
-                                {{-- @csrf --}}
                                 <div class="row">
                                     <div class="md-form">
                                         <i class="fa fa-rub prefix grey-text"></i>
@@ -108,6 +107,12 @@
                                     {!! Form::select('categories[]', $categoriesAll->pluck('name', 'id'), null, ['multiple' => 'multiple', 'class' => 'js-example-basic-multiple']) !!}
                                 </div>
 
+                                <div class="form-group">
+                                    {!! Form::file('input_img[]') !!}
+                                </div>
+                                <div class='form-group'>
+                                    <button class="btn btn-upload" onclick='$(this).parents(".form-group").before($(this).parents(".form-group").prev().clone()); return false;'>Добавить еще</button>
+                                </div>
 
                                 <div class="text-center">
                                     <button class="btn btn-indigo btn-rounded">Сохранить</button>
