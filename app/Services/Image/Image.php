@@ -1,5 +1,6 @@
 <?php namespace App\Services\Image;
 
+use Intervention\Image\ImageManagerStatic;
 use Gumlet\ImageResize;
 use File;
 
@@ -8,6 +9,8 @@ class Image extends ImageResize
   protected $path;
   public $properties;
   public $text;
+  protected $watermark;
+  protected $watermarkText;
 
   public function __construct($filename)
   {
@@ -84,6 +87,13 @@ class Image extends ImageResize
     // return $this->getProperties($newPath);
   }
 
+  public function watermark(?string $text = null)
+  {
+    $this->watermark = true;
+    $this->watermarkText = $text;
+    return $this;
+  }
+
   public function get(?string $field = null)
   {
     $filename = md5(implode('-', $this->properties)) . '.' . $this->properties['extension'];
@@ -96,6 +106,18 @@ class Image extends ImageResize
     }
 
     $this->save($newPath, null, 100);
+
+    if ($this->watermark) {
+      ImageManagerStatic::configure(array('driver' => 'imagick'));
+      $domain = ImageManagerStatic::make(storage_path('watermark/domain.png'))->opacity(50)->rotate(-5);
+      $phone = ImageManagerStatic::make(storage_path('watermark/phone.png'))->opacity(50);
+      $background = ImageManagerStatic::make(storage_path('watermark/background.png'))->text($this->watermarkText, 30, 60, function($font) {
+            $font->file(base_path("/resources/assets/fonts/OpenSans-Bold.ttf"));
+            $font->size(34);
+            $font->color('#fff');
+        })->opacity(50);
+      ImageManagerStatic::make($newPath)->insert($background, 'top-right', 0, 0)->insert($domain, 'bottom-right', 0, 0)->insert($phone, 'top-left', 0, 0)->save($newPath);
+    }
 
     $file = $this->getProperties($newPath);
     return $field ? $file[$field] : $file;

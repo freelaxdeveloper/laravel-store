@@ -33,21 +33,11 @@
         <hr class="red title-hr">
 
         <img src="{{$product->screen['image']
-            ->text("№{$product->id}", [
-                'position' => 'top',
-                'size' => 25,
-                'top' => 30,
-                'left' => 30,
-            ])
             ->text(route('prod.view', [$product]), [
                 'position' => 'left',
                 'size' => 25,
             ])            
-            ->text('+750665478569', [
-                'position' => 'left-top',
-                'size' => 25,
-                'top' => 30,
-            ])            
+            ->watermark("№{$product->id}")
             ->size(1080, 1000)->get('src')}}" class="img-fluid z-depth-1 mx-4 rounded" alt="sample image">
 
         <div class="row px-4">
