@@ -109,7 +109,7 @@
                             <!-- Section: Categories -->
                             <section class="section mb-5">
         
-                                <h4 class="font-bold mt-2"><strong>Категории</strong></h4>
+                                <h4 class="font-bold mt-2" style="padding-bottom: 11px;"><strong>Категории</strong></h4>
                                 <hr class="red title-hr">
         
                                 <ul class="list-group z-depth-1 mt-4">
@@ -124,7 +124,47 @@
                             </section>
                             <!-- Section: Categories -->
         
-                        </div>
+ 
+                            <section class="section mb-5">
+                                <h4 class="font-bold mt-2" style="font-size: 23px;"><strong>Доставка и установка</strong></h4>
+                                <hr class="red title-hr">
+                                <p>Бесплатно: От Дербента до Махачкалы</p>
+                                <p><b>Доставка за 40руб. за км.</b> по всему Дагестану и в другие регионы России</p>
+                                <p>
+                                    Дагестан
+                                    <ul>
+                                        <li>Хасавьюрт: 3000руб.</li>
+                                        <li>Кизляр: 5000руб.</li>
+                                    </ul>
+                                </p>
+                            </section>
+ 
+                            <section class="section mb-5">
+                                <h4 class="font-bold mt-2" style="font-size: 23px;"><strong>Способ оплаты</strong></h4>
+                                <hr class="red title-hr">
+                                <p>
+                                    <ul>
+                                        <li>Наличными</li>
+                                        <li>Банковсокой картой</li>
+                                    </ul>
+                                </p>
+                                <p>
+                                    <b>Аванс:</b> При заказе вносите аванс 30% от стоимости заказа. Остальную часть суммы после доставки и установки.
+                                </p>
+
+                                <section class="section mb-5">
+                                    <h4 class="font-bold mt-2" style="font-size: 20px;"><strong>Дополнительные услуги</strong></h4>
+                                    <hr class="red title-hr">
+                                    <p>
+                                        <ul style="font-size: 15px;">
+                                            <li>Покрытие лаком 500руб. за кв.м.</li>
+                                            <li>Акриловая краска 500руб. за кв.м.</li>
+                                            <li>Порошковая краска 3500руб. за кв.м.</li>
+                                            <li>Дорогая грунтовка 500руб. за кв.м.</li>
+                                        </ul>
+                                    </p>
+                                </section>
+                       </div>
                     @endif
                     <!--/ Sidebar -->
                 </div>

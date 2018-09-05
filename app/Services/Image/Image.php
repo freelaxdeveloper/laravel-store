@@ -110,7 +110,7 @@ class Image extends ImageResize
     if ($this->watermark) {
       ImageManagerStatic::configure(array('driver' => 'imagick'));
       $domain = ImageManagerStatic::make(storage_path('watermark/domain.png'))->opacity(50)->rotate(-5);
-      $phone = ImageManagerStatic::make(storage_path('watermark/phone.png'))->opacity(50);
+      $phone = ImageManagerStatic::make(storage_path('watermark/phone.png'))->opacity(70);
       $background = ImageManagerStatic::make(storage_path('watermark/background.png'))->text($this->watermarkText, 30, 60, function($font) {
             $font->file(base_path("/resources/assets/fonts/OpenSans-Bold.ttf"));
             $font->size(34);
