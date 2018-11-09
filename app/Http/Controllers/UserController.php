@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use JWTAuth;
 
 class UserController extends Controller
 {
+
+    public function userinfo()
+    {
+        $user = JWTAuth::parseToken()->toUser();
+
+        return $this->success($user);
+    }
     
     public function view(User $user)
     {

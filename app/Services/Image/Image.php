@@ -1,6 +1,7 @@
 <?php namespace App\Services\Image;
 
 use Intervention\Image\ImageManagerStatic;
+use Request;
 use Gumlet\ImageResize;
 use File;
 
@@ -133,7 +134,7 @@ class Image extends ImageResize
   public static function info(string $pathImage): array
   {
     $screen = pathinfo($pathImage);
-    $screen['src'] = str_replace(public_path(), '', $pathImage);
+    $screen['src'] = Request::root() . str_replace(public_path(), '', $pathImage);
     $screen['storage'] = str_replace(public_path() . '/storage', 'public', $pathImage);
     $screen['path'] = $screen['dirname'] . '/' . $screen['basename'];
 

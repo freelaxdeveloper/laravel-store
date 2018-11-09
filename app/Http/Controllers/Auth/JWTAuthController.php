@@ -3,10 +3,11 @@
 use JWTAuth;
 use JWTFactory;
 use Tymon\JWTAuth\Exceptions\JWTException;
-
+use App\Http\Controllers\Controller;
 use Validator;
 
-class JWTAuthController {
+class JWTAuthController extends Controller
+{
   
   public function auth()
   {
@@ -16,7 +17,7 @@ class JWTAuthController {
     ]);
 
     if ($validator->fails()) {
-      return response()->json(['error' => $validator->errors()], 401);
+      return $this->fail($validator->errors()->all());
     }
 
     $credentials = request()->only(['email', 'password']);
@@ -24,11 +25,11 @@ class JWTAuthController {
     try {
         // attempt to verify the credentials and create a token for the user
         if (! $token = JWTAuth::attempt($credentials)) {
-            return response()->json(['error' => 'invalid_credentials'], 401);
+            return $this->fail('invalid_credentials');
         }
     } catch (JWTException $e) {
         // something went wrong whilst attempting to encode the token
-        return response()->json(['error' => 'could_not_create_token'], 500);
+        return $this->fail('could_not_create_token');
     }
 
     // all good so return the token

@@ -18,4 +18,14 @@ class Controller extends BaseController
             'data' => $data,
         ], 200);
     }
+
+    public function fail($errors)
+    {
+        $errors = is_array($errors) ? $errors : [$errors];
+
+        return response()->json([
+            'success' => false,
+            'errors' => $errors,
+        ], 400);
+    }
 }

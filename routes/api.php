@@ -18,10 +18,15 @@ if ( env('SSL', false) ) {
 
 Route::namespace('API')->group(function () {
     Route::post('/subscribe/email', 'SubscribeController@subscribeEmail')->name('subscribeEmail');
+    Route::get('/products/all', 'ProductsController@all');
+    Route::get('/product/{product}', 'ProductsController@product');
 });
 
 Route::namespace('Auth')->group(function () {
-    Route::post('/auth', 'JWTAuthController@auth');
+    Route::post('/login', 'JWTAuthController@auth');
+});
+Route::middleware(['jwt.auth'])->group(function () {
+    Route::get('/user', 'UserController@userinfo');
 });
 
 Route::get('/test', 'ApiController@test')->name('test');
@@ -44,6 +49,6 @@ Route::post('/sms/code', 'ApiController@smsCode')->name('smsCode')->middleware('
     return response()->json([45], 403);
 }); */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });

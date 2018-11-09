@@ -20,7 +20,7 @@ class Product extends Model
         'options' => 'array',
     ];
 
-    protected $appends = ['screens', 'screen', 'rating_avg'];
+    protected $appends = ['screens', 'screen', 'rating_avg', 'screens_link'];
 
     public function getRatingAvgAttribute()
     {
@@ -69,6 +69,11 @@ class Product extends Model
     public function getScreensAttribute(): Collection
     {
         return (new ProductScreen($this))->all();
+    }
+
+    public function getScreensLinkAttribute()
+    {
+        return $this->screens->pluck('src'); 
     }
 
     public function getScreenAttribute()
